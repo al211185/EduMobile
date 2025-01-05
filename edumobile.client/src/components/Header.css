@@ -1,0 +1,236 @@
+/* globals.css */
+:root {
+    /* Primary Colors */
+    --color-primary-bg: #FFFFFF; /* White background */
+    --color-primary-text: #FFFFFF; /* White text for dark backgrounds */
+    /* Neutral Colors for Textures */
+    --color-neutral-light: #F0F0F0; /* Light Gray for textures */
+    --color-neutral-dark: #1A1A1A; /* Dark Gray for emphasis */
+    /* Font Settings */
+    --font-family-main: 'Arial', sans-serif;
+    --font-family-accessible: 'OpenDyslexic', 'Arial', sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.6;
+    --letter-spacing-base: 0.05em;
+}
+
+/* Global Reset for Accessibility */
+body {
+    font-family: var(--font-family-accessible);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-primary-text);
+    background-color: var(--color-primary-bg);
+    letter-spacing: var(--letter-spacing-base);
+    margin: 0;
+    padding: 0;
+}
+
+/* Textures for Differentiation */
+.bg-texture-light {
+    background: repeating-linear-gradient(45deg, var(--color-neutral-light), var(--color-neutral-light) 10px, var(--color-primary-bg) 10px, var(--color-primary-bg) 20px);
+}
+
+.bg-texture-dark {
+    background: repeating-linear-gradient(45deg, var(--color-neutral-dark), var(--color-neutral-dark) 10px, var(--color-primary-bg) 10px, var(--color-primary-bg) 20px);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--color-neutral-dark); /* Black background */
+    padding: 1rem; /* Smaller padding */
+    color: var(--color-primary-text); /* White text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-neutral-light);
+    position: fixed; /* Floating header */
+    top: 1rem; /* Adds spacing from the top */
+    left: 50%; /* Centers the header */
+    transform: translateX(-50%);
+    z-index: 1000;
+    border-radius: 16px; /* Rounded header */
+    margin: 0 auto; /* Centers header horizontally */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced floating shadow */
+    width: calc(100% - 3rem); /* Adjusts width with spacing */
+    max-width: 1200px; /* Limits header width */
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    gap: 1.5rem; /* Adds space between links */
+}
+
+    nav a {
+        color: var(--color-primary-text); /* White text */
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-family: var(--font-family-main);
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        border-radius: 4px;
+    }
+
+        nav a:hover {
+            color: var(--color-neutral-dark); /* Black text */
+            background-color: var(--color-neutral-light); /* Light gray background */
+        }
+
+/* Main Styles */
+main {
+    text-align: center;
+    margin-top: 120px; /* Adjust for fixed header */
+    padding: 1rem;
+    color: var(--color-neutral-dark);
+    font-family: var(--font-family-main);
+}
+
+    main h1 {
+        font-size: 2.5rem;
+        color: var(--color-primary-text);
+        margin-bottom: 1rem;
+    }
+
+    main p {
+        font-size: 1.2rem;
+        color: var(--color-neutral-dark);
+        line-height: var(--line-height-base);
+    }
+
+/* Login Container */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--color-neutral-dark); /* Dark gray background */
+    color: var(--color-primary-text); /* White text */
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+
+    .container h1 {
+        font-family: var(--font-family-main);
+        font-size: 2rem;
+        margin-bottom: 2rem; /* Spacing below header */
+        text-align: center;
+    }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Space between form elements */
+}
+
+.form-floating {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Space between label and input */
+}
+
+    .form-floating input {
+        font-family: var(--font-family-main);
+        font-size: var(--font-size-base);
+        color: var(--color-neutral-dark); /* Dark text */
+        background-color: var(--color-neutral-light); /* Light gray background */
+        border: 1px solid var(--color-neutral-light); /* Light border */
+        padding: 0.75rem;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+        .form-floating input:focus {
+            outline: 2px solid var(--color-accent); /* Turquoise focus */
+            background-color: var(--color-primary-bg); /* White background */
+        }
+
+    .form-floating label {
+        font-family: var(--font-family-main);
+        font-size: 0.95rem;
+        color: var(--color-secondary-text); /* Gray labels */
+    }
+
+button {
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-base);
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+    button[type="submit"] {
+        background-color: var(--color-primary-bg); /* White background */
+        color: var(--color-neutral-dark); /* Dark text */
+        font-weight: bold;
+        text-transform: uppercase;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+        button[type="submit"]:hover {
+            background-color: var(--color-neutral-light); /* Lighter white background */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button[type="submit"]:focus {
+            outline: 2px solid var(--color-neutral-dark);
+        }
+
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.alert-danger {
+    background-color: var(--color-error); /* Red for errors */
+    color: var(--color-primary-bg); /* White text */
+}
+
+.mt-4 {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+    .mt-4 h3 {
+        font-family: var(--font-family-main);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+/* Links */
+a {
+    color: var(--color-primary-text);
+    text-decoration: underline;
+}
+
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+
+/* Accessible Focus States */
+:focus {
+    outline: 2px dashed var(--color-neutral-light);
+    outline-offset: 2px;
+}
+
+/* Utility Classes */
+.text-secondary {
+    color: var(--color-neutral-light);
+}
+
+.bg-light {
+    background-color: var(--color-neutral-light);
+}
+
+.bg-dark {
+    background-color: var(--color-neutral-dark);
+}
