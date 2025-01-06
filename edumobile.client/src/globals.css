@@ -757,13 +757,16 @@ textarea.styled-input {
 
 
 
-.my-projects-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+
+.my-projects h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: var(--color-neutral-dark);
+    margin-bottom: 2rem;
+    font-weight: bold;
 }
 
-.projects-grid {
+.project-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
@@ -772,11 +775,15 @@ textarea.styled-input {
 .project-card {
     background-color: var(--color-neutral-light);
     border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 10px;
+    padding: 1.5rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
+    position: relative;
 }
 
     .project-card:hover {
@@ -784,25 +791,48 @@ textarea.styled-input {
         box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
     }
 
-.project-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--color-neutral-dark);
-    margin-bottom: 0.5rem;
-}
+    .project-card h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--color-neutral-dark);
+        margin-bottom: 1rem;
+    }
 
-.project-description {
-    font-size: 1rem;
-    color: var(--color-neutral-dark);
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
+    .project-card p {
+        font-size: 1rem;
+        color: var(--color-neutral-dark);
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
 
-.project-phase {
-    font-size: 0.9rem;
-    color: var(--color-neutral-dark);
-    font-weight: bold;
-}
+    .project-card .card-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    .project-card .edit-button,
+    .project-card .delete-button {
+        background-color: var(--color-neutral-dark);
+        color: var(--color-primary-bg);
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .project-card .edit-button:hover {
+            background-color: #2980b9; /* Azul más oscuro */
+            transform: translateY(-2px);
+        }
+
+        .project-card .delete-button:hover {
+            background-color: #e74c3c; /* Rojo brillante */
+            transform: translateY(-2px);
+        }
 
 
 
@@ -1001,3 +1031,32 @@ button {
         white-space: nowrap;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
+
+
+.nav-projects {
+    background-color: var(--color-neutral-light); /* Fondo claro */
+    color: var(--color-neutral-dark); /* Texto oscuro */
+    padding: 0.75rem 1.5rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente uniforme */
+    font-weight: bold; /* Resalta el texto */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 8px; /* Bordes redondeados */
+    border: 1px solid var(--color-border); /* Línea delgada */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+
+    .nav-projects:hover {
+        background-color: var(--color-neutral-dark); /* Fondo más oscuro */
+        color: var(--color-primary-bg); /* Texto blanco */
+        transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
+
+    .nav-projects:active {
+        background-color: var(--color-neutral-dark); /* Mantiene el fondo oscuro */
+        color: var(--color-primary-bg); /* Texto blanco */
+        transform: scale(0.98); /* Ligero efecto de clic */
+        box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra interior */
+    }
+
+
