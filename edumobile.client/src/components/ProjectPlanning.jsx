@@ -4,10 +4,14 @@ import ObjectiveSection from "./ObjectiveSection";
 import RequirementsSection from "./RequirementsSection";
 import PreferencesSection from "./PreferencesSection";
 import ReflectiveExercise from "./ReflectiveExercise";
+import DesignPhase from "./DesignPhase";
+
 import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ProjectPlanning = ({ projectData = {} }) => {
     const { user } = useAuth(); // Acceso al usuario autenticado
+    const navigate = useNavigate();
     const parseCorporateColors = (colors) => {
         if (Array.isArray(colors)) {
             const [primary, secondary1, secondary2] = colors;
@@ -181,14 +185,9 @@ const ProjectPlanning = ({ projectData = {} }) => {
         setAllFieldsCompleted(validateFields());
     }, [formData]);
 
-    const saveData = async () => {
+    const saveProgress = async () => {
         if (!projectData.id) {
             alert("Error: No se encontró el ID del proyecto.");
-            return;
-        }
-
-        if (!allFieldsCompleted) {
-            alert("Por favor, completa todos los campos antes de guardar.");
             return;
         }
 
@@ -203,24 +202,24 @@ const ProjectPlanning = ({ projectData = {} }) => {
             specificObjectives: formData.specificObjectives || [],
             functionalRequirements: formData.functionalRequirements
                 .filter((req) => req.checked)
-                .map((req) => req.name), // Solo envía los seleccionados
+                .map((req) => req.name),
             customRequirements: formData.customRequirements || [],
             corporateColors: {
                 primary: formData.corporateColors.primary,
                 secondary1: formData.corporateColors.secondary1,
                 secondary2: formData.corporateColors.secondary2,
             },
-            corporateFont: formData.corporateFont || "Arial", // Valor predeterminado
+            corporateFont: formData.corporateFont || "Arial",
             allowedTechnologies: formData.allowedTechnologies
                 .filter((tech) => tech.checked)
-                .map((tech) => tech.name), // Solo envía las seleccionadas
+                .map((tech) => tech.name),
             customTechnologies: formData.customTechnologies || [],
             reflectiveAnswers: JSON.stringify(formData.reflectiveAnswers || {}),
             clienteName: formData.clienteName || "",
             responsable: formData.responsable || "Sin responsable",
         };
 
-        console.log("Datos enviados al servidor:", payload);
+        console.log("Datos enviados al servidor (Guardar Progreso):", payload);
 
         try {
             const response = await fetch("/api/projects/save-phase-data", {
@@ -231,25 +230,34 @@ const ProjectPlanning = ({ projectData = {} }) => {
                 body: JSON.stringify(payload),
             });
 
-            if (!response.ok) {
+            if (response.ok) {
+                alert("Progreso guardado exitosamente");
+            } else {
                 const errorData = await response.json();
-                console.error("Error en la respuesta del servidor:", errorData);
-
-                if (errorData.errors) {
-                    const serverErrors = Object.values(errorData.errors).flat();
-                    setErrorMessages(serverErrors);
-                } else {
-                    setErrorMessages([errorData.message || "Error desconocido"]);
-                }
-                return;
+                console.error("Error al guardar progreso:", errorData);
+                alert(errorData.message || "Error desconocido al guardar el progreso.");
             }
-
-            alert("Datos guardados exitosamente");
         } catch (error) {
-            console.error("Error al guardar los datos:", error);
-            alert("Hubo un error al guardar los datos.");
+            console.error("Error al guardar el progreso:", error);
+            alert("Hubo un error al guardar el progreso.");
         } finally {
             setIsSaving(false);
+        }
+    };
+
+    const completePhase = async () => {
+        if (!allFieldsCompleted) {
+            alert("Por favor, completa todos los campos antes de completar la fase.");
+            return;
+        }
+
+        try {
+            await saveProgress(); // Guarda los datos
+            console.log("Fase 1 completada. Redirigiendo a Fase 2 (Diseño)...");
+            navigate("/fase-2-diseno"); // Redirige a la siguiente fase
+        } catch (error) {
+            console.error("Error al completar la fase:", error);
+            alert("Ocurrió un error al completar la fase. Por favor, inténtalo de nuevo.");
         }
     };
 
@@ -269,7 +277,9 @@ const ProjectPlanning = ({ projectData = {} }) => {
                     handleArrayInputChange("specificObjectives", index, value)
                 }
                 handleAddSpecificObjective={() => handleAddToArray("specificObjectives")}
-                handleRemoveSpecificObjective={(index) => handleRemoveFromArray("specificObjectives", index)}
+                handleRemoveSpecificObjective={(index) =>
+                    handleRemoveFromArray("specificObjectives", index)
+                }
             />
             <RequirementsSection
                 functionalRequirements={formData.functionalRequirements}
@@ -292,13 +302,24 @@ const ProjectPlanning = ({ projectData = {} }) => {
                 answers={formData.reflectiveAnswers}
                 onAnswersChange={handleReflectiveAnswersChange}
             />
-            <button
-                disabled={!allFieldsCompleted || isSaving}
-                onClick={saveData}
-                className={`btn-primary ${isSaving ? "saving" : ""}`}
-            >
-                {isSaving ? "Guardando..." : "Completar Fase"}
-            </button>
+
+            <div className="buttons-container">
+                <button
+                    disabled={isSaving}
+                    onClick={saveProgress}
+                    className="btn-secondary"
+                >
+                    {isSaving ? "Guardando..." : "Guardar Progreso"}
+                </button>
+                <button
+                    disabled={!allFieldsCompleted || isSaving}
+                    onClick={completePhase}
+                    className={`btn-primary ${isSaving ? "saving" : ""}`}
+                >
+                    {isSaving ? "Guardando..." : "Completar Fase"}
+                </button>
+            </div>
+
             {errorMessages.length > 0 && (
                 <ul className="error-messages">
                     {errorMessages.map((error, index) => (
@@ -309,5 +330,4 @@ const ProjectPlanning = ({ projectData = {} }) => {
         </div>
     );
 };
-
 export default ProjectPlanning;
