@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
 const GeneralInformation = ({ formData, handleInputChange }) => {
-    const { user } = useAuth();
+    const { user } = useAuth(); // Obtener información del usuario
+    const isReadOnly = user?.role === "Profesor"; // Determinar si los campos deben ser solo lectura
+
     const [warnings, setWarnings] = useState({
         title: false,
         clienteName: false,
@@ -11,7 +13,15 @@ const GeneralInformation = ({ formData, handleInputChange }) => {
     });
 
     useEffect(() => {
-        if (user?.nombre) {
+        if (isReadOnly && formData.CreatedByName) {
+            // Para profesores: mostrar el valor de CreatedByName como responsable
+            if (formData.responsable !== formData.CreatedByName) {
+                handleInputChange({
+                    target: { name: "responsable", value: formData.CreatedByName },
+                });
+            }
+        } else if (!isReadOnly && user?.nombre) {
+            // Solo para alumnos: rellenar automáticamente si está vacío
             if (!formData.title?.trim() && formData.title !== `Proyecto de ${user.nombre}`) {
                 handleInputChange({
                     target: { name: "title", value: `Proyecto de ${user.nombre}` },
@@ -23,7 +33,7 @@ const GeneralInformation = ({ formData, handleInputChange }) => {
                 });
             }
         }
-    }, [user, formData.title, formData.responsable, handleInputChange]);
+    }, [user, formData, handleInputChange, isReadOnly]);
 
     useEffect(() => {
         const newWarnings = {
@@ -63,8 +73,11 @@ const GeneralInformation = ({ formData, handleInputChange }) => {
                     name="title"
                     value={formData.title || ""}
                     onChange={handleInputChange}
+                    readOnly={isReadOnly} // Campo de solo lectura para el profesor
                 />
-                {warnings.title && <p className="warning-message">El nombre del proyecto es obligatorio.</p>}
+                {!isReadOnly && warnings.title && (
+                    <p className="warning-message">El nombre del proyecto es obligatorio.</p>
+                )}
 
                 <label htmlFor="clienteName">Nombre del cliente:</label>
                 <input
@@ -73,18 +86,22 @@ const GeneralInformation = ({ formData, handleInputChange }) => {
                     name="clienteName"
                     value={formData.clienteName || ""}
                     onChange={handleInputChange}
+                    readOnly={isReadOnly} // Campo de solo lectura para el profesor
                 />
-                {warnings.clienteName && <p className="warning-message">El nombre del cliente es obligatorio.</p>}
+                {!isReadOnly && warnings.clienteName && (
+                    <p className="warning-message">El nombre del cliente es obligatorio.</p>
+                )}
 
                 <label htmlFor="responsable">Responsable del proyecto:</label>
                 <input
                     type="text"
                     id="responsable"
                     name="responsable"
-                    value={formData.responsable || ""}
+                    value={formData.responsable || "No definido"} // Mostrar el valor cargado de CreatedByName
                     onChange={handleInputChange}
+                    readOnly={isReadOnly} // Campo de solo lectura para el profesor
                 />
-                {warnings.responsable && (
+                {!isReadOnly && warnings.responsable && (
                     <p className="warning-message">El responsable del proyecto es obligatorio.</p>
                 )}
 
@@ -95,8 +112,11 @@ const GeneralInformation = ({ formData, handleInputChange }) => {
                     name="startDate"
                     value={formData.startDate || ""}
                     onChange={handleInputChange}
+                    readOnly={isReadOnly} // Campo de solo lectura para el profesor
                 />
-                {warnings.startDate && <p className="warning-message">La fecha de inicio es obligatoria.</p>}
+                {!isReadOnly && warnings.startDate && (
+                    <p className="warning-message">La fecha de inicio es obligatoria.</p>
+                )}
             </div>
         </fieldset>
     );

@@ -1,99 +1,107 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const CreateProject = () => {
-    const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [errorMessages, setErrorMessages] = useState([]);
-    const navigate = useNavigate();
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
+const CreateSemester = ({ selectedCourse }) => {
+    const [year, setYear] = useState("");
+    const [period, setPeriod] = useState("A");
+    const [description, setDescription] = useState("");
+    const [distinctive, setDistinctive] = useState("");
+    const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        setErrorMessages([]);
+
+        const semesterName = `${year}${period}${distinctive ? ` - ${distinctive}` : ""}`;
 
         try {
-            console.log("Datos enviados al servidor:", formData);
-
-            const response = await fetch("/api/projects/create", {
+            const response = await fetch("/api/semesters/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    name: semesterName,
+                    year: parseInt(year),
+                    period,
+                    description,
+                    course: selectedCourse,
+                }),
             });
 
+            const data = await response.json();
+
             if (response.ok) {
-                alert("✅ Proyecto creado exitosamente.");
-                navigate("/dashboard");
+                setMessage(`✅ Semestre creado con éxito: ${semesterName}`);
+                setYear("");
+                setPeriod("A");
+                setDescription("");
+                setDistinctive("");
             } else {
-                const errorData = await response.json();
-                console.error("Error en el servidor:", errorData);
-                if (errorData.message) {
-                    setErrorMessages([errorData.message]);
-                } else if (errorData.errors) {
-                    // Manejo de errores específicos de validación
-                    const validationErrors = Object.values(errorData.errors).flat();
-                    setErrorMessages(validationErrors);
-                } else {
-                    setErrorMessages(["⚠️ No se pudo crear el proyecto. Revisa los datos ingresados."]);
-                }
+                setMessage(`⚠️ Error: ${data.message || "No se pudo crear el semestre."}`);
             }
         } catch (error) {
-            console.error("Error al crear el proyecto:", error);
-            setErrorMessages(["⚠️ Hubo un error al procesar la solicitud."]);
-        } finally {
-            setIsSubmitting(false);
+            setMessage("⚠️ Hubo un error al crear el semestre.");
         }
     };
 
     return (
-        <div className="create-project-container">
-            <h1>Crear Nuevo Proyecto</h1>
-            <form onSubmit={handleSubmit} className="create-project-form">
-                <div className="form-group">
-                    <label htmlFor="title">Nombre del Proyecto</label>
+        <div className="create-semester-container">
+            <h2>Crear Semestre</h2>
+            {message && (
+                <div className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`}>
+                    {message}
+                </div>
+            )}
+            <form onSubmit={handleSubmit}>
+                <div className="form-floating">
+                    <label htmlFor="year">Año</label>
                     <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
+                        type="number"
+                        id="year"
+                        className="styled-input"
+                        value={year}
+                        onChange={(e) => setYear(e.target.value)}
+                        placeholder="Ingrese el año (e.g., 2024)"
                         required
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="description">Descripción (Opcional)</label>
+                <div className="form-floating">
+                    <label htmlFor="period">Periodo</label>
+                    <select
+                        id="period"
+                        className="styled-input"
+                        value={period}
+                        onChange={(e) => setPeriod(e.target.value)}
+                        required
+                    >
+                        <option value="A">A (Primavera)</option>
+                        <option value="B">B (Otoño)</option>
+                    </select>
+                </div>
+                <div className="form-floating">
+                    <label htmlFor="description">Descripción</label>
                     <textarea
                         id="description"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                    ></textarea>
+                        className="styled-input"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Descripción opcional del semestre"
+                    />
                 </div>
-                {errorMessages.length > 0 && (
-                    <ul className="error-messages">
-                        {errorMessages.map((error, index) => (
-                            <li key={index} className="error-message">
-                                {error}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-                <button type="submit" className="btn-primary" disabled={isSubmitting}>
-                    {isSubmitting ? "Creando..." : "Crear Proyecto"}
-                </button>
+                <div className="form-floating">
+                    <label htmlFor="distinctive">Distintivo</label>
+                    <input
+                        type="text"
+                        id="distinctive"
+                        className="styled-input"
+                        value={distinctive}
+                        onChange={(e) => setDistinctive(e.target.value)}
+                        placeholder="Añadir un distintivo (e.g., 'Especialidad en Frontend')"
+                    />
+                </div>
+                <button type="submit" className="btn-primary">Crear Semestre</button>
             </form>
         </div>
     );
 };
 
-export default CreateProject;
+export default CreateSemester;

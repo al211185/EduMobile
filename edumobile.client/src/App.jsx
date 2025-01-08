@@ -10,6 +10,7 @@ import CreateSemester from "./components/CreateSemester";
 import MyProjects from "./components/MyProjects";
 import ProjectPhase from "./components/ProjectPhase"; // Importa el componente para las fases del proyecto
 import DesignPhase from "./components/DesignPhase"; // Nueva importación
+import ProjectDetails from "./components/ProjectDetails"; // Importa el componente de detalles del proyecto
 import { useAuth } from "./contexts/AuthContext";
 import "./globals.css";
 import "./app.css";
@@ -60,6 +61,8 @@ const App = () => {
                         <>
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/create-semester" element={<CreateSemester />} />
+                            <Route path="/projects/:projectId" element={<ProjectDetails />} />
+
                         </>
                     )}
 
@@ -70,6 +73,7 @@ const App = () => {
                             <Route path="/fase-2-diseno" element={<DesignPhase />} /> {/* Nueva ruta */}
                         </>
                     )}
+
                 </Routes>
             </main>
         </Router>

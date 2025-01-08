@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const RequirementsSection = ({ functionalRequirements, customRequirements, onRequirementsChange }) => {
+const RequirementsSection = ({
+    functionalRequirements,
+    customRequirements,
+    onRequirementsChange,
+    readOnly, // Nueva prop para controlar el modo de solo lectura
+}) => {
     const [customRequirement, setCustomRequirement] = useState("");
 
     // Lista predefinida de requisitos funcionales
@@ -74,34 +79,37 @@ const RequirementsSection = ({ functionalRequirements, customRequirements, onReq
                                     functionalRequirements.find((fr) => fr.name === req.name)?.checked || false
                                 }
                                 onChange={() => handleRequirementChange(index)}
+                                disabled={readOnly} // Deshabilitar si está en modo solo lectura
                             />
                             {req.label}
                         </label>
                     ))}
 
                     {/* Campo para agregar requisitos personalizados */}
-                    <div style={{ marginTop: "1rem" }}>
-                        <input
-                            type="text"
-                            placeholder="Escribe un nuevo requisito"
-                            value={customRequirement}
-                            onChange={handleCustomRequirementInput}
-                        />
-                        <button
-                            type="button"
-                            onClick={addCustomRequirement}
-                            style={{
-                                marginLeft: "10px",
-                                backgroundColor: "#4CAF50",
-                                color: "white",
-                                border: "none",
-                                cursor: "pointer",
-                                padding: "0.5rem",
-                            }}
-                        >
-                            Agregar
-                        </button>
-                    </div>
+                    {!readOnly && (
+                        <div style={{ marginTop: "1rem" }}>
+                            <input
+                                type="text"
+                                placeholder="Escribe un nuevo requisito"
+                                value={customRequirement}
+                                onChange={handleCustomRequirementInput}
+                            />
+                            <button
+                                type="button"
+                                onClick={addCustomRequirement}
+                                style={{
+                                    marginLeft: "10px",
+                                    backgroundColor: "#4CAF50",
+                                    color: "white",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    padding: "0.5rem",
+                                }}
+                            >
+                                Agregar
+                            </button>
+                        </div>
+                    )}
 
                     {/* Lista de requisitos personalizados */}
                     {customRequirements.length > 0 && (
@@ -109,20 +117,22 @@ const RequirementsSection = ({ functionalRequirements, customRequirements, onReq
                             {customRequirements.map((req, index) => (
                                 <li key={index} style={{ marginBottom: "0.5rem" }}>
                                     {req}
-                                    <button
-                                        type="button"
-                                        onClick={() => removeCustomRequirement(index)}
-                                        style={{
-                                            marginLeft: "10px",
-                                            backgroundColor: "red",
-                                            color: "white",
-                                            border: "none",
-                                            cursor: "pointer",
-                                            padding: "0.3rem",
-                                        }}
-                                    >
-                                        Eliminar
-                                    </button>
+                                    {!readOnly && (
+                                        <button
+                                            type="button"
+                                            onClick={() => removeCustomRequirement(index)}
+                                            style={{
+                                                marginLeft: "10px",
+                                                backgroundColor: "red",
+                                                color: "white",
+                                                border: "none",
+                                                cursor: "pointer",
+                                                padding: "0.3rem",
+                                            }}
+                                        >
+                                            Eliminar
+                                        </button>
+                                    )}
                                 </li>
                             ))}
                         </ul>

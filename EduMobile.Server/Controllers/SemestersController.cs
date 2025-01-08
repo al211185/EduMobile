@@ -154,6 +154,54 @@ namespace EduMobile.Server.Controllers
             return Ok(students);
         }
 
+        // DELETE: api/Semesters/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSemester(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var semester = await _context.Semesters.FindAsync(id);
+
+            if (semester == null)
+                return NotFound(new { Message = "Semestre no encontrado." });
+
+            if (semester.ProfessorId != userId)
+                return Forbid();
+
+            // Elimina el semestre
+            _context.Semesters.Remove(semester);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Semestre eliminado exitosamente." });
+        }
+
+        // DELETE: api/Semesters/{semesterId}/students/{studentId}
+        [HttpDelete("{semesterId}/students/{studentId}")]
+        public async Task<IActionResult> RemoveStudentFromSemester(int semesterId, string studentId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var semester = await _context.Semesters
+                .Include(s => s.SemesterStudents)
+                .FirstOrDefaultAsync(s => s.Id == semesterId);
+
+            if (semester == null)
+                return NotFound(new { Message = "Semestre no encontrado." });
+
+            if (semester.ProfessorId != userId)
+                return Forbid();
+
+            var relation = semester.SemesterStudents.FirstOrDefault(ss => ss.StudentId == studentId);
+            if (relation == null)
+                return NotFound(new { Message = "El estudiante no está asignado a este semestre." });
+
+            _context.SemesterStudents.Remove(relation);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Estudiante eliminado del semestre exitosamente." });
+        }
+
+
     }
 
     public class CreateSemesterRequest

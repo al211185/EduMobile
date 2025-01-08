@@ -7,6 +7,7 @@ const ObjectiveSection = ({
     handleSpecificObjectiveChange,
     handleAddSpecificObjective,
     handleRemoveSpecificObjective,
+    readOnly, // Nueva prop para controlar el modo de solo lectura
 }) => (
     <fieldset>
         <section className="grid-container objetivos" id="obj">
@@ -24,6 +25,7 @@ const ObjectiveSection = ({
                     name="generalObjective"
                     value={generalObjective}
                     onChange={(e) => handleGeneralObjectiveChange(e.target.value)}
+                    readOnly={readOnly} // Modo solo lectura
                 />
             </div>
             <div className="item4 grid-item">
@@ -40,35 +42,40 @@ const ObjectiveSection = ({
                             id={`specificObjective${index}`}
                             value={objective}
                             onChange={(e) => handleSpecificObjectiveChange(index, e.target.value)}
+                            readOnly={readOnly} // Modo solo lectura
                         />
-                        <button
-                            type="button"
-                            onClick={() => handleRemoveSpecificObjective(index)}
-                            style={{
-                                marginLeft: "10px",
-                                backgroundColor: "red",
-                                color: "white",
-                                border: "none",
-                                cursor: "pointer",
-                            }}
-                        >
-                            Eliminar
-                        </button>
+                        {!readOnly && ( // Mostrar el botón de eliminar solo si no es de solo lectura
+                            <button
+                                type="button"
+                                onClick={() => handleRemoveSpecificObjective(index)}
+                                style={{
+                                    marginLeft: "10px",
+                                    backgroundColor: "red",
+                                    color: "white",
+                                    border: "none",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                Eliminar
+                            </button>
+                        )}
                     </div>
                 ))}
-                <button
-                    type="button"
-                    onClick={handleAddSpecificObjective}
-                    style={{
-                        backgroundColor: "#4CAF50",
-                        color: "white",
-                        padding: "0.5rem 1rem",
-                        border: "none",
-                        cursor: "pointer",
-                    }}
-                >
-                    Agregar Objetivo
-                </button>
+                {!readOnly && ( // Mostrar el botón de agregar solo si no es de solo lectura
+                    <button
+                        type="button"
+                        onClick={handleAddSpecificObjective}
+                        style={{
+                            backgroundColor: "#4CAF50",
+                            color: "white",
+                            padding: "0.5rem 1rem",
+                            border: "none",
+                            cursor: "pointer",
+                        }}
+                    >
+                        Agregar Objetivo
+                    </button>
+                )}
             </div>
         </section>
     </fieldset>

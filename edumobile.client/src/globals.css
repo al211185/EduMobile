@@ -1,8 +1,9 @@
 /* globals.css */
+
 :root {
     /* Primary Colors */
     --color-primary-bg: #FFFFFF; /* White background */
-    --color-primary-text: #1A1A1A; /* Dark text for readability */
+    --color-primary-text: #1A1A1A; /* Dark text for readability (Inicio) */
     /* Neutral Colors for Textures */
     --color-neutral-light: #F0F0F0; /* Light Gray for textures */
     --color-neutral-dark: #1A1A1A; /* Dark Gray for emphasis */
@@ -128,20 +129,12 @@ main {
     text-align: center;
     margin-top: 0;
     padding: 1rem;
-    color: var(--color-neutral-dark);
+    color: var(--color-neutral-light);
     font-family: var(--font-family-main);
 }
 
     main h1 {
-        font-size: 2.5rem;
-        color: var(--color-neutral-dark);
-        margin-bottom: 1rem;
-    }
-
-    main p {
-        font-size: 1.2rem;
-        color: var(--color-neutral-dark);
-        line-height: var(--line-height-base);
+        color: var(--color-neutral-light);
     }
 
 /* Buttons */
@@ -492,7 +485,6 @@ form {
 }
 
 .main-container.dashboard-main {
-    margin-left: 250px; /* Ajusta el margen izquierdo para dejar espacio al sidebar */
     flex-grow: 1; /* Permite que el contenido se expanda */
     padding: 2rem; /* Espaciado interno */
     background-color: var(--color-primary-bg);

@@ -1,6 +1,6 @@
 ﻿using EduMobile.Server.Models;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 public class Project
 {
@@ -40,9 +40,8 @@ public class Project
 
     public string ClienteName { get; set; }
 
-    [Required]
-    public string CreatedById { get; set; }
-    public ApplicationUser CreatedBy { get; set; }
+    public string? CreatedById { get; set; } // Ahora opcional
+    public ApplicationUser? CreatedBy { get; set; } // También opcional
 
     [Required]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

@@ -354,3 +354,4 @@ C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\EduMobile.Serv
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\EduMobile.Server.genruntimeconfig.cache
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\ref\EduMobile.Server.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\EduMobile.Server.sourcelink.json

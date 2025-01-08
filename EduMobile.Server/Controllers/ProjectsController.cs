@@ -13,7 +13,6 @@ namespace EduMobile.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Alumno")]
     public class ProjectsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -104,17 +103,28 @@ namespace EduMobile.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProject(int id)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // ID del usuario autenticado
+            var userRole = User.FindFirstValue(ClaimTypes.Role); // Rol del usuario autenticado
 
+            // Buscar el proyecto con las relaciones necesarias
             var project = await _context.Projects
                 .Include(p => p.Semester)
                 .Include(p => p.CreatedBy)
-                .Where(p => p.Id == id && p.CreatedById == userId)
+                .Where(p => p.Id == id)
                 .FirstOrDefaultAsync();
 
             if (project == null)
+            {
                 return NotFound(new { Message = "Proyecto no encontrado." });
+            }
 
+            // Verificar si el usuario es el creador o tiene el rol "Profesor"
+            if (project.CreatedById != userId && userRole != "Profesor")
+            {
+                return Unauthorized(new { Message = "No tienes permiso para acceder a este proyecto." });
+            }
+
+            // Preparar el objeto de respuesta
             var result = new
             {
                 project.Id,
@@ -130,10 +140,10 @@ namespace EduMobile.Server.Controllers
                 project.CorporateFont,
                 AllowedTechnologies = !string.IsNullOrEmpty(project.AllowedTechnologies)
                     ? System.Text.Json.JsonSerializer.Deserialize<List<string>>(project.AllowedTechnologies)
-                    : new List<string>(), // Deserializa o devuelve una lista vacía
+                    : new List<string>(),
                 CustomTechnologies = !string.IsNullOrEmpty(project.CustomTechnologies)
                     ? System.Text.Json.JsonSerializer.Deserialize<List<string>>(project.CustomTechnologies)
-                    : new List<string>(), // Deserializa o devuelve una lista vacía
+                    : new List<string>(),
                 project.ReflectiveAnswers,
                 project.CreatedAt,
                 project.CurrentPhase,
@@ -145,7 +155,6 @@ namespace EduMobile.Server.Controllers
 
             return Ok(result);
         }
-
 
 
 
@@ -253,6 +262,26 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
+        [HttpGet("all-projects")]
+        [Authorize(Roles = "Profesor")]
+        public IActionResult GetAllProjects()
+        {
+            var projects = _context.Projects
+                .Include(p => p.Semester)
+                .Select(p => new
+                {
+                    p.Id,
+                    p.Title,
+                    p.Description,
+                    SemesterName = p.Semester != null ? p.Semester.Name : "Sin Semestre",
+                    CreatedBy = p.CreatedBy != null ? p.CreatedBy.Nombre : "Desconocido"
+                })
+                .ToList();
+
+            return Ok(projects);
+        }
+
 
 
     }

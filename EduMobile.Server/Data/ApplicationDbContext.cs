@@ -28,7 +28,7 @@ namespace EduMobile.Server.Data
                 .HasOne(ss => ss.Semester)
                 .WithMany(s => s.SemesterStudents)
                 .HasForeignKey(ss => ss.SemesterId)
-                .OnDelete(DeleteBehavior.Restrict); // Evitar eliminación en cascada
+                .OnDelete(DeleteBehavior.Cascade); // Configura el borrado en cascada
 
             builder.Entity<SemesterStudent>()
                 .HasOne(ss => ss.Student)
@@ -46,13 +46,14 @@ namespace EduMobile.Server.Data
                 .HasOne(p => p.Semester)
                 .WithMany(s => s.Projects) // Relación con la colección de proyectos
                 .HasForeignKey(p => p.SemesterId)
-                .OnDelete(DeleteBehavior.SetNull); // Permitir que un proyecto no tenga semestre
+                .OnDelete(DeleteBehavior.Cascade); // Cambia a eliminación en cascada
 
             builder.Entity<Project>()
                 .HasOne(p => p.CreatedBy)
                 .WithMany(u => u.Projects)
                 .HasForeignKey(p => p.CreatedById)
-                .OnDelete(DeleteBehavior.Restrict); // Evitar eliminación en cascada
+                .OnDelete(DeleteBehavior.SetNull); // Permitir que un proyecto sobreviva sin su creador
+
 
             // Configuración para Phase
             builder.Entity<Phase>()
