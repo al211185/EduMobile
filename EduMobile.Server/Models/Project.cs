@@ -72,4 +72,6 @@ public class Project
         get => string.Join(";", CustomRequirements);
         set => CustomRequirements = value?.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>();
     }
+    public ICollection<DesignPhase> DesignPhases { get; set; } = new List<DesignPhase>();
+
 }

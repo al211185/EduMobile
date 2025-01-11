@@ -15,6 +15,8 @@ namespace EduMobile.Server.Data
         public DbSet<SemesterStudent> SemesterStudents { get; set; } // Tabla intermedia
         public DbSet<Project> Projects { get; set; } // Tabla para proyectos
         public DbSet<Phase> Phases { get; set; } // Tabla para fases del proyecto
+        public DbSet<DesignPhase> DesignPhases { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -61,6 +63,13 @@ namespace EduMobile.Server.Data
                 .WithMany()
                 .HasForeignKey(p => p.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade); // Eliminar fases al eliminar un proyecto
+
+            builder.Entity<DesignPhase>()
+                .HasOne(dp => dp.Project)
+                .WithMany(p => p.DesignPhases) // Si un proyecto tiene múltiples `DesignPhases`
+                .HasForeignKey(dp => dp.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade); // Configurar eliminación en cascada
+
         }
     }
 }
