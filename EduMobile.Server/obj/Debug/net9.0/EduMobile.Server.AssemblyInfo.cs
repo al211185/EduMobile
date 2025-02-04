@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EduMobile.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c961ffe1a75609e83d4857c0cab6dd1602b785d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb39bf52e361f2cb1c8a11591b6de362d85c51c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("EduMobile.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EduMobile.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

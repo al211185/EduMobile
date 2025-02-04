@@ -35,7 +35,6 @@ using (var scope = app.Services.CreateScope())
     await SeedData.InitializeAsync(services);
 }
 
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -46,17 +45,23 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// Asegúrate de que esto esté después de Swagger
-app.MapFallbackToFile("/index.html"); // Esto es para React
-
-
-app.UseHttpsRedirection();
+// Middleware para archivos estáticos (asegúrate de que wwwroot esté correctamente configurado)
 app.UseStaticFiles();
 
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"Ruta solicitada: {context.Request.Path}");
+    await next();
+});
+
+// Middleware para autenticación y autorización
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Configuración de rutas de controladores
 app.MapControllers();
-app.MapFallbackToFile("/index.html"); // Sirve React
+
+// React como fallback para cualquier ruta no gestionada por controladores
+app.MapFallbackToFile("/index.html");
 
 app.Run();

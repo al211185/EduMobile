@@ -112,6 +112,93 @@ namespace EduMobile.Server.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.DesignPhase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("AreContentsClearAndNavigable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AreContentsRelevantForMobile")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AreLinksClear")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AreSectionsIdentified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AreVisualElementsBeneficialForSmallScreens")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AreVisualElementsUseful")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ContentFilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DoContentsGuideUserAttention")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("DoesDesignImproveLoadingSpeed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("DoesDesignPrioritizeContentForMobile")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDesignFunctional")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsHierarchyClear")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMobileFirst")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsNavigationClear")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVisualConsistencyMet")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SiteMapFilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VisualDesignFilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wireframe1024pxPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wireframe480pxPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wireframe768pxPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("DesignPhases");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
                 {
                     b.Property<int>("Id")
@@ -418,6 +505,17 @@ namespace EduMobile.Server.Migrations
                     b.ToTable("SemesterStudents");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.DesignPhase", b =>
+                {
+                    b.HasOne("Project", "Project")
+                        .WithMany("DesignPhases")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
                 {
                     b.HasOne("Project", "Project")
@@ -543,6 +641,11 @@ namespace EduMobile.Server.Migrations
                     b.Navigation("Projects");
 
                     b.Navigation("SemesterStudents");
+                });
+
+            modelBuilder.Entity("Project", b =>
+                {
+                    b.Navigation("DesignPhases");
                 });
 #pragma warning restore 612, 618
         }

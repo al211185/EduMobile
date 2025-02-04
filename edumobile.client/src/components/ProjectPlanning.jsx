@@ -254,15 +254,12 @@ const ProjectPlanning = ({ projectData = {} }) => {
         try {
             await saveProgress(); // Guarda los datos
             console.log("Fase 1 completada. Redirigiendo a Fase 2 (Diseño)...");
-            navigate("/fase-2-diseno"); // Redirige a la siguiente fase
+            navigate(`/fase-2-diseno/${projectData.id}`); // Incluye el projectId en la URL
         } catch (error) {
             console.error("Error al completar la fase:", error);
             alert("Ocurrió un error al completar la fase. Por favor, inténtalo de nuevo.");
         }
     };
-
-
-
 
     return (
         <div className="project-planning-container">

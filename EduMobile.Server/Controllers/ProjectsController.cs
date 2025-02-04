@@ -67,13 +67,39 @@ namespace EduMobile.Server.Controllers
                 _context.Projects.Add(project);
                 await _context.SaveChangesAsync();
 
+                // Crear automáticamente un registro en DesignPhases
+                var designPhase = new DesignPhase
+                {
+                    ProjectId = project.Id,
+                    SiteMapFilePath = string.Empty,
+                    Wireframe480pxPath = string.Empty,
+                    Wireframe768pxPath = string.Empty,
+                    Wireframe1024pxPath = string.Empty,
+                    VisualDesignFilePath = string.Empty,
+                    ContentFilePath = string.Empty,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                _context.DesignPhases.Add(designPhase);
+                await _context.SaveChangesAsync();
+
                 return Ok(new { Message = "Proyecto creado exitosamente.", ProjectId = project.Id });
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al crear proyecto: {ex.Message}");
-                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
+                Console.WriteLine($"Detalles de la excepción: {ex.InnerException?.Message}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
+                return StatusCode(500, new
+                {
+                    Message = "Error interno del servidor.",
+                    Error = ex.Message,
+                    InnerError = ex.InnerException?.Message,
+                    Details = ex.StackTrace
+                });
             }
+
+
         }
 
 
@@ -280,6 +306,38 @@ namespace EduMobile.Server.Controllers
                 .ToList();
 
             return Ok(projects);
+        }
+
+        [HttpGet("current")]
+        public async Task<IActionResult> GetCurrentProject()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Unauthorized(new { Message = "Usuario no autenticado." });
+            }
+
+            // Busca el proyecto actual del usuario
+            var project = await _context.Projects
+                .Include(p => p.Semester)
+                .Where(p => p.CreatedById == userId)
+                .OrderByDescending(p => p.CreatedAt) // Opcional: Obtén el más reciente si hay varios
+                .FirstOrDefaultAsync();
+
+            if (project == null)
+            {
+                return NotFound(new { Message = "No se encontró un proyecto asignado al usuario." });
+            }
+
+            return Ok(new
+            {
+                project.Id,
+                project.Title,
+                project.Description,
+                project.CurrentPhase,
+                SemesterName = project.Semester != null ? project.Semester.Name : "Sin Semestre"
+            });
         }
 
 

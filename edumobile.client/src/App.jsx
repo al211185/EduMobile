@@ -23,6 +23,7 @@ const App = () => {
             <Header />
             <main className="main-container">
                 <Routes>
+                   
                     {/* Página principal */}
                     <Route
                         path="/"
@@ -70,7 +71,8 @@ const App = () => {
                         <>
                             <Route path="/my-projects" element={<MyProjects />} />
                             <Route path="/projects/:projectId" element={<ProjectPhase />} />
-                            <Route path="/fase-2-diseno" element={<DesignPhase />} /> {/* Nueva ruta */}
+                            <Route path="/fase-2-diseno/:projectId" element={<DesignPhase />} />
+
                         </>
                     )}
 
