@@ -3,7 +3,7 @@ using EduMobile.Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,10 +16,12 @@ namespace EduMobile.Server.Controllers
     public class SemestersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<SemestersController> _logger;
 
-        public SemestersController(ApplicationDbContext context)
+        public SemestersController(ApplicationDbContext context, ILogger<SemestersController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // POST: api/Semesters/create
@@ -27,7 +29,7 @@ namespace EduMobile.Server.Controllers
         public async Task<IActionResult> CreateSemester([FromBody] CreateSemesterRequest request)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Datos inválidos.");
+                return BadRequest(new { Message = "Datos inválidos." });
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -38,12 +40,13 @@ namespace EduMobile.Server.Controllers
                 Period = request.Period,
                 Description = request.Description,
                 ProfessorId = userId,
-                Course = request.Course // Agrega el curso
+                Course = request.Course
             };
 
             _context.Semesters.Add(semester);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation("Semestre '{Name}' creado por el profesor {UserId}", request.Name, userId);
             return Ok(new { Message = "Semestre creado con éxito." });
         }
 
@@ -62,7 +65,7 @@ namespace EduMobile.Server.Controllers
                     s.Year,
                     s.Period,
                     s.Description,
-                    s.Course // Incluye el curso en la respuesta
+                    s.Course
                 })
                 .ToList();
 
@@ -74,12 +77,10 @@ namespace EduMobile.Server.Controllers
         public async Task<IActionResult> GetSemester(int id)
         {
             var semester = await _context.Semesters.FindAsync(id);
-
             if (semester == null)
-                return NotFound("Semestre no encontrado.");
+                return NotFound(new { Message = "Semestre no encontrado." });
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             if (semester.ProfessorId != userId)
                 return Forbid();
 
@@ -90,7 +91,7 @@ namespace EduMobile.Server.Controllers
                 semester.Year,
                 semester.Period,
                 semester.Description,
-                semester.Course // Incluye el curso en la respuesta
+                semester.Course
             });
         }
 
@@ -111,7 +112,6 @@ namespace EduMobile.Server.Controllers
 
             var existingRelation = await _context.SemesterStudents
                 .FirstOrDefaultAsync(ss => ss.SemesterId == id && ss.StudentId == request.StudentId);
-
             if (existingRelation != null)
                 return BadRequest(new { Message = "El estudiante ya está asignado a este semestre." });
 
@@ -124,9 +124,9 @@ namespace EduMobile.Server.Controllers
             _context.SemesterStudents.Add(semesterStudent);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation("Estudiante {StudentId} asignado al semestre {SemesterId}", request.StudentId, id);
             return Ok(new { Message = "Estudiante asignado al semestre exitosamente." });
         }
-
 
         // GET: api/Semesters/{id}/students
         [HttpGet("{id}/students")]
@@ -138,9 +138,7 @@ namespace EduMobile.Server.Controllers
                 .FirstOrDefaultAsync(s => s.Id == id);
 
             if (semester == null)
-            {
                 return NotFound(new { Message = "Semestre no encontrado." });
-            }
 
             var students = semester.SemesterStudents.Select(ss => new
             {
@@ -159,7 +157,6 @@ namespace EduMobile.Server.Controllers
         public async Task<IActionResult> DeleteSemester(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             var semester = await _context.Semesters.FindAsync(id);
 
             if (semester == null)
@@ -168,10 +165,10 @@ namespace EduMobile.Server.Controllers
             if (semester.ProfessorId != userId)
                 return Forbid();
 
-            // Elimina el semestre
             _context.Semesters.Remove(semester);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation("Semestre {SemesterId} eliminado por el profesor {UserId}", id, userId);
             return Ok(new { Message = "Semestre eliminado exitosamente." });
         }
 
@@ -180,7 +177,6 @@ namespace EduMobile.Server.Controllers
         public async Task<IActionResult> RemoveStudentFromSemester(int semesterId, string studentId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             var semester = await _context.Semesters
                 .Include(s => s.SemesterStudents)
                 .FirstOrDefaultAsync(s => s.Id == semesterId);
@@ -198,10 +194,9 @@ namespace EduMobile.Server.Controllers
             _context.SemesterStudents.Remove(relation);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation("Estudiante {StudentId} removido del semestre {SemesterId}", studentId, semesterId);
             return Ok(new { Message = "Estudiante eliminado del semestre exitosamente." });
         }
-
-
     }
 
     public class CreateSemesterRequest
@@ -210,11 +205,11 @@ namespace EduMobile.Server.Controllers
         public int Year { get; set; }
         public string Period { get; set; }
         public string Description { get; set; }
-        public string Course { get; set; } // Nuevo campo para el curso
+        public string Course { get; set; }
     }
 
     public class AssignStudentRequest
     {
-        public string StudentId { get; set; } // ID del estudiante
+        public string StudentId { get; set; }
     }
 }

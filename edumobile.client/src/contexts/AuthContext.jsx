@@ -8,8 +8,13 @@ export const AuthProvider = ({ children }) => {
     // Cargar el usuario desde localStorage al iniciar la aplicación
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser)); // Parsear los datos del usuario
+        if (storedUser && storedUser !== "undefined") {
+            try {
+                setUser(JSON.parse(storedUser));
+            } catch (error) {
+                console.error("Error al parsear el usuario almacenado:", error);
+                localStorage.removeItem("user");
+            }
         }
     }, []);
 

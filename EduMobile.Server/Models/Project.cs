@@ -74,4 +74,42 @@ public class Project
     }
     public ICollection<DesignPhase> DesignPhases { get; set; } = new List<DesignPhase>();
 
+    /*
+    // Fase 2: Benchmarking
+    public string BenchmarkObjective { get; set; } // Objetivo del análisis
+    public string BenchmarkSector { get; set; }    // Descripción del sector
+    public string BenchmarkResponsable { get; set; }
+
+    // Competidor 1
+    public string Competitor1Name { get; set; }
+    public string Competitor1ScreenshotPath { get; set; }
+    public string Competitor1Url { get; set; }
+    public string Competitor1Positives { get; set; }
+    public string Competitor1Negatives { get; set; }
+
+    // Competidor 2
+    public string Competitor2Name { get; set; }
+    public string Competitor2ScreenshotPath { get; set; }
+    public string Competitor2Url { get; set; }
+    public string Competitor2Positives { get; set; }
+    public string Competitor2Negatives { get; set; }
+
+    // Análisis comparativo (puedes repetir para competidor 1 y 2)
+    public int Competitor1EaseOfUse { get; set; }
+    public string Competitor1Difficulties { get; set; }
+    public string Competitor1UsefulFeatures { get; set; }
+
+    public int Competitor2EaseOfUse { get; set; }
+    public string Competitor2Difficulties { get; set; }
+    public string Competitor2UsefulFeatures { get; set; }
+
+    // Conclusiones
+    public string BenchmarkFindings { get; set; }
+    public string BenchmarkImprovements { get; set; }
+
+    // Reflexive
+    public bool BenchmarkUsedSmartphoneForScreens { get; set; }
+    public bool BenchmarkUsedSmartphoneForComparative { get; set; }
+    public bool BenchmarkConsideredMobileFirst { get; set; }
+    */
 }

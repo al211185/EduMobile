@@ -2,7 +2,10 @@
 using EduMobile.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EduMobile.Server.Controllers
 {
@@ -11,21 +14,23 @@ namespace EduMobile.Server.Controllers
     public class PhasesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<PhasesController> _logger;
 
-        public PhasesController(ApplicationDbContext context)
+        public PhasesController(ApplicationDbContext context, ILogger<PhasesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // POST: api/Phases/create
         [HttpPost("create")]
         public async Task<IActionResult> CreatePhase([FromBody] CreatePhaseRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { Message = "Datos inválidos." });
+
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new { Message = "Datos inválidos." });
-
                 var project = await _context.Projects.FindAsync(request.ProjectId);
                 if (project == null)
                     return NotFound(new { Message = "Proyecto no encontrado." });
@@ -34,7 +39,8 @@ namespace EduMobile.Server.Controllers
                 {
                     ProjectId = request.ProjectId,
                     PhaseNumber = request.PhaseNumber,
-                    Data = request.Data
+                    Data = request.Data,
+                    CreatedAt = DateTime.UtcNow  // Se asigna la fecha de creación
                 };
 
                 _context.Phases.Add(phase);
@@ -44,11 +50,10 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al crear fase: {ex.Message}");
+                _logger.LogError(ex, "Error al crear fase para el proyecto {ProjectId}", request.ProjectId);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
-
 
         // PUT: api/Phases/{id}
         [HttpPut("{id}")]
@@ -60,8 +65,10 @@ namespace EduMobile.Server.Controllers
                 if (phase == null)
                     return NotFound(new { Message = "Fase no encontrada." });
 
+                // Actualiza la data solo si se proporciona nueva información
                 phase.Data = request.Data ?? phase.Data;
-                phase.CreatedAt = DateTime.UtcNow;
+                // Se asume que la entidad Phase tiene una propiedad UpdatedAt para la fecha de actualización
+                phase.UpdatedAt = DateTime.UtcNow;
 
                 _context.Phases.Update(phase);
                 await _context.SaveChangesAsync();
@@ -70,7 +77,7 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar fase: {ex.Message}");
+                _logger.LogError(ex, "Error al actualizar fase con id {PhaseId}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
@@ -89,7 +96,8 @@ namespace EduMobile.Server.Controllers
                         p.Id,
                         p.PhaseNumber,
                         p.Data,
-                        p.CreatedAt
+                        p.CreatedAt,
+                        p.UpdatedAt
                     })
                     .ToListAsync();
 
@@ -100,7 +108,7 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener fases: {ex.Message}");
+                _logger.LogError(ex, "Error al obtener fases para el proyecto {ProjectId}", projectId);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
@@ -118,7 +126,8 @@ namespace EduMobile.Server.Controllers
                         p.Id,
                         p.PhaseNumber,
                         p.Data,
-                        p.CreatedAt
+                        p.CreatedAt,
+                        p.UpdatedAt
                     })
                     .FirstOrDefaultAsync();
 
@@ -129,7 +138,7 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener detalles de la fase: {ex.Message}");
+                _logger.LogError(ex, "Error al obtener detalles de la fase con id {PhaseId}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
@@ -139,7 +148,6 @@ namespace EduMobile.Server.Controllers
     {
         public int ProjectId { get; set; }
         public int PhaseNumber { get; set; }
-
         public string Data { get; set; } // Información de la fase en formato JSON
     }
 
@@ -147,5 +155,4 @@ namespace EduMobile.Server.Controllers
     {
         public string Data { get; set; } // Información de la fase actualizada
     }
-
 }

@@ -1,10 +1,11 @@
-﻿using Azure.Core;
-using EduMobile.Server.Data;
+﻿using EduMobile.Server.Data;
 using EduMobile.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,12 +17,16 @@ namespace EduMobile.Server.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _environment;
+        private readonly ILogger<DesignPhasesController> _logger;
 
-        public DesignPhasesController(ApplicationDbContext context, IWebHostEnvironment environment)
+        public DesignPhasesController(ApplicationDbContext context, IWebHostEnvironment environment, ILogger<DesignPhasesController> logger)
         {
             _context = context;
             _environment = environment;
+            _logger = logger;
         }
+
+        #region Endpoints de Lectura y Creación
 
         // GET: api/DesignPhases/{projectId}
         [HttpGet("{projectId}")]
@@ -41,7 +46,7 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener la fase de diseño: {ex.Message}");
+                _logger.LogError(ex, "Error al obtener la fase de diseño para el proyecto {ProjectId}", projectId);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
@@ -71,8 +76,7 @@ namespace EduMobile.Server.Controllers
                     AreSectionsIdentified = request.AreSectionsIdentified,
                     AreLinksClear = request.AreLinksClear,
                     AreVisualElementsUseful = request.AreVisualElementsUseful,
-
-                    //fase 2
+                    // Fase 2
                     Wireframe480pxPath = request.Wireframe480pxPath,
                     Wireframe768pxPath = request.Wireframe768pxPath,
                     Wireframe1024pxPath = request.Wireframe1024pxPath,
@@ -80,7 +84,6 @@ namespace EduMobile.Server.Controllers
                     IsNavigationClear = request.IsNavigationClear,
                     IsDesignFunctional = request.IsDesignFunctional,
                     IsVisualConsistencyMet = request.IsVisualConsistencyMet,
-
                     UpdatedAt = DateTime.UtcNow
                 };
 
@@ -91,12 +94,37 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al crear la fase de diseño: {ex.Message}");
+                _logger.LogError(ex, "Error al crear la fase de diseño para el proyecto {ProjectId}", request.ProjectId);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
-        // PUT: api/DesignPhases/{id}
+        #endregion
+
+        #region Helper
+
+        /// <summary>
+        /// Elimina el archivo si existe, usando el WebRootPath.
+        /// </summary>
+        /// <param name="filePath">La ruta relativa del archivo (por ejemplo, /uploads/imagen.jpg)</param>
+        private void DeleteFileIfExists(string filePath)
+        {
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                string uploadPath = Path.Combine(_environment.WebRootPath, "uploads");
+                string fullPath = Path.Combine(uploadPath, Path.GetFileName(filePath));
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Endpoints de Actualización
+
+        // PUT: api/DesignPhases/{id} -> Actualización de la Fase 1 (Site Map)
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDesignPhase(int id, [FromBody] UpdateDesignPhaseRequest request)
         {
@@ -108,20 +136,10 @@ namespace EduMobile.Server.Controllers
                     return NotFound(new { Message = "Fase de diseño no encontrada." });
                 }
 
-                // Verificar si se está actualizando la imagen
+                // Actualizar imagen solo si se envía una nueva ruta
                 if (!string.IsNullOrEmpty(request.SiteMapFilePath) && request.SiteMapFilePath != designPhase.SiteMapFilePath)
                 {
-                    // Ruta completa de la imagen anterior
-                    string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-                    string oldFilePath = Path.Combine(uploadPath, Path.GetFileName(designPhase.SiteMapFilePath));
-
-                    // Eliminar la imagen anterior si existe
-                    if (System.IO.File.Exists(oldFilePath))
-                    {
-                        System.IO.File.Delete(oldFilePath);
-                    }
-
-                    // Actualizar el campo de la nueva imagen
+                    DeleteFileIfExists(designPhase.SiteMapFilePath);
                     designPhase.SiteMapFilePath = request.SiteMapFilePath;
                 }
 
@@ -129,6 +147,7 @@ namespace EduMobile.Server.Controllers
                 designPhase.AreSectionsIdentified = request.AreSectionsIdentified ?? designPhase.AreSectionsIdentified;
                 designPhase.AreLinksClear = request.AreLinksClear ?? designPhase.AreLinksClear;
                 designPhase.AreVisualElementsUseful = request.AreVisualElementsUseful ?? designPhase.AreVisualElementsUseful;
+                designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
                 await _context.SaveChangesAsync();
@@ -137,12 +156,12 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar la fase de diseño: {ex.Message}");
+                _logger.LogError(ex, "Error al actualizar la fase de diseño (Phase1) con id {Id}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
-        // PUT: api/DesignPhases/Phase2/{id}
+        // PUT: api/DesignPhases/Phase2/{id} -> Actualización de la Fase 2 (Wireframes)
         [HttpPut("Phase2/{id}")]
         public async Task<IActionResult> UpdateDesignPhasePhase2(int id, [FromBody] UpdateDesignPhase2Request request)
         {
@@ -154,61 +173,26 @@ namespace EduMobile.Server.Controllers
                     return NotFound(new { Message = "Fase de diseño no encontrada." });
                 }
 
-                // Wireframe480pxPath
+                // Actualizar Wireframe480pxPath
                 if (!string.IsNullOrEmpty(request.Wireframe480pxPath) && request.Wireframe480pxPath != designPhase.Wireframe480pxPath)
                 {
-                    string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-
-                    if (!string.IsNullOrEmpty(designPhase.Wireframe480pxPath))
-                    {
-                        string oldFilePath = Path.Combine(uploadPath, Path.GetFileName(designPhase.Wireframe480pxPath));
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
-
+                    DeleteFileIfExists(designPhase.Wireframe480pxPath);
                     designPhase.Wireframe480pxPath = request.Wireframe480pxPath;
                 }
 
-
-                // Wireframe768pxPath
+                // Actualizar Wireframe768pxPath
                 if (!string.IsNullOrEmpty(request.Wireframe768pxPath) && request.Wireframe768pxPath != designPhase.Wireframe768pxPath)
                 {
-                    string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-
-                    if (!string.IsNullOrEmpty(designPhase.Wireframe768pxPath))
-                    {
-                        string oldFilePath = Path.Combine(uploadPath, Path.GetFileName(designPhase.Wireframe768pxPath));
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
-
+                    DeleteFileIfExists(designPhase.Wireframe768pxPath);
                     designPhase.Wireframe768pxPath = request.Wireframe768pxPath;
                 }
 
-
-                // Wireframe1024pxPath
+                // Actualizar Wireframe1024pxPath
                 if (!string.IsNullOrEmpty(request.Wireframe1024pxPath) && request.Wireframe1024pxPath != designPhase.Wireframe1024pxPath)
                 {
-                    string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-
-                    if (!string.IsNullOrEmpty(designPhase.Wireframe1024pxPath))
-                    {
-                        string oldFilePath = Path.Combine(uploadPath, Path.GetFileName(designPhase.Wireframe1024pxPath));
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
-
+                    DeleteFileIfExists(designPhase.Wireframe1024pxPath);
                     designPhase.Wireframe1024pxPath = request.Wireframe1024pxPath;
                 }
-
-
-                //2
 
                 designPhase.IsMobileFirst = request.IsMobileFirst ?? designPhase.IsMobileFirst;
                 designPhase.IsNavigationClear = request.IsNavigationClear ?? designPhase.IsNavigationClear;
@@ -223,11 +207,12 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar la fase de diseño: {ex.Message}");
+                _logger.LogError(ex, "Error al actualizar la fase de diseño (Phase2) con id {Id}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
+        // PUT: api/DesignPhases/Phase3/{id} -> Actualización de la Fase 3 (Diseño Visual)
         [HttpPut("Phase3/{id}")]
         public async Task<IActionResult> UpdateDesignPhaseVisual(int id, [FromBody] UpdateVisualDesignRequest request)
         {
@@ -252,11 +237,12 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar la fase de diseño visual: {ex.Message}");
+                _logger.LogError(ex, "Error al actualizar la fase de diseño visual (Phase3) con id {Id}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
+        // PUT: api/DesignPhases/Phase4/{id} -> Actualización de la Fase 4 (Creación de Contenidos)
         [HttpPut("Phase4/{id}")]
         public async Task<IActionResult> UpdateContentCreationPhase(int id, [FromBody] UpdateContentCreationRequest request)
         {
@@ -268,7 +254,6 @@ namespace EduMobile.Server.Controllers
                     return NotFound(new { Message = "Fase de diseño no encontrada." });
                 }
 
-                // Actualizar los campos correspondientes a la fase 4
                 designPhase.ContentFilePath = request.ContentFilePath;
                 designPhase.AreContentsRelevantForMobile = request.AreContentsRelevantForMobile;
                 designPhase.AreContentsClearAndNavigable = request.AreContentsClearAndNavigable;
@@ -282,11 +267,14 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar la fase de creación de contenidos: {ex.Message}");
+                _logger.LogError(ex, "Error al actualizar la fase de creación de contenidos (Phase4) con id {Id}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
+        #endregion
+
+        #region Endpoint de Eliminación
 
         // DELETE: api/DesignPhases/{id}
         [HttpDelete("{id}")]
@@ -307,10 +295,14 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al eliminar la fase de diseño: {ex.Message}");
+                _logger.LogError(ex, "Error al eliminar la fase de diseño con id {Id}", id);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
+        #endregion
+
+        #region Endpoints de Archivos
 
         // POST: api/DesignPhases/upload
         [HttpPost("upload")]
@@ -331,8 +323,8 @@ namespace EduMobile.Server.Controllers
                     return BadRequest(new { Message = "Tipo de archivo no permitido." });
                 }
 
-                // Límite de tamaño del archivo
-                long maxFileSize = 5 * 1024 * 1024; // 5 MB
+                // Límite de tamaño del archivo: 5 MB
+                long maxFileSize = 5 * 1024 * 1024;
                 if (file.Length > maxFileSize)
                 {
                     return BadRequest(new { Message = "El archivo excede el tamaño máximo permitido de 5 MB." });
@@ -345,21 +337,20 @@ namespace EduMobile.Server.Controllers
                     .Replace(".", "_");
                 string uniqueFileName = $"{sanitizedFileName}_{DateTime.Now:yyyyMMddHHmmssfff}{fileExtension}";
 
-                // Ruta de almacenamiento en la carpeta /wwwroot/uploads/
-                string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                // Ruta de almacenamiento usando _environment.WebRootPath
+                string uploadPath = Path.Combine(_environment.WebRootPath, "uploads");
                 if (!Directory.Exists(uploadPath))
                 {
                     Directory.CreateDirectory(uploadPath);
                 }
 
-                // Guardar el archivo
                 string filePath = Path.Combine(uploadPath, uniqueFileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
 
-                // Retornar la ruta relativa que coincida con la esperada por el método GetImage
+                // Retornar la ruta relativa para que coincida con el endpoint GetImage
                 string relativePath = $"/uploads/{uniqueFileName}";
                 return Ok(new
                 {
@@ -372,7 +363,7 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al subir el archivo: {ex.Message}");
+                _logger.LogError(ex, "Error al subir el archivo.");
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
@@ -383,25 +374,20 @@ namespace EduMobile.Server.Controllers
         {
             try
             {
-                // Ruta del archivo en el servidor
-                string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-                string filePath = Path.Combine(uploadPath, fileName); // Asegúrate de que solo pase el nombre del archivo
+                string uploadPath = Path.Combine(_environment.WebRootPath, "uploads");
+                string filePath = Path.Combine(uploadPath, fileName);
 
-                // Validar si el archivo existe
                 if (!System.IO.File.Exists(filePath))
                 {
                     return NotFound(new { Message = "El archivo no existe." });
                 }
 
-                // Obtener el contenido del archivo
                 var fileBytes = System.IO.File.ReadAllBytes(filePath);
                 var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
 
-                // Determinar el tipo MIME del archivo
                 string mimeType = fileExtension switch
                 {
-                    ".jpg" => "image/jpeg",
-                    ".jpeg" => "image/jpeg",
+                    ".jpg" or ".jpeg" => "image/jpeg",
                     ".png" => "image/png",
                     ".gif" => "image/gif",
                     ".pdf" => "application/pdf",
@@ -409,31 +395,29 @@ namespace EduMobile.Server.Controllers
                     _ => "application/octet-stream",
                 };
 
-                // Retornar el archivo con el tipo MIME adecuado
                 return File(fileBytes, mimeType, fileName);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener el archivo: {ex.Message}");
+                _logger.LogError(ex, "Error al obtener el archivo {FileName}", fileName);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
-
-
+        #endregion
     }
 
-    // Modelo para crear una fase de diseño
+    #region Modelos
+
     public class CreateDesignPhaseRequest
     {
         public int ProjectId { get; set; }
         public string SiteMapFilePath { get; set; }
         public bool IsHierarchyClear { get; set; }
-        public bool AreSectionsIdentified {  get; set; }
-        public bool AreLinksClear {  get; set; }
-        public bool AreVisualElementsUseful {  get; set; }
-
-        //fase 2
+        public bool AreSectionsIdentified { get; set; }
+        public bool AreLinksClear { get; set; }
+        public bool AreVisualElementsUseful { get; set; }
+        // Fase 2
         public string Wireframe480pxPath { get; set; }
         public string Wireframe768pxPath { get; set; }
         public string Wireframe1024pxPath { get; set; }
@@ -441,10 +425,8 @@ namespace EduMobile.Server.Controllers
         public bool IsNavigationClear { get; set; }
         public bool IsDesignFunctional { get; set; }
         public bool IsVisualConsistencyMet { get; set; }
-
     }
 
-    // Modelo para actualizar una fase de diseño
     public class UpdateDesignPhaseRequest
     {
         public string SiteMapFilePath { get; set; }
@@ -481,4 +463,5 @@ namespace EduMobile.Server.Controllers
         public bool DoContentsGuideUserAttention { get; set; }
     }
 
+    #endregion
 }

@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\uploads\\1200px_Kirby_SSB_20250204111816286.png"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\1670814707707_20250221183633965.png",
+      "PackagePath": "staticwebassets\\uploads\\1670814707707_20250221183633965.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\65307441_2327087010648063_636313608359247872_n_20250204102059076.jpg",
       "PackagePath": "staticwebassets\\uploads\\65307441_2327087010648063_636313608359247872_n_20250204102059076.jpg"
     },
@@ -129,6 +133,14 @@
       "PackagePath": "staticwebassets\\uploads\\Captura_de_pantalla_2025_02_03_162850_20250204112426822.png"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\GfuQezk6BTYtFulPBiykwVHJv0DiXTdfFnRxw5kk_20250221183628230.png",
+      "PackagePath": "staticwebassets\\uploads\\GfuQezk6BTYtFulPBiykwVHJv0DiXTdfFnRxw5kk_20250221183628230.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\IMG_9260_20250204114903053.jpg",
+      "PackagePath": "staticwebassets\\uploads\\IMG_9260_20250204114903053.jpg"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Ilustración_sin_título_(5)_20250117031148489.png",
       "PackagePath": "staticwebassets\\uploads\\Ilustración_sin_título_(5)_20250117031148489.png"
     },
@@ -143,6 +155,10 @@
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Ilustración_sin_título_(7)_20250117031143108.png",
       "PackagePath": "staticwebassets\\uploads\\Ilustración_sin_título_(7)_20250117031143108.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(2)_20250204112654801.png",
+      "PackagePath": "staticwebassets\\uploads\\Image_(2)_20250204112654801.png"
     },
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(3)_20250204100856698.png",
@@ -181,10 +197,6 @@
       "PackagePath": "staticwebassets\\uploads\\Image_(4)_20250204102055357.png"
     },
     {
-      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(4)_20250204105804619.png",
-      "PackagePath": "staticwebassets\\uploads\\Image_(4)_20250204105804619.png"
-    },
-    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(5)_20250204101438805.png",
       "PackagePath": "staticwebassets\\uploads\\Image_(5)_20250204101438805.png"
     },
@@ -193,16 +205,36 @@
       "PackagePath": "staticwebassets\\uploads\\Image_(5)_20250204102126371.png"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(5)_20250204114834267.png",
+      "PackagePath": "staticwebassets\\uploads\\Image_(5)_20250204114834267.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(6)_20250204100853477.png",
       "PackagePath": "staticwebassets\\uploads\\Image_(6)_20250204100853477.png"
     },
     {
-      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Jennjou_20250204111107131.png",
-      "PackagePath": "staticwebassets\\uploads\\Jennjou_20250204111107131.png"
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(7)_20250306152119718.png",
+      "PackagePath": "staticwebassets\\uploads\\Image_(7)_20250306152119718.png"
     },
     {
-      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Mesa_de_trabajo_1_20250117024751142.png",
-      "PackagePath": "staticwebassets\\uploads\\Mesa_de_trabajo_1_20250117024751142.png"
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_(8)_20250306152133523.png",
+      "PackagePath": "staticwebassets\\uploads\\Image_(8)_20250306152133523.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Image_20250221183615271.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Image_20250221183615271.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Imagen_de_WhatsApp_2025_02_13_a_las_20_46_13_986fc239_20250306152125774.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Imagen_de_WhatsApp_2025_02_13_a_las_20_46_13_986fc239_20250306152125774.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Imagen_de_WhatsApp_2025_03_03_a_las_20_09_14_81740558_20250306152115289.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Imagen_de_WhatsApp_2025_03_03_a_las_20_09_14_81740558_20250306152115289.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Jennjou_20250204111107131.png",
+      "PackagePath": "staticwebassets\\uploads\\Jennjou_20250204111107131.png"
     },
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Mesa_de_trabajo_1_20250117024839791.png",
@@ -225,6 +257,10 @@
       "PackagePath": "staticwebassets\\uploads\\Microsoft__NET_logo_svg_20250117030841088.png"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Poster_(1)_20250204114851603.png",
+      "PackagePath": "staticwebassets\\uploads\\Poster_(1)_20250204114851603.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\UvMappingPs_20250204102133245.png",
       "PackagePath": "staticwebassets\\uploads\\UvMappingPs_20250204102133245.png"
     },
@@ -239,6 +275,42 @@
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\a_20250117030838323.jpg",
       "PackagePath": "staticwebassets\\uploads\\a_20250117030838323.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\automatizacion_01_home_20250221193236513.png",
+      "PackagePath": "staticwebassets\\uploads\\automatizacion_01_home_20250221193236513.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\automatizacion_01_home_20250221193301757.png",
+      "PackagePath": "staticwebassets\\uploads\\automatizacion_01_home_20250221193301757.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\dasti_logo_websize_transparent_20250221193245788.png",
+      "PackagePath": "staticwebassets\\uploads\\dasti_logo_websize_transparent_20250221193245788.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\dasti_logo_websize_transparent_20250221193253385.png",
+      "PackagePath": "staticwebassets\\uploads\\dasti_logo_websize_transparent_20250221193253385.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\idle_2_20250204114822144.png",
+      "PackagePath": "staticwebassets\\uploads\\idle_2_20250204114822144.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\output_20250306152107502.png",
+      "PackagePath": "staticwebassets\\uploads\\output_20250306152107502.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\photo_2025_03_02_17_03_11_20250306152058907.jpg",
+      "PackagePath": "staticwebassets\\uploads\\photo_2025_03_02_17_03_11_20250306152058907.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\reingenieria_01_home_20250221193225886.png",
+      "PackagePath": "staticwebassets\\uploads\\reingenieria_01_home_20250221193225886.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\reingenieria_01_home_20250221193241295.png",
+      "PackagePath": "staticwebassets\\uploads\\reingenieria_01_home_20250221193241295.png"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.EduMobile.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

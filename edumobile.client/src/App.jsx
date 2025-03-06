@@ -11,6 +11,7 @@ import MyProjects from "./components/MyProjects";
 import ProjectPhase from "./components/ProjectPhase"; // Importa el componente para las fases del proyecto
 import DesignPhase from "./components/DesignPhase"; // Nueva importación
 import ProjectDetails from "./components/ProjectDetails"; // Importa el componente de detalles del proyecto
+import MediaQueryDragAndDropWithReference from "./components/MediaQueryDragAndDropWithReference";
 import { useAuth } from "./contexts/AuthContext";
 import "./globals.css";
 import "./app.css";
@@ -56,6 +57,10 @@ const App = () => {
 
                     {/* Ruta de perfil */}
                     <Route path="/profile" element={<Profile />} />
+
+
+                    {/* Ruta de juego */}
+                    <Route path="/media-game" element={<MediaQueryDragAndDropWithReference />} />
 
                     {/* Rutas específicas por rol */}
                     {user?.role === "Profesor" && (

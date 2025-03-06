@@ -8,7 +8,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+        setIsDropdownOpen((prev) => !prev);
     };
 
     const handleLogout = () => {
@@ -20,24 +20,41 @@ const Header = () => {
         <header className="header">
             <nav className="nav-container">
                 <div className="nav-left">
-                    <a href="/" className="nav-logo">Inicio</a>
+                    <a href="/" className="nav-logo">
+                        Inicio
+                    </a>
                     {user?.role === "Profesor" && (
-                        <a href="/dashboard" className="nav-courses">Cursos</a>
+                        <a href="/dashboard" className="nav-courses">
+                            Cursos
+                        </a>
                     )}
                     {user?.role === "Alumno" && (
-                        <a href="/my-projects" className="nav-projects">Mis Proyectos</a>
+                        <>
+                            <a href="/my-projects" className="nav-projects">
+                                Mis Proyectos
+                            </a>
+                            <a href="/media-game" className="nav-media-game">
+                                Media Query Game
+                            </a>
+                        </>
                     )}
                 </div>
                 <div className="nav-actions">
                     {!user ? (
                         <>
-                            <a href="/login" className="nav-link">Iniciar Sesión</a>
-                            <a href="/register" className="nav-link">Registrarse</a>
+                            <a href="/login" className="nav-link">
+                                Iniciar Sesión
+                            </a>
+                            <a href="/register" className="nav-link">
+                                Registrarse
+                            </a>
                         </>
                     ) : (
                         <>
                             {user?.role === "Alumno" && (
-                                <a href="/create-project" className="create-project-button">Crear Proyecto</a>
+                                <a href="/create-project" className="create-project-button">
+                                    Crear Proyecto
+                                </a>
                             )}
                             <div className="user-menu">
                                 <button className="user-name" onClick={toggleDropdown}>
@@ -45,11 +62,10 @@ const Header = () => {
                                 </button>
                                 {isDropdownOpen && (
                                     <div className="dropdown-menu">
-                                        <a href="/profile" className="dropdown-item">Perfil</a>
-                                        <button
-                                            className="dropdown-item logout"
-                                            onClick={handleLogout}
-                                        >
+                                        <a href="/profile" className="dropdown-item">
+                                            Perfil
+                                        </a>
+                                        <button className="dropdown-item logout" onClick={handleLogout}>
                                             Cerrar Sesión
                                         </button>
                                     </div>
