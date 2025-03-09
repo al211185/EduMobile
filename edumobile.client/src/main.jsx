@@ -5,9 +5,8 @@ import { AuthProvider } from './contexts/AuthContext'; // Importar el AuthProvid
 import "./globals.css"; // Importar estilos globales
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <AuthProvider>
-            <App />
-        </AuthProvider>
-    </React.StrictMode>
+
+    <AuthProvider>
+        <App />
+    </AuthProvider>
 );

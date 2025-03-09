@@ -1,293 +1,546 @@
 import React, { useState } from "react";
 
-const Phase2Benchmarking = ({ data, onNext, onPrev }) => {
-    const [benchmarkData, setBenchmarkData] = useState({
-        benchmarkObjective: data?.benchmarkObjective || "",
-        benchmarkSector: data?.benchmarkSector || "",
-        benchmarkResponsable: data?.benchmarkResponsable || "",
-        competitor1Name: data?.competitor1Name || "",
-        competitor1ScreenshotPath: data?.competitor1ScreenshotPath || "",
-        competitor1Url: data?.competitor1Url || "",
-        competitor1Positives: data?.competitor1Positives || "",
-        competitor1Negatives: data?.competitor1Negatives || "",
-        competitor1EaseOfUse: data?.competitor1EaseOfUse || 3,
-        competitor1Difficulties: data?.competitor1Difficulties || "",
-        competitor1UsefulFeatures: data?.competitor1UsefulFeatures || "",
-        competitor2Name: data?.competitor2Name || "",
-        competitor2ScreenshotPath: data?.competitor2ScreenshotPath || "",
-        competitor2Url: data?.competitor2Url || "",
-        competitor2Positives: data?.competitor2Positives || "",
-        competitor2Negatives: data?.competitor2Negatives || "",
-        competitor2EaseOfUse: data?.competitor2EaseOfUse || 3,
-        competitor2Difficulties: data?.competitor2Difficulties || "",
-        competitor2UsefulFeatures: data?.competitor2UsefulFeatures || "",
-        benchmarkFindings: data?.benchmarkFindings || "",
-        benchmarkImprovements: data?.benchmarkImprovements || "",
-        benchmarkUsedSmartphoneForScreens: data?.benchmarkUsedSmartphoneForScreens || false,
-        benchmarkUsedSmartphoneForComparative: data?.benchmarkUsedSmartphoneForComparative || false,
-        benchmarkConsideredMobileFirst: data?.benchmarkConsideredMobileFirst || false,
-    });
+// Opciones para los checkbox de características útiles
+const usefulFeaturesOptions = [
+    { value: "navegacion_clara", label: "Navegación clara" },
+    { value: "busqueda_intuitiva", label: "Búsqueda intuitiva" },
+    { value: "contraste_adecuado", label: "Contraste adecuado" },
+    { value: "iconos_faciles", label: "Iconos y botones fáciles de entender" },
+    { value: "tipografia_legible", label: "Tipografía legible" },
+    { value: "diseno_atractivo", label: "Diseño atractivo" },
+    { value: "modo_oscuro", label: "Modo oscuro disponible" },
+    { value: "integracion_redes", label: "Integración con redes sociales" },
+    { value: "colores_identidad", label: "Colores que reflejan la identidad de la marca" },
+    { value: "tonos_agradables", label: "Tonos suaves y agradables para la vista" },
+];
 
-    // Manejo de cambios para inputs y checkboxes
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setBenchmarkData((prev) => ({
+// Función para parsear la data de la fase 2
+function parsePhase2Data(data) {
+    if (!data) {
+        return {
+            introduction: { analysisObjective: "", sectorDescription: "" },
+            competitors: [
+                { companyName: "", screenshot: "", url: "", positives: "", negatives: "" },
+                { companyName: "", screenshot: "", url: "", positives: "", negatives: "" },
+            ],
+            analysis: [
+                { easeOfUse: 3, difficulty: "", usefulFeatures: [] },
+                { easeOfUse: 3, difficulty: "", usefulFeatures: [] },
+            ],
+            conclusions: { findings: "", improvements: "" },
+            reflectiveAnswers: [],
+        };
+    }
+
+    // Para construir la URL usamos el endpoint centralizado del FilesController.
+    // Ajusta baseURL si es necesario (por ejemplo, "https://localhost:5001")
+    const baseURL = "";
+    function buildImageUrl(path) {
+        if (!path) return "";
+        const fileName = path.split("/").pop();
+        return `${baseURL}/api/Files/image/${fileName}`;
+    }
+
+    return {
+        introduction: {
+            analysisObjective: data.benchmarkObjective || "",
+            sectorDescription: data.benchmarkSector || "",
+        },
+        competitors: [
+            {
+                companyName: data.competitor1Name || "",
+                screenshot: data.competitor1ScreenshotPath
+                    ? buildImageUrl(data.competitor1ScreenshotPath)
+                    : "",
+                url: data.competitor1Url || "",
+                positives: data.competitor1Positives || "",
+                negatives: data.competitor1Negatives || "",
+            },
+            {
+                companyName: data.competitor2Name || "",
+                screenshot: data.competitor2ScreenshotPath
+                    ? buildImageUrl(data.competitor2ScreenshotPath)
+                    : "",
+                url: data.competitor2Url || "",
+                positives: data.competitor2Positives || "",
+                negatives: data.competitor2Negatives || "",
+            },
+        ],
+        analysis: [
+            {
+                easeOfUse: data.competitor1EaseOfUse || 3,
+                difficulty: data.competitor1Difficulties || "",
+                usefulFeatures: data.competitor1UsefulFeatures
+                    ? data.competitor1UsefulFeatures
+                        .split(";")
+                        .map(x => x.trim())
+                        .filter(x => x !== "")
+                    : [],
+            },
+            {
+                easeOfUse: data.competitor2EaseOfUse || 3,
+                difficulty: data.competitor2Difficulties || "",
+                usefulFeatures: data.competitor2UsefulFeatures
+                    ? data.competitor2UsefulFeatures
+                        .split(";")
+                        .map(x => x.trim())
+                        .filter(x => x !== "")
+                    : [],
+            },
+        ],
+        conclusions: {
+            findings: data.benchmarkFindings || "",
+            improvements: data.benchmarkImprovements || "",
+        },
+        reflectiveAnswers: data.reflectionPhase2
+            ? data.reflectionPhase2.split(";").map(x => x.trim()).filter(x => x !== "")
+            : [],
+    };
+}
+
+const Phase2Benchmarking = ({ data, onNext, onPrev }) => {
+    // Inicializa el estado solo una vez al montar
+    const [formData, setFormData] = useState(() => parsePhase2Data(data));
+
+    // --- SUBIDA DE IMÁGENES ---
+    // Función auxiliar para subir un archivo al endpoint centralizado
+    const uploadImage = async (file, oldFilePath = "") => {
+        const fd = new FormData();
+        fd.append("file", file);
+        // Si oldFilePath se envía, el backend podrá eliminar la imagen antigua
+        const query = oldFilePath ? `?oldFilePath=${encodeURIComponent(oldFilePath)}` : "";
+        const response = await fetch(`/api/Files/upload${query}`, {
+            method: "POST",
+            body: fd,
+        });
+        if (!response.ok) {
+            throw new Error("Error al subir el archivo.");
+        }
+        const result = await response.json();
+        return result; // Se espera { filePath, FileName, ... }
+    };
+
+    // Manejador para subir imagen de Competidor 1
+    const handleFileChangeCompetitor1 = async (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+            setFormData((prev) => {
+                const comps = [...prev.competitors];
+                comps[0].screenshot = "";
+                return { ...prev, competitors: comps };
+            });
+            return;
+        }
+        try {
+            // Si ya existe una imagen, extrae la ruta relativa para enviarla como oldFilePath
+            const oldFilePath =
+                formData.competitors[0].screenshot &&
+                    formData.competitors[0].screenshot.split("/").pop()
+                    ? `/uploads/${formData.competitors[0].screenshot.split("/").pop()}`
+                    : "";
+            const result = await uploadImage(file, oldFilePath);
+            if (result.filePath) {
+                const fileName = result.FileName || result.fileName;
+                const imageUrl = `/api/Files/image/${fileName}`;
+                setFormData((prev) => {
+                    const comps = [...prev.competitors];
+                    comps[0].screenshot = imageUrl;
+                    return { ...prev, competitors: comps };
+                });
+            }
+        } catch (error) {
+            console.error("Error al subir archivo para Competidor 1:", error);
+            alert("Error al subir archivo para Competidor 1");
+        }
+    };
+
+    // Manejador para subir imagen de Competidor 2
+    const handleFileChangeCompetitor2 = async (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+            setFormData((prev) => {
+                const comps = [...prev.competitors];
+                comps[1].screenshot = "";
+                return { ...prev, competitors: comps };
+            });
+            return;
+        }
+        try {
+            const oldFilePath =
+                formData.competitors[1].screenshot &&
+                    formData.competitors[1].screenshot.split("/").pop()
+                    ? `/uploads/${formData.competitors[1].screenshot.split("/").pop()}`
+                    : "";
+            const result = await uploadImage(file, oldFilePath);
+            if (result.filePath) {
+                const fileName = result.FileName || result.fileName;
+                const imageUrl = `/api/Files/image/${fileName}`;
+                setFormData((prev) => {
+                    const comps = [...prev.competitors];
+                    comps[1].screenshot = imageUrl;
+                    return { ...prev, competitors: comps };
+                });
+            }
+        } catch (error) {
+            console.error("Error al subir archivo para Competidor 2:", error);
+            alert("Error al subir archivo para Competidor 2");
+        }
+    };
+
+    // --- MANEJO DE CAMPOS ---
+    const handleIntroChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : value,
+            introduction: { ...prev.introduction, [name]: value },
         }));
     };
 
-    // Manejo de archivos (capturas de pantalla)
-    const handleFileChange = (e, fieldName) => {
-        const file = e.target.files[0];
-        if (file) {
-            // Aquí implementarías la lógica para subir el archivo y obtener su URL.
-            // Por ahora, se asigna el nombre del archivo.
-            setBenchmarkData((prev) => ({ ...prev, [fieldName]: file.name }));
-        }
+    const handleCompetitorChange = (index, field, value) => {
+        setFormData((prev) => {
+            const comps = [...prev.competitors];
+            comps[index] = { ...comps[index], [field]: value };
+            return { ...prev, competitors: comps };
+        });
     };
 
-    // Función para enviar datos de Benchmarking al componente padre
-    const handleSubmit = () => {
-        // Validación básica de campos obligatorios de la Introducción
+    const handleAnalysisChange = (index, field, value) => {
+        setFormData((prev) => {
+            const analysisCopy = [...prev.analysis];
+            analysisCopy[index] = { ...analysisCopy[index], [field]: value };
+            return { ...prev, analysis: analysisCopy };
+        });
+    };
+
+    const handleUsefulFeaturesChange = (index, featureValue) => {
+        setFormData((prev) => {
+            const newAnalysis = [...prev.analysis];
+            const current = newAnalysis[index].usefulFeatures;
+            let updated;
+            if (current.includes(featureValue)) {
+                updated = current.filter((x) => x !== featureValue);
+            } else {
+                updated = [...current, featureValue];
+            }
+            newAnalysis[index].usefulFeatures = updated;
+            return { ...prev, analysis: newAnalysis };
+        });
+    };
+
+    const handleConclusionsChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            conclusions: { ...prev.conclusions, [name]: value },
+        }));
+    };
+
+    const handleReflectiveChange = (value) => {
+        setFormData((prev) => {
+            const current = prev.reflectiveAnswers;
+            return current.includes(value)
+                ? { ...prev, reflectiveAnswers: current.filter((v) => v !== value) }
+                : { ...prev, reflectiveAnswers: [...current, value] };
+        });
+    };
+
+    // --- AL ENVIAR ---
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (
-            !benchmarkData.benchmarkObjective.trim() ||
-            !benchmarkData.benchmarkSector.trim() ||
-            !benchmarkData.benchmarkResponsable.trim()
+            !formData.introduction.analysisObjective.trim() ||
+            !formData.introduction.sectorDescription.trim()
         ) {
-            alert("Completa los campos obligatorios de la sección de Introducción.");
+            alert("Completa los campos obligatorios de la Introducción (Fase 2).");
             return;
         }
-        onNext(benchmarkData);
+
+        // Función para revertir la URL de vista previa a la ruta relativa para guardar en la BD
+        const revertImageUrl = (imageUrl) => {
+            if (!imageUrl) return "";
+            const fileName = imageUrl.split("/").pop();
+            return `/uploads/${fileName}`;
+        };
+
+        const updatedData = {
+            BenchmarkObjective: formData.introduction.analysisObjective,
+            BenchmarkSector: formData.introduction.sectorDescription,
+            // Competidor 1
+            Competitor1Name: formData.competitors[0].companyName,
+            Competitor1ScreenshotPath: revertImageUrl(formData.competitors[0].screenshot),
+            Competitor1Url: formData.competitors[0].url,
+            Competitor1Positives: formData.competitors[0].positives,
+            Competitor1Negatives: formData.competitors[0].negatives,
+            Competitor1EaseOfUse: Number(formData.analysis[0].easeOfUse),
+            Competitor1Difficulties: formData.analysis[0].difficulty,
+            Competitor1UsefulFeatures: formData.analysis[0].usefulFeatures.join(";"),
+            // Competidor 2
+            Competitor2Name: formData.competitors[1].companyName,
+            Competitor2ScreenshotPath: revertImageUrl(formData.competitors[1].screenshot),
+            Competitor2Url: formData.competitors[1].url,
+            Competitor2Positives: formData.competitors[1].positives,
+            Competitor2Negatives: formData.competitors[1].negatives,
+            Competitor2EaseOfUse: Number(formData.analysis[1].easeOfUse),
+            Competitor2Difficulties: formData.analysis[1].difficulty,
+            Competitor2UsefulFeatures: formData.analysis[1].usefulFeatures.join(";"),
+            // Conclusiones
+            BenchmarkFindings: formData.conclusions.findings,
+            BenchmarkImprovements: formData.conclusions.improvements,
+            // Reflexivos Fase 2
+            ReflectionPhase2: formData.reflectiveAnswers.join(";"),
+        };
+
+        onNext(updatedData);
     };
 
     return (
-        <div className="phase-container">
-            <h2>Fase 2: Benchmarking</h2>
-            <fieldset>
-                <legend>
-                    <h3>Introducción</h3>
-                </legend>
-                <label htmlFor="benchmarkObjective">Objetivo del análisis:</label>
-                <textarea
-                    name="benchmarkObjective"
-                    id="benchmarkObjective"
-                    value={benchmarkData.benchmarkObjective}
-                    onChange={handleChange}
-                ></textarea>
+        <div className="project-planning-container">
+            <form onSubmit={handleSubmit}>
+                {/* Introducción */}
+                <fieldset>
+                    <legend>
+                        <h2>Introducción (Fase 2)</h2>
+                    </legend>
+                    <label>Objetivo del análisis:</label>
+                    <textarea
+                        name="analysisObjective"
+                        value={formData.introduction.analysisObjective}
+                        onChange={handleIntroChange}
+                    />
+                    <label>Descripción general del sector:</label>
+                    <textarea
+                        name="sectorDescription"
+                        value={formData.introduction.sectorDescription}
+                        onChange={handleIntroChange}
+                    />
+                </fieldset>
 
-                <label htmlFor="benchmarkSector">Descripción general del sector:</label>
-                <textarea
-                    name="benchmarkSector"
-                    id="benchmarkSector"
-                    placeholder="Breve descripción del sector de mercado"
-                    value={benchmarkData.benchmarkSector}
-                    onChange={handleChange}
-                ></textarea>
+                {/* Competidores */}
+                <fieldset>
+                    <legend>
+                        <h2>Competidores</h2>
+                    </legend>
 
-                <label htmlFor="benchmarkResponsable">Responsable del proyecto:</label>
-                <input
-                    type="text"
-                    id="benchmarkResponsable"
-                    name="benchmarkResponsable"
-                    value={benchmarkData.benchmarkResponsable}
-                    onChange={handleChange}
-                />
-            </fieldset>
-
-            <fieldset>
-                <legend>
-                    <h3>Competidores</h3>
-                </legend>
-                <div className="competitor">
-                    <h4>Competidor 1</h4>
-                    <label htmlFor="competitor1Name">Nombre de la empresa:</label>
+                    {/* Competidor 1 */}
+                    <h3>Competidor 1</h3>
+                    <label>Nombre:</label>
                     <input
                         type="text"
-                        id="competitor1Name"
-                        name="competitor1Name"
-                        value={benchmarkData.competitor1Name}
-                        onChange={handleChange}
+                        value={formData.competitors[0].companyName}
+                        onChange={(e) =>
+                            handleCompetitorChange(0, "companyName", e.target.value)
+                        }
                     />
-                    <label htmlFor="competitor1ScreenshotPath">Captura de pantalla:</label>
+                    <label>Subir imagen (Captura) Competidor 1:</label>
                     <input
                         type="file"
-                        id="competitor1ScreenshotPath"
-                        onChange={(e) => handleFileChange(e, "competitor1ScreenshotPath")}
+                        accept="image/*"
+                        onChange={handleFileChangeCompetitor1}
                     />
-                    <label htmlFor="competitor1Url">URL del sitio web:</label>
+                    {formData.competitors[0].screenshot && (
+                        <div style={{ margin: "5px 0" }}>
+                            <img
+                                src={formData.competitors[0].screenshot}
+                                alt="Screenshot Competidor 1"
+                                style={{ maxWidth: "200px" }}
+                            />
+                        </div>
+                    )}
+                    <label>URL:</label>
                     <input
                         type="url"
-                        id="competitor1Url"
-                        name="competitor1Url"
-                        value={benchmarkData.competitor1Url}
-                        onChange={handleChange}
+                        value={formData.competitors[0].url}
+                        onChange={(e) => handleCompetitorChange(0, "url", e.target.value)}
                     />
-                    <label htmlFor="competitor1Positives">Aspectos positivos:</label>
+                    <label>Aspectos positivos:</label>
                     <textarea
-                        id="competitor1Positives"
-                        name="competitor1Positives"
-                        value={benchmarkData.competitor1Positives}
-                        onChange={handleChange}
-                    ></textarea>
-                    <label htmlFor="competitor1Negatives">Aspectos negativos:</label>
-                    <textarea
-                        id="competitor1Negatives"
-                        name="competitor1Negatives"
-                        value={benchmarkData.competitor1Negatives}
-                        onChange={handleChange}
-                    ></textarea>
-                    <label htmlFor="competitor1EaseOfUse">Facilidad de uso (1-5):</label>
-                    <input
-                        type="range"
-                        id="competitor1EaseOfUse"
-                        name="competitor1EaseOfUse"
-                        min="1"
-                        max="5"
-                        value={benchmarkData.competitor1EaseOfUse}
-                        onChange={handleChange}
+                        value={formData.competitors[0].positives}
+                        onChange={(e) =>
+                            handleCompetitorChange(0, "positives", e.target.value)
+                        }
                     />
-                    <label htmlFor="competitor1Difficulties">Dificultades encontradas:</label>
+                    <label>Aspectos negativos:</label>
                     <textarea
-                        id="competitor1Difficulties"
-                        name="competitor1Difficulties"
-                        value={benchmarkData.competitor1Difficulties}
-                        onChange={handleChange}
-                    ></textarea>
-                    <label htmlFor="competitor1UsefulFeatures">Características útiles:</label>
-                    <textarea
-                        id="competitor1UsefulFeatures"
-                        name="competitor1UsefulFeatures"
-                        value={benchmarkData.competitor1UsefulFeatures}
-                        onChange={handleChange}
-                    ></textarea>
-                </div>
+                        value={formData.competitors[0].negatives}
+                        onChange={(e) =>
+                            handleCompetitorChange(0, "negatives", e.target.value)
+                        }
+                    />
 
-                <div className="competitor">
-                    <h4>Competidor 2</h4>
-                    <label htmlFor="competitor2Name">Nombre de la empresa:</label>
+                    {/* Competidor 2 */}
+                    <h3>Competidor 2</h3>
+                    <label>Nombre:</label>
                     <input
                         type="text"
-                        id="competitor2Name"
-                        name="competitor2Name"
-                        value={benchmarkData.competitor2Name}
-                        onChange={handleChange}
+                        value={formData.competitors[1].companyName}
+                        onChange={(e) =>
+                            handleCompetitorChange(1, "companyName", e.target.value)
+                        }
                     />
-                    <label htmlFor="competitor2ScreenshotPath">Captura de pantalla:</label>
+                    <label>Subir imagen (Captura) Competidor 2:</label>
                     <input
                         type="file"
-                        id="competitor2ScreenshotPath"
-                        onChange={(e) => handleFileChange(e, "competitor2ScreenshotPath")}
+                        accept="image/*"
+                        onChange={handleFileChangeCompetitor2}
                     />
-                    <label htmlFor="competitor2Url">URL del sitio web:</label>
+                    {formData.competitors[1].screenshot && (
+                        <div style={{ margin: "5px 0" }}>
+                            <img
+                                src={formData.competitors[1].screenshot}
+                                alt="Screenshot Competidor 2"
+                                style={{ maxWidth: "200px" }}
+                            />
+                        </div>
+                    )}
+                    <label>URL:</label>
                     <input
                         type="url"
-                        id="competitor2Url"
-                        name="competitor2Url"
-                        value={benchmarkData.competitor2Url}
-                        onChange={handleChange}
+                        value={formData.competitors[1].url}
+                        onChange={(e) =>
+                            handleCompetitorChange(1, "url", e.target.value)
+                        }
                     />
-                    <label htmlFor="competitor2Positives">Aspectos positivos:</label>
+                    <label>Aspectos positivos:</label>
                     <textarea
-                        id="competitor2Positives"
-                        name="competitor2Positives"
-                        value={benchmarkData.competitor2Positives}
-                        onChange={handleChange}
-                    ></textarea>
-                    <label htmlFor="competitor2Negatives">Aspectos negativos:</label>
+                        value={formData.competitors[1].positives}
+                        onChange={(e) =>
+                            handleCompetitorChange(1, "positives", e.target.value)
+                        }
+                    />
+                    <label>Aspectos negativos:</label>
                     <textarea
-                        id="competitor2Negatives"
-                        name="competitor2Negatives"
-                        value={benchmarkData.competitor2Negatives}
-                        onChange={handleChange}
-                    ></textarea>
-                    <label htmlFor="competitor2EaseOfUse">Facilidad de uso (1-5):</label>
+                        value={formData.competitors[1].negatives}
+                        onChange={(e) =>
+                            handleCompetitorChange(1, "negatives", e.target.value)
+                        }
+                    />
+                </fieldset>
+
+                {/* Análisis comparativo */}
+                <fieldset>
+                    <legend>
+                        <h2>Análisis comparativo</h2>
+                    </legend>
+                    {/* Competidor 1 */}
+                    <h3>Competidor 1</h3>
+                    <label>Facilidad de uso (1-5):</label>
                     <input
                         type="range"
-                        id="competitor2EaseOfUse"
-                        name="competitor2EaseOfUse"
                         min="1"
                         max="5"
-                        value={benchmarkData.competitor2EaseOfUse}
-                        onChange={handleChange}
+                        value={formData.analysis[0].easeOfUse}
+                        onChange={(e) =>
+                            handleAnalysisChange(0, "easeOfUse", e.target.value)
+                        }
                     />
-                    <label htmlFor="competitor2Difficulties">Dificultades encontradas:</label>
+                    <label>Dificultades:</label>
                     <textarea
-                        id="competitor2Difficulties"
-                        name="competitor2Difficulties"
-                        value={benchmarkData.competitor2Difficulties}
-                        onChange={handleChange}
-                    ></textarea>
-                    <label htmlFor="competitor2UsefulFeatures">Características útiles:</label>
+                        value={formData.analysis[0].difficulty}
+                        onChange={(e) =>
+                            handleAnalysisChange(0, "difficulty", e.target.value)
+                        }
+                    />
+                    <label>Características útiles (Comp1):</label>
+                    {usefulFeaturesOptions.map((opt) => (
+                        <label key={opt.value} style={{ display: "block" }}>
+                            <input
+                                type="checkbox"
+                                checked={formData.analysis[0].usefulFeatures.includes(opt.value)}
+                                onChange={() => handleUsefulFeaturesChange(0, opt.value)}
+                            />
+                            {opt.label}
+                        </label>
+                    ))}
+
+                    {/* Competidor 2 */}
+                    <h3>Competidor 2</h3>
+                    <label>Facilidad de uso (1-5):</label>
+                    <input
+                        type="range"
+                        min="1"
+                        max="5"
+                        value={formData.analysis[1].easeOfUse}
+                        onChange={(e) =>
+                            handleAnalysisChange(1, "easeOfUse", e.target.value)
+                        }
+                    />
+                    <label>Dificultades:</label>
                     <textarea
-                        id="competitor2UsefulFeatures"
-                        name="competitor2UsefulFeatures"
-                        value={benchmarkData.competitor2UsefulFeatures}
-                        onChange={handleChange}
-                    ></textarea>
+                        value={formData.analysis[1].difficulty}
+                        onChange={(e) =>
+                            handleAnalysisChange(1, "difficulty", e.target.value)
+                        }
+                    />
+                    <label>Características útiles (Comp2):</label>
+                    {usefulFeaturesOptions.map((opt) => (
+                        <label key={opt.value} style={{ display: "block" }}>
+                            <input
+                                type="checkbox"
+                                checked={formData.analysis[1].usefulFeatures.includes(opt.value)}
+                                onChange={() => handleUsefulFeaturesChange(1, opt.value)}
+                            />
+                            {opt.label}
+                        </label>
+                    ))}
+                </fieldset>
+
+                {/* Conclusiones */}
+                <fieldset>
+                    <legend>
+                        <h2>Conclusiones</h2>
+                    </legend>
+                    <label>Hallazgos:</label>
+                    <textarea
+                        name="findings"
+                        value={formData.conclusions.findings}
+                        onChange={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                conclusions: { ...prev.conclusions, findings: e.target.value },
+                            }))
+                        }
+                    />
+                    <label>Oportunidades de mejora:</label>
+                    <textarea
+                        name="improvements"
+                        value={formData.conclusions.improvements}
+                        onChange={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                conclusions: { ...prev.conclusions, improvements: e.target.value },
+                            }))
+                        }
+                    />
+                </fieldset>
+
+                {/* Reflexivos Fase 2 */}
+                <fieldset>
+                    <legend>
+                        <h3>Ejercicio reflexivo (Fase 2)</h3>
+                    </legend>
+                    {["formularios_contacto", "formularios_registro", "conexion_bd"].map(
+                        (item) => (
+                            <label key={item} style={{ display: "block" }}>
+                                <input
+                                    type="checkbox"
+                                    checked={formData.reflectiveAnswers.includes(item)}
+                                    onChange={() => handleReflectiveChange(item)}
+                                />
+                                {item}
+                            </label>
+                        )
+                    )}
+                </fieldset>
+
+                <div>
+                    {onPrev && (
+                        <button type="button" onClick={onPrev}>
+                            Anterior
+                        </button>
+                    )}
+                    <button type="submit">Completar Fase 2</button>
                 </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>
-                    <h3>Conclusiones</h3>
-                </legend>
-                <label htmlFor="findings">Principales hallazgos:</label>
-                <textarea
-                    id="findings"
-                    name="benchmarkFindings"
-                    value={benchmarkData.benchmarkFindings}
-                    onChange={handleChange}
-                ></textarea>
-                <label htmlFor="improvements">Oportunidades de mejora:</label>
-                <textarea
-                    id="improvements"
-                    name="benchmarkImprovements"
-                    value={benchmarkData.benchmarkImprovements}
-                    onChange={handleChange}
-                ></textarea>
-            </fieldset>
-
-            <fieldset>
-                <legend>
-                    <h3>Ejercicio reflexivo</h3>
-                </legend>
-                <p>Marca las casillas si se realizaron las actividades según lo esperado:</p>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="benchmarkUsedSmartphoneForScreens"
-                        checked={benchmarkData.benchmarkUsedSmartphoneForScreens}
-                        onChange={handleChange}
-                    />
-                    ¿La captura de pantalla se realizó usando un teléfono inteligente?
-                </label>
-                <br />
-                <label>
-                    <input
-                        type="checkbox"
-                        name="benchmarkUsedSmartphoneForComparative"
-                        checked={benchmarkData.benchmarkUsedSmartphoneForComparative}
-                        onChange={handleChange}
-                    />
-                    ¿El análisis comparativo se realizó usando un teléfono inteligente?
-                </label>
-                <br />
-                <label>
-                    <input
-                        type="checkbox"
-                        name="benchmarkConsideredMobileFirst"
-                        checked={benchmarkData.benchmarkConsideredMobileFirst}
-                        onChange={handleChange}
-                    />
-                    ¿Se consideró el enfoque Mobile First en las oportunidades de mejora?
-                </label>
-            </fieldset>
-
-            <div className="phase-navigation">
-                <button onClick={onPrev}>Anterior</button>
-                <button onClick={handleSubmit}>Guardar y Siguiente</button>
-            </div>
+            </form>
         </div>
     );
 };

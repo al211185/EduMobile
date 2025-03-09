@@ -4,6 +4,7 @@ using EduMobile.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduMobile.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250307002650_Mig16Bench")]
+    partial class Mig16Bench
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,7 +233,7 @@ namespace EduMobile.Server.Migrations
                     b.ToTable("Phases");
                 });
 
-            modelBuilder.Entity("EduMobile.Server.Models.PlanningPhase", b =>
+            modelBuilder.Entity("EduMobile.Server.Models.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,10 +242,6 @@ namespace EduMobile.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AllowedTechnologies")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AudienceQuestions")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -261,7 +260,7 @@ namespace EduMobile.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BenchmarkResponsableF2")
+                    b.Property<string>("BenchmarkResponsable")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -277,8 +276,7 @@ namespace EduMobile.Server.Migrations
 
                     b.Property<string>("ClienteName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Competitor1Difficulties")
                         .IsRequired()
@@ -350,73 +348,6 @@ namespace EduMobile.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomRequirements")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomTechnologies")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FunctionalRequirements")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GeneralObjective")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProjectName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ReflectionPhase1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ReflectionPhase2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ReflectionPhase3")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Responsable")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("SpecificObjectives")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId")
-                        .IsUnique();
-
-                    b.ToTable("PlanningPhases");
-                });
-
-            modelBuilder.Entity("EduMobile.Server.Models.Project", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -426,13 +357,37 @@ namespace EduMobile.Server.Migrations
                     b.Property<int>("CurrentPhase")
                         .HasColumnType("int");
 
+                    b.Property<string>("CustomRequirementsJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomTechnologies")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("FunctionalRequirementsJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GeneralObjective")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReflectiveAnswers")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("SemesterId")
                         .HasColumnType("int");
+
+                    b.Property<string>("SpecificObjectivesJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -669,17 +624,6 @@ namespace EduMobile.Server.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("EduMobile.Server.Models.PlanningPhase", b =>
-                {
-                    b.HasOne("EduMobile.Server.Models.Project", "Project")
-                        .WithOne("PlanningPhase")
-                        .HasForeignKey("EduMobile.Server.Models.PlanningPhase", "ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-                });
-
             modelBuilder.Entity("EduMobile.Server.Models.Project", b =>
                 {
                     b.HasOne("ApplicationUser", "CreatedBy")
@@ -792,9 +736,6 @@ namespace EduMobile.Server.Migrations
             modelBuilder.Entity("EduMobile.Server.Models.Project", b =>
                 {
                     b.Navigation("DesignPhases");
-
-                    b.Navigation("PlanningPhase")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.Semester", b =>

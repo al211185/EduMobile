@@ -195,7 +195,6 @@ form {
     form input {
         font-family: var(--font-family-main);
         font-size: var(--font-size-base);
-        padding: 0.75rem 1rem;
         border: 1px solid var(--color-border);
         border-radius: 6px;
         color: var(--color-neutral-dark);
@@ -1244,3 +1243,10 @@ button {
         text-align: center;
         border: 1px solid #ddd;
     }
+
+
+input[type="color"].styled-input {
+    width: 100%;
+    height: 40px; /* Aumenta la altura */
+    padding: 0;
+}

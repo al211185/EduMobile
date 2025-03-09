@@ -3,10 +3,10 @@ using EduMobile.Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EduMobile.Server.Controllers
@@ -16,403 +16,309 @@ namespace EduMobile.Server.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ProjectsController> _logger;
 
-        public ProjectsController(ApplicationDbContext context)
+        public ProjectsController(ApplicationDbContext context, ILogger<ProjectsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // POST: api/Projects/create
+        // Crea un nuevo proyecto con los datos esenciales.
         [HttpPost("create")]
         public async Task<IActionResult> CreateProject([FromBody] CreateProjectRequest request)
         {
+            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(request.Title))
+            {
+                return BadRequest(new { Message = "El título es obligatorio." });
+            }
+
             try
             {
-                if (!ModelState.IsValid || string.IsNullOrWhiteSpace(request.Title))
-                    return BadRequest(new { Message = "El título es obligatorio." });
-
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                var existingProject = await _context.Projects
+                // Verificar que no exista ya un proyecto con el mismo título para este usuario
+                bool exists = await _context.Projects
                     .AnyAsync(p => p.Title == request.Title && p.CreatedById == userId);
-
-                if (existingProject)
+                if (exists)
+                {
                     return BadRequest(new { Message = "Ya existe un proyecto con este título." });
+                }
 
+                // Se asume que el usuario tiene un semestre asignado
                 var semesterStudent = await _context.SemesterStudents
                     .Include(ss => ss.Semester)
                     .FirstOrDefaultAsync(ss => ss.StudentId == userId);
-
                 if (semesterStudent == null)
+                {
                     return BadRequest(new { Message = "No tienes un semestre asignado." });
+                }
 
+                // Crear el proyecto
                 var project = new Project
                 {
                     Title = request.Title,
-                    Description = request.Description ?? "",
+                    Description = request.Description ?? string.Empty,
                     CreatedById = userId,
                     SemesterId = semesterStudent.SemesterId,
                     CreatedAt = DateTime.UtcNow,
-                    CorporateColors = "000000,000000,000000",
-                    CorporateFont = "Arial",
-                    GeneralObjective = "Por definir",
-                    SpecificObjectives = new List<string>(),
-                    FunctionalRequirements = new List<string>(),
-                    AllowedTechnologies = "[]",
-                    CustomTechnologies = "[]",
-                    ReflectiveAnswers = "{}",
-                    ClienteName = ""
+                    CurrentPhase = 1
                 };
 
                 _context.Projects.Add(project);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Guarda el proyecto y asigna su ID
 
-                // Crear automáticamente un registro en DesignPhases
-                var designPhase = new DesignPhase
+                // Crear el registro en PlanningPhases para este proyecto, usando el ID asignado
+                var planningPhase = new PlanningPhase
                 {
                     ProjectId = project.Id,
-                    SiteMapFilePath = string.Empty,
-                    Wireframe480pxPath = string.Empty,
-                    Wireframe768pxPath = string.Empty,
-                    Wireframe1024pxPath = string.Empty,
-                    VisualDesignFilePath = string.Empty,
-                    ContentFilePath = string.Empty,
+                    ProjectName = project.Title,
+                    ClienteName = "",
+                    Responsable = "",
+                    StartDate = DateTime.UtcNow,
+                    GeneralObjective = "",
+                    SpecificObjectives = "",
+                    FunctionalRequirements = "",
+                    CustomRequirements = "",
+                    CorporateColors = "#000000,#000000,#000000",
+                    CorporateFont = "Arial",
+                    AllowedTechnologies = "",
+                    CustomTechnologies = "",
+                    ReflectionPhase1 = "",
+                    BenchmarkObjective = "",
+                    BenchmarkSector = "",
+                    BenchmarkResponsableF2 = "",
+                    Competitor1Name = "",
+                    Competitor1ScreenshotPath = "",
+                    Competitor1Url = "",
+                    Competitor1Positives = "",
+                    Competitor1Negatives = "",
+                    Competitor1EaseOfUse = 0,
+                    Competitor1Difficulties = "",
+                    Competitor1UsefulFeatures = "",
+                    Competitor2Name = "",
+                    Competitor2ScreenshotPath = "",
+                    Competitor2Url = "",
+                    Competitor2Positives = "",
+                    Competitor2Negatives = "",
+                    Competitor2EaseOfUse = 0,
+                    Competitor2Difficulties = "",
+                    Competitor2UsefulFeatures = "",
+                    BenchmarkFindings = "",
+                    BenchmarkImprovements = "",
+                    BenchmarkUsedSmartphoneForScreens = false,
+                    BenchmarkUsedSmartphoneForComparative = false,
+                    BenchmarkConsideredMobileFirst = false,
+                    ReflectionPhase2 = "",
+                    AudienceQuestions = "",
+                    ReflectionPhase3 = "",
                     UpdatedAt = DateTime.UtcNow
                 };
 
-                _context.DesignPhases.Add(designPhase);
+                _context.PlanningPhases.Add(planningPhase);
                 await _context.SaveChangesAsync();
 
                 return Ok(new { Message = "Proyecto creado exitosamente.", ProjectId = project.Id });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al crear proyecto: {ex.Message}");
-                Console.WriteLine($"Detalles de la excepción: {ex.InnerException?.Message}");
-                Console.WriteLine($"StackTrace: {ex.StackTrace}");
-                return StatusCode(500, new
-                {
-                    Message = "Error interno del servidor.",
-                    Error = ex.Message,
-                    InnerError = ex.InnerException?.Message,
-                    Details = ex.StackTrace
-                });
-            }
-
-
-        }
-
-
-        // GET: api/Projects
-        [HttpGet]
-        public async Task<IActionResult> GetProjects()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var projects = await _context.Projects
-                .Where(p => p.CreatedById == userId)
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Title,
-                    p.Description,
-                    p.CreatedAt,
-                    p.CurrentPhase,
-                    SemesterName = p.Semester != null ? p.Semester.Name : "Sin semestre"
-                })
-                .ToListAsync();
-
-            return Ok(projects);
-        }
-
-        // GET: api/Projects/{id}
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProject(int id)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // ID del usuario autenticado
-            var userRole = User.FindFirstValue(ClaimTypes.Role); // Rol del usuario autenticado
-
-            // Buscar el proyecto con las relaciones necesarias
-            var project = await _context.Projects
-                .Include(p => p.Semester)
-                .Include(p => p.CreatedBy)
-                .Where(p => p.Id == id)
-                .FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                return NotFound(new { Message = "Proyecto no encontrado." });
-            }
-
-            // Verificar si el usuario es el creador o tiene el rol "Profesor"
-            if (project.CreatedById != userId && userRole != "Profesor")
-            {
-                return Unauthorized(new { Message = "No tienes permiso para acceder a este proyecto." });
-            }
-
-            // Preparar el objeto de respuesta
-            var result = new
-            {
-                project.Id,
-                project.Title,
-                project.Description,
-                project.ClienteName,
-                project.StartDate,
-                project.GeneralObjective,
-                SpecificObjectives = project.SpecificObjectives, // Lista deserializada
-                FunctionalRequirements = project.FunctionalRequirements, // Lista deserializada
-                CustomRequirements = project.CustomRequirements, // Lista deserializada
-                CorporateColors = project.CorporateColors.Split(','), // Separar colores
-                project.CorporateFont,
-                AllowedTechnologies = !string.IsNullOrEmpty(project.AllowedTechnologies)
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<string>>(project.AllowedTechnologies)
-                    : new List<string>(),
-                CustomTechnologies = !string.IsNullOrEmpty(project.CustomTechnologies)
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<string>>(project.CustomTechnologies)
-                    : new List<string>(),
-                project.ReflectiveAnswers,
-                project.CreatedAt,
-                project.CurrentPhase,
-                SemesterName = project.Semester != null ? project.Semester.Name : "Sin semestre",
-                CreatedByName = project.CreatedBy != null
-                    ? $"{project.CreatedBy.Nombre} {project.CreatedBy.ApellidoPaterno} {project.CreatedBy.ApellidoMaterno}"
-                    : "Usuario desconocido"
-            };
-
-            return Ok(result);
-        }
-
-
-
-        // PUT: api/Projects/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProject(int id, [FromBody] UpdateProjectRequest request)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(new { Message = "Datos inválidos." });
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var project = await _context.Projects
-                .FirstOrDefaultAsync(p => p.Id == id && p.CreatedById == userId);
-
-            if (project == null)
-                return NotFound(new { Message = "Proyecto no encontrado o no tienes permiso para editarlo." });
-
-            project.Title = request.Title ?? project.Title;
-            project.Description = request.Description ?? project.Description;
-            project.CurrentPhase = request.CurrentPhase ?? project.CurrentPhase;
-
-            _context.Projects.Update(project);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { Message = "Proyecto actualizado exitosamente." });
-        }
-
-        // DELETE: api/Projects/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProject(int id)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var project = await _context.Projects
-                .FirstOrDefaultAsync(p => p.Id == id && p.CreatedById == userId);
-
-            if (project == null)
-                return NotFound(new { Message = "Proyecto no encontrado o no tienes permiso para eliminarlo." });
-
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { Message = "Proyecto eliminado exitosamente." });
-        }
-
-        [HttpPost("save-phase-data")]
-        public async Task<IActionResult> SavePhaseData([FromBody] ProjectPhaseDataRequest request)
-        {
-            try
-            {
-                var project = await _context.Projects
-                    .Include(p => p.CreatedBy)
-                    .FirstOrDefaultAsync(p => p.Id == request.ProjectId);
-
-                if (project == null)
-                    return NotFound(new { Message = "Proyecto no encontrado" });
-
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (project.CreatedById != userId)
-                    return Unauthorized(new { Message = "No tienes permiso para actualizar este proyecto." });
-
-                // Validar campos obligatorios
-                if (string.IsNullOrWhiteSpace(request.Title) ||
-                    string.IsNullOrWhiteSpace(request.ClienteName) ||
-                    string.IsNullOrWhiteSpace(request.Responsable))
-                {
-                    return BadRequest(new { Message = "Campos obligatorios faltantes." });
-                }
-
-                // Actualizar los campos del proyecto
-                project.Title = request.Title;
-                project.Description = request.Description ?? project.Description;
-                project.ClienteName = request.ClienteName;
-                project.StartDate = request.StartDate;
-                project.GeneralObjective = request.GeneralObjective;
-                project.SpecificObjectivesJson = string.Join(";", request.SpecificObjectives ?? new List<string>());
-                project.FunctionalRequirementsJson = string.Join(";", request.FunctionalRequirements ?? new List<string>());
-                project.CustomRequirementsJson = string.Join(";", request.CustomRequirements ?? new List<string>());
-                project.CorporateColors = $"{request.CorporateColors.Primary},{request.CorporateColors.Secondary1},{request.CorporateColors.Secondary2}";
-                project.CorporateFont = request.CorporateFont;
-                project.ReflectiveAnswers = request.ReflectiveAnswers;
-
-                // Serializar AllowedTechnologies y CustomTechnologies
-                project.AllowedTechnologies = request.AllowedTechnologies != null
-                    ? System.Text.Json.JsonSerializer.Serialize(request.AllowedTechnologies)
-                    : "[]";
-
-                project.CustomTechnologies = request.CustomTechnologies != null
-                    ? System.Text.Json.JsonSerializer.Serialize(request.CustomTechnologies)
-                    : "[]";
-
-                await _context.SaveChangesAsync();
-
-                return Ok(new
-                {
-                    Message = "Datos guardados exitosamente",
-                    ProjectId = project.Id,
-                    CurrentPhase = project.CurrentPhase
-                });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al guardar datos de la fase: {ex.Message}");
+                _logger.LogError(ex, "Error al crear el proyecto");
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
 
-        [HttpGet("all-projects")]
-        [Authorize(Roles = "Profesor")]
-        public IActionResult GetAllProjects()
+        // GET: api/Projects
+        // Lista los proyectos creados por el usuario autenticado.
+        [HttpGet]
+        public async Task<IActionResult> GetProjects()
         {
-            var projects = _context.Projects
-                .Include(p => p.Semester)
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Title,
-                    p.Description,
-                    SemesterName = p.Semester != null ? p.Semester.Name : "Sin Semestre",
-                    CreatedBy = p.CreatedBy != null ? p.CreatedBy.Nombre : "Desconocido"
-                })
-                .ToList();
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var projects = await _context.Projects
+                    .Where(p => p.CreatedById == userId)
+                    .Select(p => new
+                    {
+                        p.Id,
+                        p.Title,
+                        p.Description,
+                        p.CreatedAt,
+                        p.CurrentPhase,
+                        SemesterName = p.Semester != null ? p.Semester.Name : "Sin semestre"
+                    })
+                    .ToListAsync();
 
-            return Ok(projects);
+                return Ok(projects);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener proyectos");
+                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
+            }
         }
 
+        // GET: api/Projects/{id}
+        // Obtiene la información detallada de un proyecto.
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProject(int id)
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var project = await _context.Projects
+                    .Include(p => p.Semester)
+                    .Include(p => p.CreatedBy)
+                    .FirstOrDefaultAsync(p => p.Id == id);
+
+                if (project == null)
+                {
+                    return NotFound(new { Message = "Proyecto no encontrado." });
+                }
+
+                // Validar que el usuario tenga permiso para ver el proyecto
+                if (project.CreatedById != userId)
+                {
+                    return Unauthorized(new { Message = "No tienes permiso para acceder a este proyecto." });
+                }
+
+                var result = new
+                {
+                    project.Id,
+                    project.Title,
+                    project.Description,
+                    project.CreatedAt,
+                    project.CurrentPhase,
+                    SemesterName = project.Semester != null ? project.Semester.Name : "Sin semestre",
+                    CreatedByName = project.CreatedBy != null ? $"{project.CreatedBy.Nombre} {project.CreatedBy.ApellidoPaterno}" : "Desconocido"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener el proyecto con id {ProjectId}", id);
+                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
+            }
+        }
+
+        // PUT: api/Projects/{id}
+        // Actualiza los datos básicos del proyecto.
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProject(int id, [FromBody] UpdateProjectRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { Message = "Datos inválidos." });
+            }
+
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id && p.CreatedById == userId);
+
+                if (project == null)
+                {
+                    return NotFound(new { Message = "Proyecto no encontrado o no tienes permiso para editarlo." });
+                }
+
+                project.Title = request.Title ?? project.Title;
+                project.Description = request.Description ?? project.Description;
+                if (request.CurrentPhase.HasValue)
+                {
+                    project.CurrentPhase = request.CurrentPhase.Value;
+                }
+
+                _context.Projects.Update(project);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { Message = "Proyecto actualizado exitosamente." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar el proyecto con id {ProjectId}", id);
+                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
+            }
+        }
+
+        // DELETE: api/Projects/{id}
+        // Elimina un proyecto del usuario autenticado.
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProject(int id)
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id && p.CreatedById == userId);
+
+                if (project == null)
+                {
+                    return NotFound(new { Message = "Proyecto no encontrado o no tienes permiso para eliminarlo." });
+                }
+
+                _context.Projects.Remove(project);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { Message = "Proyecto eliminado exitosamente." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al eliminar el proyecto con id {ProjectId}", id);
+                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
+            }
+        }
+
+        // GET: api/Projects/current
+        // Retorna el proyecto más reciente del usuario autenticado.
         [HttpGet("current")]
         public async Task<IActionResult> GetCurrentProject()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrWhiteSpace(userId))
+            try
             {
-                return Unauthorized(new { Message = "Usuario no autenticado." });
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var project = await _context.Projects
+                    .Include(p => p.Semester)
+                    .Where(p => p.CreatedById == userId)
+                    .OrderByDescending(p => p.CreatedAt)
+                    .FirstOrDefaultAsync();
+
+                if (project == null)
+                {
+                    return NotFound(new { Message = "No se encontró un proyecto asignado al usuario." });
+                }
+
+                var result = new
+                {
+                    project.Id,
+                    project.Title,
+                    project.Description,
+                    project.CreatedAt,
+                    project.CurrentPhase,
+                    SemesterName = project.Semester != null ? project.Semester.Name : "Sin semestre"
+                };
+
+                return Ok(result);
             }
-
-            // Busca el proyecto actual del usuario
-            var project = await _context.Projects
-                .Include(p => p.Semester)
-                .Where(p => p.CreatedById == userId)
-                .OrderByDescending(p => p.CreatedAt) // Opcional: Obtén el más reciente si hay varios
-                .FirstOrDefaultAsync();
-
-            if (project == null)
+            catch (Exception ex)
             {
-                return NotFound(new { Message = "No se encontró un proyecto asignado al usuario." });
+                _logger.LogError(ex, "Error al obtener el proyecto actual");
+                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
-
-            return Ok(new
-            {
-                project.Id,
-                project.Title,
-                project.Description,
-                project.CurrentPhase,
-                SemesterName = project.Semester != null ? project.Semester.Name : "Sin Semestre"
-            });
         }
-
-
-
     }
 
+    // Modelos de solicitud sin la propiedad GeneralObjective, ya que ahora se maneja en PlanningPhase.
     public class CreateProjectRequest
     {
         [Required]
-        public string Title { get; set; } // Obligatorio
-
-        public string Description { get; set; } // Opcional
+        public string Title { get; set; }
+        public string? Description { get; set; }
     }
-
-
-
 
     public class UpdateProjectRequest
     {
-        public int ProjectId { get; set; } // Para identificar el proyecto que se actualizará
-        public string Title { get; set; } // Opcional, con validación de longitud
-
-        public string Description { get; set; } // Opcional, con validación de longitud
-
-        public int? CurrentPhase { get; set; } // Puede ser nulo para evitar cambios en esta propiedad
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public int? CurrentPhase { get; set; }
     }
-
-    public class ProjectPhaseDataRequest
-    {
-        public int ProjectId { get; set; }
-
-        [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public string ClienteName { get; set; }
-
-        public string Responsable { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public string GeneralObjective { get; set; }
-
-        public List<string> SpecificObjectives { get; set; } = new List<string>();
-
-        public List<string> FunctionalRequirements { get; set; } = new List<string>();
-
-        public List<string> CustomRequirements { get; set; } = new List<string>();
-
-        public List<string> AllowedTechnologies { get; set; }
-
-        public List<string> CustomTechnologies { get; set; }
-
-        public CorporateColors CorporateColors { get; set; }
-
-        public string CorporateFont { get; set; }
-
-        public string Description { get; set; }
-
-        public string ReflectiveAnswers { get; set; }
-    }
-
-
-
-
-    public class CorporateColors
-    {
-        [RegularExpression(@"^#[0-9A-Fa-f]{6}$", ErrorMessage = "El color primario debe ser un código hexadecimal válido.")]
-        public string Primary { get; set; } = "#000000";
-
-        [RegularExpression(@"^#[0-9A-Fa-f]{6}$", ErrorMessage = "El color secundario 1 debe ser un código hexadecimal válido.")]
-        public string Secondary1 { get; set; } = "#000000";
-
-        [RegularExpression(@"^#[0-9A-Fa-f]{6}$", ErrorMessage = "El color secundario 2 debe ser un código hexadecimal válido.")]
-        public string Secondary2 { get; set; } = "#000000";
-    }
-
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ProjectPlanning from "./ProjectPlanning";
+import ProjectPlanning from "./PlanningPhase";
 
 const ProjectPhase = () => {
     const { projectId } = useParams(); // Obtener el projectId de la URL

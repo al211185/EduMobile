@@ -11,65 +11,74 @@ namespace EduMobile.Server.Data
         {
         }
 
-        public DbSet<Semester> Semesters { get; set; } // Tabla para los semestres
-        public DbSet<SemesterStudent> SemesterStudents { get; set; } // Tabla intermedia
-        public DbSet<Project> Projects { get; set; } // Tabla para proyectos
-        public DbSet<Phase> Phases { get; set; } // Tabla para fases del proyecto
-        public DbSet<DesignPhase> DesignPhases { get; set; }
+        // NUEVO: DbSet para la fase de planeación
+        public DbSet<PlanningPhase> PlanningPhases { get; set; }
 
+        // Ya existentes
+        public DbSet<Semester> Semesters { get; set; }
+        public DbSet<SemesterStudent> SemesterStudents { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Phase> Phases { get; set; }
+        public DbSet<DesignPhase> DesignPhases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            // Configuración de claves y relaciones para SemesterStudent
+            // ========== Relación 1:1 entre Project y PlanningPhase ==========
+            builder.Entity<PlanningPhase>()
+                   .HasOne(pp => pp.Project)
+                   .WithOne(p => p.PlanningPhase)
+                   .HasForeignKey<PlanningPhase>(pp => pp.ProjectId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            // ========== Configuración de SemesterStudent ==========
             builder.Entity<SemesterStudent>()
-                .HasKey(ss => new { ss.SemesterId, ss.StudentId }); // Clave compuesta
+                .HasKey(ss => new { ss.SemesterId, ss.StudentId });
 
             builder.Entity<SemesterStudent>()
                 .HasOne(ss => ss.Semester)
                 .WithMany(s => s.SemesterStudents)
                 .HasForeignKey(ss => ss.SemesterId)
-                .OnDelete(DeleteBehavior.Cascade); // Configura el borrado en cascada
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<SemesterStudent>()
                 .HasOne(ss => ss.Student)
                 .WithMany()
                 .HasForeignKey(ss => ss.StudentId)
-                .OnDelete(DeleteBehavior.Restrict); // Evitar eliminación en cascada
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Configuración de longitud para StudentId
+            // Longitud para StudentId (coincide con AspNetUsers.Id)
             builder.Entity<SemesterStudent>()
                 .Property(ss => ss.StudentId)
-                .HasMaxLength(450); // Coincidir con la longitud de AspNetUsers.Id
+                .HasMaxLength(450);
 
-            // Configuración para Project
+            // ========== Configuración de Project ==========
             builder.Entity<Project>()
                 .HasOne(p => p.Semester)
-                .WithMany(s => s.Projects) // Relación con la colección de proyectos
+                .WithMany(s => s.Projects)
                 .HasForeignKey(p => p.SemesterId)
-                .OnDelete(DeleteBehavior.Cascade); // Cambia a eliminación en cascada
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Project>()
                 .HasOne(p => p.CreatedBy)
                 .WithMany(u => u.Projects)
                 .HasForeignKey(p => p.CreatedById)
-                .OnDelete(DeleteBehavior.SetNull); // Permitir que un proyecto sobreviva sin su creador
+                .OnDelete(DeleteBehavior.SetNull);
 
-
-            // Configuración para Phase
+            // ========== Configuración de Phase ==========
             builder.Entity<Phase>()
                 .HasOne(p => p.Project)
                 .WithMany()
                 .HasForeignKey(p => p.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade); // Eliminar fases al eliminar un proyecto
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // ========== Configuración de DesignPhase ==========
             builder.Entity<DesignPhase>()
                 .HasOne(dp => dp.Project)
-                .WithMany(p => p.DesignPhases) // Si un proyecto tiene múltiples `DesignPhases`
+                .WithMany(p => p.DesignPhases)
                 .HasForeignKey(dp => dp.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade); // Configurar eliminación en cascada
-
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
