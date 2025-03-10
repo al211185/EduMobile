@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const Phase2Wireframes = ({ data, onNext }) => {
+    // Endpoints usando rutas relativas
+    const FILE_UPLOAD_ENDPOINT = "/api/Files/upload";
+    const FILE_IMAGE_ENDPOINT = "/api/Files/image";
+
+    // Estado inicial del formulario
     const [formData, setFormData] = useState({
         wireframe480pxPath: "",
         wireframe480pxPreviewUrl: "",
@@ -14,82 +19,98 @@ const Phase2Wireframes = ({ data, onNext }) => {
         isVisualConsistencyMet: false,
     });
 
+    // Helper: Construye la URL de vista previa usando la ruta relativa
+    const getPreviewUrl = useCallback(
+        (filePath) =>
+            filePath ? `${FILE_IMAGE_ENDPOINT}/${filePath.split("/").pop()}` : "",
+        [FILE_IMAGE_ENDPOINT]
+    );
+
+    // Sincroniza la data recibida con el estado del formulario
     useEffect(() => {
         if (data) {
-            const apiBaseUrl = "https://localhost:50408/api/DesignPhases/image";
             setFormData({
                 wireframe480pxPath: data.wireframe480pxPath || "",
-                wireframe480pxPreviewUrl: data.wireframe480pxPath
-                    ? `${apiBaseUrl}/${data.wireframe480pxPath.split("/").pop()}`
-                    : "",
+                wireframe480pxPreviewUrl: getPreviewUrl(data.wireframe480pxPath),
                 wireframe768pxPath: data.wireframe768pxPath || "",
-                wireframe768pxPreviewUrl: data.wireframe768pxPath
-                    ? `${apiBaseUrl}/${data.wireframe768pxPath.split("/").pop()}`
-                    : "",
+                wireframe768pxPreviewUrl: getPreviewUrl(data.wireframe768pxPath),
                 wireframe1024pxPath: data.wireframe1024pxPath || "",
-                wireframe1024pxPreviewUrl: data.wireframe1024pxPath
-                    ? `${apiBaseUrl}/${data.wireframe1024pxPath.split("/").pop()}`
-                    : "",
+                wireframe1024pxPreviewUrl: getPreviewUrl(data.wireframe1024pxPath),
                 isMobileFirst: data.isMobileFirst || false,
                 isNavigationClear: data.isNavigationClear || false,
                 isDesignFunctional: data.isDesignFunctional || false,
                 isVisualConsistencyMet: data.isVisualConsistencyMet || false,
             });
         }
-    }, [data]);
+    }, [data, getPreviewUrl]);
 
+    // Maneja los cambios en inputs (texto o checkbox)
     const handleInputChange = (e) => {
-        const { name, type, checked } = e.target;
+        const { name, type, value, checked } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : e.target.value,
+            [name]: type === "checkbox" ? checked : value,
         }));
     };
 
+    // Función para subir el archivo
+    const uploadFile = async (file) => {
+        const payload = new FormData();
+        payload.append("file", file);
+
+        const response = await fetch(FILE_UPLOAD_ENDPOINT, {
+            method: "POST",
+            body: payload,
+        });
+        if (!response.ok) {
+            throw new Error("Error al subir el archivo. Inténtalo nuevamente.");
+        }
+        const result = await response.json();
+        if (!result.filePath) {
+            throw new Error("No se pudo obtener la ruta del archivo.");
+        }
+        return result.filePath;
+    };
+
+    // Maneja la carga de archivos para cada input, mostrando una vista previa local y luego la URL final
     const handleFileChange = async (e, key) => {
         const file = e.target.files[0];
-        if (file) {
-            const formData = new FormData();
-            formData.append("file", file);
-
-            try {
-                const response = await fetch("https://localhost:50408/api/designphases/upload", {
-                    method: "POST",
-                    body: formData,
-                });
-
-                if (!response.ok) {
-                    alert("Error al subir el archivo. Inténtalo nuevamente.");
-                    return;
-                }
-
-                const data = await response.json();
-                if (data.filePath) {
-                    const apiBaseUrl = "https://localhost:50408/api/DesignPhases/image";
-                    setFormData((prev) => ({
-                        ...prev,
-                        [key]: data.filePath,
-                        [`${key}PreviewUrl`]: `${apiBaseUrl}/${data.filePath.split("/").pop()}`,
-                    }));
-                } else {
-                    console.error("El servidor no devolvió una ruta válida para el archivo:", data);
-                    alert("Error: No se pudo obtener la ruta del archivo.");
-                }
-            } catch (error) {
-                console.error("Error al subir el archivo:", error);
-                alert("Error al subir el archivo.");
-            }
-        } else {
+        if (!file) {
             setFormData((prev) => ({
                 ...prev,
                 [key]: "",
                 [`${key}PreviewUrl`]: "",
             }));
+            return;
+        }
+
+        // Vista previa local inmediata
+        const localPreviewUrl = URL.createObjectURL(file);
+        setFormData((prev) => ({
+            ...prev,
+            [`${key}PreviewUrl`]: localPreviewUrl,
+        }));
+
+        try {
+            const filePath = await uploadFile(file);
+            setFormData((prev) => ({
+                ...prev,
+                [key]: filePath,
+                [`${key}PreviewUrl`]: getPreviewUrl(filePath),
+            }));
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
         }
     };
 
+    // Envía el formulario validando que se hayan subido todos los archivos requeridos
     const handleSubmit = () => {
-        if (!formData.wireframe480pxPath || !formData.wireframe768pxPath || !formData.wireframe1024pxPath) {
+        if (
+            !formData.wireframe480pxPath ||
+            !formData.wireframe768pxPath ||
+            !formData.wireframe1024pxPath
+        ) {
             alert("Por favor, sube todos los archivos requeridos antes de continuar.");
             return;
         }
@@ -102,53 +123,59 @@ const Phase2Wireframes = ({ data, onNext }) => {
             <p>Sube los wireframes para los diferentes tamaños de pantalla y responde las preguntas.</p>
 
             <div className="wireframe-upload">
-                <label>Wireframes 480px:</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleFileChange(e, "wireframe480pxPath")}
-                />
-                {formData.wireframe480pxPreviewUrl && (
-                    <div className="image-preview">
-                        <img
-                            src={formData.wireframe480pxPreviewUrl}
-                            alt="Wireframe 480px"
-                            style={{ maxWidth: "100%" }}
-                        />
-                    </div>
-                )}
+                <div>
+                    <label>Wireframes 480px:</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, "wireframe480pxPath")}
+                    />
+                    {formData.wireframe480pxPreviewUrl && (
+                        <div className="image-preview">
+                            <img
+                                src={formData.wireframe480pxPreviewUrl}
+                                alt="Wireframe 480px"
+                                style={{ maxWidth: "100%" }}
+                            />
+                        </div>
+                    )}
+                </div>
 
-                <label>Wireframes 768px:</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleFileChange(e, "wireframe768pxPath")}
-                />
-                {formData.wireframe768pxPreviewUrl && (
-                    <div className="image-preview">
-                        <img
-                            src={formData.wireframe768pxPreviewUrl}
-                            alt="Wireframe 768px"
-                            style={{ maxWidth: "100%" }}
-                        />
-                    </div>
-                )}
+                <div>
+                    <label>Wireframes 768px:</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, "wireframe768pxPath")}
+                    />
+                    {formData.wireframe768pxPreviewUrl && (
+                        <div className="image-preview">
+                            <img
+                                src={formData.wireframe768pxPreviewUrl}
+                                alt="Wireframe 768px"
+                                style={{ maxWidth: "100%" }}
+                            />
+                        </div>
+                    )}
+                </div>
 
-                <label>Wireframes 1024px:</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleFileChange(e, "wireframe1024pxPath")}
-                />
-                {formData.wireframe1024pxPreviewUrl && (
-                    <div className="image-preview">
-                        <img
-                            src={formData.wireframe1024pxPreviewUrl}
-                            alt="Wireframe 1024px"
-                            style={{ maxWidth: "100%" }}
-                        />
-                    </div>
-                )}
+                <div>
+                    <label>Wireframes 1024px:</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, "wireframe1024pxPath")}
+                    />
+                    {formData.wireframe1024pxPreviewUrl && (
+                        <div className="image-preview">
+                            <img
+                                src={formData.wireframe1024pxPreviewUrl}
+                                alt="Wireframe 1024px"
+                                style={{ maxWidth: "100%" }}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className="checklist">

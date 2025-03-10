@@ -1,191 +1,395 @@
 import React, { useState, useEffect } from "react";
+import { jsPDF } from "jspdf";
+
+// Preguntas predefinidas por categoría
+const demographicsQuestions = [
+    "¿Cuál es su edad?",
+    "¿Cuál es su género?",
+    "¿Cuál es su ocupación actual?",
+    "¿En qué país o región reside?",
+    "¿Cuál es su nivel educativo?",
+    "¿Cuál es su estado civil?",
+    "¿Cuál es su nivel socioeconómico?",
+    "¿Cuáles son sus intereses o aficiones?"
+];
+
+const behaviorQuestions = [
+    "¿Cuántas horas al día pasa navegando en internet?",
+    "¿Con qué frecuencia utiliza su dispositivo móvil para navegar?",
+    "¿Qué dispositivos utiliza principalmente para navegar?",
+    "¿En qué tipo de sitios web pasa más tiempo? (redes sociales, noticias, entretenimiento, compras, educación, otros)",
+    "¿Con qué frecuencia compra productos o servicios desde su móvil?",
+    "¿Utiliza principalmente redes Wi-Fi o su plan de datos?",
+    "¿Prefiere aplicaciones móviles o navegar desde el navegador?"
+];
+
+const expectationsQuestions = [
+    "¿Qué es lo que más le gusta al navegar en un sitio móvil?",
+    "¿Qué le molesta más al navegar en un sitio móvil?",
+    "¿Qué características espera de un sitio web optimizado para móviles?",
+    "¿Cuáles son sus principales expectativas al usar un sitio móvil?",
+    "¿Qué tan importante es que un sitio esté optimizado para móviles?",
+    "¿Qué tipo de contenido le resulta más útil en sitios móviles?",
+    "¿Cuán satisfecho está con su experiencia en sitios móviles?",
+    "¿Ha dejado de usar algún sitio por no estar optimizado para móviles?",
+    "¿Qué tan probable es que recomiende un sitio móvil bien diseñado?"
+];
+
+const preferencesQuestions = [
+    "¿Prefiere sitios web con modo oscuro o claro?",
+    "¿Con qué frecuencia actualiza sus aplicaciones?",
+    "¿Le gustan las notificaciones de los sitios móviles?"
+];
+
+// Función para parsear el string audienceQuestions (guardado en la BD en formato JSON)
+const parseAudienceQuestions = (audienceQuestions) => {
+    try {
+        return JSON.parse(audienceQuestions);
+    } catch (error) {
+        console.error("Error al parsear audienceQuestions:", error);
+        return {
+            demographics: [],
+            behavior: [],
+            expectations: [],
+            preferences: [],
+            custom: []
+        };
+    }
+};
 
 const Phase3Audience = ({ data, onNext, onPrev }) => {
-    // Estado inicial: si hay data, la usamos para precargar las respuestas
-    const [audienceResponses, setAudienceResponses] = useState("");
+    // Estados para almacenar las preguntas seleccionadas por categoría
+    const [selectedQuestions, setSelectedQuestions] = useState({
+        demographics: [],
+        behavior: [],
+        expectations: [],
+        preferences: []
+    });
+    // Estado para preguntas personalizadas
+    const [customQuestion, setCustomQuestion] = useState("");
+    const [customQuestions, setCustomQuestions] = useState([]);
+    // Estado para el ejercicio reflexivo (manejado por separado, no se incluye en el PDF)
     const [reflectiveAnswers, setReflectiveAnswers] = useState([]);
-    const [responsesSaved, setResponsesSaved] = useState(false);
 
-    // Opciones para el ejercicio reflexivo
-    const reflectiveOptions = [
-        { value: "formularios_contacto", label: "¿Las preguntas seleccionadas ayudan a entender mejor las necesidades de los usuarios con dispositivos móviles?" },
-        { value: "formularios_registro", label: "¿Las preguntas elegidas ayudan a identificar los elementos de diseño que podrían mejorar la navegación en móviles?" },
-        { value: "conexion_bd", label: "¿Las preguntas demográficas elegidas aportan información relevante para personalizar la experiencia en móviles?" }
-    ];
-
-    // Al montar, si hay data precargada, la usamos para inicializar el estado
+    // Precargar datos previos (asegúrate de que el backend envíe "audienceQuestions" y "reflectionPhase3" en minúsculas)
     useEffect(() => {
         if (data) {
-            setAudienceResponses(data.AudienceQuestions || "");
-            // Asumimos que ReflectionPhase3 es una cadena separada por ";"
-            setReflectiveAnswers(
-                data.ReflectionPhase3
-                    ? data.ReflectionPhase3.split(";").map(x => x.trim()).filter(x => x !== "")
-                    : []
-            );
+            if (data.audienceQuestions) {
+                const parsed = parseAudienceQuestions(data.audienceQuestions);
+                setSelectedQuestions({
+                    demographics: parsed.demographics || [],
+                    behavior: parsed.behavior || [],
+                    expectations: parsed.expectations || [],
+                    preferences: parsed.preferences || []
+                });
+                setCustomQuestions(parsed.custom || []);
+            }
+            if (data.reflectionPhase3) {
+                const reflex = data.reflectionPhase3
+                    .split(";")
+                    .map((x) => x.trim())
+                    .filter((x) => x !== "");
+                setReflectiveAnswers(reflex);
+            }
         }
     }, [data]);
 
-    // Maneja el cambio en el textarea de respuestas de la investigación
-    const handleResponsesChange = (e) => {
-        setAudienceResponses(e.target.value);
-        // Si el usuario edita, se desactiva la confirmación de guardado
-        setResponsesSaved(false);
-    };
-
-    // Guarda las respuestas de la investigación (puedes hacer validaciones adicionales)
-    const handleSaveResponses = () => {
-        if (!audienceResponses.trim()) {
-            alert("Por favor, escribe tus respuestas a la investigación de la audiencia.");
-            return;
-        }
-        setResponsesSaved(true);
-        alert("Respuestas guardadas correctamente.");
-    };
-
-    // Maneja los cambios en el ejercicio reflexivo (checkboxes)
-    const handleReflectiveChange = (value) => {
-        setReflectiveAnswers(prev => {
-            if (prev.includes(value)) {
-                return prev.filter(v => v !== value);
+    // Función para alternar la selección de una pregunta en una categoría
+    const toggleQuestion = (category, question) => {
+        setSelectedQuestions((prev) => {
+            const current = prev[category] || [];
+            if (current.includes(question)) {
+                return { ...prev, [category]: current.filter((q) => q !== question) };
             } else {
-                return [...prev, value];
+                return { ...prev, [category]: [...current, question] };
             }
         });
     };
 
-    // Al enviar (Completar Fase 3)
+    // Agregar pregunta personalizada
+    const addCustomQuestion = () => {
+        if (customQuestion.trim() !== "") {
+            setCustomQuestions((prev) => [...prev, customQuestion.trim()]);
+            setCustomQuestion("");
+        }
+    };
+
+    // Alternar selección del ejercicio reflexivo
+    const toggleQuestionReflective = (question) => {
+        setReflectiveAnswers((prev) => {
+            if (prev.includes(question)) {
+                return prev.filter((q) => q !== question);
+            } else {
+                return [...prev, question];
+            }
+        });
+    };
+
+    // Función para generar y descargar el PDF (sin incluir el ejercicio reflexivo)
+    const generatePDF = () => {
+        const doc = new jsPDF("p", "pt", "a4");
+        const pageWidth = doc.internal.pageSize.getWidth();
+        let y = 40;
+
+        // Encabezado con fondo oscuro y título centrado
+        doc.setFillColor(52, 73, 94);
+        doc.rect(0, 0, pageWidth, 60, "F");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(24);
+        doc.setTextColor(255, 255, 255);
+        doc.text("Encuesta de Investigación de Audiencia", pageWidth / 2, 35, { align: "center" });
+        y = 80;
+
+        // Función para agregar secciones con formato moderno y espaciado
+        const addSection = (title, questions) => {
+            if (questions.length === 0) return;
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(16);
+            doc.setTextColor(52, 73, 94);
+            doc.text(title, 40, y);
+            y += 25;
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(12);
+            doc.setTextColor(44, 62, 80);
+            questions.forEach((q, idx) => {
+                doc.text(`${idx + 1}. ${q}`, 50, y);
+                y += 20;
+                if (y > 750) {
+                    doc.addPage();
+                    y = 40;
+                }
+            });
+            y += 20;
+        };
+
+        addSection("Datos Demográficos", selectedQuestions.demographics);
+        addSection("Preguntas sobre Comportamiento", selectedQuestions.behavior);
+        addSection("Expectativas y Opiniones", selectedQuestions.expectations);
+        addSection("Preferencias Tecnológicas", selectedQuestions.preferences);
+        addSection("Preguntas Personalizadas", customQuestions);
+
+        // Pie de página con línea y fecha
+        const footerY = doc.internal.pageSize.getHeight() - 40;
+        doc.setDrawColor(200, 200, 200);
+        doc.setLineWidth(1);
+        doc.line(40, footerY, pageWidth - 40, footerY);
+        doc.setFontSize(10);
+        doc.setTextColor(128, 128, 128);
+        const currentDate = new Date().toLocaleDateString();
+        doc.text(`Generado el: ${currentDate}`, 40, footerY + 15);
+
+        doc.save("cuestionario_audiencia.pdf");
+    };
+
+    // Al enviar, se serializa el cuestionario en JSON para guardarlo en la BD
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!responsesSaved) {
-            alert("Por favor, guarda primero tus respuestas de investigación.");
-            return;
-        }
-        // Prepara el objeto que se enviará al padre
+        const audienceData = {
+            demographics: selectedQuestions.demographics,
+            behavior: selectedQuestions.behavior,
+            expectations: selectedQuestions.expectations,
+            preferences: selectedQuestions.preferences,
+            custom: customQuestions
+        };
         const updatedData = {
-            // Guardamos lo ingresado en la fase 3
-            AudienceQuestions: audienceResponses,
-            ReflectionPhase3: reflectiveAnswers.join(";")
+            audienceQuestions: JSON.stringify(audienceData),
+            reflectionPhase3: reflectiveAnswers.join(";")
         };
         onNext(updatedData);
     };
 
     return (
         <div className="project-planning-container">
+            <h2>Fase 3: Investigación de la Audiencia</h2>
             <form onSubmit={handleSubmit}>
-                {/* Sección de Investigación de la Audiencia */}
                 <fieldset>
                     <legend>
-                        <h2>Fase 3: Investigación de la audiencia</h2>
+                        <h3>Introducción</h3>
                     </legend>
-                    <section className="grid-container objetivo" id="intro">
-                        <div className="item1 grid-item">
-                            <h3>Introducción</h3>
-                            <p>
-                                A continuación se brinda una lista de preguntas para la etapa de Investigación de la Audiencia.
-                                Lee atentamente cada sección y, al final, redacta un resumen o tus respuestas en el recuadro.
-                            </p>
+                    <p>
+                        Seleccione las preguntas que considere útiles para formar el cuestionario de investigación de audiencia. También puede agregar preguntas personalizadas.
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h3>Datos Demográficos</h3>
+                    </legend>
+                    {demographicsQuestions.map((q, idx) => (
+                        <div key={idx} style={{ marginBottom: "10px" }}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedQuestions.demographics.includes(q)}
+                                    onChange={() => toggleQuestion("demographics", q)}
+                                />
+                                {q}
+                            </label>
                         </div>
-                        <div id="demograficos" className="item2 grid-item">
-                            <p><b>Datos demográficos:</b></p>
+                    ))}
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h3>Preguntas sobre Comportamiento</h3>
+                    </legend>
+                    {behaviorQuestions.map((q, idx) => (
+                        <div key={idx} style={{ marginBottom: "10px" }}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedQuestions.behavior.includes(q)}
+                                    onChange={() => toggleQuestion("behavior", q)}
+                                />
+                                {q}
+                            </label>
                         </div>
-                        <div className="item3 grid-item">
-                            <p>¿Cuál es su edad?</p>
-                            <p>¿Cuál es su género?</p>
-                            <p>¿Cuál es su ocupación actual?</p>
-                            <p>¿En qué país o región reside actualmente?</p>
-                            <p>¿Cuál es su nivel educativo?</p>
-                            <p>¿Cuál es su estado civil?</p>
-                            <p>¿Cuál es el nivel socioeconómico?</p>
-                            <p>¿Cuáles son sus intereses o aficiones?</p>
+                    ))}
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h3>Expectativas y Opiniones</h3>
+                    </legend>
+                    {expectationsQuestions.map((q, idx) => (
+                        <div key={idx} style={{ marginBottom: "10px" }}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedQuestions.expectations.includes(q)}
+                                    onChange={() => toggleQuestion("expectations", q)}
+                                />
+                                {q}
+                            </label>
                         </div>
-                        <div id="comportamiento" className="item4 grid-item">
-                            <p><b>Preguntas sobre comportamiento:</b></p>
+                    ))}
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h3>Preferencias Tecnológicas</h3>
+                    </legend>
+                    {preferencesQuestions.map((q, idx) => (
+                        <div key={idx} style={{ marginBottom: "10px" }}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedQuestions.preferences.includes(q)}
+                                    onChange={() => toggleQuestion("preferences", q)}
+                                />
+                                {q}
+                            </label>
                         </div>
-                        <div className="item5 grid-item">
-                            <p>¿Cuántas horas al día pasa navegando en internet?</p>
-                            <p>¿Con qué frecuencia utiliza su dispositivo móvil para navegar en sitios web?</p>
-                            <p>¿Cuáles dispositivos utiliza con mayor frecuencia para navegar en internet?</p>
-                            <p>
-                                ¿En qué tipo de sitios web pasa más tiempo? (Redes sociales, noticias, entretenimiento, compras en línea,
-                                educación y aprendizaje, otros)
-                            </p>
-                            <p>¿Con qué frecuencia compra productos o servicios desde su dispositivo móvil?</p>
-                            <p>¿Suele utilizar redes Wi-Fi o su plan de datos móviles para navegar en su teléfono?</p>
-                            <p>¿Utiliza aplicaciones móviles o prefiere acceder a servicios directamente desde el navegador?</p>
-                        </div>
-                        <div id="expectativas" className="item6 grid-item">
-                            <p><b>Expectativas y opiniones:</b></p>
-                        </div>
-                        <div className="item7 grid-item">
-                            <p>¿Qué es lo que más le gusta al navegar en un sitio web móvil?</p>
-                            <p>¿Qué le molesta más al navegar en un sitio web desde su móvil?</p>
-                            <p>¿Qué características espera de un sitio web optimizado para móviles?</p>
-                            <p>¿Cuáles son sus principales expectativas al usar un sitio web móvil?</p>
-                            <p>¿Qué tan importante es para usted que un sitio web esté optimizado para dispositivos móviles?</p>
-                            <p>¿Qué tipo de contenido le resulta más útil o relevante en sitios web móviles?</p>
-                            <p>¿Cuán satisfecho está con la experiencia que ha tenido en sitios web móviles?</p>
-                            <p>¿Ha dejado de usar algún sitio web porque no estaba bien optimizado para su dispositivo móvil?</p>
-                            <p>¿Qué tan probable es que recomiende un sitio web móvil a otras personas si está bien diseñado?</p>
-                        </div>
-                        <div id="preferencias" className="item8 grid-item">
-                            <p><b>Preguntas sobre preferencias tecnológicas:</b></p>
-                        </div>
-                        <div className="item9 grid-item">
-                            <p>¿Prefiere sitios web con modo oscuro o claro en su dispositivo móvil?</p>
-                            <p>¿Con qué frecuencia actualiza las aplicaciones en su dispositivo móvil?</p>
-                            <p>¿Le gusta que los sitios web móviles utilicen funciones como notificaciones?</p>
-                        </div>
-                        <div className="item10 grid-item">
-                            {/* Puedes incluir aquí otros controles si lo requieres */}
-                            <button type="button" onClick={handleSaveResponses}>
-                                Guardar respuestas de investigación
-                            </button>
-                        </div>
-                    </section>
-                    <div style={{ marginTop: "10px" }}>
-                        <label>
-                            Resumen / Respuestas:
-                            <textarea
-                                value={audienceResponses}
-                                onChange={handleResponsesChange}
-                                placeholder="Escribe aquí tus respuestas o resumen de la investigación de la audiencia..."
-                                style={{ width: "100%", height: "100px" }}
-                            />
-                        </label>
+                    ))}
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h3>Preguntas Personalizadas</h3>
+                    </legend>
+                    <input
+                        type="text"
+                        value={customQuestion}
+                        onChange={(e) => setCustomQuestion(e.target.value)}
+                        placeholder="Escribe tu pregunta personalizada"
+                        style={{ marginRight: "10px", padding: "5px", width: "60%" }}
+                    />
+                    <button type="button" onClick={addCustomQuestion} style={{ padding: "5px 10px" }}>
+                        Agregar Pregunta
+                    </button>
+                    {customQuestions.length > 0 && (
+                        <ul style={{ marginTop: "10px" }}>
+                            {customQuestions.map((q, idx) => (
+                                <li key={idx} style={{ marginBottom: "5px" }}>{q}</li>
+                            ))}
+                        </ul>
+                    )}
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h3>Resumen de Preguntas Seleccionadas</h3>
+                    </legend>
+                    <div>
+                        <h4>Datos Demográficos:</h4>
+                        <ul>
+                            {selectedQuestions.demographics.map((q, idx) => (
+                                <li key={idx}>{q}</li>
+                            ))}
+                        </ul>
+                        <h4>Preguntas sobre Comportamiento:</h4>
+                        <ul>
+                            {selectedQuestions.behavior.map((q, idx) => (
+                                <li key={idx}>{q}</li>
+                            ))}
+                        </ul>
+                        <h4>Expectativas y Opiniones:</h4>
+                        <ul>
+                            {selectedQuestions.expectations.map((q, idx) => (
+                                <li key={idx}>{q}</li>
+                            ))}
+                        </ul>
+                        <h4>Preferencias Tecnológicas:</h4>
+                        <ul>
+                            {selectedQuestions.preferences.map((q, idx) => (
+                                <li key={idx}>{q}</li>
+                            ))}
+                        </ul>
+                        <h4>Preguntas Personalizadas:</h4>
+                        <ul>
+                            {customQuestions.map((q, idx) => (
+                                <li key={idx}>{q}</li>
+                            ))}
+                        </ul>
                     </div>
                 </fieldset>
 
-                {/* Ejercicio reflexivo */}
+                {/* Bloque del ejercicio reflexivo (fuera del PDF) */}
                 <fieldset>
                     <legend>
                         <h3>Ejercicio reflexivo</h3>
                     </legend>
                     <p>
-                        Responde a las siguientes preguntas marcando en el recuadro y presiona el botón para pasar a la siguiente sección.
+                        Responde a las siguientes preguntas marcando las opciones que consideres que mejor describen la situación:
                     </p>
                     <div className="checklist">
-                        {reflectiveOptions.map((opt) => (
-                            <label key={opt.value} style={{ display: "block" }}>
-                                <input
-                                    type="checkbox"
-                                    value={opt.value}
-                                    checked={reflectiveAnswers.includes(opt.value)}
-                                    onChange={() => handleReflectiveChange(opt.value)}
-                                />
-                                {opt.label}
-                            </label>
-                        ))}
+                        <label style={{ display: "block", marginBottom: "10px" }}>
+                            <input
+                                type="checkbox"
+                                checked={reflectiveAnswers.includes("formularios_contacto")}
+                                onChange={() => toggleQuestionReflective("formularios_contacto")}
+                            />
+                            ¿Las preguntas seleccionadas ayudan a entender mejor las necesidades de los usuarios con dispositivos móviles?
+                        </label>
+                        <label style={{ display: "block", marginBottom: "10px" }}>
+                            <input
+                                type="checkbox"
+                                checked={reflectiveAnswers.includes("formularios_registro")}
+                                onChange={() => toggleQuestionReflective("formularios_registro")}
+                            />
+                            ¿Las preguntas elegidas ayudan a identificar los elementos de diseño que podrían mejorar la navegación en móviles?
+                        </label>
+                        <label style={{ display: "block", marginBottom: "10px" }}>
+                            <input
+                                type="checkbox"
+                                checked={reflectiveAnswers.includes("conexion_bd")}
+                                onChange={() => toggleQuestionReflective("conexion_bd")}
+                            />
+                            ¿Las preguntas demográficas elegidas aportan información relevante para personalizar la experiencia en móviles?
+                        </label>
                     </div>
                 </fieldset>
 
-                <div style={{ marginTop: "20px" }}>
+                <div className="navigation-buttons">
                     {onPrev && (
-                        <button type="button" onClick={onPrev}>
+                        <button type="button" onClick={onPrev} style={{ marginRight: "10px", padding: "8px 12px" }}>
                             Anterior
                         </button>
                     )}
-                    <button type="submit" disabled={!responsesSaved}>
+                    <button type="button" onClick={generatePDF} style={{ marginRight: "10px", padding: "8px 12px" }}>
+                        Descargar PDF
+                    </button>
+                    <button type="submit" style={{ padding: "8px 12px" }}>
                         Completar Fase 3
                     </button>
                 </div>

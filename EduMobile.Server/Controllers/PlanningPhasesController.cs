@@ -381,10 +381,11 @@ namespace EduMobile.Server.Controllers
                     return NotFound(new { Message = "Fase de planeación no encontrada." });
                 }
 
-                // Campos Fase 3: "Investigación de la audiencia"
+                // Actualiza el campo AudienceQuestions si se proporciona
                 if (!string.IsNullOrWhiteSpace(request.AudienceQuestions))
                     planningPhase.AudienceQuestions = request.AudienceQuestions;
 
+                // Actualiza el campo ReflectionPhase3 (Ejercicio reflexivo) si se proporciona
                 if (!string.IsNullOrWhiteSpace(request.ReflectionPhase3))
                     planningPhase.ReflectionPhase3 = request.ReflectionPhase3;
 
@@ -400,6 +401,7 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
 
         // ==========================
         //   DELETE

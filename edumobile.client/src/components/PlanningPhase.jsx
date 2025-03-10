@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Phase1Brief from "./Phase1Brief";
 import Phase2Benchmarking from "./Phase2Benchmarking";
 import Phase3Audience from "./Phase3Audience";
 
 const PlanningPhase = () => {
     const { projectId } = useParams();
+    const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
     const [phaseData, setPhaseData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Al montar, intenta obtener la PlanningPhase (si existe)
+    // Obtener la fase de planeación al montar
     useEffect(() => {
         const fetchPlanningPhase = async () => {
             try {
@@ -35,14 +36,12 @@ const PlanningPhase = () => {
         }
     }, [projectId]);
 
-    // ================================
-    // Guardado de la PlanningPhase
-    // ================================
+    // Función para guardar la fase (POST o PUT)
     const savePhaseData = async (updatedData) => {
         try {
             const phaseId = phaseData?.id;
             if (!phaseId) {
-                // No existe => POST
+                // No existe: crear (POST)
                 const response = await fetch(`/api/planningphases`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -54,14 +53,12 @@ const PlanningPhase = () => {
                     return false;
                 }
                 const data = await response.json();
-                // El backend NO regresa competidores completos; sólo devolvemos ID
-                const newId = data.PlanningPhaseId; // supón que es la clave que recibes
-                // Solo mergeamos ID (y cualquier otro campo que devuelva el server y te interese)
+                const newId = data.PlanningPhaseId;
                 const merged = { ...updatedData, id: newId };
                 setPhaseData(merged);
                 return true;
             } else {
-                // Fase ya existe => PUT a PhaseX
+                // Ya existe: actualizar (PUT)
                 let endpoint = "";
                 if (currentPhase === 1) {
                     endpoint = `/api/planningphases/Phase1/${phaseId}`;
@@ -70,7 +67,6 @@ const PlanningPhase = () => {
                 } else if (currentPhase === 3) {
                     endpoint = `/api/planningphases/Phase3/${phaseId}`;
                 }
-
                 const response = await fetch(endpoint, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
@@ -82,14 +78,11 @@ const PlanningPhase = () => {
                     return false;
                 }
                 const data = await response.json();
-                // El backend no regresa competidores actualizados => no mezclamos todo 'data'.
-                // Solo tomamos 'id' y 'updatedAt', etc. si nos interesa.
                 const partial = {
                     ...updatedData,
-                    id: data.id, // ID del server
-                    updatedAt: data.updatedAt, // por si lo devuelven
+                    id: data.id,
+                    updatedAt: data.updatedAt,
                 };
-                // No tomamos competitor1UsefulFeatures, etc. del server (que vienen vacíos).
                 setPhaseData((prev) => ({ ...prev, ...partial }));
                 return true;
             }
@@ -99,13 +92,10 @@ const PlanningPhase = () => {
         }
     };
 
-    // ================================
-    // Avanzar de fase
-    // ================================
+    // Manejador para avanzar de fase
     const handleNextPhase = async (updatedData, saveData = true) => {
         console.log("handleNextPhase invocado. updatedData=", updatedData);
         if (updatedData) {
-            // Combinar con lo que ya teníamos local
             const newData = { ...phaseData, ...updatedData };
             if (saveData) {
                 const saved = await savePhaseData(newData);
@@ -117,7 +107,12 @@ const PlanningPhase = () => {
                 setPhaseData(newData);
             }
         }
-        setCurrentPhase((prev) => prev + 1);
+        if (currentPhase === 3) {
+            // Al terminar la fase 3, navegamos a DesignPhase usando la ruta correcta
+            navigate(`/fase-2-diseno/${projectId}`);
+        } else {
+            setCurrentPhase((prev) => prev + 1);
+        }
     };
 
     const handlePrevPhase = () => {
@@ -133,7 +128,10 @@ const PlanningPhase = () => {
         <div className="planning-phase-container">
             <h2>Etapa de Planeación</h2>
             <div className="progress-bar">
-                <div className="progress" style={{ width: `${(currentPhase / 3) * 100}%` }}></div>
+                <div
+                    className="progress"
+                    style={{ width: `${(currentPhase / 3) * 100}%` }}
+                ></div>
             </div>
 
             {currentPhase === 1 && (

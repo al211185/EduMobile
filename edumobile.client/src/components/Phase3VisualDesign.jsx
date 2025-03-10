@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
 const Phase3VisualDesign = ({ data, onNext }) => {
+    // Endpoints usando rutas relativas
+    const fileUploadEndpoint = "/api/Files/upload";
+    const fileImageEndpoint = "/api/Files/image";
+
     const [formData, setFormData] = useState({
         visualDesignFilePath: data?.visualDesignFilePath || "",
         visualDesignPreviewUrl: data?.visualDesignFilePath
-            ? `https://localhost:50408/api/designphases/image/${data.visualDesignFilePath.split("/").pop()}`
+            ? `${fileImageEndpoint}/${data.visualDesignFilePath.split("/").pop()}`
             : "",
         areVisualElementsBeneficialForSmallScreens:
             data?.areVisualElementsBeneficialForSmallScreens || false,
@@ -24,42 +28,42 @@ const Phase3VisualDesign = ({ data, onNext }) => {
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        if (file) {
-            const formDataFile = new FormData();
-            formDataFile.append("file", file);
-
-            try {
-                const response = await fetch("https://localhost:50408/api/designphases/upload", {
-                    method: "POST",
-                    body: formDataFile,
-                });
-
-                if (!response.ok) {
-                    alert("Error al subir el archivo. Inténtalo nuevamente.");
-                    return;
-                }
-
-                const dataResponse = await response.json();
-                if (dataResponse.filePath) {
-                    const apiBaseUrl = "https://localhost:50408/api/designphases/image";
-                    setFormData((prev) => ({
-                        ...prev,
-                        visualDesignFilePath: dataResponse.filePath,
-                        visualDesignPreviewUrl: `${apiBaseUrl}/${dataResponse.filePath.split("/").pop()}`,
-                    }));
-                } else {
-                    alert("Error: No se pudo obtener la ruta del archivo.");
-                }
-            } catch (error) {
-                console.error("Error al subir el archivo:", error);
-                alert("Error al subir el archivo.");
-            }
-        } else {
+        if (!file) {
             setFormData((prev) => ({
                 ...prev,
                 visualDesignFilePath: "",
                 visualDesignPreviewUrl: "",
             }));
+            return;
+        }
+
+        const formDataFile = new FormData();
+        formDataFile.append("file", file);
+
+        try {
+            const response = await fetch(fileUploadEndpoint, {
+                method: "POST",
+                body: formDataFile,
+            });
+
+            if (!response.ok) {
+                alert("Error al subir el archivo. Inténtalo nuevamente.");
+                return;
+            }
+
+            const dataResponse = await response.json();
+            if (dataResponse.filePath) {
+                setFormData((prev) => ({
+                    ...prev,
+                    visualDesignFilePath: dataResponse.filePath,
+                    visualDesignPreviewUrl: `${fileImageEndpoint}/${dataResponse.filePath.split("/").pop()}`,
+                }));
+            } else {
+                alert("Error: No se pudo obtener la ruta del archivo.");
+            }
+        } catch (error) {
+            console.error("Error al subir el archivo:", error);
+            alert("Error al subir el archivo.");
         }
     };
 

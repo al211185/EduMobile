@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X9UFP8Bnbv5XImBN2QyslWoeXpW/0uEMXTD7twm9miI=",
+  "Hash": "kGOhtiX/0+PzQb3qeiZkiUQR+BpyWm/bKN4Q9/MwHI0=",
   "Source": "EduMobile.Server",
   "BasePath": "_content/EduMobile.Server",
   "Mode": "Default",
@@ -3515,6 +3515,153 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
     },
     {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/270fd4c5-a756-4db5-aa78-5fc2506ad855#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1v9ldjcr2x",
+      "Integrity": "0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/277eb4f6-28a9-462c-9b56-1ddd5c67133a#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1v9ldjcr2x",
+      "Integrity": "0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\2fc68508-8210-4381-9100-773ff9fba316.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/2fc68508-8210-4381-9100-773ff9fba316#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1v9ldjcr2x",
+      "Integrity": "0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2fc68508-8210-4381-9100-773ff9fba316.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/45bb3cf6-36af-4b18-b122-d36b1faec69d#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0yei2bn8zp",
+      "Integrity": "KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/51d34a8b-a3be-4b18-8523-a49f8b8969dd#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0yei2bn8zp",
+      "Integrity": "KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/7b721e52-f1ad-4dd2-960a-c873b9b16421#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0yei2bn8zp",
+      "Integrity": "KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\a7e97a25-8d93-49d4-8373-60589b5e0caf.png",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/a7e97a25-8d93-49d4-8373-60589b5e0caf#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k2se9obas3",
+      "Integrity": "ZEEzGTixLR6AR9e3e8M312gYnghFBqE2bGNZKR3oFSw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\a7e97a25-8d93-49d4-8373-60589b5e0caf.png"
+    },
+    {
       "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\b384d422-6e9c-4a71-a712-f2af838d423a.jpg",
       "SourceId": "EduMobile.Server",
       "SourceType": "Discovered",
@@ -3534,6 +3681,90 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\b384d422-6e9c-4a71-a712-f2af838d423a.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0yei2bn8zp",
+      "Integrity": "KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\c0dda50c-1b50-41c7-afb3-2630db468b08.png",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/c0dda50c-1b50-41c7-afb3-2630db468b08#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "q5d2rcx9o4",
+      "Integrity": "4lVx2LK3LuLfVrII5avq3vwcfeOR74ohfTIu4gFhTpI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c0dda50c-1b50-41c7-afb3-2630db468b08.png"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d2df0292-3928-4ade-8270-237499d6e2f2.png",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/d2df0292-3928-4ade-8270-237499d6e2f2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "agsjb3nxry",
+      "Integrity": "yp1LHYeilPsMggPb8PIMubRFZIGFCTX7spBcPbzazlU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\d2df0292-3928-4ade-8270-237499d6e2f2.png"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg",
+      "SourceId": "EduMobile.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\",
+      "BasePath": "_content/EduMobile.Server",
+      "RelativePath": "uploads/d5d18450-a204-49bc-8b59-9b86d6f885e7#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1v9ldjcr2x",
+      "Integrity": "0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg"
     },
     {
       "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Imagen_de_WhatsApp_2025_03_03_a_las_20_09_14_81740558_20250309010014493.jpg",
@@ -20463,6 +20694,580 @@
       ]
     },
     {
+      "Route": "uploads/270fd4c5-a756-4db5-aa78-5fc2506ad855.1v9ldjcr2x.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 02:57:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1v9ldjcr2x"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 02:57:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/277eb4f6-28a9-462c-9b56-1ddd5c67133a.1v9ldjcr2x.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:26:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1v9ldjcr2x"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:26:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/2fc68508-8210-4381-9100-773ff9fba316.1v9ldjcr2x.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\2fc68508-8210-4381-9100-773ff9fba316.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 02:46:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1v9ldjcr2x"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/2fc68508-8210-4381-9100-773ff9fba316.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/2fc68508-8210-4381-9100-773ff9fba316.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\2fc68508-8210-4381-9100-773ff9fba316.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 02:46:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/45bb3cf6-36af-4b18-b122-d36b1faec69d.0yei2bn8zp.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:17:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0yei2bn8zp"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:17:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/51d34a8b-a3be-4b18-8523-a49f8b8969dd.0yei2bn8zp.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:12:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0yei2bn8zp"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:12:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/7b721e52-f1ad-4dd2-960a-c873b9b16421.0yei2bn8zp.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 02:57:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0yei2bn8zp"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 02:57:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a7e97a25-8d93-49d4-8373-60589b5e0caf.k2se9obas3.png",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\a7e97a25-8d93-49d4-8373-60589b5e0caf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "466310"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZEEzGTixLR6AR9e3e8M312gYnghFBqE2bGNZKR3oFSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:15:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k2se9obas3"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/a7e97a25-8d93-49d4-8373-60589b5e0caf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZEEzGTixLR6AR9e3e8M312gYnghFBqE2bGNZKR3oFSw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a7e97a25-8d93-49d4-8373-60589b5e0caf.png",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\a7e97a25-8d93-49d4-8373-60589b5e0caf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "466310"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZEEzGTixLR6AR9e3e8M312gYnghFBqE2bGNZKR3oFSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:15:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZEEzGTixLR6AR9e3e8M312gYnghFBqE2bGNZKR3oFSw="
+        }
+      ]
+    },
+    {
       "Route": "uploads/b384d422-6e9c-4a71-a712-f2af838d423a.1v9ldjcr2x.jpg",
       "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\b384d422-6e9c-4a71-a712-f2af838d423a.jpg",
       "Selectors": [],
@@ -20531,6 +21336,334 @@
         {
           "Name": "Last-Modified",
           "Value": "Sun, 09 Mar 2025 08:02:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.0yei2bn8zp.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:12:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0yei2bn8zp"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "110182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:12:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KNpoLwFDADsKnSsxcv85wr6jjZRRp750xY9IGvnZ7s8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c0dda50c-1b50-41c7-afb3-2630db468b08.png",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\c0dda50c-1b50-41c7-afb3-2630db468b08.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "115743"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4lVx2LK3LuLfVrII5avq3vwcfeOR74ohfTIu4gFhTpI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4lVx2LK3LuLfVrII5avq3vwcfeOR74ohfTIu4gFhTpI="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/c0dda50c-1b50-41c7-afb3-2630db468b08.q5d2rcx9o4.png",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\c0dda50c-1b50-41c7-afb3-2630db468b08.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "115743"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4lVx2LK3LuLfVrII5avq3vwcfeOR74ohfTIu4gFhTpI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "q5d2rcx9o4"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/c0dda50c-1b50-41c7-afb3-2630db468b08.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4lVx2LK3LuLfVrII5avq3vwcfeOR74ohfTIu4gFhTpI="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d2df0292-3928-4ade-8270-237499d6e2f2.agsjb3nxry.png",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d2df0292-3928-4ade-8270-237499d6e2f2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "169035"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yp1LHYeilPsMggPb8PIMubRFZIGFCTX7spBcPbzazlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:18:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "agsjb3nxry"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/d2df0292-3928-4ade-8270-237499d6e2f2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yp1LHYeilPsMggPb8PIMubRFZIGFCTX7spBcPbzazlU="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d2df0292-3928-4ade-8270-237499d6e2f2.png",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d2df0292-3928-4ade-8270-237499d6e2f2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "169035"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yp1LHYeilPsMggPb8PIMubRFZIGFCTX7spBcPbzazlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:18:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yp1LHYeilPsMggPb8PIMubRFZIGFCTX7spBcPbzazlU="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d5d18450-a204-49bc-8b59-9b86d6f885e7.1v9ldjcr2x.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:16:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1v9ldjcr2x"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "130986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0wGu/nAsdwiIC/T7k8WsJbx7PXB5MVxCdazErXjTBKs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 03:16:08 GMT"
         },
         {
           "Name": "Cache-Control",

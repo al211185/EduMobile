@@ -26,6 +26,7 @@ namespace EduMobile.Server.Controllers
 
         // POST: api/Projects/create
         // Crea un nuevo proyecto con los datos esenciales.
+        // POST: api/Projects/create
         [HttpPost("create")]
         public async Task<IActionResult> CreateProject([FromBody] CreateProjectRequest request)
         {
@@ -69,7 +70,7 @@ namespace EduMobile.Server.Controllers
                 _context.Projects.Add(project);
                 await _context.SaveChangesAsync(); // Guarda el proyecto y asigna su ID
 
-                // Crear el registro en PlanningPhases para este proyecto, usando el ID asignado
+                // Crear la fase de planeación
                 var planningPhase = new PlanningPhase
                 {
                     ProjectId = project.Id,
@@ -119,6 +120,29 @@ namespace EduMobile.Server.Controllers
                 _context.PlanningPhases.Add(planningPhase);
                 await _context.SaveChangesAsync();
 
+                // Crear la fase de diseño con valores por defecto
+                var designPhase = new DesignPhase
+                {
+                    ProjectId = project.Id,
+                    SiteMapFilePath = "", // Ruta inicial vacía o con un valor por defecto
+                    IsHierarchyClear = false,
+                    AreSectionsIdentified = false,
+                    AreLinksClear = false,
+                    AreVisualElementsUseful = false,
+                    // Fase 2
+                    Wireframe480pxPath = "",
+                    Wireframe768pxPath = "",
+                    Wireframe1024pxPath = "",
+                    IsMobileFirst = false,
+                    IsNavigationClear = false,
+                    IsDesignFunctional = false,
+                    IsVisualConsistencyMet = false,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                _context.DesignPhases.Add(designPhase);
+                await _context.SaveChangesAsync();
+
                 return Ok(new { Message = "Proyecto creado exitosamente.", ProjectId = project.Id });
             }
             catch (Exception ex)
@@ -127,6 +151,7 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
 
         // GET: api/Projects
         // Lista los proyectos creados por el usuario autenticado.

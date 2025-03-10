@@ -39,5 +39,16 @@ wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+wwwroot\uploads\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg
+wwwroot\uploads\277eb4f6-28a9-462c-9b56-1ddd5c67133a.jpg
+wwwroot\uploads\2fc68508-8210-4381-9100-773ff9fba316.jpg
+wwwroot\uploads\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg
+wwwroot\uploads\51d34a8b-a3be-4b18-8523-a49f8b8969dd.jpg
+wwwroot\uploads\7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg
+wwwroot\uploads\a7e97a25-8d93-49d4-8373-60589b5e0caf.png
 wwwroot\uploads\b384d422-6e9c-4a71-a712-f2af838d423a.jpg
+wwwroot\uploads\bbf1811c-8efb-48ce-97bb-a9ea62a5e9ce.jpg
+wwwroot\uploads\c0dda50c-1b50-41c7-afb3-2630db468b08.png
+wwwroot\uploads\d2df0292-3928-4ade-8270-237499d6e2f2.png
+wwwroot\uploads\d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg
 wwwroot\uploads\Imagen_de_WhatsApp_2025_03_03_a_las_20_09_14_81740558_20250309010014493.jpg

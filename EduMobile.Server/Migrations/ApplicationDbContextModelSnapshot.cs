@@ -139,7 +139,6 @@ namespace EduMobile.Server.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ContentFilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("DoContentsGuideUserAttention")
@@ -170,26 +169,21 @@ namespace EduMobile.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SiteMapFilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("VisualDesignFilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wireframe1024pxPath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wireframe480pxPath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wireframe768pxPath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

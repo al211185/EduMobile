@@ -1,62 +1,71 @@
 import React, { useState } from "react";
 
 const Phase4ContentCreation = ({ data, onNext }) => {
+    // Endpoints usando rutas relativas
+    const fileUploadEndpoint = "/api/Files/upload";
+    const fileImageEndpoint = "/api/Files/image";
+
+    // Estado inicial del formulario
     const [formData, setFormData] = useState({
         contentFilePath: data?.contentFilePath || "",
         contentPreviewUrl: data?.contentFilePath
-            ? `https://localhost:50408/api/designphases/image/${data.contentFilePath.split("/").pop()}`
+            ? `${fileImageEndpoint}/${data.contentFilePath.split("/").pop()}`
             : "",
         areContentsRelevantForMobile: data?.areContentsRelevantForMobile || false,
         areContentsClearAndNavigable: data?.areContentsClearAndNavigable || false,
         doContentsGuideUserAttention: data?.doContentsGuideUserAttention || false,
     });
 
+    // Helper para generar la URL de vista previa a partir de la ruta del archivo
+    const getPreviewUrl = (filePath) =>
+        filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "";
+
     const handleInputChange = (e) => {
-        const { name, type, checked } = e.target;
+        const { name, type, value, checked } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : e.target.value,
+            [name]: type === "checkbox" ? checked : value,
         }));
     };
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        if (file) {
-            const formDataFile = new FormData();
-            formDataFile.append("file", file);
-
-            try {
-                const response = await fetch("https://localhost:50408/api/designphases/upload", {
-                    method: "POST",
-                    body: formDataFile,
-                });
-
-                if (!response.ok) {
-                    alert("Error al subir el archivo. Inténtalo nuevamente.");
-                    return;
-                }
-
-                const dataResponse = await response.json();
-                if (dataResponse.filePath) {
-                    const apiBaseUrl = "https://localhost:50408/api/designphases/image";
-                    setFormData((prev) => ({
-                        ...prev,
-                        contentFilePath: dataResponse.filePath,
-                        contentPreviewUrl: `${apiBaseUrl}/${dataResponse.filePath.split("/").pop()}`,
-                    }));
-                } else {
-                    alert("Error: No se pudo obtener la ruta del archivo.");
-                }
-            } catch (error) {
-                console.error("Error al subir el archivo:", error);
-                alert("Error al subir el archivo.");
-            }
-        } else {
+        if (!file) {
             setFormData((prev) => ({
                 ...prev,
                 contentFilePath: "",
                 contentPreviewUrl: "",
             }));
+            return;
+        }
+
+        const formDataFile = new FormData();
+        formDataFile.append("file", file);
+
+        try {
+            const response = await fetch(fileUploadEndpoint, {
+                method: "POST",
+                body: formDataFile,
+            });
+
+            if (!response.ok) {
+                alert("Error al subir el archivo. Inténtalo nuevamente.");
+                return;
+            }
+
+            const dataResponse = await response.json();
+            if (dataResponse.filePath) {
+                setFormData((prev) => ({
+                    ...prev,
+                    contentFilePath: dataResponse.filePath,
+                    contentPreviewUrl: getPreviewUrl(dataResponse.filePath),
+                }));
+            } else {
+                alert("Error: No se pudo obtener la ruta del archivo.");
+            }
+        } catch (error) {
+            console.error("Error al subir el archivo:", error);
+            alert("Error al subir el archivo.");
         }
     };
 
