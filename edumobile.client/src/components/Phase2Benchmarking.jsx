@@ -14,6 +14,26 @@ const usefulFeaturesOptions = [
     { value: "tonos_agradables", label: "Tonos suaves y agradables para la vista" },
 ];
 
+// Define el array de preguntas reflexivas con valores y etiquetas correctas
+const reflectiveQuestions = [
+    {
+        value: "captura_telefono",
+        label:
+            "¿La fase de competidores, la captura de pantalla se realizó utilizando un teléfono inteligente?"
+    },
+    {
+        value: "analisis_telefono",
+        label:
+            "¿La fase del análisis comparativo se realizó utilizando un teléfono inteligente?"
+    },
+    {
+        value: "diseño_mobile_first",
+        label:
+            "¿En las oportunidades de mejora, se consideró el diseño Mobile First?"
+    }
+];
+
+
 // Función para parsear la data de la fase 2
 function parsePhase2Data(data) {
     if (!data) {
@@ -98,7 +118,7 @@ function parsePhase2Data(data) {
     };
 }
 
-const Phase2Benchmarking = ({ data, onNext, onPrev }) => {
+const Phase2Benchmarking = ({ data, onSave }) => {
     // Inicializa el estado solo una vez al montar
     const [formData, setFormData] = useState(() => parsePhase2Data(data));
 
@@ -290,7 +310,7 @@ const Phase2Benchmarking = ({ data, onNext, onPrev }) => {
             ReflectionPhase2: formData.reflectiveAnswers.join(";"),
         };
 
-        onNext(updatedData);
+        onSave(updatedData);
     };
 
     return (
@@ -518,28 +538,24 @@ const Phase2Benchmarking = ({ data, onNext, onPrev }) => {
                     <legend>
                         <h3>Ejercicio reflexivo (Fase 2)</h3>
                     </legend>
-                    {["formularios_contacto", "formularios_registro", "conexion_bd"].map(
-                        (item) => (
-                            <label key={item} style={{ display: "block" }}>
+                    <p>
+                        Responde a las siguientes preguntas marcando en el cuadro.
+                    </p>
+                    <div className="checklist">
+                        {reflectiveQuestions.map((question) => (
+                            <label key={question.value} style={{ display: "block", marginBottom: "10px" }}>
                                 <input
                                     type="checkbox"
-                                    checked={formData.reflectiveAnswers.includes(item)}
-                                    onChange={() => handleReflectiveChange(item)}
+                                    value={question.value}
+                                    checked={formData.reflectiveAnswers.includes(question.value)}
+                                    onChange={() => handleReflectiveChange(question.value)}
                                 />
-                                {item}
+                                {question.label}
                             </label>
-                        )
-                    )}
+                        ))}
+                    </div>
                 </fieldset>
-
-                <div>
-                    {onPrev && (
-                        <button type="button" onClick={onPrev}>
-                            Anterior
-                        </button>
-                    )}
-                    <button type="submit">Completar Fase 2</button>
-                </div>
+                <button type="submit">Guardar</button>
             </form>
         </div>
     );

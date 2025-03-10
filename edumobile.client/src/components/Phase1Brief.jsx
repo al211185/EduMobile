@@ -30,7 +30,7 @@ function parseRequirements(reqString) {
     return { selected, otros };
 }
 
-const Phase1Brief = ({ data, onNext }) => {
+const Phase1Brief = ({ data, onSave }) => {
     // Estado inicial
     const [formData, setFormData] = useState({
         projectName: "",
@@ -178,7 +178,7 @@ const Phase1Brief = ({ data, onNext }) => {
         };
 
         // Llamamos al onNext con SOLO lo de Fase 1
-        onNext(updatedData);
+        onSave(updatedData);
     };
 
     return (
@@ -509,18 +509,8 @@ const Phase1Brief = ({ data, onNext }) => {
                             </label>
                         ))}
                     </div>
-                    <button
-                        type="submit"
-                        id="complete-phase1"
-                        disabled={
-                            !formData.projectName.trim() ||
-                            !formData.clienteName.trim() ||
-                            !formData.responsable.trim() ||
-                            !formData.startDate ||
-                            !formData.generalObjective.trim()
-                        }
-                    >
-                        Completar Fase 1
+                    <button type="submit">
+                        Guardar
                     </button>
                 </fieldset>
             </form>

@@ -57,7 +57,7 @@ const parseAudienceQuestions = (audienceQuestions) => {
     }
 };
 
-const Phase3Audience = ({ data, onNext, onPrev }) => {
+const Phase3Audience = ({ data, onSave }) => {
     // Estados para almacenar las preguntas seleccionadas por categoría
     const [selectedQuestions, setSelectedQuestions] = useState({
         demographics: [],
@@ -195,7 +195,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
             audienceQuestions: JSON.stringify(audienceData),
             reflectionPhase3: reflectiveAnswers.join(";")
         };
-        onNext(updatedData);
+        onSave(updatedData);
     };
 
     return (
@@ -216,7 +216,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                         <h3>Datos Demográficos</h3>
                     </legend>
                     {demographicsQuestions.map((q, idx) => (
-                        <div key={idx} style={{ marginBottom: "10px" }}>
+                        <div key={idx}>
                             <label>
                                 <input
                                     type="checkbox"
@@ -234,7 +234,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                         <h3>Preguntas sobre Comportamiento</h3>
                     </legend>
                     {behaviorQuestions.map((q, idx) => (
-                        <div key={idx} style={{ marginBottom: "10px" }}>
+                        <div key={idx}>
                             <label>
                                 <input
                                     type="checkbox"
@@ -252,7 +252,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                         <h3>Expectativas y Opiniones</h3>
                     </legend>
                     {expectationsQuestions.map((q, idx) => (
-                        <div key={idx} style={{ marginBottom: "10px" }}>
+                        <div key={idx}>
                             <label>
                                 <input
                                     type="checkbox"
@@ -270,7 +270,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                         <h3>Preferencias Tecnológicas</h3>
                     </legend>
                     {preferencesQuestions.map((q, idx) => (
-                        <div key={idx} style={{ marginBottom: "10px" }}>
+                        <div key={idx}>
                             <label>
                                 <input
                                     type="checkbox"
@@ -292,15 +292,14 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                         value={customQuestion}
                         onChange={(e) => setCustomQuestion(e.target.value)}
                         placeholder="Escribe tu pregunta personalizada"
-                        style={{ marginRight: "10px", padding: "5px", width: "60%" }}
                     />
-                    <button type="button" onClick={addCustomQuestion} style={{ padding: "5px 10px" }}>
+                    <button type="button" onClick={addCustomQuestion}>
                         Agregar Pregunta
                     </button>
                     {customQuestions.length > 0 && (
-                        <ul style={{ marginTop: "10px" }}>
+                        <ul>
                             {customQuestions.map((q, idx) => (
-                                <li key={idx} style={{ marginBottom: "5px" }}>{q}</li>
+                                <li key={idx}>{q}</li>
                             ))}
                         </ul>
                     )}
@@ -353,7 +352,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                         Responde a las siguientes preguntas marcando las opciones que consideres que mejor describen la situación:
                     </p>
                     <div className="checklist">
-                        <label style={{ display: "block", marginBottom: "10px" }}>
+                        <label>
                             <input
                                 type="checkbox"
                                 checked={reflectiveAnswers.includes("formularios_contacto")}
@@ -361,7 +360,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                             />
                             ¿Las preguntas seleccionadas ayudan a entender mejor las necesidades de los usuarios con dispositivos móviles?
                         </label>
-                        <label style={{ display: "block", marginBottom: "10px" }}>
+                        <label>
                             <input
                                 type="checkbox"
                                 checked={reflectiveAnswers.includes("formularios_registro")}
@@ -369,7 +368,7 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                             />
                             ¿Las preguntas elegidas ayudan a identificar los elementos de diseño que podrían mejorar la navegación en móviles?
                         </label>
-                        <label style={{ display: "block", marginBottom: "10px" }}>
+                        <label>
                             <input
                                 type="checkbox"
                                 checked={reflectiveAnswers.includes("conexion_bd")}
@@ -381,17 +380,10 @@ const Phase3Audience = ({ data, onNext, onPrev }) => {
                 </fieldset>
 
                 <div className="navigation-buttons">
-                    {onPrev && (
-                        <button type="button" onClick={onPrev} style={{ marginRight: "10px", padding: "8px 12px" }}>
-                            Anterior
-                        </button>
-                    )}
-                    <button type="button" onClick={generatePDF} style={{ marginRight: "10px", padding: "8px 12px" }}>
+                    <button type="button" onClick={generatePDF}>
                         Descargar PDF
                     </button>
-                    <button type="submit" style={{ padding: "8px 12px" }}>
-                        Completar Fase 3
-                    </button>
+                    <button type="submit">Guardar</button>
                 </div>
             </form>
         </div>

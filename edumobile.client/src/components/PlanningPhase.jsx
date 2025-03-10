@@ -12,7 +12,7 @@ const PlanningPhase = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Obtener la fase de planeación al montar
+    // Al montar, obtener la fase de planeación
     useEffect(() => {
         const fetchPlanningPhase = async () => {
             try {
@@ -36,12 +36,12 @@ const PlanningPhase = () => {
         }
     }, [projectId]);
 
-    // Función para guardar la fase (POST o PUT)
+    // Función genérica que hace POST o PUT según corresponda
     const savePhaseData = async (updatedData) => {
         try {
             const phaseId = phaseData?.id;
             if (!phaseId) {
-                // No existe: crear (POST)
+                // Crear (POST)
                 const response = await fetch(`/api/planningphases`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ const PlanningPhase = () => {
                 setPhaseData(merged);
                 return true;
             } else {
-                // Ya existe: actualizar (PUT)
+                // Actualizar (PUT)
                 let endpoint = "";
                 if (currentPhase === 1) {
                     endpoint = `/api/planningphases/Phase1/${phaseId}`;
@@ -92,33 +92,66 @@ const PlanningPhase = () => {
         }
     };
 
-    // Manejador para avanzar de fase
-    const handleNextPhase = async (updatedData, saveData = true) => {
-        console.log("handleNextPhase invocado. updatedData=", updatedData);
-        if (updatedData) {
-            const newData = { ...phaseData, ...updatedData };
-            if (saveData) {
-                const saved = await savePhaseData(newData);
-                if (!saved) {
-                    alert("Error al guardar datos, intenta nuevamente.");
-                    return;
-                }
-            } else {
-                setPhaseData(newData);
-            }
-        }
-        if (currentPhase === 3) {
-            // Al terminar la fase 3, navegamos a DesignPhase usando la ruta correcta
-            navigate(`/fase-2-diseno/${projectId}`);
+    // onSaveData se usará en cada hijo para "Guardar" sin cambiar de subfase.
+    const handleSaveData = async (childData) => {
+        // Fusionar con lo que ya teníamos
+        const newData = { ...phaseData, ...childData };
+        const saved = await savePhaseData(newData);
+        if (saved) {
+            alert("Datos guardados exitosamente.");
         } else {
-            setCurrentPhase((prev) => prev + 1);
+            alert("Error al guardar datos, intenta nuevamente.");
         }
     };
 
-    const handlePrevPhase = () => {
+    // Maneja el avance (botón "Siguiente" o "Completar Fase N") en el contenedor
+    const handleNext = async () => {
+        // Primero guardamos la data actual (phaseData) antes de avanzar
+        const saved = await savePhaseData(phaseData);
+        if (!saved) {
+            alert("Error al guardar datos, intenta nuevamente.");
+            return;
+        }
+        if (currentPhase < 3) {
+            setCurrentPhase((prev) => prev + 1);
+        } else {
+            // Si ya vamos a la 4, pasamos a la fase de diseño
+            navigate(`/fase-2-diseno/${projectId}`);
+        }
+    };
+
+    // Maneja retroceso (botón "Anterior")
+    const handlePrev = () => {
         if (currentPhase > 1) {
             setCurrentPhase((prev) => prev - 1);
         }
+    };
+
+    // Renderiza el hijo correspondiente
+    const renderPhaseChild = () => {
+        if (currentPhase === 1) {
+            return (
+                <Phase1Brief
+                    data={phaseData}
+                    onSave={handleSaveData}   // Nuevo prop para "Guardar"
+                />
+            );
+        } else if (currentPhase === 2) {
+            return (
+                <Phase2Benchmarking
+                    data={phaseData}
+                    onSave={handleSaveData}
+                />
+            );
+        } else if (currentPhase === 3) {
+            return (
+                <Phase3Audience
+                    data={phaseData}
+                    onSave={handleSaveData}
+                />
+            );
+        }
+        return null;
     };
 
     if (loading) return <p>Cargando fase de planeación...</p>;
@@ -134,33 +167,18 @@ const PlanningPhase = () => {
                 ></div>
             </div>
 
-            {currentPhase === 1 && (
-                <Phase1Brief
-                    data={phaseData}
-                    onNext={(data) => handleNextPhase(data, true)}
-                />
-            )}
-            {currentPhase === 2 && (
-                <Phase2Benchmarking
-                    data={phaseData}
-                    onNext={(data) => handleNextPhase(data, true)}
-                    onPrev={handlePrevPhase}
-                />
-            )}
-            {currentPhase === 3 && (
-                <Phase3Audience
-                    data={phaseData}
-                    onNext={(data) => handleNextPhase(data, true)}
-                    onPrev={handlePrevPhase}
-                />
-            )}
+            {renderPhaseChild()}
 
+            {/* Botones de navegación en el padre */}
             <div className="navigation-buttons">
                 {currentPhase > 1 && (
-                    <button onClick={handlePrevPhase} className="btn-secondary">
+                    <button onClick={handlePrev} className="btn-secondary">
                         Anterior
                     </button>
                 )}
+                <button onClick={handleNext} className="btn-primary">
+                    {currentPhase < 3 ? "Siguiente" : "Finalizar Planeación"}
+                </button>
             </div>
         </div>
     );
