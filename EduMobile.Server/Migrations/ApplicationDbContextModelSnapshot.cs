@@ -193,6 +193,86 @@ namespace EduMobile.Server.Migrations
                     b.ToTable("DesignPhases");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.DevelopmentPhase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AllowedTechnologies")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomRequirements")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomTechnologies")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FunctionalRequirements")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId")
+                        .IsUnique();
+
+                    b.ToTable("DevelopmentPhases");
+                });
+
+            modelBuilder.Entity("EduMobile.Server.Models.KanbanItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DevelopmentPhaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DevelopmentPhaseId");
+
+                    b.ToTable("KanbanItems");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
                 {
                     b.Property<int>("Id")
@@ -652,6 +732,28 @@ namespace EduMobile.Server.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.DevelopmentPhase", b =>
+                {
+                    b.HasOne("EduMobile.Server.Models.Project", "Project")
+                        .WithOne("DevelopmentPhase")
+                        .HasForeignKey("EduMobile.Server.Models.DevelopmentPhase", "ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("EduMobile.Server.Models.KanbanItem", b =>
+                {
+                    b.HasOne("EduMobile.Server.Models.DevelopmentPhase", "DevelopmentPhase")
+                        .WithMany("KanbanItems")
+                        .HasForeignKey("DevelopmentPhaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DevelopmentPhase");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
                 {
                     b.HasOne("EduMobile.Server.Models.Project", "Project")
@@ -783,9 +885,17 @@ namespace EduMobile.Server.Migrations
                     b.Navigation("Semesters");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.DevelopmentPhase", b =>
+                {
+                    b.Navigation("KanbanItems");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Project", b =>
                 {
                     b.Navigation("DesignPhases");
+
+                    b.Navigation("DevelopmentPhase")
+                        .IsRequired();
 
                     b.Navigation("PlanningPhase")
                         .IsRequired();

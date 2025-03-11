@@ -33,6 +33,9 @@ namespace EduMobile.Server.Models
         // Otras relaciones como DesignPhases, etc.
         public ICollection<DesignPhase> DesignPhases { get; set; } = new List<DesignPhase>();
 
+        public DevelopmentPhase DevelopmentPhase { get; set; }
+
+
         public string? CreatedById { get; set; }
         public ApplicationUser? CreatedBy { get; set; }
 

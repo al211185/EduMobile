@@ -11,6 +11,7 @@ import CreateSemester from "./components/CreateSemester";
 import MyProjects from "./components/MyProjects";
 import ProjectPhase from "./components/ProjectPhase";
 import DesignPhase from "./components/DesignPhase";
+import DevelopmentPhase from "./components/DevelopmentPhase";
 import ProjectDetails from "./components/ProjectDetails";
 import MediaQueryDragAndDropWithReference from "./components/MediaQueryDragAndDropWithReference";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -67,6 +68,7 @@ const App = () => {
                                 <Route path="/my-projects" element={<MyProjects />} />
                                 <Route path="/projects/:projectId" element={<ProjectPhase />} />
                                 <Route path="/fase-2-diseno/:projectId" element={<DesignPhase />} />
+                                <Route path="/development-phase/:projectId" element={<DevelopmentPhase />} />
                             </>
                         )}
                     </Routes>

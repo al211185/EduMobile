@@ -143,6 +143,86 @@ namespace EduMobile.Server.Controllers
                 _context.DesignPhases.Add(designPhase);
                 await _context.SaveChangesAsync();
 
+                // Crear la fase de desarrollo (Kanban board) utilizando los campos de backlog de PlanningPhase
+                // Crear la fase de desarrollo (Kanban board) utilizando los campos de backlog de PlanningPhase
+                var developmentPhase = new DevelopmentPhase
+                {
+                    ProjectId = project.Id,
+                    AllowedTechnologies = planningPhase.AllowedTechnologies,
+                    CustomTechnologies = planningPhase.CustomTechnologies,
+                    FunctionalRequirements = planningPhase.FunctionalRequirements,
+                    CustomRequirements = planningPhase.CustomRequirements,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                _context.DevelopmentPhases.Add(developmentPhase);
+                await _context.SaveChangesAsync();
+
+                // Ahora, a partir de los campos de backlog, creamos las tarjetas (KanbanItems)
+                // Asumiremos que:
+                // - AllowedTechnologies y CustomTechnologies están separadas por comas.
+                // - FunctionalRequirements y CustomRequirements están separadas por punto y coma.
+                var backlogItems = new List<string>();
+
+                if (!string.IsNullOrWhiteSpace(planningPhase.AllowedTechnologies))
+                {
+                    backlogItems.AddRange(
+                        planningPhase.AllowedTechnologies
+                        .Split(",")
+                        .Select(x => x.Trim())
+                        .Where(x => !string.IsNullOrEmpty(x))
+                    );
+                }
+
+                if (!string.IsNullOrWhiteSpace(planningPhase.CustomTechnologies))
+                {
+                    backlogItems.AddRange(
+                        planningPhase.CustomTechnologies
+                        .Split(",")
+                        .Select(x => x.Trim())
+                        .Where(x => !string.IsNullOrEmpty(x))
+                    );
+                }
+
+                if (!string.IsNullOrWhiteSpace(planningPhase.FunctionalRequirements))
+                {
+                    backlogItems.AddRange(
+                        planningPhase.FunctionalRequirements
+                        .Split(";")
+                        .Select(x => x.Trim())
+                        .Where(x => !string.IsNullOrEmpty(x))
+                    );
+                }
+
+                if (!string.IsNullOrWhiteSpace(planningPhase.CustomRequirements))
+                {
+                    backlogItems.AddRange(
+                        planningPhase.CustomRequirements
+                        .Split(";")
+                        .Select(x => x.Trim())
+                        .Where(x => !string.IsNullOrEmpty(x))
+                    );
+                }
+
+                // Crear una tarjeta para cada ítem, con estado "Backlog"
+                foreach (var item in backlogItems)
+                {
+                    var kanbanItem = new KanbanItem
+                    {
+                        Title = item,
+                        Description = "", // Puedes agregar descripción si lo deseas
+                        Status = "Backlog",
+                        Order = 0, // Aquí podrías calcular un orden
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow,
+                        DevelopmentPhaseId = developmentPhase.Id
+                    };
+                    _context.KanbanItems.Add(kanbanItem);
+                }
+
+                await _context.SaveChangesAsync();
+
                 return Ok(new { Message = "Proyecto creado exitosamente.", ProjectId = project.Id });
             }
             catch (Exception ex)

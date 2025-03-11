@@ -1,37 +1,131 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ProjectPlanning from "./PlanningPhase";
+import DesignPhase from "./DesignPhase";
+import DevelopmentPhase from "./DevelopmentPhase";
 
 const ProjectPhase = () => {
-    const { projectId } = useParams(); // Obtener el projectId de la URL
-    const [project, setProject] = useState(null); // Estado para los datos del proyecto
-    const [loading, setLoading] = useState(true); // Estado de carga
-    const [error, setError] = useState(null); // Estado de error
+    const { projectId } = useParams();
+    const navigate = useNavigate();
+    const [project, setProject] = useState(null);
+    const [phaseData, setPhaseData] = useState({}); // Datos centralizados de la fase actual
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    // 1: Planeación, 2: Diseño, 3: Desarrollo (Kanban)
+    const [currentPhase, setCurrentPhase] = useState(1);
 
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                if (project) return; // Evita solicitudes adicionales si los datos ya están cargados
-
                 const response = await fetch(`/api/projects/${projectId}`);
                 const data = await response.json();
-
                 if (response.ok) {
-                    setProject(data); // Establece los datos del proyecto
+                    setProject(data);
+                    // Opcional: Si el proyecto ya tiene datos de fase, podrías inicializar phaseData
                 } else {
-                    console.error("Error al cargar proyecto:", data.message);
                     setError(data.message || "No se pudo cargar el proyecto.");
                 }
-            } catch (error) {
-                console.error("Error al obtener proyecto:", error);
+            } catch (err) {
                 setError("Error al obtener los datos del proyecto.");
             } finally {
-                setLoading(false); // Finaliza el estado de carga
+                setLoading(false);
             }
         };
-
         fetchProject();
-    }, [projectId, project]); // `project` agregado para evitar múltiples solicitudes innecesarias
+    }, [projectId]);
+
+    // Esta función actualiza la fase actual llamando al endpoint correspondiente.
+    const handleSaveData = async (updatedData) => {
+        try {
+            // Determina el endpoint según la fase actual.
+            let endpoint = "";
+            switch (currentPhase) {
+                case 1:
+                    // Ejemplo: PUT en PlanningPhase para el proyecto
+                    endpoint = `/api/planningphases/${projectId}`;
+                    break;
+                case 2:
+                    // Ejemplo: PUT en DesignPhase para el proyecto
+                    endpoint = `/api/designphases/${projectId}`;
+                    break;
+                case 3:
+                    // Ejemplo: PUT en DevelopmentPhase, usando el endpoint que obtiene la fase por ProjectId
+                    endpoint = `/api/developmentphases/byproject/${projectId}`;
+                    break;
+                default:
+                    throw new Error("Fase no válida");
+            }
+
+            const response = await fetch(endpoint, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedData),
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Error al actualizar la fase.");
+            }
+            // Suponemos que la API retorna la fase actualizada
+            const newPhaseData = await response.json();
+            setPhaseData(newPhaseData);
+            alert("Datos guardados exitosamente.");
+            return true;
+        } catch (error) {
+            console.error("Error al guardar la fase:", error);
+            alert("Error al guardar los datos. Inténtalo nuevamente.");
+            return false;
+        }
+    };
+
+    const handleNextPhase = () => {
+        if (currentPhase < 3) {
+            setCurrentPhase((prev) => prev + 1);
+        } else {
+            alert("¡Has completado todas las fases!");
+            // Puedes redirigir a otra ruta si es necesario:
+            // navigate(`/final-phase/${projectId}`);
+        }
+    };
+
+    const handlePrevPhase = () => {
+        if (currentPhase > 1) {
+            setCurrentPhase((prev) => prev - 1);
+        }
+    };
+
+    const renderPhaseComponent = () => {
+        switch (currentPhase) {
+            case 1:
+                return (
+                    <ProjectPlanning
+                        projectData={project}
+                        phaseData={phaseData}
+                        onSave={handleSaveData}
+                    />
+                );
+            case 2:
+                return (
+                    <DesignPhase
+                        projectId={projectId}
+                        phaseData={phaseData}
+                        onSave={handleSaveData}
+                    />
+                );
+            case 3:
+                return (
+                    <DevelopmentPhase
+                        projectId={projectId}
+                        data={phaseData}
+                        onSave={handleSaveData}
+                        onPrev={handlePrevPhase}
+                        onNext={handleNextPhase}
+                    />
+                );
+
+            default:
+                return null;
+        }
+    };
 
     if (loading) return <p>Cargando proyecto...</p>;
     if (error) return <p>{error}</p>;
@@ -41,8 +135,19 @@ const ProjectPhase = () => {
         <div className="project-phase-container">
             <h1>{project.title}</h1>
             <p>{project.description}</p>
-            {/* Renderiza el componente de planeación y pasa los datos del proyecto */}
-            <ProjectPlanning projectData={project} />
+            {renderPhaseComponent()}
+            <div className="navigation-buttons">
+                {currentPhase > 1 && (
+                    <button onClick={handlePrevPhase} className="btn-secondary">
+                        Fase Anterior
+                    </button>
+                )}
+                {currentPhase < 3 && (
+                    <button onClick={handleNextPhase} className="btn-primary">
+                        Siguiente Fase
+                    </button>
+                )}
+            </div>
         </div>
     );
 };

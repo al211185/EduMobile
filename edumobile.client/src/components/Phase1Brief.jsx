@@ -51,9 +51,10 @@ const Phase1Brief = ({ data, onSave }) => {
     });
 
     // Cuando se reciben datos, actualizar el estado usando las claves correctas (minúsculas)
+    const [isInitialized, setIsInitialized] = useState(false);
+
     useEffect(() => {
-        if (data) {
-            console.log("Datos recibidos:", data);
+        if (data && !isInitialized) {
             setFormData({
                 projectName: data.projectName || "",
                 clienteName: data.clienteName || "",
@@ -63,9 +64,12 @@ const Phase1Brief = ({ data, onSave }) => {
                 specificObjectives: data.specificObjectives
                     ? data.specificObjectives.split(";")
                     : ["", "", ""],
-                requisitos: data.functionalRequirements
-                    ? parseRequirements(data.functionalRequirements)
-                    : { selected: [], otros: "" },
+                requisitos: {
+                    selected: data.functionalRequirements
+                        ? parseRequirements(data.functionalRequirements).selected
+                        : [],
+                    otros: data.customRequirements || ""
+                },
                 preferencias: {
                     primaryColor: data.corporateColors ? data.corporateColors.split(",")[0] : "#000000",
                     secondary1Color: data.corporateColors ? data.corporateColors.split(",")[1] || "#000000" : "#000000",
@@ -82,8 +86,10 @@ const Phase1Brief = ({ data, onSave }) => {
                     ? data.reflectionPhase1.split(";").map(v => v.trim()).filter(v => v !== "")
                     : []
             });
+            setIsInitialized(true);
         }
-    }, [data]);
+    }, [data, isInitialized]);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -157,22 +163,14 @@ const Phase1Brief = ({ data, onSave }) => {
             StartDate: formData.startDate + "T00:00:00Z",
             GeneralObjective: formData.generalObjective,
             SpecificObjectives: formData.specificObjectives.join(";"),
-            FunctionalRequirements:
-                formData.requisitos.selected.join(";") +
-                (formData.requisitos.otros.trim()
-                    ? ";" + formData.requisitos.otros
-                    : ""),
-            CustomRequirements: "",
+            FunctionalRequirements: formData.requisitos.selected.join(";"),
+            CustomRequirements: formData.requisitos.otros,
 
             CorporateColors: `${formData.preferencias.primaryColor},${formData.preferencias.secondary1Color},${formData.preferencias.secondary2Color}`,
             CorporateFont: formData.preferencias.font,
 
-            AllowedTechnologies:
-                formData.allowedTechnologies.selected.join(",") +
-                (formData.allowedTechnologies.otros.trim()
-                    ? "," + formData.allowedTechnologies.otros
-                    : ""),
-            CustomTechnologies: "",
+            AllowedTechnologies: formData.allowedTechnologies.selected.join(","),
+            CustomTechnologies: formData.allowedTechnologies.otros,
 
             ReflectionPhase1: formData.reflectiveAnswers.join(";"),
         };

@@ -149,7 +149,7 @@ namespace EduMobile.Server.Controllers
                     return NotFound(new { Message = "Fase de planeación no encontrada." });
                 }
 
-                // Campos Fase 1
+                // Actualización de campos de Fase 1
                 if (!string.IsNullOrWhiteSpace(request.ProjectName))
                     planningPhase.ProjectName = request.ProjectName;
 
@@ -192,6 +192,78 @@ namespace EduMobile.Server.Controllers
                 planningPhase.UpdatedAt = DateTime.UtcNow;
                 _context.PlanningPhases.Update(planningPhase);
                 await _context.SaveChangesAsync();
+
+                // Sincronizar automáticamente el backlog del DevelopmentPhase (Kanban board)
+                var developmentPhase = await _context.DevelopmentPhases
+                    .FirstOrDefaultAsync(dp => dp.ProjectId == planningPhase.ProjectId);
+
+                if (developmentPhase != null)
+                {
+                    // Eliminar tarjetas existentes para evitar duplicados
+                    var existingItems = _context.KanbanItems.Where(ki => ki.DevelopmentPhaseId == developmentPhase.Id);
+                    _context.KanbanItems.RemoveRange(existingItems);
+
+                    // Recopilar ítems del backlog a partir de los campos actualizados
+                    var backlogItems = new List<string>();
+
+                    if (!string.IsNullOrWhiteSpace(planningPhase.AllowedTechnologies))
+                    {
+                        backlogItems.AddRange(
+                            planningPhase.AllowedTechnologies.Split(",")
+                            .Select(x => x.Trim())
+                            .Where(x => !string.IsNullOrEmpty(x))
+                        );
+                    }
+                    if (!string.IsNullOrWhiteSpace(planningPhase.CustomTechnologies))
+                    {
+                        backlogItems.AddRange(
+                            planningPhase.CustomTechnologies.Split(",")
+                            .Select(x => x.Trim())
+                            .Where(x => !string.IsNullOrEmpty(x))
+                        );
+                    }
+                    if (!string.IsNullOrWhiteSpace(planningPhase.FunctionalRequirements))
+                    {
+                        backlogItems.AddRange(
+                            planningPhase.FunctionalRequirements.Split(";")
+                            .Select(x => x.Trim())
+                            .Where(x => !string.IsNullOrEmpty(x))
+                        );
+                    }
+                    if (!string.IsNullOrWhiteSpace(planningPhase.CustomRequirements))
+                    {
+                        backlogItems.AddRange(
+                            planningPhase.CustomRequirements.Split(";")
+                            .Select(x => x.Trim())
+                            .Where(x => !string.IsNullOrEmpty(x))
+                        );
+                    }
+
+                    // Crear una nueva tarjeta (KanbanItem) por cada ítem del backlog
+                    foreach (var item in backlogItems)
+                    {
+                        var kanbanItem = new KanbanItem
+                        {
+                            Title = item,
+                            Description = "",
+                            Status = "Backlog",
+                            Order = 0, // Puedes implementar lógica para ordenar si es necesario
+                            CreatedAt = DateTime.UtcNow,
+                            UpdatedAt = DateTime.UtcNow,
+                            DevelopmentPhaseId = developmentPhase.Id
+                        };
+                        _context.KanbanItems.Add(kanbanItem);
+                    }
+
+                    // Actualizar los campos del DevelopmentPhase con los nuevos valores
+                    developmentPhase.AllowedTechnologies = planningPhase.AllowedTechnologies;
+                    developmentPhase.CustomTechnologies = planningPhase.CustomTechnologies;
+                    developmentPhase.FunctionalRequirements = planningPhase.FunctionalRequirements;
+                    developmentPhase.CustomRequirements = planningPhase.CustomRequirements;
+                    developmentPhase.UpdatedAt = DateTime.UtcNow;
+
+                    await _context.SaveChangesAsync();
+                }
 
                 return Ok(planningPhase);
             }

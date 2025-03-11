@@ -1250,3 +1250,65 @@ input[type="color"].styled-input {
     height: 40px; /* Aumenta la altura */
     padding: 0;
 }
+
+/* DevelopmentPhase.css */
+.development-phase {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+    .development-phase h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+.kanban-board {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.kanban-column {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    padding: 0.5rem;
+    min-height: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .kanban-column h3 {
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+.kanban-card {
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+    .kanban-card:hover {
+        transform: scale(1.02);
+    }
+
+    .kanban-card h4 {
+        margin: 0;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .kanban-card p {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        color: #666;
+    }

@@ -11,28 +11,44 @@ namespace EduMobile.Server.Data
         {
         }
 
-        // NUEVO: DbSet para la fase de planeación
+        // DbSets existentes
         public DbSet<PlanningPhase> PlanningPhases { get; set; }
-
-        // Ya existentes
         public DbSet<Semester> Semesters { get; set; }
         public DbSet<SemesterStudent> SemesterStudents { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Phase> Phases { get; set; }
         public DbSet<DesignPhase> DesignPhases { get; set; }
+        public DbSet<DevelopmentPhase> DevelopmentPhases { get; set; }
+
+        // NUEVO: DbSet para las tarjetas del Kanban
+        public DbSet<KanbanItem> KanbanItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            // ========== Relación 1:1 entre Project y PlanningPhase ==========
+            // Configuración 1:1 entre Project y PlanningPhase
             builder.Entity<PlanningPhase>()
                    .HasOne(pp => pp.Project)
                    .WithOne(p => p.PlanningPhase)
                    .HasForeignKey<PlanningPhase>(pp => pp.ProjectId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            // ========== Configuración de SemesterStudent ==========
+            // Configuración 1:1 entre Project y DevelopmentPhase
+            builder.Entity<DevelopmentPhase>()
+                   .HasOne(dp => dp.Project)
+                   .WithOne(p => p.DevelopmentPhase)
+                   .HasForeignKey<DevelopmentPhase>(dp => dp.ProjectId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            // Configuración de la relación 1:N entre DevelopmentPhase y KanbanItem
+            builder.Entity<KanbanItem>()
+                   .HasOne(ki => ki.DevelopmentPhase)
+                   .WithMany(dp => dp.KanbanItems)
+                   .HasForeignKey(ki => ki.DevelopmentPhaseId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            // Configuración de SemesterStudent
             builder.Entity<SemesterStudent>()
                 .HasKey(ss => new { ss.SemesterId, ss.StudentId });
 
@@ -48,12 +64,11 @@ namespace EduMobile.Server.Data
                 .HasForeignKey(ss => ss.StudentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Longitud para StudentId (coincide con AspNetUsers.Id)
             builder.Entity<SemesterStudent>()
                 .Property(ss => ss.StudentId)
                 .HasMaxLength(450);
 
-            // ========== Configuración de Project ==========
+            // Configuración de Project
             builder.Entity<Project>()
                 .HasOne(p => p.Semester)
                 .WithMany(s => s.Projects)
@@ -66,14 +81,14 @@ namespace EduMobile.Server.Data
                 .HasForeignKey(p => p.CreatedById)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            // ========== Configuración de Phase ==========
+            // Configuración de Phase
             builder.Entity<Phase>()
                 .HasOne(p => p.Project)
                 .WithMany()
                 .HasForeignKey(p => p.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // ========== Configuración de DesignPhase ==========
+            // Configuración de DesignPhase
             builder.Entity<DesignPhase>()
                 .HasOne(dp => dp.Project)
                 .WithMany(p => p.DesignPhases)
