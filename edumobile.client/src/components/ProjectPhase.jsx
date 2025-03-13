@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import ProjectPlanning from "./PlanningPhase";
 import DesignPhase from "./DesignPhase";
 import DevelopmentPhase from "./DevelopmentPhase";
+import EvaluationPhase from "./EvaluationPhase";
 
 const ProjectPhase = () => {
     const { projectId } = useParams();
@@ -36,20 +37,24 @@ const ProjectPhase = () => {
 
     // Esta función actualiza la fase actual llamando al endpoint correspondiente.
     const handleSaveData = async (updatedData) => {
+        // Si estamos en la fase 4 (Evaluation), no llamamos a ningún endpoint
+        if (currentPhase === 4) {
+            setPhaseData(updatedData);
+            alert("Evaluación guardada exitosamente.");
+            return true;
+        }
+
         try {
             // Determina el endpoint según la fase actual.
             let endpoint = "";
             switch (currentPhase) {
                 case 1:
-                    // Ejemplo: PUT en PlanningPhase para el proyecto
                     endpoint = `/api/planningphases/${projectId}`;
                     break;
                 case 2:
-                    // Ejemplo: PUT en DesignPhase para el proyecto
                     endpoint = `/api/designphases/${projectId}`;
                     break;
                 case 3:
-                    // Ejemplo: PUT en DevelopmentPhase, usando el endpoint que obtiene la fase por ProjectId
                     endpoint = `/api/developmentphases/byproject/${projectId}`;
                     break;
                 default:
@@ -77,8 +82,9 @@ const ProjectPhase = () => {
         }
     };
 
+
     const handleNextPhase = () => {
-        if (currentPhase < 3) {
+        if (currentPhase < 4) {
             setCurrentPhase((prev) => prev + 1);
         } else {
             alert("¡Has completado todas las fases!");
@@ -121,11 +127,21 @@ const ProjectPhase = () => {
                         onNext={handleNextPhase}
                     />
                 );
-
+            case 4:
+                return (
+                    <EvaluationPhase
+                        projectId={projectId}
+                        phaseData={phaseData}
+                        onSave={handleSaveData}
+                        onPrev={handlePrevPhase}
+                        onNext={handleNextPhase}
+                    />
+                );
             default:
                 return null;
         }
     };
+
 
     if (loading) return <p>Cargando proyecto...</p>;
     if (error) return <p>{error}</p>;
@@ -142,7 +158,7 @@ const ProjectPhase = () => {
                         Fase Anterior
                     </button>
                 )}
-                {currentPhase < 3 && (
+                {currentPhase < 4 && (
                     <button onClick={handleNextPhase} className="btn-primary">
                         Siguiente Fase
                     </button>
