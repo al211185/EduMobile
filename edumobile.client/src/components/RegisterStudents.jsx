@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Papa from "papaparse";
 
 const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
     const [file, setFile] = useState(null);
@@ -28,30 +29,78 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
 
         setIsSubmitting(true);
 
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("semesterId", selectedSemester.id);
+        // Parsear el CSV usando Papa Parse
+        Papa.parse(file, {
+            header: true, // Se asume que el CSV tiene encabezado con las columnas necesarias
+            skipEmptyLines: true,
+            complete: async (results) => {
+                // results.data es un arreglo de objetos con los datos de cada alumno
+                const students = results.data.map((student) => ({
+                    matricula: student.matricula,
+                    nombre: student.nombre,
+                    apellidoPaterno: student.apellidoPaterno,
+                    apellidoMaterno: student.apellidoMaterno,
+                }));
 
-        try {
-            const response = await fetch(`/api/auth/upload-students`, {
-                method: "POST",
-                body: formData,
-            });
+                try {
+                    // Registrar los alumnos en masa
+                    const registerResponse = await fetch(`/api/auth/register-students`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(students),
+                    });
 
-            const data = await response.json();
-            setIsSubmitting(false);
+                    const registerData = await registerResponse.json();
 
-            if (response.ok) {
-                alert("✅ Alumnos registrados exitosamente.");
-                setFile(null);
-            } else {
-                alert(`⚠️ Error: ${data.message || "No se pudo registrar a los alumnos."}`);
-            }
-        } catch (error) {
-            setIsSubmitting(false);
-            console.error("Error al registrar alumnos:", error);
-        }
+                    if (!registerResponse.ok) {
+                        setIsSubmitting(false);
+                        alert(`⚠️ Error en el registro: ${registerData.message || "No se pudo registrar a los alumnos."}`);
+                        return;
+                    }
+
+                    // Extraer los IDs de los alumnos registrados exitosamente
+                    // Se asume que registerData.Results contiene un arreglo de objetos con propiedades: Success y UserId
+                    const successfulRegistrations = registerData.results.filter(result => result.success);
+                    const assignmentPayload = successfulRegistrations.map(result => ({
+                        studentId: result.userId, // Debe coincidir con lo que espera el endpoint AssignStudentsToSemester
+                    }));
+
+
+                    // Asignar los alumnos al semestre usando el endpoint masivo
+                    const assignResponse = await fetch(`/api/semesters/${selectedSemester.id}/assign-students`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(assignmentPayload),
+                    });
+
+                    const assignData = await assignResponse.json();
+
+                    if (!assignResponse.ok) {
+                        throw new Error(assignData.message || "Error al asignar los alumnos al semestre.");
+                    }
+                    console.log("Respuesta de registro:", registerData);
+
+                    setIsSubmitting(false);
+                    alert("✅ Alumnos registrados y asignados exitosamente.");
+                    setFile(null);
+                } catch (error) {
+                    setIsSubmitting(false);
+                    console.error("Error al registrar o asignar alumnos:", error);
+                    alert(`⚠️ ${error.message}`);
+                }
+            },
+            error: (err) => {
+                alert("Error al procesar el archivo CSV.");
+                setIsSubmitting(false);
+            },
+        });
     };
+
+
 
     const handleIndividualSubmit = async (e) => {
         e.preventDefault();

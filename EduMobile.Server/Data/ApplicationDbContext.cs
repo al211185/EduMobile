@@ -1,6 +1,7 @@
 ﻿using EduMobile.Server.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace EduMobile.Server.Data
 {
@@ -25,6 +26,8 @@ namespace EduMobile.Server.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.UseCollation("Latin1_General_100_CI_AS_SC_UTF8");
+
             base.OnModelCreating(builder);
 
             // Configuración 1:1 entre Project y PlanningPhase

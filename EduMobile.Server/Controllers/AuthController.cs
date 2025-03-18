@@ -166,6 +166,45 @@ namespace EduMobile.Server.Controllers
             });
         }
 
+        [HttpPost("register-students")]
+        public async Task<IActionResult> RegisterStudents([FromBody] List<RegisterStudentRequest> requests)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new { Message = "Datos no válidos." });
+
+            var results = new List<object>();
+
+            foreach (var request in requests)
+            {
+                var email = $"al{request.Matricula}@alumnos.uacj.mx";
+                var password = $"Al{request.Matricula}!";
+
+                var user = new ApplicationUser
+                {
+                    UserName = email,
+                    Email = email,
+                    Nombre = request.Nombre,
+                    ApellidoPaterno = request.ApellidoPaterno,
+                    ApellidoMaterno = request.ApellidoMaterno,
+                    Matricula = request.Matricula,
+                    Role = "Alumno"
+                };
+
+                var result = await _userManager.CreateAsync(user, password);
+
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, "Alumno");
+                    results.Add(new { Matricula = request.Matricula, Success = true, UserId = user.Id });
+                }
+                else
+                {
+                    results.Add(new { Matricula = request.Matricula, Success = false, Errors = result.Errors.Select(e => e.Description) });
+                }
+            }
+
+            return Ok(new { Message = "Registro masivo completado.", Results = results });
+        }
 
 
 

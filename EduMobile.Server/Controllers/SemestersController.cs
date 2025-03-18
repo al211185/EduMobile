@@ -197,6 +197,44 @@ namespace EduMobile.Server.Controllers
             _logger.LogInformation("Estudiante {StudentId} removido del semestre {SemesterId}", studentId, semesterId);
             return Ok(new { Message = "Estudiante eliminado del semestre exitosamente." });
         }
+
+        [HttpPost("{id}/assign-students")]
+        public async Task<IActionResult> AssignStudentsToSemester(int id, [FromBody] List<AssignStudentRequest> requests)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new { Message = "Datos no válidos." });
+
+            var semester = await _context.Semesters.FindAsync(id);
+            if (semester == null)
+                return NotFound(new { Message = "Semestre no encontrado." });
+
+            foreach (var req in requests)
+            {
+                // Verifica que el estudiante exista
+                var student = await _context.Users.FindAsync(req.StudentId);
+                if (student == null)
+                    continue; // o podrías manejar el error para este caso
+
+                // Evita asignar repetidos
+                var existingRelation = await _context.SemesterStudents
+                    .FirstOrDefaultAsync(ss => ss.SemesterId == id && ss.StudentId == req.StudentId);
+                if (existingRelation != null)
+                    continue;
+
+                var semesterStudent = new SemesterStudent
+                {
+                    SemesterId = id,
+                    StudentId = req.StudentId
+                };
+
+                _context.SemesterStudents.Add(semesterStudent);
+            }
+
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("Se asignaron {Count} estudiantes al semestre {SemesterId}", requests.Count, id);
+            return Ok(new { Message = "Estudiantes asignados al semestre exitosamente." });
+        }
+
     }
 
     public class CreateSemesterRequest
