@@ -1,0 +1,2963 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "EduMobile.Server",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/change-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/register-student": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterStudentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterStudentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterStudentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DesignPhases/{projectId}": {
+      "get": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DesignPhases": {
+      "post": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDesignPhaseRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDesignPhaseRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDesignPhaseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DesignPhases/{id}": {
+      "put": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesignPhaseRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesignPhaseRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesignPhaseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DesignPhases/Phase2/{id}": {
+      "put": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesignPhase2Request"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesignPhase2Request"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesignPhase2Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DesignPhases/Phase3/{id}": {
+      "put": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVisualDesignRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVisualDesignRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVisualDesignRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DesignPhases/Phase4/{id}": {
+      "put": {
+        "tags": [
+          "DesignPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContentCreationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContentCreationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContentCreationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DevelopmentPhases": {
+      "get": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DevelopmentPhase"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DevelopmentPhase"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DevelopmentPhase"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevelopmentPhase"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevelopmentPhase"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevelopmentPhase"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DevelopmentPhases/{id}": {
+      "get": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevelopmentPhase"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevelopmentPhase"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevelopmentPhase"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DevelopmentPhases/byproject/{projectId}": {
+      "get": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopmentPhase"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DevelopmentPhases/{developmentPhaseId}/kanbanitems": {
+      "get": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "developmentPhaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KanbanItem"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KanbanItem"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KanbanItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "developmentPhaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KanbanItem"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KanbanItem"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KanbanItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/KanbanItem"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KanbanItem"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KanbanItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DevelopmentPhases/{developmentPhaseId}/kanbanitems/{id}": {
+      "put": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "developmentPhaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateKanbanItemDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateKanbanItemDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateKanbanItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DevelopmentPhases"
+        ],
+        "parameters": [
+          {
+            "name": "developmentPhaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Files/upload": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "parameters": [
+          {
+            "name": "oldFilePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Files/image/{fileName}": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Phases/create": {
+      "post": {
+        "tags": [
+          "Phases"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePhaseRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePhaseRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePhaseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Phases/{id}": {
+      "put": {
+        "tags": [
+          "Phases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhaseRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhaseRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhaseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Phases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Phases/project/{projectId}": {
+      "get": {
+        "tags": [
+          "Phases"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases/{projectId}": {
+      "get": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases": {
+      "post": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlanningPhaseRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlanningPhaseRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlanningPhaseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases/Phase1/{id}": {
+      "put": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF1Request"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF1Request"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF1Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases/Phase2/{id}": {
+      "put": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF2Request"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF2Request"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF2Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases/upload": {
+      "post": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases/Phase3/{id}": {
+      "put": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF3Request"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF3Request"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanningPhaseF3Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PlanningPhases/{id}": {
+      "delete": {
+        "tags": [
+          "PlanningPhases"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Projects/create": {
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Projects/{id}": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Projects/current": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Semesters/create": {
+      "post": {
+        "tags": [
+          "Semesters"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Semesters": {
+      "get": {
+        "tags": [
+          "Semesters"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Semesters/{id}": {
+      "get": {
+        "tags": [
+          "Semesters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Semesters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Semesters/{id}/assign-student": {
+      "post": {
+        "tags": [
+          "Semesters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignStudentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignStudentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignStudentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Semesters/{id}/students": {
+      "get": {
+        "tags": [
+          "Semesters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Semesters/{semesterId}/students/{studentId}": {
+      "delete": {
+        "tags": [
+          "Semesters"
+        ],
+        "parameters": [
+          {
+            "name": "semesterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Students/{id}": {
+      "delete": {
+        "tags": [
+          "Students"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationUser": {
+        "required": [
+          "apellidoMaterno",
+          "apellidoPaterno",
+          "matricula",
+          "nombre",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "matricula": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "nombre": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellidoPaterno": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
+          },
+          "semesters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SemesterStudent"
+            },
+            "nullable": true
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignStudentRequest": {
+        "type": "object",
+        "properties": {
+          "studentId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangePasswordRequest": {
+        "required": [
+          "confirmPassword",
+          "newPassword",
+          "oldPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "newPassword": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "confirmPassword": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateDesignPhaseRequest": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "siteMapFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHierarchyClear": {
+            "type": "boolean"
+          },
+          "areSectionsIdentified": {
+            "type": "boolean"
+          },
+          "areLinksClear": {
+            "type": "boolean"
+          },
+          "areVisualElementsUseful": {
+            "type": "boolean"
+          },
+          "wireframe480pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "wireframe768pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "wireframe1024pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMobileFirst": {
+            "type": "boolean"
+          },
+          "isNavigationClear": {
+            "type": "boolean"
+          },
+          "isDesignFunctional": {
+            "type": "boolean"
+          },
+          "isVisualConsistencyMet": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePhaseRequest": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phaseNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePlanningPhaseRequest": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "projectName": {
+            "type": "string",
+            "nullable": true
+          },
+          "clienteName": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsable": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "generalObjective": {
+            "type": "string",
+            "nullable": true
+          },
+          "specificObjectives": {
+            "type": "string",
+            "nullable": true
+          },
+          "functionalRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "customRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporateColors": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporateFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowedTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "customTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase1": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkObjective": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkSector": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkResponsableF2": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1ScreenshotPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Positives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Negatives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1EaseOfUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitor1Difficulties": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1UsefulFeatures": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2ScreenshotPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Positives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Negatives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2EaseOfUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitor2Difficulties": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2UsefulFeatures": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkFindings": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkImprovements": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkUsedSmartphoneForScreens": {
+            "type": "boolean"
+          },
+          "benchmarkUsedSmartphoneForComparative": {
+            "type": "boolean"
+          },
+          "benchmarkConsideredMobileFirst": {
+            "type": "boolean"
+          },
+          "reflectionPhase2": {
+            "type": "string",
+            "nullable": true
+          },
+          "audienceQuestions": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase3": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateProjectRequest": {
+        "required": [
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateSemesterRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "period": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "course": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DesignPhase": {
+        "required": [
+          "projectId",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "siteMapFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHierarchyClear": {
+            "type": "boolean"
+          },
+          "areSectionsIdentified": {
+            "type": "boolean"
+          },
+          "areLinksClear": {
+            "type": "boolean"
+          },
+          "areVisualElementsUseful": {
+            "type": "boolean"
+          },
+          "wireframe480pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "wireframe768pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "wireframe1024pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMobileFirst": {
+            "type": "boolean"
+          },
+          "isNavigationClear": {
+            "type": "boolean"
+          },
+          "isDesignFunctional": {
+            "type": "boolean"
+          },
+          "isVisualConsistencyMet": {
+            "type": "boolean"
+          },
+          "visualDesignFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "areVisualElementsBeneficialForSmallScreens": {
+            "type": "boolean"
+          },
+          "doesDesignPrioritizeContentForMobile": {
+            "type": "boolean"
+          },
+          "doesDesignImproveLoadingSpeed": {
+            "type": "boolean"
+          },
+          "contentFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "areContentsRelevantForMobile": {
+            "type": "boolean"
+          },
+          "areContentsClearAndNavigable": {
+            "type": "boolean"
+          },
+          "doContentsGuideUserAttention": {
+            "type": "boolean"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DevelopmentPhase": {
+        "required": [
+          "projectId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "allowedTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "customTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "functionalRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "customRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "kanbanItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KanbanItem"
+            },
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KanbanItem": {
+        "required": [
+          "developmentPhaseId",
+          "status",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "developmentPhaseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rememberMe": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlanningPhase": {
+        "required": [
+          "projectId",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "projectName": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "clienteName": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "responsable": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "generalObjective": {
+            "type": "string",
+            "nullable": true
+          },
+          "specificObjectives": {
+            "type": "string",
+            "nullable": true
+          },
+          "functionalRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "customRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporateColors": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporateFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowedTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "customTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase1": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkObjective": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkSector": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkResponsableF2": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1ScreenshotPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Positives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Negatives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1EaseOfUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitor1Difficulties": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1UsefulFeatures": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2ScreenshotPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Positives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Negatives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2EaseOfUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitor2Difficulties": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2UsefulFeatures": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkFindings": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkImprovements": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkUsedSmartphoneForScreens": {
+            "type": "boolean"
+          },
+          "benchmarkUsedSmartphoneForComparative": {
+            "type": "boolean"
+          },
+          "benchmarkConsideredMobileFirst": {
+            "type": "boolean"
+          },
+          "reflectionPhase2": {
+            "type": "string",
+            "nullable": true
+          },
+          "audienceQuestions": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase3": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Project": {
+        "required": [
+          "createdAt",
+          "currentPhase",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentPhase": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "planningPhase": {
+            "$ref": "#/components/schemas/PlanningPhase"
+          },
+          "designPhases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DesignPhase"
+            },
+            "nullable": true
+          },
+          "developmentPhase": {
+            "$ref": "#/components/schemas/DevelopmentPhase"
+          },
+          "createdById": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/ApplicationUser"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "semesterId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "semester": {
+            "$ref": "#/components/schemas/Semester"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterRequest": {
+        "required": [
+          "apellidoMaterno",
+          "apellidoPaterno",
+          "email",
+          "matricula",
+          "nombre",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nombre": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellidoPaterno": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "matricula": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterStudentRequest": {
+        "required": [
+          "apellidoMaterno",
+          "apellidoPaterno",
+          "matricula",
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nombre": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellidoPaterno": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Semester": {
+        "required": [
+          "course",
+          "name",
+          "period",
+          "professorId",
+          "year"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "period": {
+            "maxLength": 1,
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "professorId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "professor": {
+            "$ref": "#/components/schemas/ApplicationUser"
+          },
+          "course": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "semesterStudents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SemesterStudent"
+            },
+            "nullable": true
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SemesterStudent": {
+        "type": "object",
+        "properties": {
+          "semesterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "semester": {
+            "$ref": "#/components/schemas/Semester"
+          },
+          "studentId": {
+            "maxLength": 450,
+            "type": "string",
+            "nullable": true
+          },
+          "student": {
+            "$ref": "#/components/schemas/ApplicationUser"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateContentCreationRequest": {
+        "type": "object",
+        "properties": {
+          "contentFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "areContentsRelevantForMobile": {
+            "type": "boolean"
+          },
+          "areContentsClearAndNavigable": {
+            "type": "boolean"
+          },
+          "doContentsGuideUserAttention": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateDesignPhase2Request": {
+        "type": "object",
+        "properties": {
+          "wireframe480pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "wireframe768pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "wireframe1024pxPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMobileFirst": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isNavigationClear": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isDesignFunctional": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isVisualConsistencyMet": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateDesignPhaseRequest": {
+        "type": "object",
+        "properties": {
+          "siteMapFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHierarchyClear": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "areSectionsIdentified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "areLinksClear": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "areVisualElementsUseful": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateKanbanItemDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePhaseRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePlanningPhaseF1Request": {
+        "type": "object",
+        "properties": {
+          "projectName": {
+            "type": "string",
+            "nullable": true
+          },
+          "clienteName": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsable": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "generalObjective": {
+            "type": "string",
+            "nullable": true
+          },
+          "specificObjectives": {
+            "type": "string",
+            "nullable": true
+          },
+          "functionalRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "customRequirements": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporateColors": {
+            "type": "string",
+            "nullable": true
+          },
+          "corporateFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowedTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "customTechnologies": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase1": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePlanningPhaseF2Request": {
+        "type": "object",
+        "properties": {
+          "benchmarkObjective": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkSector": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkResponsableF2": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1ScreenshotPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Positives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1Negatives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1EaseOfUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitor1Difficulties": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor1UsefulFeatures": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2ScreenshotPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Positives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2Negatives": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2EaseOfUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitor2Difficulties": {
+            "type": "string",
+            "nullable": true
+          },
+          "competitor2UsefulFeatures": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkFindings": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkImprovements": {
+            "type": "string",
+            "nullable": true
+          },
+          "benchmarkUsedSmartphoneForScreens": {
+            "type": "boolean"
+          },
+          "benchmarkUsedSmartphoneForComparative": {
+            "type": "boolean"
+          },
+          "benchmarkConsideredMobileFirst": {
+            "type": "boolean"
+          },
+          "reflectionPhase2": {
+            "type": "string",
+            "nullable": true
+          },
+          "audienceQuestions": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase3": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePlanningPhaseF3Request": {
+        "type": "object",
+        "properties": {
+          "audienceQuestions": {
+            "type": "string",
+            "nullable": true
+          },
+          "reflectionPhase3": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateProjectRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPhase": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateVisualDesignRequest": {
+        "type": "object",
+        "properties": {
+          "visualDesignFilePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "areVisualElementsBeneficialForSmallScreens": {
+            "type": "boolean"
+          },
+          "doesDesignPrioritizeContentForMobile": {
+            "type": "boolean"
+          },
+          "doesDesignImproveLoadingSpeed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
