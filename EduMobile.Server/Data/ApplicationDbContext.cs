@@ -29,8 +29,6 @@ namespace EduMobile.Server.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.UseCollation("Latin1_General_100_CI_AS_SC_UTF8");
-
             base.OnModelCreating(builder);
 
             builder.Entity<PlanningPhase>()

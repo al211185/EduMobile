@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EduMobile.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Mig24Teams : Migration
+    public partial class Mig23Teams : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ProjectUser",
+                name: "ProjectUsers",
                 columns: table => new
                 {
                     ProjectId = table.Column<int>(type: "int", nullable: false),
@@ -22,15 +22,15 @@ namespace EduMobile.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectUser", x => new { x.ProjectId, x.ApplicationUserId });
+                    table.PrimaryKey("PK_ProjectUsers", x => new { x.ProjectId, x.ApplicationUserId });
                     table.ForeignKey(
-                        name: "FK_ProjectUser_AspNetUsers_ApplicationUserId",
+                        name: "FK_ProjectUsers_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectUser_Projects_ProjectId",
+                        name: "FK_ProjectUsers_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
@@ -38,8 +38,8 @@ namespace EduMobile.Server.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectUser_ApplicationUserId",
-                table: "ProjectUser",
+                name: "IX_ProjectUsers_ApplicationUserId",
+                table: "ProjectUsers",
                 column: "ApplicationUserId");
         }
 
@@ -47,7 +47,7 @@ namespace EduMobile.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProjectUser");
+                name: "ProjectUsers");
         }
     }
 }

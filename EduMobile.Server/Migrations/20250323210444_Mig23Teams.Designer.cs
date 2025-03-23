@@ -12,15 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduMobile.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250320003328_Mig25ProjectUsers")]
-    partial class Mig25ProjectUsers
+    [Migration("20250323210444_Mig23Teams")]
+    partial class Mig23Teams
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseCollation("Latin1_General_100_CI_AS_SC_UTF8")
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
