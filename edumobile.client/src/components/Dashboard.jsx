@@ -61,10 +61,11 @@ const Dashboard = () => {
         }
     };
 
-    const fetchAllProjects = async () => {
+    const fetchAllProjects = async (semesterId) => {
         try {
-            const response = await fetch("api/projects/all-projects", {
-                credentials: "include", // Incluye cookies o tokens para la autenticación
+            // Asegúrate de enviar el semesterId como query parameter
+            const response = await fetch(`/api/projects/all-projects?semesterId=${semesterId}`, {
+                credentials: "include", // Si usas autenticación basada en cookies o tokens
             });
             const data = await response.json();
             if (response.ok) {
@@ -80,11 +81,15 @@ const Dashboard = () => {
     };
 
 
+
     const handleSemesterClick = (semester) => {
         setSelectedSemester(semester);
         setShowRegisterForm(false);
         fetchStudents(semester.id);
+        // Carga los proyectos del semestre seleccionado
+        fetchAllProjects(semester.id);
     };
+
 
     const handleDeleteSemester = async (id) => {
         try {
@@ -182,7 +187,7 @@ const Dashboard = () => {
                                             <td>
                                                 <button
                                                     className="btn-secondary"
-                                                    onClick={() => navigate(`/projects/${project.id}`)}
+                                                    onClick={() => navigate(`/projects/professor/${project.id}`)}
                                                 >
                                                     Ver Detalles
                                                 </button>

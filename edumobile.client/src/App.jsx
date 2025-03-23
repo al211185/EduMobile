@@ -15,6 +15,7 @@ import DevelopmentPhase from "./components/DevelopmentPhase";
 import ProjectDetails from "./components/ProjectDetails";
 import MediaQueryDragAndDropWithReference from "./components/MediaQueryDragAndDropWithReference";
 import ErrorBoundary from "./components/ErrorBoundary";
+import ProjectDetailsProfessor from "./components/ProjectDetailsProfessor";
 import { useAuth } from "./contexts/AuthContext";
 import "./globals.css";
 import "./app.css";
@@ -60,7 +61,8 @@ const App = () => {
                             <>
                                 <Route path="/dashboard" element={<Dashboard />} />
                                 <Route path="/create-semester" element={<CreateSemester />} />
-                                <Route path="/projects/:projectId" element={<ProjectDetails />} />
+                                {/* Rutas para proyectos */}
+                                <Route path="/projects/professor/:id" element={<ProjectDetailsProfessor />} />
                             </>
                         )}
                         {user?.role === "Alumno" && (

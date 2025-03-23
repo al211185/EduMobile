@@ -29,4 +29,8 @@ public class ApplicationUser : IdentityUser
 
     // Relación con los proyectos que ha creado
     public ICollection<Project> Projects { get; set; } = new List<Project>();
+
+    public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
+
+
 }

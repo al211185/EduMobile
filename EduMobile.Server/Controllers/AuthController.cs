@@ -47,6 +47,7 @@ namespace EduMobile.Server.Controllers
                         Message = "Inicio de sesión exitoso.",
                         User = new
                         {
+                            user.Id, // Agrega el ID del usuario
                             user.Nombre,
                             user.ApellidoPaterno,
                             user.ApellidoMaterno,

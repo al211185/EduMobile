@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import GeneralInformation from "./GeneralInformation";
-import ObjectiveSection from "./ObjectiveSection";
-import RequirementsSection from "./RequirementsSection";
-import PreferencesSection from "./PreferencesSection";
-import ReflectiveExercise from "./ReflectiveExercise";
 
 const ProjectDetails = () => {
     const { projectId } = useParams();

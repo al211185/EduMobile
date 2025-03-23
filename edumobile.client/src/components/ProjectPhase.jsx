@@ -4,6 +4,8 @@ import ProjectPlanning from "./PlanningPhase";
 import DesignPhase from "./DesignPhase";
 import DevelopmentPhase from "./DevelopmentPhase";
 import EvaluationPhase from "./EvaluationPhase";
+import AddParticipantModal from "./AddParticipantModal";
+import TeamList from "./TeamList";
 
 const ProjectPhase = () => {
     const { projectId } = useParams();
@@ -12,8 +14,17 @@ const ProjectPhase = () => {
     const [phaseData, setPhaseData] = useState({}); // Datos centralizados de la fase actual
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     // 1: Planeación, 2: Diseño, 3: Desarrollo (Kanban)
     const [currentPhase, setCurrentPhase] = useState(1);
+    const [currentUserId, setCurrentUserId] = useState(""); // Asigna el id del usuario actual
+
+    useEffect(() => {
+
+        // Aquí podrías obtener el currentUserId desde un contexto o desde el localStorage tras el login.
+        const storedUserId = localStorage.getItem("currentUserId");
+        if (storedUserId) setCurrentUserId(storedUserId);
+    }, []);
 
     useEffect(() => {
         const fetchProject = async () => {
@@ -146,11 +157,28 @@ const ProjectPhase = () => {
     if (loading) return <p>Cargando proyecto...</p>;
     if (error) return <p>{error}</p>;
     if (!project) return <p>Error: Proyecto no encontrado.</p>;
+    // Después de obtener el proyecto, calcula isCreator:
+    const isCreator = project && currentUserId && project.createdById === currentUserId;
+    console.log("isCreator:", isCreator, "currentUserId:", currentUserId, "project.createdById:", project?.createdById);
+
+
 
     return (
         <div className="project-phase-container">
             <h1>{project.title}</h1>
             <p>{project.description}</p>
+            <button onClick={() => setIsModalOpen(true)}>Agregar Participante</button>
+            {isModalOpen && (
+                <AddParticipantModal
+                    projectId={projectId}
+                    onClose={() => setIsModalOpen(false)}
+                    onParticipantAdded={() => {
+                        // Opcional: refrescar la lista o la información del proyecto
+                    }}
+                />
+            )}
+            {/* Agrega el componente de lista de participantes */}
+            <TeamList isCreator={isCreator} refreshProject={() => { /* Opcional: refrescar datos del proyecto */ }} />
             {renderPhaseComponent()}
             <div className="navigation-buttons">
                 {currentPhase > 1 && (

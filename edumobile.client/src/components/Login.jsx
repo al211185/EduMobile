@@ -20,6 +20,10 @@ const Login = () => {
             if (response.ok) {
                 const data = await response.json();
                 login(data.user); // Guarda el usuario en el contexto
+
+                // Almacena el ID del usuario en localStorage para poder usarlo en otros componentes
+                localStorage.setItem("currentUserId", data.user.id);
+
                 setMessage("Inicio de sesión exitoso.");
                 window.location.href = "/";
             } else {

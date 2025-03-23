@@ -24,13 +24,15 @@ namespace EduMobile.Server.Data
         // NUEVO: DbSet para las tarjetas del Kanban
         public DbSet<KanbanItem> KanbanItems { get; set; }
 
+        public DbSet<ProjectUser> ProjectUsers { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.UseCollation("Latin1_General_100_CI_AS_SC_UTF8");
 
             base.OnModelCreating(builder);
 
-            // Configuración 1:1 entre Project y PlanningPhase
             builder.Entity<PlanningPhase>()
                    .HasOne(pp => pp.Project)
                    .WithOne(p => p.PlanningPhase)
@@ -96,6 +98,22 @@ namespace EduMobile.Server.Data
                 .HasOne(dp => dp.Project)
                 .WithMany(p => p.DesignPhases)
                 .HasForeignKey(dp => dp.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Nueva configuración para ProjectUser
+            builder.Entity<ProjectUser>()
+                .HasKey(pu => new { pu.ProjectId, pu.ApplicationUserId });
+
+            builder.Entity<ProjectUser>()
+                .HasOne(pu => pu.Project)
+                .WithMany(p => p.ProjectUsers)
+                .HasForeignKey(pu => pu.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ProjectUser>()
+                .HasOne(pu => pu.ApplicationUser)
+                .WithMany(u => u.ProjectUsers)
+                .HasForeignKey(pu => pu.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

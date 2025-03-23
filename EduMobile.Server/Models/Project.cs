@@ -43,6 +43,11 @@ namespace EduMobile.Server.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public int? SemesterId { get; set; }
         public Semester Semester { get; set; }
+
+        //teams
+        public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
+
+
     }
 
 }
