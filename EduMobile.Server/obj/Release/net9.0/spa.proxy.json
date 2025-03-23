@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:50408",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\..\\edumobile.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

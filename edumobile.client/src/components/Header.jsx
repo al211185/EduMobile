@@ -24,9 +24,20 @@ const Header = () => {
                         Inicio
                     </a>
                     {user?.role === "Profesor" && (
-                        <a href="/dashboard" className="nav-courses">
-                            Cursos
-                        </a>
+                        <>
+                            <a href="/dashboard" className="nav-courses">
+                                Cursos
+                            </a>
+                            {/* Enlace para reportar errores visible para todos */}
+                            <a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfzdi8RAKM6yQTqXl2SPa2D_-VRtd_KpN451ip-DNHTLIob4w/viewform?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="nav-error-report"
+                            >
+                                Reporta un error
+                            </a>
+                        </>
                     )}
                     {user?.role === "Alumno" && (
                         <>
@@ -35,6 +46,15 @@ const Header = () => {
                             </a>
                             <a href="/media-game" className="nav-media-game">
                                 Media Query Game
+                            </a>
+                            {/* También puedes incluir el enlace para alumnos, o dejarlo solo para profesores */}
+                            <a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfzdi8RAKM6yQTqXl2SPa2D_-VRtd_KpN451ip-DNHTLIob4w/viewform?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="nav-error-report"
+                            >
+                                Reporta un error
                             </a>
                         </>
                     )}
