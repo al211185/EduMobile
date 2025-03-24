@@ -28,7 +28,6 @@ const Header = () => {
                             <a href="/dashboard" className="nav-courses">
                                 Cursos
                             </a>
-                            {/* Enlace para reportar errores visible para todos */}
                             <a
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSfzdi8RAKM6yQTqXl2SPa2D_-VRtd_KpN451ip-DNHTLIob4w/viewform?usp=sharing"
                                 target="_blank"
@@ -39,6 +38,7 @@ const Header = () => {
                             </a>
                         </>
                     )}
+
                     {user?.role === "Alumno" && (
                         <>
                             <a href="/my-projects" className="nav-projects">

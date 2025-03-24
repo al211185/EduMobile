@@ -4,6 +4,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Cargar el usuario desde localStorage al iniciar la aplicación
     useEffect(() => {
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.removeItem("user");
             }
         }
+        setIsLoading(false);
     }, []);
 
     const login = (userData) => {
@@ -29,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, isLoading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
