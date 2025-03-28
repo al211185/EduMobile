@@ -72,59 +72,86 @@ const Phase3VisualDesign = ({ data, onNext }) => {
     };
 
     return (
-        <div className="phase-container">
-            <h2>Fase 3: Diseño Visual</h2>
-            <p>
-                Define el aspecto estético y gráfico de tu sitio web. Sube el diseño visual y responde las preguntas
-                para completar esta fase.
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6">
+            <h2 className="text-2xl font-bold text-gray-800">Fase 3: Diseño Visual</h2>
+            <p className="text-gray-700">
+                Define el aspecto estético y gráfico de tu sitio web. Sube el diseño visual y responde las preguntas para completar esta fase.
             </p>
-            <div className="design-upload">
-                <label>Sube el diseño visual:</label>
-                <input type="file" accept="image/*" onChange={handleFileChange} />
-                {formData.visualDesignPreviewUrl && (
-                    <div className="image-preview">
+
+            <div className="space-y-4">
+                <label className="block text-gray-700 font-medium">
+                    Sube el diseño visual:
+                </label>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="w-full border border-gray-300 rounded p-2"
+                />
+                {formData.visualDesignPreviewUrl ? (
+                    <div className="mt-4 image-preview">
                         <img
                             src={formData.visualDesignPreviewUrl}
                             alt="Diseño Visual"
-                            style={{ maxWidth: "100%" }}
+                            className="max-w-full max-h-64 object-contain rounded mx-auto"
                         />
                     </div>
+                ) : (
+                    <p className="mt-4 text-gray-500 text-sm">
+                        No se ha seleccionado ninguna imagen.
+                    </p>
                 )}
             </div>
-            <div className="checklist">
-                <label>
+
+            <div className="checklist space-y-4">
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="areVisualElementsBeneficialForSmallScreens"
                         checked={formData.areVisualElementsBeneficialForSmallScreens}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿Los elementos visuales contribuyen a una buena experiencia en pantallas pequeñas?
+                    <span className="text-gray-700 text-sm">
+                        ¿Los elementos visuales contribuyen a una buena experiencia en pantallas pequeñas?
+                    </span>
                 </label>
-                <label>
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="doesDesignPrioritizeContentForMobile"
                         checked={formData.doesDesignPrioritizeContentForMobile}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿El diseño visual prioriza el contenido para dispositivos móviles?
+                    <span className="text-gray-700 text-sm">
+                        ¿El diseño visual prioriza el contenido para dispositivos móviles?
+                    </span>
                 </label>
-                <label>
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="doesDesignImproveLoadingSpeed"
                         checked={formData.doesDesignImproveLoadingSpeed}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿El diseño visual ayuda a mejorar la velocidad de carga en dispositivos móviles?
+                    <span className="text-gray-700 text-sm">
+                        ¿El diseño visual ayuda a mejorar la velocidad de carga en dispositivos móviles?
+                    </span>
                 </label>
             </div>
-            <button onClick={handleSubmit} disabled={!formData.visualDesignFilePath}>
+
+            <button
+                onClick={handleSubmit}
+                disabled={!formData.visualDesignFilePath}
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mt-6 text-sm"
+            >
                 Completar Fase 3
             </button>
         </div>
     );
+
 };
 
 export default Phase3VisualDesign;

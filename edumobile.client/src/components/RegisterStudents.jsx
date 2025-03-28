@@ -21,29 +21,22 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
             alert("Por favor, selecciona un archivo y un semestre válido.");
             return;
         }
-
         if (file.type !== "text/csv") {
             alert("Por favor, sube un archivo CSV válido.");
             return;
         }
-
         setIsSubmitting(true);
-
-        // Parsear el CSV usando Papa Parse
         Papa.parse(file, {
-            header: true, // Se asume que el CSV tiene encabezado con las columnas necesarias
+            header: true,
             skipEmptyLines: true,
             complete: async (results) => {
-                // results.data es un arreglo de objetos con los datos de cada alumno
                 const students = results.data.map((student) => ({
                     matricula: student.matricula,
                     nombre: student.nombre,
                     apellidoPaterno: student.apellidoPaterno,
                     apellidoMaterno: student.apellidoMaterno,
                 }));
-
                 try {
-                    // Registrar los alumnos en masa
                     const registerResponse = await fetch(`/api/auth/register-students`, {
                         method: "POST",
                         headers: {
@@ -51,39 +44,37 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                         },
                         body: JSON.stringify(students),
                     });
-
                     const registerData = await registerResponse.json();
-
                     if (!registerResponse.ok) {
                         setIsSubmitting(false);
-                        alert(`⚠️ Error en el registro: ${registerData.message || "No se pudo registrar a los alumnos."}`);
+                        alert(
+                            `⚠️ Error en el registro: ${registerData.message || "No se pudo registrar a los alumnos."
+                            }`
+                        );
                         return;
                     }
-
-                    // Extraer los IDs de los alumnos registrados exitosamente
-                    // Se asume que registerData.Results contiene un arreglo de objetos con propiedades: Success y UserId
-                    const successfulRegistrations = registerData.results.filter(result => result.success);
-                    const assignmentPayload = successfulRegistrations.map(result => ({
-                        studentId: result.userId, // Debe coincidir con lo que espera el endpoint AssignStudentsToSemester
+                    const successfulRegistrations = registerData.results.filter(
+                        (result) => result.success
+                    );
+                    const assignmentPayload = successfulRegistrations.map((result) => ({
+                        studentId: result.userId,
                     }));
-
-
-                    // Asignar los alumnos al semestre usando el endpoint masivo
-                    const assignResponse = await fetch(`/api/semesters/${selectedSemester.id}/assign-students`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(assignmentPayload),
-                    });
-
+                    const assignResponse = await fetch(
+                        `/api/semesters/${selectedSemester.id}/assign-students`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(assignmentPayload),
+                        }
+                    );
                     const assignData = await assignResponse.json();
-
                     if (!assignResponse.ok) {
-                        throw new Error(assignData.message || "Error al asignar los alumnos al semestre.");
+                        throw new Error(
+                            assignData.message || "Error al asignar los alumnos al semestre."
+                        );
                     }
-                    console.log("Respuesta de registro:", registerData);
-
                     setIsSubmitting(false);
                     alert("✅ Alumnos registrados y asignados exitosamente.");
                     setFile(null);
@@ -100,22 +91,16 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
         });
     };
 
-
-
     const handleIndividualSubmit = async (e) => {
         e.preventDefault();
         if (!selectedSemester) {
             alert("Por favor, selecciona un semestre válido.");
             return;
         }
-
         const email = `al${individualData.matricula}@alumnos.uacj.mx`;
         const password = `Al${individualData.matricula}!`;
-
         setIsSubmitting(true);
-
         try {
-            // Registrar al estudiante
             const registerResponse = await fetch(`/api/auth/register-student`, {
                 method: "POST",
                 headers: {
@@ -130,33 +115,28 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                     password,
                 }),
             });
-
             const registerData = await registerResponse.json();
             if (!registerResponse.ok) {
-                throw new Error(registerData.message || "Error al registrar al estudiante.");
+                throw new Error(
+                    registerData.message || "Error al registrar al estudiante."
+                );
             }
-
-            const studentId = registerData.studentId; // Asegúrate de que el API devuelve esto.
-
-            // Asignar al semestre
-            const assignResponse = await fetch(`/api/semesters/${selectedSemester.id}/assign-student`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    studentId, // Usar el ID del estudiante recién registrado
-                }),
-            });
-
+            const studentId = registerData.studentId;
+            const assignResponse = await fetch(
+                `/api/semesters/${selectedSemester.id}/assign-student`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ studentId }),
+                }
+            );
             const assignData = await assignResponse.json();
             if (!assignResponse.ok) {
                 throw new Error(assignData.message || "Error al asignar al semestre.");
             }
-
             alert("✅ Alumno registrado y asignado exitosamente.");
-
-            // Resetear formulario
             setIndividualData({
                 matricula: "",
                 nombre: "",
@@ -181,22 +161,29 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
     }
 
     return (
-        <div className="register-students">
-            <h3>Registrar Alumnos</h3>
+        <div className="register-students p-6 bg-white rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                Registrar Alumnos
+            </h3>
 
             {/* Botón para regresar a la tabla */}
             <button
-                className="btn-secondary"
+                className="btn-secondary mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors"
                 onClick={() => setShowRegisterForm(false)}
             >
                 Volver a la Tabla de Estudiantes
             </button>
 
             {/* Registro Individual */}
-            <form onSubmit={handleIndividualSubmit}>
-                <h4>Registro Individual</h4>
+            <form onSubmit={handleIndividualSubmit} className="space-y-6 mb-8">
+                <h4 className="text-xl font-semibold text-gray-700">Registro Individual</h4>
                 <div className="form-group">
-                    <label htmlFor="matricula">Matrícula</label>
+                    <label
+                        htmlFor="matricula"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                        Matrícula
+                    </label>
                     <input
                         type="text"
                         id="matricula"
@@ -205,10 +192,16 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                         onChange={handleInputChange}
                         required
                         placeholder="Ingrese la matrícula del alumno"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="nombre">Nombre</label>
+                    <label
+                        htmlFor="nombre"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                        Nombre
+                    </label>
                     <input
                         type="text"
                         id="nombre"
@@ -217,10 +210,16 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                         onChange={handleInputChange}
                         required
                         placeholder="Ingrese el nombre del alumno"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="apellidoPaterno">Apellido Paterno</label>
+                    <label
+                        htmlFor="apellidoPaterno"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                        Apellido Paterno
+                    </label>
                     <input
                         type="text"
                         id="apellidoPaterno"
@@ -229,10 +228,16 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                         onChange={handleInputChange}
                         required
                         placeholder="Ingrese el apellido paterno del alumno"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="apellidoMaterno">Apellido Materno</label>
+                    <label
+                        htmlFor="apellidoMaterno"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                        Apellido Materno
+                    </label>
                     <input
                         type="text"
                         id="apellidoMaterno"
@@ -241,23 +246,42 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                         onChange={handleInputChange}
                         required
                         placeholder="Ingrese el apellido materno del alumno"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-                <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                >
                     {isSubmitting ? "Cargando..." : "Registrar Alumno"}
                 </button>
             </form>
 
-            <hr />
+            <hr className="my-8" />
 
             {/* Registro Masivo */}
-            <form onSubmit={handleFileSubmit}>
-                <h4>Registro Masivo</h4>
+            <form onSubmit={handleFileSubmit} className="space-y-6">
+                <h4 className="text-xl font-semibold text-gray-700">Registro Masivo</h4>
                 <div className="form-group">
-                    <label htmlFor="file">Carga Masiva de Alumnos</label>
-                    <input type="file" id="file" onChange={handleFileUpload} />
+                    <label
+                        htmlFor="file"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                        Carga Masiva de Alumnos
+                    </label>
+                    <input
+                        type="file"
+                        id="file"
+                        onChange={handleFileUpload}
+                        className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
                 </div>
-                <button type="submit" className="btn-primary" disabled={!file || isSubmitting}>
+                <button
+                    type="submit"
+                    disabled={!file || isSubmitting}
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                >
                     {isSubmitting ? "Cargando..." : "Registrar Alumnos"}
                 </button>
             </form>

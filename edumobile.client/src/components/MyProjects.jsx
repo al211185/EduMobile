@@ -40,7 +40,9 @@ const MyProjects = () => {
                     method: "DELETE",
                 });
                 if (response.ok) {
-                    setProjects((prev) => prev.filter((project) => project.id !== projectId));
+                    setProjects((prev) =>
+                        prev.filter((project) => project.id !== projectId)
+                    );
                     alert("Proyecto eliminado con éxito.");
                 } else {
                     const data = await response.json();
@@ -55,26 +57,28 @@ const MyProjects = () => {
     };
 
     return (
-        <div className="my-projects">
-            <h1>Mis Proyectos</h1>
-            <div className="project-cards">
+        <div className="container mx-auto p-6">
+            <h1 className="text-3xl font-bold text-gray-800 mb-6">Mis Proyectos</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project) => (
                     <div
                         key={project.id}
-                        className="project-card"
+                        className="cursor-pointer bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200"
                         onClick={() => handleProjectClick(project.id)}
                     >
-                        <h2>{project.title}</h2>
-                        <p>{project.description}</p>
-                        <div className="card-buttons">
+                        <h2 className="text-xl font-semibold text-gray-800">
+                            {project.title}
+                        </h2>
+                        <p className="text-gray-600 mt-2">{project.description}</p>
+                        <div className="mt-4 flex justify-end space-x-2">
                             <button
-                                className="edit-button"
+                                className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded"
                                 onClick={(event) => handleEditClick(event, project.id)}
                             >
                                 Editar
                             </button>
                             <button
-                                className="delete-button"
+                                className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1 rounded"
                                 onClick={(event) => handleDeleteClick(event, project.id)}
                             >
                                 Eliminar

@@ -31,7 +31,6 @@ function parseRequirements(reqString) {
 }
 
 const Phase1Brief = ({ data, onSave }) => {
-    // Estado inicial
     const [formData, setFormData] = useState({
         projectName: "",
         clienteName: "",
@@ -50,7 +49,6 @@ const Phase1Brief = ({ data, onSave }) => {
         reflectiveAnswers: []
     });
 
-    // Cuando se reciben datos, actualizar el estado usando las claves correctas (minúsculas)
     const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
@@ -89,7 +87,6 @@ const Phase1Brief = ({ data, onSave }) => {
             setIsInitialized(true);
         }
     }, [data, isInitialized]);
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -143,7 +140,6 @@ const Phase1Brief = ({ data, onSave }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Validación mínima
         if (
             !formData.projectName.trim() ||
             !formData.clienteName.trim() ||
@@ -155,7 +151,6 @@ const Phase1Brief = ({ data, onSave }) => {
             return;
         }
 
-        // Armar los campos de Fase 1
         const updatedData = {
             ProjectName: formData.projectName,
             ClienteName: formData.clienteName,
@@ -165,352 +160,330 @@ const Phase1Brief = ({ data, onSave }) => {
             SpecificObjectives: formData.specificObjectives.join(";"),
             FunctionalRequirements: formData.requisitos.selected.join(";"),
             CustomRequirements: formData.requisitos.otros,
-
             CorporateColors: `${formData.preferencias.primaryColor},${formData.preferencias.secondary1Color},${formData.preferencias.secondary2Color}`,
             CorporateFont: formData.preferencias.font,
-
             AllowedTechnologies: formData.allowedTechnologies.selected.join(","),
             CustomTechnologies: formData.allowedTechnologies.otros,
-
             ReflectionPhase1: formData.reflectiveAnswers.join(";"),
         };
 
-        // Llamamos al onNext con SOLO lo de Fase 1
         onSave(updatedData);
     };
 
     return (
-        <div className="project-planning-container">
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>
-                        <h2>Fase 1: Brief de diseño</h2>
-                    </legend>
-                    <p>
-                        En esta sección resolverás las fases de{" "}
-                        <b>Identificación de los objetivos del proyecto web</b> y{" "}
-                        <b>Establecimiento de los requisitos del cliente</b> del proyecto web.
-                    </p>
-                    <p>
-                        Llena los campos que se muestran a continuación y después contesta las
-                        preguntas para continuar a la siguiente sección.
-                    </p>
-                </fieldset>
+        // Contenedor con altura fija y display flex en columna
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg h-[90vh] flex flex-col">
+            <form onSubmit={handleSubmit} className="flex flex-col h-full">
+                {/* Contenedor scrollable para el contenido */}
+                <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 px-2">Fase 1: Brief de diseño</legend>
+                        <p className="text-gray-700">
+                            En esta sección resolverás las fases de <strong>Identificación de los objetivos del proyecto web</strong> y <strong>Establecimiento de los requisitos del cliente</strong> del proyecto web.
+                        </p>
+                        <p className="text-gray-700">
+                            Llena los campos que se muestran a continuación y después contesta las preguntas para continuar a la siguiente sección.
+                        </p>
+                    </fieldset>
 
-                {/* Información general */}
-                <fieldset>
-                    <section className="grid-container informacion" id="info">
-                        <div className="item1 grid-item">
-                            <h3>Información general del proyecto</h3>
+                    {/* Información general */}
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-lg font-semibold text-gray-800 mb-2">Información general del proyecto</legend>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex flex-col">
+                                <label htmlFor="projectName" className="text-gray-700 font-medium">Nombre del proyecto:</label>
+                                <input
+                                    type="text"
+                                    id="projectName"
+                                    name="projectName"
+                                    value={formData.projectName}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded p-2"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <label htmlFor="clienteName" className="text-gray-700 font-medium">Nombre del cliente:</label>
+                                <input
+                                    type="text"
+                                    id="clienteName"
+                                    name="clienteName"
+                                    value={formData.clienteName}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded p-2"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <label htmlFor="responsable" className="text-gray-700 font-medium">Responsable del proyecto:</label>
+                                <input
+                                    type="text"
+                                    id="responsable"
+                                    name="responsable"
+                                    value={formData.responsable}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded p-2"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <label htmlFor="startDate" className="text-gray-700 font-medium">Fecha de inicio:</label>
+                                <input
+                                    type="date"
+                                    id="startDate"
+                                    name="startDate"
+                                    value={formData.startDate}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded p-2"
+                                />
+                            </div>
                         </div>
-                        <div className="item2 grid-item">
-                            <label htmlFor="projectName">Nombre del proyecto:</label>
-                        </div>
-                        <div className="item3 grid-item">
-                            <input
-                                type="text"
-                                id="projectName"
-                                name="projectName"
-                                value={formData.projectName}
-                                onChange={handleChange}
-                                className="styled-input"
-                            />
-                        </div>
-                        <div className="item4 grid-item">
-                            <label htmlFor="clienteName">Nombre del cliente:</label>
-                        </div>
-                        <div className="item5 grid-item">
-                            <input
-                                type="text"
-                                id="clienteName"
-                                name="clienteName"
-                                value={formData.clienteName}
-                                onChange={handleChange}
-                                className="styled-input"
-                            />
-                        </div>
-                        <div className="item6 grid-item">
-                            <label htmlFor="responsable">Responsable del proyecto:</label>
-                        </div>
-                        <div className="item7 grid-item">
-                            <input
-                                type="text"
-                                id="responsable"
-                                name="responsable"
-                                value={formData.responsable}
-                                onChange={handleChange}
-                                className="styled-input"
-                            />
-                        </div>
-                        <div className="item8 grid-item">
-                            <label htmlFor="startDate">Fecha de inicio:</label>
-                        </div>
-                        <div className="item9 grid-item">
-                            <input
-                                type="date"
-                                id="startDate"
-                                name="startDate"
-                                value={formData.startDate}
-                                onChange={handleChange}
-                                className="styled-input"
-                            />
-                        </div>
-                    </section>
-                </fieldset>
+                    </fieldset>
 
-                {/* Objetivos del proyecto */}
-                <fieldset>
-                    <section className="grid-container objetivos" id="obj">
-                        <div className="item1 grid-item">
-                            <h3>Objetivos del proyecto</h3>
+                    {/* Objetivos del proyecto */}
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-lg font-semibold text-gray-800 mb-2">Objetivos del proyecto</legend>
+                        <div className="grid grid-cols-1 gap-4">
+                            <div className="flex flex-col">
+                                <label htmlFor="generalObjective" className="text-gray-700 font-medium">
+                                    <strong>Objetivo general:</strong>
+                                </label>
+                                <textarea
+                                    id="generalObjective"
+                                    name="generalObjective"
+                                    value={formData.generalObjective}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded p-2"
+                                ></textarea>
+                            </div>
+                            <div className="flex flex-col">
+                                <label className="text-gray-700 font-medium">
+                                    <strong>Objetivos específicos:</strong> Escribir de 2 a 3 objetivos claros y medibles
+                                </label>
+                                {formData.specificObjectives.map((obj, index) => (
+                                    <div key={index} className="mt-2">
+                                        <label htmlFor={`obj${index + 1}`} className="text-gray-600">Objetivo {index + 1}:</label>
+                                        <input
+                                            type="text"
+                                            id={`obj${index + 1}`}
+                                            value={obj}
+                                            onChange={(e) => handleSpecificObjectiveChange(index, e.target.value)}
+                                            className="border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div className="item2 grid-item">
-                            <label htmlFor="generalObjective">
-                                <b>Objetivo general:</b>
-                            </label>
+                    </fieldset>
+
+                    {/* Requisitos del cliente */}
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-lg font-semibold text-gray-800 mb-2">Requisitos del cliente</legend>
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-gray-700 font-medium"><strong>Requisitos funcionales:</strong></label>
+                                <div className="mt-2 space-y-1">
+                                    {[
+                                        { value: "formularios_contacto", label: "Formularios de contacto" },
+                                        { value: "formularios_registro", label: "Formularios de registro de usuarios" },
+                                        { value: "conexion_bd", label: "Conexión a bases de datos" },
+                                        { value: "autenticacion_usuarios", label: "Sistema de autenticación (login/registro)" },
+                                        { value: "buscador_interno", label: "Buscador interno en el sitio web" },
+                                        { value: "panel_administracion", label: "Panel de administración" },
+                                        { value: "soporte_multimedia", label: "Soporte para multimedia" },
+                                        { value: "seguridad_ssl", label: "Seguridad SSL" },
+                                        { value: "optimizacion_seo", label: "Optimización SEO" },
+                                        { value: "redes_sociales", label: "Integración con redes sociales" },
+                                        { value: "diseño_responsive", label: "Diseño responsive" },
+                                        { value: "normas_accesibilidad", label: "Normas de accesibilidad" },
+                                        { value: "notificaciones_push", label: "Notificaciones push" },
+                                        { value: "plataforma_ecommerce", label: "Comercio electrónico" }
+                                    ].map((item) => (
+                                        <label key={item.value} className="flex items-center space-x-2">
+                                            <input
+                                                type="checkbox"
+                                                value={item.value}
+                                                checked={formData.requisitos.selected.includes(item.value)}
+                                                onChange={() => handleCheckboxChange("requisitos", item.value)}
+                                                className="h-4 w-4"
+                                            />
+                                            <span className="text-gray-700">{item.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="mt-2">
+                                <label htmlFor="otros" className="text-gray-700 font-medium">Otros requisitos:</label>
+                                <input
+                                    type="text"
+                                    id="otros"
+                                    value={formData.requisitos.otros}
+                                    onChange={(e) =>
+                                        setFormData(prev => ({
+                                            ...prev,
+                                            requisitos: { ...prev.requisitos, otros: e.target.value }
+                                        }))
+                                    }
+                                    className="border border-gray-300 rounded p-2 mt-1 w-full"
+                                />
+                            </div>
                         </div>
-                        <div className="item3 grid-item">
-                            <textarea
-                                id="generalObjective"
-                                name="generalObjective"
-                                value={formData.generalObjective}
-                                onChange={handleChange}
-                                className="styled-input"
-                            ></textarea>
-                        </div>
-                        <div className="item4 grid-item">
-                            <label>
-                                <b>Objetivos específicos:</b> Escribir de 2 a 3 objetivos claros y medibles
-                            </label>
-                        </div>
-                        <div id="item5" className="item5 grid-item">
-                            {formData.specificObjectives.map((obj, index) => (
-                                <div key={index}>
-                                    <label htmlFor={`obj${index + 1}`}>Objetivo {index + 1}:</label>
+                    </fieldset>
+
+                    {/* Restricciones y preferencias */}
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-lg font-semibold text-gray-800 mb-2">Restricciones y preferencias</legend>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex flex-col">
+                                <label className="text-gray-700 font-medium"><strong>Colores corporativos:</strong></label>
+                                <div className="space-y-2 mt-2">
+                                    <div>
+                                        <label htmlFor="primaryColor" className="block text-gray-600">Color primario</label>
+                                        <input
+                                            type="color"
+                                            id="primaryColor"
+                                            name="primaryColor"
+                                            value={formData.preferencias.primaryColor}
+                                            onChange={(e) =>
+                                                handleNestedChange("preferencias", "primaryColor", e.target.value)
+                                            }
+                                            className="w-full h-10 p-0 border border-gray-300 rounded"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="secondary1Color" className="block text-gray-600">Color secundario 1</label>
+                                        <input
+                                            type="color"
+                                            id="secondary1Color"
+                                            name="secondary1Color"
+                                            value={formData.preferencias.secondary1Color}
+                                            onChange={(e) =>
+                                                handleNestedChange("preferencias", "secondary1Color", e.target.value)
+                                            }
+                                            className="w-full h-10 p-0 border border-gray-300 rounded"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="secondary2Color" className="block text-gray-600">Color secundario 2</label>
+                                        <input
+                                            type="color"
+                                            id="secondary2Color"
+                                            name="secondary2Color"
+                                            value={formData.preferencias.secondary2Color}
+                                            onChange={(e) =>
+                                                handleNestedChange("preferencias", "secondary2Color", e.target.value)
+                                            }
+                                            className="w-full h-10 p-0 border border-gray-300 rounded"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-col">
+                                <label htmlFor="font" className="text-gray-700 font-medium"><strong>Tipografías corporativas:</strong></label>
+                                <input
+                                    type="text"
+                                    id="font"
+                                    name="font"
+                                    placeholder="Tipografías"
+                                    value={formData.preferencias.font}
+                                    onChange={(e) =>
+                                        handleNestedChange("preferencias", "font", e.target.value)
+                                    }
+                                    className="border border-gray-300 rounded p-2 mt-2"
+                                />
+                            </div>
+                            <div className="sm:col-span-2">
+                                <label className="text-gray-700 font-medium"><strong>Tecnologías permitidas:</strong></label>
+                                <div className="mt-2 space-y-1">
+                                    {[
+                                        { value: "js", label: "JavaScript: Para interacción en el lado del cliente." },
+                                        { value: "php", label: "PHP: Para manejo de formularios y procesamiento." },
+                                        { value: "sql", label: "MySQL: Para almacenamiento de datos estructurados." },
+                                        { value: "frame", label: "Frameworks" },
+                                        { value: "sass", label: "SASS" },
+                                        { value: "wp", label: "WordPress" },
+                                        { value: "node", label: "Node.js" },
+                                        { value: "ssl", label: "SSL/TLS" },
+                                        { value: "pyt", label: "Python" },
+                                        { value: "rest", label: "REST APIs" }
+                                    ].map((item) => (
+                                        <label key={item.value} className="flex items-center space-x-2">
+                                            <input
+                                                type="checkbox"
+                                                value={item.value}
+                                                checked={formData.allowedTechnologies.selected.includes(item.value)}
+                                                onChange={() => handleCheckboxChange("allowedTechnologies", item.value)}
+                                                className="h-4 w-4"
+                                            />
+                                            <span className="text-gray-700">{item.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                                <div className="mt-2">
+                                    <label htmlFor="tec" className="text-gray-700 font-medium">Otras tecnologías:</label>
                                     <input
                                         type="text"
-                                        id={`obj${index + 1}`}
-                                        value={obj}
-                                        onChange={(e) => handleSpecificObjectiveChange(index, e.target.value)}
-                                        className="styled-input"
+                                        id="tec"
+                                        name="tec"
+                                        value={formData.allowedTechnologies.otros}
+                                        onChange={(e) =>
+                                            setFormData(prev => ({
+                                                ...prev,
+                                                allowedTechnologies: {
+                                                    ...prev.allowedTechnologies,
+                                                    otros: e.target.value
+                                                }
+                                            }))
+                                        }
+                                        className="border border-gray-300 rounded p-2 mt-1 w-full"
                                     />
                                 </div>
-                            ))}
+                            </div>
                         </div>
-                    </section>
-                </fieldset>
+                    </fieldset>
 
-                {/* Requisitos del cliente */}
-                <fieldset>
-                    <section className="grid-container requisitos" id="req">
-                        <div className="item1 grid-item">
-                            <h3>Requisitos del cliente</h3>
-                        </div>
-                        <div className="item2 grid-item">
-                            <label>
-                                <b>Requisitos funcionales:</b>
-                            </label>
-                        </div>
-                        <div className="item3 grid-item">
+                    {/* Ejercicio reflexivo */}
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-lg font-semibold text-gray-800 mb-2">Ejercicio reflexivo</legend>
+                        <p className="text-gray-700">
+                            Responde a las siguientes preguntas marcando en el recuadro y presiona el botón para pasar a la siguiente sección.
+                        </p>
+                        <div className="mt-4 space-y-2">
                             {[
-                                { value: "formularios_contacto", label: "Formularios de contacto" },
-                                { value: "formularios_registro", label: "Formularios de registro de usuarios" },
-                                { value: "conexion_bd", label: "Conexión a bases de datos" },
-                                { value: "autenticacion_usuarios", label: "Sistema de autenticación (login/registro)" },
-                                { value: "buscador_interno", label: "Buscador interno en el sitio web" },
-                                { value: "panel_administracion", label: "Panel de administración" },
-                                { value: "soporte_multimedia", label: "Soporte para multimedia" },
-                                { value: "seguridad_ssl", label: "Seguridad SSL" },
-                                { value: "optimizacion_seo", label: "Optimización SEO" },
-                                { value: "redes_sociales", label: "Integración con redes sociales" },
-                                { value: "diseño_responsive", label: "Diseño responsive" },
-                                { value: "normas_accesibilidad", label: "Normas de accesibilidad" },
-                                { value: "notificaciones_push", label: "Notificaciones push" },
-                                { value: "plataforma_ecommerce", label: "Comercio electrónico" }
+                                {
+                                    value: "formularios_contacto",
+                                    label:
+                                        "¿Dentro de los objetivos, se consideró importante el diseño para dispositivos móviles como primera opción?",
+                                },
+                                {
+                                    value: "formularios_registro",
+                                    label:
+                                        "¿En los requisitos funcionales, se consideró el enfoque Mobile First en la optimización para motores de búsqueda?",
+                                },
+                                {
+                                    value: "conexion_bd",
+                                    label:
+                                        "¿En las tecnologías permitidas, se contempló el uso de frameworks con enfoque Mobile First?",
+                                },
                             ].map((item) => (
-                                <label key={item.value}>
+                                <label key={item.value} className="flex items-center space-x-2">
                                     <input
                                         type="checkbox"
                                         value={item.value}
-                                        checked={formData.requisitos.selected.includes(item.value)}
-                                        onChange={() => handleCheckboxChange("requisitos", item.value)}
+                                        checked={formData.reflectiveAnswers.includes(item.value)}
+                                        onChange={() => handleReflectiveChange(item.value)}
+                                        className="h-4 w-4"
                                     />
-                                    {item.label}
+                                    <span className="text-gray-700">{item.label}</span>
                                 </label>
                             ))}
-                            <br />
-                            <label htmlFor="otros">Otros requisitos:</label>
-                            <input
-                                type="text"
-                                id="otros"
-                                value={formData.requisitos.otros}
-                                onChange={(e) =>
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        requisitos: { ...prev.requisitos, otros: e.target.value }
-                                    }))
-                                }
-                                className="styled-input"
-                            />
                         </div>
-                    </section>
-                </fieldset>
+                    </fieldset>
+                </div>
 
-                {/* Restricciones y preferencias */}
-                <fieldset>
-                    <section className="grid-container requisitos" id="requisitos">
-                        <div className="item1 grid-item">
-                            <h3>Restricciones y preferencias</h3>
-                        </div>
-                        <div className="item2 grid-item">
-                            <label htmlFor="primaryColor">
-                                <b>Colores corporativos:</b>
-                            </label>
-                        </div>
-                        <div className="item3 grid-item">
-                            <label htmlFor="primaryColor">Color primario</label>
-                            <input
-                                type="color"
-                                id="primaryColor"
-                                name="primaryColor"
-                                value={formData.preferencias.primaryColor}
-                                onChange={(e) =>
-                                    handleNestedChange("preferencias", "primaryColor", e.target.value)
-                                }
-                                style={{ width: "100%", height: "40px", padding: 0 }}
-                            />
-                            <br />
-                            <label htmlFor="secondary1Color">Color secundario 1</label>
-                            <input
-                                type="color"
-                                id="secondary1Color"
-                                name="secondary1Color"
-                                value={formData.preferencias.secondary1Color}
-                                onChange={(e) =>
-                                    handleNestedChange("preferencias", "secondary1Color", e.target.value)
-                                }
-                                style={{ width: "100%", height: "40px", padding: 0 }}
-                            />
-                            <br />
-                            <label htmlFor="secondary2Color">Color secundario 2</label>
-                            <input
-                                type="color"
-                                id="secondary2Color"
-                                name="secondary2Color"
-                                value={formData.preferencias.secondary2Color}
-                                onChange={(e) =>
-                                    handleNestedChange("preferencias", "secondary2Color", e.target.value)
-                                }
-                                style={{ width: "100%", height: "40px", padding: 0 }}
-                            />
-                        </div>
-                        <div className="item4 grid-item">
-                            <label htmlFor="font">
-                                <b>Tipografías corporativas:</b>
-                            </label>
-                        </div>
-                        <div className="item5 grid-item">
-                            <input
-                                type="text"
-                                id="font"
-                                name="font"
-                                placeholder="Tipografías"
-                                value={formData.preferencias.font}
-                                onChange={(e) =>
-                                    handleNestedChange("preferencias", "font", e.target.value)
-                                }
-                                className="styled-input"
-                            />
-                        </div>
-                        <div className="item6 grid-item">
-                            <b>Tecnologías permitidas:</b>
-                        </div>
-                        <div className="item7 grid-item">
-                            {[
-                                { value: "js", label: "JavaScript: Para interacción en el lado del cliente." },
-                                { value: "php", label: "PHP: Para manejo de formularios y procesamiento." },
-                                { value: "sql", label: "MySQL: Para almacenamiento de datos estructurados." },
-                                { value: "frame", label: "Frameworks" },
-                                { value: "sass", label: "SASS" },
-                                { value: "wp", label: "WordPress" },
-                                { value: "node", label: "Node.js" },
-                                { value: "ssl", label: "SSL/TLS" },
-                                { value: "pyt", label: "Python" },
-                                { value: "rest", label: "REST APIs" }
-                            ].map((item) => (
-                                <label key={item.value}>
-                                    <input
-                                        type="checkbox"
-                                        value={item.value}
-                                        checked={formData.allowedTechnologies.selected.includes(item.value)}
-                                        onChange={() => handleCheckboxChange("allowedTechnologies", item.value)}
-                                    />
-                                    {item.label}
-                                </label>
-                            ))}
-                            <br />
-                            <label htmlFor="tec">Otras tecnologías:</label>
-                            <input
-                                type="text"
-                                id="tec"
-                                name="tec"
-                                value={formData.allowedTechnologies.otros}
-                                onChange={(e) =>
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        allowedTechnologies: {
-                                            ...prev.allowedTechnologies,
-                                            otros: e.target.value
-                                        }
-                                    }))
-                                }
-                                className="styled-input"
-                            />
-                        </div>
-                    </section>
-                </fieldset>
-
-                {/* Ejercicio reflexivo */}
-                <fieldset>
-                    <legend>
-                        <h3>Ejercicio reflexivo</h3>
-                    </legend>
-                    <p>
-                        Responde a las siguientes preguntas marcando en el recuadro y presiona el botón para pasar a la siguiente sección.
-                    </p>
-                    <div className="checklist">
-                        {[
-                            {
-                                value: "formularios_contacto",
-                                label:
-                                    "¿Dentro de los objetivos, se consideró importante el diseño para dispositivos móviles como primera opción?",
-                            },
-                            {
-                                value: "formularios_registro",
-                                label:
-                                    "¿En los requisitos funcionales, se consideró el enfoque Mobile First en la optimización para motores de búsqueda?",
-                            },
-                            {
-                                value: "conexion_bd",
-                                label:
-                                    "¿En las tecnologías permitidas, se contempló el uso de frameworks con enfoque Mobile First?",
-                            },
-                        ].map((item) => (
-                            <label key={item.value}>
-                                <input
-                                    type="checkbox"
-                                    value={item.value}
-                                    checked={formData.reflectiveAnswers.includes(item.value)}
-                                    onChange={() => handleReflectiveChange(item.value)}
-                                />
-                                {item.label}
-                            </label>
-                        ))}
-                    </div>
-                    <button type="submit">
+                {/* Contenedor fijo para los botones de navegación */}
+                <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4">
+                    <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
                         Guardar
                     </button>
-                </fieldset>
+                </div>
             </form>
         </div>
     );

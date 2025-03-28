@@ -101,6 +101,14 @@
       "PackagePath": "staticwebassets\\uploads\\1eadf333-d82f-490e-902c-80eae4bb4333.jpg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\2041a269-2318-495a-8298-6151bbb22144.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2041a269-2318-495a-8298-6151bbb22144.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\26793de3-de00-4acf-81a1-18cf1fa26fbf.png",
+      "PackagePath": "staticwebassets\\uploads\\26793de3-de00-4acf-81a1-18cf1fa26fbf.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg",
       "PackagePath": "staticwebassets\\uploads\\270fd4c5-a756-4db5-aa78-5fc2506ad855.jpg"
     },
@@ -113,8 +121,16 @@
       "PackagePath": "staticwebassets\\uploads\\28a5eef6-c1e1-4722-bdba-7d318e0701c6.jpeg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\292ca1d9-ec1a-494b-9012-1c61e43952df.png",
+      "PackagePath": "staticwebassets\\uploads\\292ca1d9-ec1a-494b-9012-1c61e43952df.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\2fc68508-8210-4381-9100-773ff9fba316.jpg",
       "PackagePath": "staticwebassets\\uploads\\2fc68508-8210-4381-9100-773ff9fba316.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\37613980-f281-46f6-bfa2-086a03e59aed.jpg",
+      "PackagePath": "staticwebassets\\uploads\\37613980-f281-46f6-bfa2-086a03e59aed.jpg"
     },
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\37af9bcd-45c7-4c1d-a920-b1829a2c8239.jpeg",
@@ -129,8 +145,16 @@
       "PackagePath": "staticwebassets\\uploads\\40c60005-5655-45e2-a5d5-c744daaddfeb.jpg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\434df5d0-248c-46d8-8f69-a4744b2bc4eb.png",
+      "PackagePath": "staticwebassets\\uploads\\434df5d0-248c-46d8-8f69-a4744b2bc4eb.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg",
       "PackagePath": "staticwebassets\\uploads\\45bb3cf6-36af-4b18-b122-d36b1faec69d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\4835b32e-1744-4623-bd8f-561e6c686ee9.jpg",
+      "PackagePath": "staticwebassets\\uploads\\4835b32e-1744-4623-bd8f-561e6c686ee9.jpg"
     },
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\4d743d17-d888-4cc2-bca8-c88e8e65905b.jpg",
@@ -157,6 +181,18 @@
       "PackagePath": "staticwebassets\\uploads\\7b721e52-f1ad-4dd2-960a-c873b9b16421.jpg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\81b97dd8-f536-4e39-be2c-d10143ba5981.png",
+      "PackagePath": "staticwebassets\\uploads\\81b97dd8-f536-4e39-be2c-d10143ba5981.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\93ee83ce-0fc7-4b67-b428-6a2073520ce4.png",
+      "PackagePath": "staticwebassets\\uploads\\93ee83ce-0fc7-4b67-b428-6a2073520ce4.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\9a404911-b748-42c4-8270-c76a16488e00.png",
+      "PackagePath": "staticwebassets\\uploads\\9a404911-b748-42c4-8270-c76a16488e00.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\Imagen_de_WhatsApp_2025_03_03_a_las_20_09_14_81740558_20250309010014493.jpg",
       "PackagePath": "staticwebassets\\uploads\\Imagen_de_WhatsApp_2025_03_03_a_las_20_09_14_81740558_20250309010014493.jpg"
     },
@@ -181,6 +217,10 @@
       "PackagePath": "staticwebassets\\uploads\\c0dda50c-1b50-41c7-afb3-2630db468b08.png"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\c83e8819-4bad-405b-b99e-a4255d82d54b.png",
+      "PackagePath": "staticwebassets\\uploads\\c83e8819-4bad-405b-b99e-a4255d82d54b.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\cb445a2b-d4d5-48e4-b75b-e828fc2b5b85.jpg",
       "PackagePath": "staticwebassets\\uploads\\cb445a2b-d4d5-48e4-b75b-e828fc2b5b85.jpg"
     },
@@ -193,8 +233,16 @@
       "PackagePath": "staticwebassets\\uploads\\d5d18450-a204-49bc-8b59-9b86d6f885e7.jpg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\d8692b44-ea6c-41b7-9f48-7065a033711a.png",
+      "PackagePath": "staticwebassets\\uploads\\d8692b44-ea6c-41b7-9f48-7065a033711a.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\f8f8c06d-3c78-46ae-995c-448af7f33dc0.jpg",
       "PackagePath": "staticwebassets\\uploads\\f8f8c06d-3c78-46ae-995c-448af7f33dc0.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\f9d7ab3e-8993-489d-9b63-9576d8da19e9.png",
+      "PackagePath": "staticwebassets\\uploads\\f9d7ab3e-8993-489d-9b63-9576d8da19e9.png"
     },
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\fc911d2a-ac78-46c8-91eb-f511e57f2832.jpg",

@@ -4,7 +4,7 @@ import Phase1Brief from "./Phase1Brief";
 import Phase2Benchmarking from "./Phase2Benchmarking";
 import Phase3Audience from "./Phase3Audience";
 
-const PlanningPhase = () => {
+const PlanningPhase = ({ readOnly = false }) => {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
@@ -92,8 +92,11 @@ const PlanningPhase = () => {
         }
     };
 
-    // onSaveData: se invoca desde los hijos para guardar sin cambiar de fase
+    // Si estamos en modo readOnly, evitamos intentar guardar datos
     const handleSaveData = async (childData) => {
+        if (readOnly) {
+            return true;
+        }
         const newData = { ...phaseData, ...childData };
         const saved = await savePhaseData(newData);
         if (saved) {
@@ -102,20 +105,24 @@ const PlanningPhase = () => {
         } else {
             alert("Error al guardar datos, intenta nuevamente.");
         }
+        return saved;
     };
 
     // Navegación: Avanza o retrocede entre subfases
     const handleNext = async () => {
-        const saved = await savePhaseData(phaseData);
-        if (!saved) {
-            alert("Error al guardar datos, intenta nuevamente.");
-            return;
+        if (!readOnly) {
+            const saved = await savePhaseData(phaseData);
+            if (!saved) {
+                alert("Error al guardar datos, intenta nuevamente.");
+                return;
+            }
         }
         if (currentPhase < 3) {
             setCurrentPhase((prev) => prev + 1);
         } else {
-            // Finalizada la fase de planeación, redirige a la fase de diseño
-            navigate(`/fase-2-diseno/${projectId}`);
+            if (!readOnly) {
+                alert("Planeación finalizada y datos guardados exitosamente.");
+            }
         }
     };
 
@@ -127,42 +134,51 @@ const PlanningPhase = () => {
 
     // Renderiza el componente hijo correspondiente según la fase actual
     const renderPhaseChild = () => {
+        // Se pasa readOnly para que cada componente hijo pueda deshabilitar la edición
         if (currentPhase === 1) {
-            return <Phase1Brief data={phaseData} onSave={handleSaveData} />;
+            return <Phase1Brief data={phaseData} onSave={handleSaveData} readOnly={readOnly} />;
         } else if (currentPhase === 2) {
-            return <Phase2Benchmarking data={phaseData} onSave={handleSaveData} />;
+            return <Phase2Benchmarking data={phaseData} onSave={handleSaveData} readOnly={readOnly} />;
         } else if (currentPhase === 3) {
-            return <Phase3Audience data={phaseData} onSave={handleSaveData} />;
+            return <Phase3Audience data={phaseData} onSave={handleSaveData} readOnly={readOnly} />;
         }
         return null;
     };
 
-    if (loading) return <p>Cargando fase de planeación...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return <p className="text-center">Cargando fase de planeación...</p>;
+    if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return (
-        <div className="planning-phase-container">
-            <h2>Etapa de Planeación</h2>
-            <div className="progress-bar">
-                <div
-                    className="progress"
-                    style={{ width: `${(currentPhase / 3) * 100}%` }}
-                ></div>
-            </div>
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg h-[90vh] flex flex-col overflow-hidden">
+            {/* Header fijo */}
+            <header className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-800">Etapa de Planeación</h2>
+                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                    <div
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${(currentPhase / 3) * 100}%` }}
+                    ></div>
+                </div>
+            </header>
 
-            {renderPhaseChild()}
+            {/* Contenedor scrollable para el contenido */}
+            <main className="flex-1 overflow-y-auto p-6">
+                {renderPhaseChild()}
+            </main>
 
-            {/* Botones de navegación centralizados */}
-            <div className="navigation-buttons">
-                {currentPhase > 1 && (
-                    <button onClick={handlePrev} className="btn-secondary">
-                        Anterior
+            {/* Botones de navegación */}
+            <footer className="px-6 py-4 border-t border-gray-200">
+                <div className="flex justify-between">
+                    {currentPhase > 1 && (
+                        <button onClick={handlePrev} className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+                            Anterior
+                        </button>
+                    )}
+                    <button onClick={handleNext} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+                        {currentPhase < 3 ? "Siguiente" : "Finalizar Planeación"}
                     </button>
-                )}
-                <button onClick={handleNext} className="btn-primary">
-                    {currentPhase < 3 ? "Siguiente" : "Finalizar Planeación"}
-                </button>
-            </div>
+                </div>
+            </footer>
         </div>
     );
 };

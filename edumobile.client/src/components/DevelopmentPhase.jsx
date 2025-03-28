@@ -86,16 +86,16 @@ const DevelopmentPhase = ({ projectId }) => {
             <Droppable droppableId={status} key={status}>
                 {(provided, snapshot) => (
                     <div
-                        className="kanban-column"
+                        className="bg-gray-100 p-4 rounded-md shadow-sm min-h-[200px]"
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                     >
-                        <h3>{status}</h3>
+                        <h3 className="text-lg font-semibold text-gray-700 mb-2">{status}</h3>
                         {items.map((item, index) => (
                             <Draggable key={String(item.id)} draggableId={String(item.id)} index={index}>
                                 {(provided, snapshot) => (
                                     <div
-                                        className="kanban-card"
+                                        className="bg-white p-4 rounded-md border border-gray-200 shadow-sm mb-2"
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
@@ -104,8 +104,8 @@ const DevelopmentPhase = ({ projectId }) => {
                                             opacity: snapshot.isDragging ? 0.8 : 1,
                                         }}
                                     >
-                                        <h4>{item.title}</h4>
-                                        <p>{item.description}</p>
+                                        <h4 className="text-md font-medium text-gray-800">{item.title}</h4>
+                                        <p className="text-sm text-gray-600">{item.description}</p>
                                     </div>
                                 )}
                             </Draggable>
@@ -117,20 +117,73 @@ const DevelopmentPhase = ({ projectId }) => {
         );
     };
 
+
     if (loading) return <div>Cargando...</div>;
     if (error) return <div>{error}</div>;
     if (!developmentPhase) return <div>No se encontró la fase de desarrollo para este proyecto.</div>;
 
     return (
-        <div className="development-phase">
-            <h2>Kanban Board del Proyecto {projectId}</h2>
+        <div className="w-full min-h-screen p-6 bg-gray-50">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Kanban Board del Proyecto {projectId}
+            </h2>
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className="kanban-board" style={{ display: "flex", gap: "1rem" }}>
-                    {statuses.map(status => renderColumn(status))}
+                <div className="flex gap-4 h-[calc(100vh-150px)]">
+                    {statuses.map((status) => (
+                        <div key={status} className="flex-1">
+                            <Droppable droppableId={status}>
+                                {(provided, snapshot) => (
+                                    <div
+                                        className="bg-gray-100 p-4 rounded-md shadow-sm h-full flex flex-col"
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                                            {status}
+                                        </h3>
+                                        <div className="flex-1 overflow-y-auto">
+                                            {kanbanItems
+                                                .filter((item) => item.status === status)
+                                                .map((item, index) => (
+                                                    <Draggable
+                                                        key={String(item.id)}
+                                                        draggableId={String(item.id)}
+                                                        index={index}
+                                                    >
+                                                        {(provided, snapshot) => (
+                                                            <div
+                                                                className="bg-white p-4 rounded-md border border-gray-200 shadow-sm mb-2"
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={{
+                                                                    ...provided.draggableProps.style,
+                                                                    opacity: snapshot.isDragging ? 0.8 : 1,
+                                                                }}
+                                                            >
+                                                                <h4 className="text-md font-medium text-gray-800">
+                                                                    {item.title}
+                                                                </h4>
+                                                                <p className="text-sm text-gray-600">
+                                                                    {item.description}
+                                                                </p>
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    </div>
+                                )}
+                            </Droppable>
+                        </div>
+                    ))}
                 </div>
             </DragDropContext>
         </div>
     );
+
+
 };
 
 export default DevelopmentPhase;

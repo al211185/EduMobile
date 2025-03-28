@@ -5,8 +5,8 @@ import Phase2Wireframes from "./Phase2Wireframes";
 import Phase3VisualDesign from "./Phase3VisualDesign";
 import Phase4ContentCreation from "./Phase4ContentCreation";
 
-const DesignPhase = () => {
-    const { projectId } = useParams(); // Obtén el projectId de la URL
+const DesignPhase = ({ readOnly = false }) => {
+    const { projectId } = useParams();
     const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
     const [phaseData, setPhaseData] = useState(null);
@@ -18,7 +18,7 @@ const DesignPhase = () => {
                 return;
             }
             try {
-                const response = await fetch(`https://localhost:50408/api/designphases/${projectId}`, {
+                const response = await fetch(`/api/designphases/${projectId}`, {
                     credentials: "include",
                 });
                 if (response.ok) {
@@ -26,7 +26,10 @@ const DesignPhase = () => {
                     console.log("Datos de la fase obtenidos:", data);
                     setPhaseData(data);
                 } else {
-                    console.error("Error al cargar los datos de la fase", await response.json());
+                    console.error(
+                        "Error al cargar los datos de la fase",
+                        await response.json()
+                    );
                 }
             } catch (error) {
                 console.error("Error al cargar los datos de la fase", error);
@@ -37,15 +40,18 @@ const DesignPhase = () => {
     }, [projectId, currentPhase]);
 
     const savePhaseData = async (updatedData) => {
+        // En modo readonly no se guarda nada
+        if (readOnly) return true;
         try {
-            const designPhaseId = phaseData?.id || phaseData?.PhaseId || phaseData?.Id;
-            let endpoint = `https://localhost:50408/api/designphases/${designPhaseId}`;
+            const designPhaseId =
+                phaseData?.id || phaseData?.PhaseId || phaseData?.Id;
+            let endpoint = `/api/designphases/${designPhaseId}`;
             if (currentPhase === 2) {
-                endpoint = `https://localhost:50408/api/designphases/Phase2/${designPhaseId}`;
+                endpoint = `/api/designphases/Phase2/${designPhaseId}`;
             } else if (currentPhase === 3) {
-                endpoint = `https://localhost:50408/api/designphases/Phase3/${designPhaseId}`;
+                endpoint = `/api/designphases/Phase3/${designPhaseId}`;
             } else if (currentPhase === 4) {
-                endpoint = `https://localhost:50408/api/designphases/Phase4/${designPhaseId}`;
+                endpoint = `/api/designphases/Phase4/${designPhaseId}`;
             }
 
             const response = await fetch(endpoint, {
@@ -70,16 +76,19 @@ const DesignPhase = () => {
     };
 
     const handleNextPhase = async (updatedData) => {
-        const saved = await savePhaseData(updatedData);
-        if (!saved) {
-            alert("Error al guardar los datos, intenta nuevamente.");
-            return;
+        if (!readOnly) {
+            const saved = await savePhaseData(updatedData);
+            if (!saved) {
+                alert("Error al guardar los datos, intenta nuevamente.");
+                return;
+            }
         }
         if (currentPhase < 4) {
             setCurrentPhase((prev) => prev + 1);
         } else {
-            // Al terminar la fase de diseño, navega a la fase de desarrollo
-            navigate(`/development-phase/${projectId}`);
+            if (!readOnly) {
+                alert("Diseño finalizado y datos guardados exitosamente.");
+            }
         }
     };
 
@@ -89,51 +98,53 @@ const DesignPhase = () => {
         }
     };
 
-    const restartProcess = () => {
-        setCurrentPhase(1);
-    };
-
     if (!projectId) {
         return <div>Error: El ID del proyecto es indefinido</div>;
     }
 
     return (
-        <div className="design-phase-container">
-            <h1>EduMobile Web Design</h1>
-            <h2>Etapa de Diseño</h2>
-            {/* Barra de progreso */}
-            <div className="progress-bar">
-                <div className="progress" style={{ width: `${(currentPhase / 4) * 100}%` }}></div>
-            </div>
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+            {/* Encabezado */}
+            <header className="mb-4">
+                <h1 className="text-2xl font-bold text-gray-800">EduMobile Web Design</h1>
+                <h2 className="text-xl text-gray-700">Etapa de Diseño</h2>
+                <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
+                    <div
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${(currentPhase / 4) * 100}%` }}
+                    ></div>
+                </div>
+            </header>
 
             {/* Renderizado condicional de fases */}
             {currentPhase === 1 && phaseData && (
-                <Phase1SiteMap data={phaseData} onNext={handleNextPhase} />
+                <Phase1SiteMap data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
             )}
             {currentPhase === 2 && phaseData && (
-                <Phase2Wireframes data={phaseData} onNext={handleNextPhase} />
+                <Phase2Wireframes data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
             )}
             {currentPhase === 3 && (
-                <Phase3VisualDesign data={phaseData} onNext={handleNextPhase} />
+                <Phase3VisualDesign data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
             )}
             {currentPhase === 4 && (
-                <Phase4ContentCreation data={phaseData} onNext={handleNextPhase} />
+                <Phase4ContentCreation data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
             )}
 
-            {/* Controles de navegación centralizados */}
-            <div className="navigation-buttons">
-                <button onClick={handlePrevPhase} disabled={currentPhase === 1} className="btn-secondary">
+            {/* Controles de navegación */}
+            <div className="mt-6 flex justify-center space-x-4">
+                <button
+                    onClick={handlePrevPhase}
+                    disabled={currentPhase === 1}
+                    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+                >
                     Anterior
                 </button>
-                {currentPhase < 4 ? (
-                    <button onClick={() => handleNextPhase(phaseData)} className="btn-primary">
-                        Siguiente
-                    </button>
-                ) : (
-                    <button onClick={restartProcess} className="btn-primary">
-                        Reiniciar
-                    </button>
-                )}
+                <button
+                    onClick={() => handleNextPhase(phaseData)}
+                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                >
+                    {currentPhase < 4 ? "Siguiente" : "Finalizar Diseño"}
+                </button>
             </div>
         </div>
     );

@@ -124,152 +124,196 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="dashboard-container">
-            {/* Contenido principal */}
-            <main className="main-container dashboard-main">
-                <h1 className="main-title">Gestión de Cursos</h1>
+        <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+            <main className="space-y-8">
+                <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
+                    Gestión de Cursos
+                </h1>
 
                 {message && (
-                    <div className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`}>
+                    <div
+                        className={`p-3 rounded mb-4 text-center text-sm ${message.startsWith("✅")
+                                ? "bg-green-100 text-green-800"
+                                : "bg-red-100 text-red-800"
+                            }`}
+                    >
                         {message}
                     </div>
                 )}
 
-                <div className="semesters-pills">
+                {/* Semestres / Cursos */}
+                <section>
                     {loading ? (
-                        <p>Cargando cursos...</p>
+                        <p className="text-center text-gray-600">Cargando cursos...</p>
                     ) : semesters.length > 0 ? (
-                        semesters.map((semester) => (
-                            <div key={semester.id} className="semester-container">
-                                <button
-                                    className={`semester-pill ${selectedSemester?.id === semester.id ? "active" : ""}`}
-                                    onClick={() => handleSemesterClick(semester)}
-                                    title={`Periodo: ${semester.period}, Año: ${semester.year}`}
+                        <div className="flex flex-wrap gap-4 justify-center">
+                            {semesters.map((semester) => (
+                                <div
+                                    key={semester.id}
+                                    className="flex items-center gap-2 border border-gray-200 rounded-full px-2 py-1 shadow-sm"
                                 >
-                                    {semester.name}
-                                </button>
-                                <button
-                                    className="delete-button"
-                                    onClick={() => handleDeleteSemester(semester.id)}
-                                >
-                                    Eliminar
-                                </button>
-                            </div>
-                        ))
+                                    <button
+                                        onClick={() => handleSemesterClick(semester)}
+                                        title={`Periodo: ${semester.period}, Año: ${semester.year}`}
+                                        className={`px-4 py-2 rounded-full font-semibold transition-colors duration-200 ${selectedSemester?.id === semester.id
+                                                ? "bg-blue-500 text-white"
+                                                : "bg-white text-gray-800 border border-gray-300 hover:bg-blue-100"
+                                            }`}
+                                    >
+                                        {semester.name}
+                                    </button>
+                                    <button
+                                        onClick={() => handleDeleteSemester(semester.id)}
+                                        className="px-3 py-1 text-sm text-red-600 hover:text-red-800"
+                                    >
+                                        Eliminar
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     ) : (
-                        <p>No hay cursos creados aún.</p>
+                        <p className="text-center text-gray-600">No hay cursos creados aún.</p>
                     )}
-                </div>
+                </section>
 
-                <div className="projects-section">
-                    <h2 className="main-title">Proyectos Activos</h2>
+                {/* Proyectos Activos */}
+                <section>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Proyectos Activos</h2>
                     {loadingProjects ? (
-                        <p>Cargando proyectos...</p>
+                        <p className="text-center text-gray-600">Cargando proyectos...</p>
                     ) : projects.length > 0 ? (
-                        <table className="projects-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Título</th>
-                                    <th>Descripción</th>
-                                    <th>Creado Por</th>
-                                    <th>Semestre</th>
-                                </tr>
-                            </thead>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                    <tr className="bg-gray-100">
+                                        <th className="px-4 py-2 border">ID</th>
+                                        <th className="px-4 py-2 border">Título</th>
+                                        <th className="px-4 py-2 border">Descripción</th>
+                                        <th className="px-4 py-2 border">Creado Por</th>
+                                        <th className="px-4 py-2 border">Semestre</th>
+                                        <th className="px-4 py-2 border">Acciones</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     {projects.map((project) => (
-                                        <tr key={project.id}>
-                                            <td>{project.id}</td>
-                                            <td>{project.title}</td>
-                                            <td>{project.description}</td>
-                                            <td>{project.createdBy || "Desconocido"}</td>
-                                            <td>{project.semesterName || "Sin Semestre"}</td>
-                                            <td>
+                                        <tr key={project.id} className="text-center">
+                                            <td className="px-4 py-2 border">{project.id}</td>
+                                            <td className="px-4 py-2 border">{project.title}</td>
+                                            <td className="px-4 py-2 border">{project.description}</td>
+                                            <td className="px-4 py-2 border">
+                                                {project.createdBy || "Desconocido"}
+                                            </td>
+                                            <td className="px-4 py-2 border">
+                                                {project.semesterName || "Sin Semestre"}
+                                            </td>
+                                            <td className="px-4 py-2 border">
                                                 <button
-                                                    className="btn-secondary"
-                                                    onClick={() => navigate(`/projects/professor/${project.id}`)}
+                                                    className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm"
+                                                    onClick={() =>
+                                                        navigate(`/projects/professor/${project.id}`)
+                                                    }
                                                 >
                                                     Ver Detalles
                                                 </button>
                                             </td>
-
                                         </tr>
                                     ))}
                                 </tbody>
-
-                        </table>
+                            </table>
+                        </div>
                     ) : (
-                        <p>No hay proyectos activos en este momento.</p>
+                        <p className="text-center text-gray-600">
+                            No hay proyectos activos en este momento.
+                        </p>
                     )}
-                </div>
+                </section>
 
-
-                <div className="course-content">
+                {/* Contenido del Curso / Estudiantes */}
+                <section className="space-y-6">
                     {selectedSemester && !showRegisterForm ? (
-                        <>
-                            <h2 className="course-title">Estudiantes del Curso: {selectedSemester.name}</h2>
-                            <div className="students-list">
-                                <h3>Estudiantes Registrados</h3>
+                        <div>
+                            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                                Estudiantes del Curso: {selectedSemester.name}
+                            </h2>
+                            <div className="students-list mb-4">
+                                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                                    Estudiantes Registrados
+                                </h3>
                                 {students.length > 0 ? (
-                                    <table className="students-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Apellido Paterno</th>
-                                                <th>Apellido Materno</th>
-                                                <th>Email</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {students.map((student) => (
-                                                <tr key={student.id}>
-                                                    <td>{student.nombre}</td>
-                                                    <td>{student.apellidoPaterno}</td>
-                                                    <td>{student.apellidoMaterno}</td>
-                                                    <td>{student.email}</td>
-                                                    <td>
-                                                        <button
-                                                            className="delete-button"
-                                                            onClick={() => handleDeleteStudent(student.id)}
-                                                        >
-                                                            Eliminar
-                                                        </button>
-                                                    </td>
+                                    <div className="overflow-x-auto">
+                                        <table className="min-w-full bg-white border border-gray-200">
+                                            <thead>
+                                                <tr className="bg-gray-100">
+                                                    <th className="px-4 py-2 border">Nombre</th>
+                                                    <th className="px-4 py-2 border">Apellido Paterno</th>
+                                                    <th className="px-4 py-2 border">Apellido Materno</th>
+                                                    <th className="px-4 py-2 border">Email</th>
+                                                    <th className="px-4 py-2 border">Acciones</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {students.map((student) => (
+                                                    <tr key={student.id} className="text-center">
+                                                        <td className="px-4 py-2 border">{student.nombre}</td>
+                                                        <td className="px-4 py-2 border">
+                                                            {student.apellidoPaterno}
+                                                        </td>
+                                                        <td className="px-4 py-2 border">
+                                                            {student.apellidoMaterno}
+                                                        </td>
+                                                        <td className="px-4 py-2 border">
+                                                            {student.email}
+                                                        </td>
+                                                        <td className="px-4 py-2 border">
+                                                            <button
+                                                                className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
+                                                                onClick={() =>
+                                                                    handleDeleteStudent(student.id)
+                                                                }
+                                                            >
+                                                                Eliminar
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 ) : (
-                                    <p>No hay estudiantes registrados aún.</p>
+                                    <p className="text-gray-600">
+                                        No hay estudiantes registrados aún.
+                                    </p>
                                 )}
                             </div>
-
                             <button
-                                className="btn-primary"
+                                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
                                 onClick={() => setShowRegisterForm(true)}
                             >
                                 Registrar Estudiantes
                             </button>
-                        </>
+                        </div>
                     ) : selectedSemester && showRegisterForm ? (
                         <RegisterStudents
                             selectedSemester={selectedSemester}
                             setShowRegisterForm={setShowRegisterForm}
                         />
                     ) : (
-                        <div className="course-section">
-                            <h2 className="course-title">Diseño Web: HTML5 y CSS3 Adaptativo</h2>
-                            <p className="course-description">
-                                Explora técnicas avanzadas para construir sitios web adaptativos utilizando HTML5 y CSS3.
+                        <div className="course-section p-4 bg-white rounded shadow text-center">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                                Diseño Web: HTML5 y CSS3 Adaptativo
+                            </h2>
+                            <p className="text-gray-700 mb-4">
+                                Explora técnicas avanzadas para construir sitios web adaptativos
+                                utilizando HTML5 y CSS3.
                             </p>
                             <CreateSemester selectedCourse="html-css-advanced" />
                         </div>
                     )}
-                </div>
+                </section>
             </main>
         </div>
     );
+
 };
 
 export default Dashboard;

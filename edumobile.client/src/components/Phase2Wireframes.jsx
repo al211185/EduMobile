@@ -118,110 +118,139 @@ const Phase2Wireframes = ({ data, onNext }) => {
     };
 
     return (
-        <div className="phase-container">
-            <h2>Fase 2: Wireframes</h2>
-            <p>Sube los wireframes para los diferentes tamaños de pantalla y responde las preguntas.</p>
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6">
+            <h2 className="text-2xl font-bold text-gray-800">Fase 2: Wireframes</h2>
+            <p className="text-gray-700">
+                Sube los wireframes para los diferentes tamaños de pantalla y responde las preguntas.
+            </p>
 
-            <div className="wireframe-upload">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <label>Wireframes 480px:</label>
+                    <label className="block text-gray-700 font-medium mb-1">Wireframes 480px:</label>
                     <input
                         type="file"
                         accept="image/*"
                         onChange={(e) => handleFileChange(e, "wireframe480pxPath")}
+                        className="w-full border border-gray-300 rounded p-2"
                     />
-                    {formData.wireframe480pxPreviewUrl && (
-                        <div className="image-preview">
+                    {formData.wireframe480pxPreviewUrl ? (
+                        <div className="mt-2">
                             <img
                                 src={formData.wireframe480pxPreviewUrl}
                                 alt="Wireframe 480px"
-                                style={{ maxWidth: "100%" }}
+                                className="max-w-full max-h-40 object-contain rounded mx-auto"
                             />
                         </div>
+                    ) : (
+                        <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
                     )}
                 </div>
-
                 <div>
-                    <label>Wireframes 768px:</label>
+                    <label className="block text-gray-700 font-medium mb-1">Wireframes 768px:</label>
                     <input
                         type="file"
                         accept="image/*"
                         onChange={(e) => handleFileChange(e, "wireframe768pxPath")}
+                        className="w-full border border-gray-300 rounded p-2"
                     />
-                    {formData.wireframe768pxPreviewUrl && (
-                        <div className="image-preview">
+                    {formData.wireframe768pxPreviewUrl ? (
+                        <div className="mt-2">
                             <img
                                 src={formData.wireframe768pxPreviewUrl}
                                 alt="Wireframe 768px"
-                                style={{ maxWidth: "100%" }}
+                                className="max-w-full max-h-40 object-contain rounded mx-auto"
                             />
                         </div>
+                    ) : (
+                        <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
                     )}
                 </div>
-
                 <div>
-                    <label>Wireframes 1024px:</label>
+                    <label className="block text-gray-700 font-medium mb-1">Wireframes 1024px:</label>
                     <input
                         type="file"
                         accept="image/*"
                         onChange={(e) => handleFileChange(e, "wireframe1024pxPath")}
+                        className="w-full border border-gray-300 rounded p-2"
                     />
-                    {formData.wireframe1024pxPreviewUrl && (
-                        <div className="image-preview">
+                    {formData.wireframe1024pxPreviewUrl ? (
+                        <div className="mt-2">
                             <img
                                 src={formData.wireframe1024pxPreviewUrl}
                                 alt="Wireframe 1024px"
-                                style={{ maxWidth: "100%" }}
+                                className="max-w-full max-h-40 object-contain rounded mx-auto"
                             />
                         </div>
+                    ) : (
+                        <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
                     )}
                 </div>
             </div>
 
-            <div className="checklist">
-                <label>
+            <div className="checklist space-y-4 mt-6">
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="isMobileFirst"
                         checked={formData.isMobileFirst}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿Cumple con Mobile First?
+                    <span className="text-gray-700 text-sm">¿Cumple con Mobile First?</span>
                 </label>
-                <label>
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="isNavigationClear"
                         checked={formData.isNavigationClear}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿La navegación es clara?
+                    <span className="text-gray-700 text-sm">¿La navegación es clara?</span>
                 </label>
-                <label>
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="isDesignFunctional"
                         checked={formData.isDesignFunctional}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿El diseño es funcional?
+                    <span className="text-gray-700 text-sm">¿El diseño es funcional?</span>
                 </label>
-                <label>
+                <label className="flex items-center space-x-2">
                     <input
                         type="checkbox"
                         name="isVisualConsistencyMet"
                         checked={formData.isVisualConsistencyMet}
                         onChange={handleInputChange}
+                        className="h-4 w-4"
                     />
-                    ¿Es visualmente consistente?
+                    <span className="text-gray-700 text-sm">¿Es visualmente consistente?</span>
                 </label>
+                <p className="text-sm text-red-500">
+                    * Debe seleccionar todos los checkbox antes de guardar.
+                </p>
             </div>
 
-            <button onClick={handleSubmit} disabled={!formData.isMobileFirst}>
+            <button
+                onClick={handleSubmit}
+                disabled={
+                    !formData.wireframe480pxPath ||
+                    !formData.wireframe768pxPath ||
+                    !formData.wireframe1024pxPath ||
+                    !formData.isMobileFirst ||
+                    !formData.isNavigationClear ||
+                    !formData.isDesignFunctional ||
+                    !formData.isVisualConsistencyMet
+                }
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mt-6 text-sm"
+            >
                 Completar Fase 2
             </button>
         </div>
     );
+
 };
 
 export default Phase2Wireframes;

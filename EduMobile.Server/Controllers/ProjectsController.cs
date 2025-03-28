@@ -551,6 +551,9 @@ namespace EduMobile.Server.Controllers
                     .Include(p => p.CreatedBy)
                     .Include(p => p.ProjectUsers)
                         .ThenInclude(pu => pu.ApplicationUser)
+                    .Include(p => p.PlanningPhase)    // Incluir fase de planeación
+                    .Include(p => p.DesignPhases)       // Incluir fase de diseño
+                    .Include(p => p.DevelopmentPhase)  // Incluir fase de desarrollo
                     .FirstOrDefaultAsync(p => p.Id == id);
 
                 if (project == null)
@@ -565,7 +568,6 @@ namespace EduMobile.Server.Controllers
                     project.Description,
                     project.CreatedAt,
                     project.CurrentPhase,
-                    // Incluye los datos del semestre, si existen
                     Semester = project.Semester != null ? new
                     {
                         project.Semester.Id,
@@ -573,7 +575,6 @@ namespace EduMobile.Server.Controllers
                         project.Semester.Year,
                         project.Semester.Period
                     } : null,
-                    // Datos del creador
                     CreatedBy = project.CreatedBy != null ? new
                     {
                         project.CreatedBy.Id,
@@ -582,16 +583,16 @@ namespace EduMobile.Server.Controllers
                         project.CreatedBy.ApellidoMaterno,
                         project.CreatedBy.Email
                     } : null,
-                    // Lista de colaboradores
                     Team = project.ProjectUsers.Select(pu => new
                     {
                         pu.ApplicationUserId,
-                        Name = pu.ApplicationUser != null
-                                ? $"{pu.ApplicationUser.Nombre} {pu.ApplicationUser.ApellidoPaterno}"
-                                : "",
+                        Name = pu.ApplicationUser != null ? $"{pu.ApplicationUser.Nombre} {pu.ApplicationUser.ApellidoPaterno}" : "",
                         pu.RoleInProject,
                         pu.JoinedAt
-                    })
+                    }),
+                    PlanningPhase = project.PlanningPhase,   // Devuelve toda la información de planeación
+                    DesignPhase = project.DesignPhases,         // Devuelve toda la información de diseño
+                    DevelopmentPhase = project.DevelopmentPhase, // Devuelve toda la información de desarrollo
                 };
 
                 return Ok(result);
@@ -602,8 +603,6 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
-
-
     }
 
     // Modelos de solicitud

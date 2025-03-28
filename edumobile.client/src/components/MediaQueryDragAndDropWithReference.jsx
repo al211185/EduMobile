@@ -170,25 +170,29 @@ const MediaQueryGameMinWidth = () => {
     };
 
     return (
-        <div className="media-query-dnd-container">
-            <h1>Media Query Game (Mobile‑First: min‑width)</h1>
+        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg space-y-6">
+            <h1 className="text-3xl font-bold text-gray-800">
+                Media Query Game (Mobile‑First: min‑width)
+            </h1>
             {completed ? (
-                <div>
-                    <h2>¡Felicidades! Has completado todos los ejercicios.</h2>
+                <div className="text-center">
+                    <h2 className="text-2xl font-semibold text-green-600">
+                        ¡Felicidades! Has completado todos los ejercicios.
+                    </h2>
                 </div>
             ) : (
-                <div>
-                    <h2>
+                <div className="space-y-6">
+                    <h2 className="text-xl font-semibold text-gray-700">
                         Ejercicio {currentExercise + 1} de {exercises.length}
                     </h2>
-                    <p style={{ fontWeight: "bold", fontSize: "16px" }}>
+                    <p className="font-bold text-lg text-gray-800">
                         {exercises[currentExercise].description}
                     </p>
-                    <p>
+                    <p className="text-gray-700">
                         <strong>Instrucciones:</strong> Arrastra y suelta los tokens en el orden correcto para formar la media query que se activa cuando el ancho del dispositivo es mayor o igual al breakpoint indicado.
                     </p>
-                    <div style={{ marginBottom: "1rem" }}>
-                        <label htmlFor="breakpoint" style={{ marginRight: "10px", fontSize: "16px" }}>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                        <label htmlFor="breakpoint" className="font-medium text-gray-700">
                             Ingresa el breakpoint (px):
                         </label>
                         <input
@@ -197,21 +201,26 @@ const MediaQueryGameMinWidth = () => {
                             value={userBreakpoint}
                             onChange={(e) => setUserBreakpoint(Number(e.target.value))}
                             min="0"
-                            style={{ width: "100px", fontSize: "16px", padding: "5px" }}
+                            className="w-24 p-2 border border-gray-300 rounded"
                         />
-                        <button onClick={checkAnswer} style={{ fontSize: "16px", marginLeft: "10px", padding: "5px 10px" }}>
+                        <button
+                            onClick={checkAnswer}
+                            className="text-lg mt-2 sm:mt-0 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        >
                             Comprobar
                         </button>
                     </div>
                     {/* Área Drag & Drop */}
-                    <div className="dnd-content">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="tokens-pool">
-                            <h2>Tokens Disponibles</h2>
-                            <div className="token-list">
+                            <h2 className="text-xl font-medium text-gray-800 mb-2">
+                                Tokens Disponibles
+                            </h2>
+                            <div className="flex flex-wrap gap-2">
                                 {tokensPool.map((token) => (
                                     <div
                                         key={token}
-                                        className="token"
+                                        className="token px-3 py-1 bg-gray-100 border border-gray-300 rounded cursor-move"
                                         draggable
                                         onDragStart={(e) => handleDragStart(e, token)}
                                     >
@@ -221,18 +230,23 @@ const MediaQueryGameMinWidth = () => {
                             </div>
                         </div>
                         <div className="slots-area">
-                            <h2>Arma tu Media Query</h2>
-                            <div className="slots-row">
+                            <h2 className="text-xl font-medium text-gray-800 mb-2">
+                                Arma tu Media Query
+                            </h2>
+                            <div className="flex flex-wrap gap-2">
                                 {slots.map((slotToken, index) => (
                                     <div
                                         key={index}
-                                        className="slot"
+                                        className="slot w-32 h-10 border border-dashed border-gray-300 flex items-center justify-center rounded"
                                         onDrop={(e) => handleDrop(e, index)}
                                         onDragOver={handleDragOver}
                                         onClick={() => handleSlotClick(slotToken, index)}
                                     >
                                         {slotToken && (
-                                            <div className="token in-slot" draggable>
+                                            <div
+                                                className="token in-slot px-3 py-1 bg-gray-200 border border-gray-300 rounded cursor-move"
+                                                draggable
+                                            >
                                                 {slotToken}
                                             </div>
                                         )}
@@ -241,34 +255,52 @@ const MediaQueryGameMinWidth = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="check-button" onClick={checkAnswer}>
+                    <button
+                        onClick={checkAnswer}
+                        className="block w-full text-lg px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    >
                         Comprobar
                     </button>
-                    <hr />
-                    {/* Vista Previa en Mobile-first */}
+                    <hr className="my-4" />
+                    {/* Vista Previa */}
                     <div className="preview-container">
-                        <h2>Vista Previa</h2>
-                        <p>
-                            Cuando la media query se arme correctamente, verás que las cajas cambian a:
+                        <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                            Vista Previa
+                        </h2>
+                        <p className="text-gray-700 mb-4">
+                            Cuando la media query se arme correctamente, verás que las cajas
+                            cambian a:
                             <br />
-                            <strong>{cssPropertyName(exercises[currentExercise].property)}: {exercises[currentExercise].activatedValue}</strong>
+                            <strong>
+                                {cssPropertyName(exercises[currentExercise].property)}:{" "}
+                                {exercises[currentExercise].activatedValue}
+                            </strong>
                         </p>
-                        <div className="boxes" style={previewStyle}>
-                            <div className="box">Box 1</div>
-                            <div className="box">Box 2</div>
-                            <div className="box">Box 3</div>
+                        <div className="boxes flex space-x-4" style={previewStyle}>
+                            <div className="box p-4 bg-gray-100 rounded border border-gray-300">
+                                Box 1
+                            </div>
+                            <div className="box p-4 bg-gray-100 rounded border border-gray-300">
+                                Box 2
+                            </div>
+                            <div className="box p-4 bg-gray-100 rounded border border-gray-300">
+                                Box 3
+                            </div>
                         </div>
                     </div>
-                    {slots.join(" ") === getCorrectOrder(exercises[currentExercise]).join(" ") &&
-                        !completed && (
-                            <button onClick={nextExercise} className="check-button">
-                                Siguiente Ejercicio
-                            </button>
-                        )}
+                    {slots.join(" ") === getCorrectOrder(exercises[currentExercise]).join(" ") && !completed && (
+                        <button
+                            onClick={nextExercise}
+                            className="block w-full text-lg px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+                        >
+                            Siguiente Ejercicio
+                        </button>
+                    )}
                 </div>
             )}
         </div>
     );
+
 };
 
 export default MediaQueryGameMinWidth;

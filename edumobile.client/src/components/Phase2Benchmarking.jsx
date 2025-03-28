@@ -314,248 +314,364 @@ const Phase2Benchmarking = ({ data, onSave }) => {
     };
 
     return (
-        <div className="project-planning-container">
-            <form onSubmit={handleSubmit}>
+        <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Introducción */}
-                <fieldset>
-                    <legend>
-                        <h2>Introducción (Fase 2)</h2>
+                <fieldset className="border border-gray-300 p-4 rounded">
+                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                        Introducción (Fase 2)
                     </legend>
-                    <label>Objetivo del análisis:</label>
-                    <textarea
-                        name="analysisObjective"
-                        value={formData.introduction.analysisObjective}
-                        onChange={handleIntroChange}
-                    />
-                    <label>Descripción general del sector:</label>
-                    <textarea
-                        name="sectorDescription"
-                        value={formData.introduction.sectorDescription}
-                        onChange={handleIntroChange}
-                    />
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium mb-1">
+                            Objetivo del análisis:
+                        </label>
+                        <textarea
+                            name="analysisObjective"
+                            value={formData.introduction.analysisObjective}
+                            onChange={handleIntroChange}
+                            className="w-full border border-gray-300 rounded p-2 text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">
+                            Descripción general del sector:
+                        </label>
+                        <textarea
+                            name="sectorDescription"
+                            value={formData.introduction.sectorDescription}
+                            onChange={handleIntroChange}
+                            className="w-full border border-gray-300 rounded p-2 text-sm"
+                        />
+                    </div>
                 </fieldset>
 
                 {/* Competidores */}
-                <fieldset>
-                    <legend>
-                        <h2>Competidores</h2>
+                <fieldset className="border border-gray-300 p-4 rounded">
+                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                        Competidores
                     </legend>
-
                     {/* Competidor 1 */}
-                    <h3>Competidor 1</h3>
-                    <label>Nombre:</label>
-                    <input
-                        type="text"
-                        value={formData.competitors[0].companyName}
-                        onChange={(e) =>
-                            handleCompetitorChange(0, "companyName", e.target.value)
-                        }
-                    />
-                    <label>Subir imagen (Captura) Competidor 1:</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChangeCompetitor1}
-                    />
-                    {formData.competitors[0].screenshot && (
-                        <div style={{ margin: "5px 0" }}>
-                            <img
-                                src={formData.competitors[0].screenshot}
-                                alt="Screenshot Competidor 1"
-                                style={{ maxWidth: "200px" }}
+                    <div className="mb-6">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Competidor 1</h3>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Nombre:
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.competitors[0].companyName}
+                                onChange={(e) =>
+                                    handleCompetitorChange(0, "companyName", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
                             />
                         </div>
-                    )}
-                    <label>URL:</label>
-                    <input
-                        type="url"
-                        value={formData.competitors[0].url}
-                        onChange={(e) => handleCompetitorChange(0, "url", e.target.value)}
-                    />
-                    <label>Aspectos positivos:</label>
-                    <textarea
-                        value={formData.competitors[0].positives}
-                        onChange={(e) =>
-                            handleCompetitorChange(0, "positives", e.target.value)
-                        }
-                    />
-                    <label>Aspectos negativos:</label>
-                    <textarea
-                        value={formData.competitors[0].negatives}
-                        onChange={(e) =>
-                            handleCompetitorChange(0, "negatives", e.target.value)
-                        }
-                    />
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Subir imagen (Captura):
+                            </label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChangeCompetitor1}
+                                className="w-full"
+                            />
+                            {formData.competitors[0].screenshot && (
+                                <div className="mt-2">
+                                    <img
+                                        src={formData.competitors[0].screenshot}
+                                        alt="Screenshot Competidor 1"
+                                        className="max-w-xs"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                URL:
+                            </label>
+                            <input
+                                type="url"
+                                value={formData.competitors[0].url}
+                                onChange={(e) =>
+                                    handleCompetitorChange(0, "url", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Aspectos positivos:
+                            </label>
+                            <textarea
+                                value={formData.competitors[0].positives}
+                                onChange={(e) =>
+                                    handleCompetitorChange(0, "positives", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Aspectos negativos:
+                            </label>
+                            <textarea
+                                value={formData.competitors[0].negatives}
+                                onChange={(e) =>
+                                    handleCompetitorChange(0, "negatives", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                    </div>
 
                     {/* Competidor 2 */}
-                    <h3>Competidor 2</h3>
-                    <label>Nombre:</label>
-                    <input
-                        type="text"
-                        value={formData.competitors[1].companyName}
-                        onChange={(e) =>
-                            handleCompetitorChange(1, "companyName", e.target.value)
-                        }
-                    />
-                    <label>Subir imagen (Captura) Competidor 2:</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChangeCompetitor2}
-                    />
-                    {formData.competitors[1].screenshot && (
-                        <div style={{ margin: "5px 0" }}>
-                            <img
-                                src={formData.competitors[1].screenshot}
-                                alt="Screenshot Competidor 2"
-                                style={{ maxWidth: "200px" }}
+                    <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Competidor 2</h3>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Nombre:
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.competitors[1].companyName}
+                                onChange={(e) =>
+                                    handleCompetitorChange(1, "companyName", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
                             />
                         </div>
-                    )}
-                    <label>URL:</label>
-                    <input
-                        type="url"
-                        value={formData.competitors[1].url}
-                        onChange={(e) =>
-                            handleCompetitorChange(1, "url", e.target.value)
-                        }
-                    />
-                    <label>Aspectos positivos:</label>
-                    <textarea
-                        value={formData.competitors[1].positives}
-                        onChange={(e) =>
-                            handleCompetitorChange(1, "positives", e.target.value)
-                        }
-                    />
-                    <label>Aspectos negativos:</label>
-                    <textarea
-                        value={formData.competitors[1].negatives}
-                        onChange={(e) =>
-                            handleCompetitorChange(1, "negatives", e.target.value)
-                        }
-                    />
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Subir imagen (Captura):
+                            </label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChangeCompetitor2}
+                                className="w-full"
+                            />
+                            {formData.competitors[1].screenshot && (
+                                <div className="mt-2">
+                                    <img
+                                        src={formData.competitors[1].screenshot}
+                                        alt="Screenshot Competidor 2"
+                                        className="max-w-xs"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                URL:
+                            </label>
+                            <input
+                                type="url"
+                                value={formData.competitors[1].url}
+                                onChange={(e) =>
+                                    handleCompetitorChange(1, "url", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Aspectos positivos:
+                            </label>
+                            <textarea
+                                value={formData.competitors[1].positives}
+                                onChange={(e) =>
+                                    handleCompetitorChange(1, "positives", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Aspectos negativos:
+                            </label>
+                            <textarea
+                                value={formData.competitors[1].negatives}
+                                onChange={(e) =>
+                                    handleCompetitorChange(1, "negatives", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                    </div>
                 </fieldset>
 
                 {/* Análisis comparativo */}
-                <fieldset>
-                    <legend>
-                        <h2>Análisis comparativo</h2>
+                <fieldset className="border border-gray-300 p-4 rounded">
+                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                        Análisis comparativo
                     </legend>
                     {/* Competidor 1 */}
-                    <h3>Competidor 1</h3>
-                    <label>Facilidad de uso (1-5):</label>
-                    <input
-                        type="range"
-                        min="1"
-                        max="5"
-                        value={formData.analysis[0].easeOfUse}
-                        onChange={(e) =>
-                            handleAnalysisChange(0, "easeOfUse", e.target.value)
-                        }
-                    />
-                    <label>Dificultades:</label>
-                    <textarea
-                        value={formData.analysis[0].difficulty}
-                        onChange={(e) =>
-                            handleAnalysisChange(0, "difficulty", e.target.value)
-                        }
-                    />
-                    <label>Características útiles (Comp1):</label>
-                    {usefulFeaturesOptions.map((opt) => (
-                        <label key={opt.value} style={{ display: "block" }}>
+                    <div className="mb-6">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                            Competidor 1
+                        </h3>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Facilidad de uso (1-5):
+                            </label>
                             <input
-                                type="checkbox"
-                                checked={formData.analysis[0].usefulFeatures.includes(opt.value)}
-                                onChange={() => handleUsefulFeaturesChange(0, opt.value)}
+                                type="range"
+                                min="1"
+                                max="5"
+                                value={formData.analysis[0].easeOfUse}
+                                onChange={(e) =>
+                                    handleAnalysisChange(0, "easeOfUse", e.target.value)
+                                }
+                                className="w-full"
                             />
-                            {opt.label}
-                        </label>
-                    ))}
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Dificultades:
+                            </label>
+                            <textarea
+                                value={formData.analysis[0].difficulty}
+                                onChange={(e) =>
+                                    handleAnalysisChange(0, "difficulty", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Características útiles (Comp1):
+                            </label>
+                            {usefulFeaturesOptions.map((opt) => (
+                                <label key={opt.value} className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.analysis[0].usefulFeatures.includes(opt.value)}
+                                        onChange={() => handleUsefulFeaturesChange(0, opt.value)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{opt.label}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
 
                     {/* Competidor 2 */}
-                    <h3>Competidor 2</h3>
-                    <label>Facilidad de uso (1-5):</label>
-                    <input
-                        type="range"
-                        min="1"
-                        max="5"
-                        value={formData.analysis[1].easeOfUse}
-                        onChange={(e) =>
-                            handleAnalysisChange(1, "easeOfUse", e.target.value)
-                        }
-                    />
-                    <label>Dificultades:</label>
-                    <textarea
-                        value={formData.analysis[1].difficulty}
-                        onChange={(e) =>
-                            handleAnalysisChange(1, "difficulty", e.target.value)
-                        }
-                    />
-                    <label>Características útiles (Comp2):</label>
-                    {usefulFeaturesOptions.map((opt) => (
-                        <label key={opt.value} style={{ display: "block" }}>
+                    <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                            Competidor 2
+                        </h3>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Facilidad de uso (1-5):
+                            </label>
                             <input
-                                type="checkbox"
-                                checked={formData.analysis[1].usefulFeatures.includes(opt.value)}
-                                onChange={() => handleUsefulFeaturesChange(1, opt.value)}
+                                type="range"
+                                min="1"
+                                max="5"
+                                value={formData.analysis[1].easeOfUse}
+                                onChange={(e) =>
+                                    handleAnalysisChange(1, "easeOfUse", e.target.value)
+                                }
+                                className="w-full"
                             />
-                            {opt.label}
-                        </label>
-                    ))}
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Dificultades:
+                            </label>
+                            <textarea
+                                value={formData.analysis[1].difficulty}
+                                onChange={(e) =>
+                                    handleAnalysisChange(1, "difficulty", e.target.value)
+                                }
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-1">
+                                Características útiles (Comp2):
+                            </label>
+                            {usefulFeaturesOptions.map((opt) => (
+                                <label key={opt.value} className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.analysis[1].usefulFeatures.includes(opt.value)}
+                                        onChange={() => handleUsefulFeaturesChange(1, opt.value)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{opt.label}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
                 </fieldset>
 
                 {/* Conclusiones */}
-                <fieldset>
-                    <legend>
-                        <h2>Conclusiones</h2>
+                <fieldset className="border border-gray-300 p-4 rounded">
+                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                        Conclusiones
                     </legend>
-                    <label>Hallazgos:</label>
-                    <textarea
-                        name="findings"
-                        value={formData.conclusions.findings}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                conclusions: { ...prev.conclusions, findings: e.target.value },
-                            }))
-                        }
-                    />
-                    <label>Oportunidades de mejora:</label>
-                    <textarea
-                        name="improvements"
-                        value={formData.conclusions.improvements}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                conclusions: { ...prev.conclusions, improvements: e.target.value },
-                            }))
-                        }
-                    />
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium mb-1">
+                            Hallazgos:
+                        </label>
+                        <textarea
+                            name="findings"
+                            value={formData.conclusions.findings}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    conclusions: { ...prev.conclusions, findings: e.target.value },
+                                }))
+                            }
+                            className="w-full border border-gray-300 rounded p-2 text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">
+                            Oportunidades de mejora:
+                        </label>
+                        <textarea
+                            name="improvements"
+                            value={formData.conclusions.improvements}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    conclusions: { ...prev.conclusions, improvements: e.target.value },
+                                }))
+                            }
+                            className="w-full border border-gray-300 rounded p-2 text-sm"
+                        />
+                    </div>
                 </fieldset>
 
-                {/* Reflexivos Fase 2 */}
-                <fieldset>
-                    <legend>
-                        <h3>Ejercicio reflexivo (Fase 2)</h3>
+                {/* Ejercicio reflexivo */}
+                <fieldset className="border border-gray-300 p-4 rounded">
+                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                        Ejercicio reflexivo (Fase 2)
                     </legend>
-                    <p>
+                    <p className="text-gray-700 mb-4">
                         Responde a las siguientes preguntas marcando en el cuadro.
                     </p>
-                    <div className="checklist">
+                    <div className="space-y-2">
                         {reflectiveQuestions.map((question) => (
-                            <label key={question.value} style={{ display: "block", marginBottom: "10px" }}>
+                            <label key={question.value} className="flex items-center space-x-2">
                                 <input
                                     type="checkbox"
                                     value={question.value}
                                     checked={formData.reflectiveAnswers.includes(question.value)}
                                     onChange={() => handleReflectiveChange(question.value)}
+                                    className="h-4 w-4"
                                 />
-                                {question.label}
+                                <span className="text-gray-700 text-sm">{question.label}</span>
                             </label>
                         ))}
                     </div>
                 </fieldset>
-                <button type="submit">Guardar</button>
+                <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded text-sm">
+                    Guardar
+                </button>
             </form>
         </div>
     );

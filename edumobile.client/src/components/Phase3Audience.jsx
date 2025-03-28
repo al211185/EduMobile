@@ -41,6 +41,22 @@ const preferencesQuestions = [
     "¿Le gustan las notificaciones de los sitios móviles?"
 ];
 
+const reflectiveQuestions = [
+    {
+        value: "formularios_contacto",
+        label: "¿Las preguntas seleccionadas ayudan a entender mejor las necesidades de los usuarios con dispositivos móviles?"
+    },
+    {
+        value: "formularios_registro",
+        label: "¿Las preguntas elegidas ayudan a identificar los elementos de diseño que podrían mejorar la navegación en móviles?"
+    },
+    {
+        value: "conexion_bd",
+        label: "¿Las preguntas demográficas elegidas aportan información relevante para personalizar la experiencia en móviles?"
+    }
+];
+
+
 // Función para parsear el string audienceQuestions (guardado en la BD en formato JSON)
 const parseAudienceQuestions = (audienceQuestions) => {
     try {
@@ -197,197 +213,196 @@ const Phase3Audience = ({ data, onSave }) => {
         };
         onSave(updatedData);
     };
-
     return (
-        <div className="project-planning-container">
-            <h2>Fase 3: Investigación de la Audiencia</h2>
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>
-                        <h3>Introducción</h3>
-                    </legend>
-                    <p>
-                        Seleccione las preguntas que considere útiles para formar el cuestionario de investigación de audiencia. También puede agregar preguntas personalizadas.
-                    </p>
-                </fieldset>
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg h-[90vh] flex flex-col overflow-hidden">
+            <form onSubmit={handleSubmit} className="flex flex-col h-full">
+                {/* Área scrollable para el contenido */}
+                <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 px-2">Introducción</legend>
+                        <p className="text-gray-700">
+                            Seleccione las preguntas que considere útiles para formar el cuestionario de investigación de audiencia. También puede agregar preguntas personalizadas.
+                        </p>
+                    </fieldset>
 
-                <fieldset>
-                    <legend>
-                        <h3>Datos Demográficos</h3>
-                    </legend>
-                    {demographicsQuestions.map((q, idx) => (
-                        <div key={idx}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={selectedQuestions.demographics.includes(q)}
-                                    onChange={() => toggleQuestion("demographics", q)}
-                                />
-                                {q}
-                            </label>
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Datos Demográficos</legend>
+                        {demographicsQuestions.map((q, idx) => (
+                            <div key={idx}>
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedQuestions.demographics.includes(q)}
+                                        onChange={() => toggleQuestion("demographics", q)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{q}</span>
+                                </label>
+                            </div>
+                        ))}
+                    </fieldset>
+
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Preguntas sobre Comportamiento</legend>
+                        {behaviorQuestions.map((q, idx) => (
+                            <div key={idx}>
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedQuestions.behavior.includes(q)}
+                                        onChange={() => toggleQuestion("behavior", q)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{q}</span>
+                                </label>
+                            </div>
+                        ))}
+                    </fieldset>
+
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Expectativas y Opiniones</legend>
+                        {expectationsQuestions.map((q, idx) => (
+                            <div key={idx}>
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedQuestions.expectations.includes(q)}
+                                        onChange={() => toggleQuestion("expectations", q)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{q}</span>
+                                </label>
+                            </div>
+                        ))}
+                    </fieldset>
+
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Preferencias Tecnológicas</legend>
+                        {preferencesQuestions.map((q, idx) => (
+                            <div key={idx}>
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedQuestions.preferences.includes(q)}
+                                        onChange={() => toggleQuestion("preferences", q)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{q}</span>
+                                </label>
+                            </div>
+                        ))}
+                    </fieldset>
+
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Preguntas Personalizadas</legend>
+                        <div className="flex items-center space-x-2">
+                            <input
+                                type="text"
+                                value={customQuestion}
+                                onChange={(e) => setCustomQuestion(e.target.value)}
+                                placeholder="Escribe tu pregunta personalizada"
+                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                            />
+                            <button
+                                type="button"
+                                onClick={addCustomQuestion}
+                                className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded text-sm"
+                            >
+                                Agregar Pregunta
+                            </button>
                         </div>
-                    ))}
-                </fieldset>
+                        {customQuestions.length > 0 && (
+                            <ul className="mt-2 list-disc pl-5 text-sm text-gray-700">
+                                {customQuestions.map((q, idx) => (
+                                    <li key={idx}>{q}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </fieldset>
 
-                <fieldset>
-                    <legend>
-                        <h3>Preguntas sobre Comportamiento</h3>
-                    </legend>
-                    {behaviorQuestions.map((q, idx) => (
-                        <div key={idx}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={selectedQuestions.behavior.includes(q)}
-                                    onChange={() => toggleQuestion("behavior", q)}
-                                />
-                                {q}
-                            </label>
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Resumen de Preguntas Seleccionadas</legend>
+                        <div className="text-sm text-gray-700 space-y-2">
+                            <div>
+                                <h4 className="font-semibold">Datos Demográficos:</h4>
+                                <ul className="list-disc pl-5">
+                                    {selectedQuestions.demographics.map((q, idx) => (
+                                        <li key={idx}>{q}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold">Preguntas sobre Comportamiento:</h4>
+                                <ul className="list-disc pl-5">
+                                    {selectedQuestions.behavior.map((q, idx) => (
+                                        <li key={idx}>{q}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold">Expectativas y Opiniones:</h4>
+                                <ul className="list-disc pl-5">
+                                    {selectedQuestions.expectations.map((q, idx) => (
+                                        <li key={idx}>{q}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold">Preferencias Tecnológicas:</h4>
+                                <ul className="list-disc pl-5">
+                                    {selectedQuestions.preferences.map((q, idx) => (
+                                        <li key={idx}>{q}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold">Preguntas Personalizadas:</h4>
+                                <ul className="list-disc pl-5">
+                                    {customQuestions.map((q, idx) => (
+                                        <li key={idx}>{q}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                    ))}
-                </fieldset>
+                    </fieldset>
 
-                <fieldset>
-                    <legend>
-                        <h3>Expectativas y Opiniones</h3>
-                    </legend>
-                    {expectationsQuestions.map((q, idx) => (
-                        <div key={idx}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={selectedQuestions.expectations.includes(q)}
-                                    onChange={() => toggleQuestion("expectations", q)}
-                                />
-                                {q}
-                            </label>
+                    <fieldset className="border border-gray-300 p-4 rounded">
+                        <legend className="text-xl font-semibold text-gray-800 mb-2">Ejercicio reflexivo</legend>
+                        <p className="text-gray-700 mb-4">
+                            Responde a las siguientes preguntas marcando las opciones que consideres que mejor describen la situación:
+                        </p>
+                        <div className="space-y-2">
+                            {reflectiveQuestions.map((question) => (
+                                <label key={question.value} className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        value={question.value}
+                                        checked={reflectiveAnswers.includes(question.value)}
+                                        onChange={() => toggleQuestionReflective(question.value)}
+                                        className="h-4 w-4"
+                                    />
+                                    <span className="text-gray-700 text-sm">{question.label}</span>
+                                </label>
+                            ))}
                         </div>
-                    ))}
-                </fieldset>
+                    </fieldset>
+                </div>
 
-                <fieldset>
-                    <legend>
-                        <h3>Preferencias Tecnológicas</h3>
-                    </legend>
-                    {preferencesQuestions.map((q, idx) => (
-                        <div key={idx}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={selectedQuestions.preferences.includes(q)}
-                                    onChange={() => toggleQuestion("preferences", q)}
-                                />
-                                {q}
-                            </label>
-                        </div>
-                    ))}
-                </fieldset>
-
-                <fieldset>
-                    <legend>
-                        <h3>Preguntas Personalizadas</h3>
-                    </legend>
-                    <input
-                        type="text"
-                        value={customQuestion}
-                        onChange={(e) => setCustomQuestion(e.target.value)}
-                        placeholder="Escribe tu pregunta personalizada"
-                    />
-                    <button type="button" onClick={addCustomQuestion}>
-                        Agregar Pregunta
-                    </button>
-                    {customQuestions.length > 0 && (
-                        <ul>
-                            {customQuestions.map((q, idx) => (
-                                <li key={idx}>{q}</li>
-                            ))}
-                        </ul>
-                    )}
-                </fieldset>
-
-                <fieldset>
-                    <legend>
-                        <h3>Resumen de Preguntas Seleccionadas</h3>
-                    </legend>
-                    <div>
-                        <h4>Datos Demográficos:</h4>
-                        <ul>
-                            {selectedQuestions.demographics.map((q, idx) => (
-                                <li key={idx}>{q}</li>
-                            ))}
-                        </ul>
-                        <h4>Preguntas sobre Comportamiento:</h4>
-                        <ul>
-                            {selectedQuestions.behavior.map((q, idx) => (
-                                <li key={idx}>{q}</li>
-                            ))}
-                        </ul>
-                        <h4>Expectativas y Opiniones:</h4>
-                        <ul>
-                            {selectedQuestions.expectations.map((q, idx) => (
-                                <li key={idx}>{q}</li>
-                            ))}
-                        </ul>
-                        <h4>Preferencias Tecnológicas:</h4>
-                        <ul>
-                            {selectedQuestions.preferences.map((q, idx) => (
-                                <li key={idx}>{q}</li>
-                            ))}
-                        </ul>
-                        <h4>Preguntas Personalizadas:</h4>
-                        <ul>
-                            {customQuestions.map((q, idx) => (
-                                <li key={idx}>{q}</li>
-                            ))}
-                        </ul>
+                {/* Contenedor fijo para el botón de navegación */}
+                <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4">
+                    <div className="flex justify-between">
+                        <button type="button" onClick={generatePDF} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded text-sm">
+                            Descargar PDF
+                        </button>
+                        <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded text-sm">
+                            Guardar
+                        </button>
                     </div>
-                </fieldset>
-
-                {/* Bloque del ejercicio reflexivo (fuera del PDF) */}
-                <fieldset>
-                    <legend>
-                        <h3>Ejercicio reflexivo</h3>
-                    </legend>
-                    <p>
-                        Responde a las siguientes preguntas marcando las opciones que consideres que mejor describen la situación:
-                    </p>
-                    <div className="checklist">
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={reflectiveAnswers.includes("formularios_contacto")}
-                                onChange={() => toggleQuestionReflective("formularios_contacto")}
-                            />
-                            ¿Las preguntas seleccionadas ayudan a entender mejor las necesidades de los usuarios con dispositivos móviles?
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={reflectiveAnswers.includes("formularios_registro")}
-                                onChange={() => toggleQuestionReflective("formularios_registro")}
-                            />
-                            ¿Las preguntas elegidas ayudan a identificar los elementos de diseño que podrían mejorar la navegación en móviles?
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={reflectiveAnswers.includes("conexion_bd")}
-                                onChange={() => toggleQuestionReflective("conexion_bd")}
-                            />
-                            ¿Las preguntas demográficas elegidas aportan información relevante para personalizar la experiencia en móviles?
-                        </label>
-                    </div>
-                </fieldset>
-
-                <div className="navigation-buttons">
-                    <button type="button" onClick={generatePDF}>
-                        Descargar PDF
-                    </button>
-                    <button type="submit">Guardar</button>
                 </div>
             </form>
         </div>
     );
+
 };
 
 export default Phase3Audience;

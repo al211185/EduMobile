@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
-import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import MainDashboard from "./components/MainDashboard"; // Dashboard centralizado para alumnos (u otros datos generales)
-import Dashboard from "./components/Dashboard"; // Dashboard para profesores (gestión de cursos y registro de alumnos)
+import Dashboard from "./components/Dashboard"; // Dashboard para profesores (gestiÃ³n de cursos y registro de alumnos)
 import CreateProject from "./components/CreateProject";
 import Profile from "./components/Profile";
 import MyProjects from "./components/MyProjects";
@@ -16,16 +16,19 @@ import MediaQueryDragAndDropWithReference from "./components/MediaQueryDragAndDr
 import ErrorBoundary from "./components/ErrorBoundary";
 import { useAuth } from "./contexts/AuthContext";
 import "./globals.css";
-import "./app.css";
 
 const Layout = ({ children }) => {
     const location = useLocation();
-    const hideHeader = location.pathname === "/login" || location.pathname === "/register";
-    return (
-        <>
-            {!hideHeader && <Header />}
-            <main className="main-container">{children}</main>
-        </>
+    // Si la ruta es /login o /register, no se muestra el sidebar
+    const hideSidebar = location.pathname === "/login" || location.pathname === "/register";
+
+    return hideSidebar ? (
+        <main className="main-container">{children}</main>
+    ) : (
+        <div className="flex">
+            <Sidebar />
+            <main className="flex-1 p-6">{children}</main>
+        </div>
     );
 };
 
@@ -45,7 +48,7 @@ const App = () => {
                         element={
                             <Layout>
                                 <Routes>
-                                    {/* Ruta raíz para todos (puede ser MainDashboard) */}
+                                    {/* Ruta raÃ­z para todos (puede ser MainDashboard) */}
                                     <Route
                                         path="/"
                                         element={user ? <MainDashboard /> : <Navigate to="/login" replace />}
@@ -55,9 +58,12 @@ const App = () => {
                                     <Route path="/media-game" element={<MediaQueryDragAndDropWithReference />} />
                                     {user?.role === "Profesor" && (
                                         <>
-                                            {/* Ruta específica para el dashboard de cursos para profesores */}
+                                            {/* Ruta especÃ­fica para el dashboard de cursos para profesores */}
                                             <Route path="/dashboard" element={<Dashboard />} />
                                             <Route path="/projects/professor/:id" element={<ProjectDetailsProfessor />} />
+                                            <Route path="/projects/:projectId" element={<ProjectPhase />} />
+                                            <Route path="/fase-2-diseno/:projectId" element={<DesignPhase />} />
+                                            <Route path="/development-phase/:projectId" element={<DevelopmentPhase />} />
                                         </>
                                     )}
                                     {user?.role === "Alumno" && (

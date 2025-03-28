@@ -1,24 +1,24 @@
 import React from "react";
 import { useAuth } from "../contexts/AuthContext";
-import ProjectsPanel from "./ProjectsPanel"; // Panel con proyectos activos, etc.
-import ProfessorCoursesDashboard from "./ProfessorCoursesDashboard"; // Lógica actual de Dashboard para cursos y registro de alumnos
+import ProjectsPanel from "./ProjectsPanel";
+import ProfessorCoursesDashboard from "./ProfessorCoursesDashboard";
 
 const MainDashboard = () => {
     const { user } = useAuth();
 
     return (
-        <div className="dashboard-container">
-            <h1>Bienvenido, {user.nombre}</h1>
-
+        <div className="min-h-screen bg-gray-50 p-6">
+            <header className="mb-8">
+                <h1 className="text-4xl font-bold text-gray-800">
+                    Bienvenido, {user.nombre}
+                </h1>
+            </header>
             {user.role === "Profesor" ? (
-                <>
-                    {/* Panel central de proyectos, informes generales, etc. */}
+                <div className="space-y-12">
                     <ProjectsPanel />
-                    {/* Lógica específica para cursos y registro de alumnos */}
                     <ProfessorCoursesDashboard />
-                </>
+                </div>
             ) : (
-                // Para alumnos, quizás mostrar un panel con sus proyectos, etc.
                 <ProjectsPanel />
             )}
         </div>

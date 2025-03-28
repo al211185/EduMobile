@@ -25,7 +25,6 @@ const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
 
             const data = await response.json();
             if (!response.ok) {
-                // Accedemos a data.message en minúsculas, ya que el JSON probablemente lo serializa así
                 setError(data.message || "Error al agregar el participante");
             } else {
                 setMessage("Participante agregado correctamente.");
@@ -42,35 +41,49 @@ const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <h2>Agregar Participante</h2>
-                {error && <p className="error">{error}</p>}
-                {message && <p className="success">{message}</p>}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+                <h2 className="text-xl font-bold mb-4">Agregar Participante</h2>
+                {error && <p className="text-red-500 mb-2">{error}</p>}
+                {message && <p className="text-green-500 mb-2">{message}</p>}
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Email del participante:</label>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 mb-1">
+                            Email del participante:
+                        </label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            className="w-full border border-gray-300 rounded p-2"
                         />
                     </div>
-                    <div>
-                        <label>Rol en el proyecto:</label>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 mb-1">
+                            Rol en el proyecto:
+                        </label>
                         <input
                             type="text"
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
                             placeholder="Colaborador"
+                            className="w-full border border-gray-300 rounded p-2"
                         />
                     </div>
-                    <div className="modal-buttons">
-                        <button type="submit" disabled={loading}>
+                    <div className="flex justify-end space-x-2">
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+                        >
                             {loading ? "Agregando..." : "Agregar"}
                         </button>
-                        <button type="button" onClick={onClose}>
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded"
+                        >
                             Cancelar
                         </button>
                     </div>
