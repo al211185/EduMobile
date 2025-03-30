@@ -74,7 +74,10 @@ namespace EduMobile.Server.Areas.Identity.Pages.Account
                 await _emailSender.SendEmailAsync(
                     Input.Email,
                     "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    $"Para reiniciar tu contraseña, copia y pega el siguiente enlace en tu navegador: {callbackUrl}"
+                );
+
+
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

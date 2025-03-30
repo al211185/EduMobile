@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreateSemester from "./CreateSemester";
 import RegisterStudents from "./RegisterStudents";
-import { useAuth } from "../contexts/AuthContext"; 
+import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -44,7 +44,6 @@ const Dashboard = () => {
         };
 
         fetchSemesters();
-        fetchAllProjects();
     }, []);
 
     const fetchStudents = async (semesterId) => {
@@ -133,8 +132,8 @@ const Dashboard = () => {
                 {message && (
                     <div
                         className={`p-3 rounded mb-4 text-center text-sm ${message.startsWith("✅")
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
                             }`}
                     >
                         {message}
@@ -156,8 +155,8 @@ const Dashboard = () => {
                                         onClick={() => handleSemesterClick(semester)}
                                         title={`Periodo: ${semester.period}, Año: ${semester.year}`}
                                         className={`px-4 py-2 rounded-full font-semibold transition-colors duration-200 ${selectedSemester?.id === semester.id
-                                                ? "bg-blue-500 text-white"
-                                                : "bg-white text-gray-800 border border-gray-300 hover:bg-blue-100"
+                                            ? "bg-blue-500 text-white"
+                                            : "bg-white text-gray-800 border border-gray-300 hover:bg-blue-100"
                                             }`}
                                     >
                                         {semester.name}
@@ -191,6 +190,10 @@ const Dashboard = () => {
                                         <th className="px-4 py-2 border">Descripción</th>
                                         <th className="px-4 py-2 border">Creado Por</th>
                                         <th className="px-4 py-2 border">Semestre</th>
+                                        {/* Si es profesor, se muestra la columna de Equipo */}
+                                        {user?.role === "Profesor" && (
+                                            <th className="px-4 py-2 border">Equipo</th>
+                                        )}
                                         <th className="px-4 py-2 border">Acciones</th>
                                     </tr>
                                 </thead>
@@ -206,6 +209,14 @@ const Dashboard = () => {
                                             <td className="px-4 py-2 border">
                                                 {project.semesterName || "Sin Semestre"}
                                             </td>
+                                            {/* Columna de equipo: se muestran los integrantes si existen */}
+                                            {user?.role === "Profesor" && (
+                                                <td className="px-4 py-2 border">
+                                                    {project.team && project.team.length > 0
+                                                        ? project.team.map((member) => member.name).join(", ")
+                                                        : "Sin Equipo"}
+                                                </td>
+                                            )}
                                             <td className="px-4 py-2 border">
                                                 <button
                                                     className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm"

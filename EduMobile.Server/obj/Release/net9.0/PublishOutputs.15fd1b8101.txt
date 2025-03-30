@@ -6,7 +6,9 @@ C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\E
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\EduMobile.Server.pdb
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Azure.Core.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Azure.Identity.dll
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\BouncyCastle.Cryptography.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Humanizer.dll
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\MailKit.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
@@ -51,6 +53,7 @@ C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\M
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\MimeKit.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Mono.TextTemplating.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\Newtonsoft.Json.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Release\net9.0\PubTmp\Out\NuGet.Common.dll

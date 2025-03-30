@@ -71,6 +71,17 @@ namespace EduMobile.Server.Controllers
                     await _context.SaveChangesAsync();
                     _logger.LogInformation("Proyecto '{Title}' creado por el usuario {UserId}.", project.Title, userId);
 
+                    var projectUser = new ProjectUser
+                    {
+                        ProjectId = project.Id,
+                        ApplicationUserId = userId,
+                        RoleInProject = "Creador",
+                        JoinedAt = DateTime.UtcNow
+                    };
+                    _context.ProjectUsers.Add(projectUser);
+                    await _context.SaveChangesAsync();
+
+
                     // Crear la fase de planeación
                     var planningPhase = new PlanningPhase
                     {
@@ -224,6 +235,10 @@ namespace EduMobile.Server.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var projects = await _context.Projects
                     .Where(p => p.CreatedById == userId || p.ProjectUsers.Any(pu => pu.ApplicationUserId == userId))
+                    .Include(p => p.CreatedBy)
+                    .Include(p => p.ProjectUsers)
+                        .ThenInclude(pu => pu.ApplicationUser)
+                    .Include(p => p.Semester)
                     .Select(p => new
                     {
                         p.Id,
@@ -231,7 +246,15 @@ namespace EduMobile.Server.Controllers
                         p.Description,
                         p.CreatedAt,
                         p.CurrentPhase,
-                        SemesterName = p.Semester != null ? p.Semester.Name : "Sin semestre"
+                        semesterName = p.Semester != null ? p.Semester.Name : "Sin semestre",
+                        createdBy = p.CreatedBy != null ? $"{p.CreatedBy.Nombre} {p.CreatedBy.ApellidoPaterno}" : "Desconocido",
+                        team = p.ProjectUsers.Select(pu => new {
+                            pu.ApplicationUserId,
+                            name = pu.ApplicationUser != null
+                                   ? $"{pu.ApplicationUser.Nombre} {pu.ApplicationUser.ApellidoPaterno}"
+                                   : ""
+                        }).ToList()
+
                     })
                     .ToListAsync();
 
@@ -243,6 +266,7 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
 
 
         // GET: api/Projects/{id}
@@ -496,20 +520,29 @@ namespace EduMobile.Server.Controllers
         // GET: api/Projects/all-projects?semesterId=1
         [HttpGet("all-projects")]
         [Authorize(Roles = "Profesor")]
-        public async Task<IActionResult> GetAllProjects([FromQuery] int semesterId)
+        public async Task<IActionResult> GetAllProjects([FromQuery] int? semesterId)
         {
             try
             {
-                // Filtra los proyectos por el semestre seleccionado
-                var projects = await _context.Projects
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                // Filtra solo los proyectos en los que el usuario está incluido como "Profesor"
+                var projectsQuery = _context.Projects
                     .Include(p => p.Semester)
                     .Include(p => p.CreatedBy)
                     .Include(p => p.ProjectUsers)
                         .ThenInclude(pu => pu.ApplicationUser)
-                    .Where(p => p.SemesterId == semesterId)
-                    .ToListAsync();
+                    .Where(p => p.ProjectUsers.Any(pu => pu.ApplicationUserId == userId
+                                                         && pu.RoleInProject == "Profesor"));
 
-                // Proyecta los datos que deseas retornar, incluyendo la lista de colaboradores (Team)
+                // Si se envía un semesterId válido (> 0), se filtra por ese semestre.
+                if (semesterId.HasValue && semesterId.Value > 0)
+                {
+                    projectsQuery = projectsQuery.Where(p => p.SemesterId == semesterId.Value);
+                }
+
+                var projects = await projectsQuery.ToListAsync();
+
                 var result = projects.Select(p => new
                 {
                     p.Id,
@@ -517,12 +550,14 @@ namespace EduMobile.Server.Controllers
                     p.Description,
                     p.CreatedAt,
                     p.CurrentPhase,
-                    SemesterName = p.Semester != null ? p.Semester.Name : "Sin semestre",
-                    CreatedBy = p.CreatedBy != null ? $"{p.CreatedBy.Nombre} {p.CreatedBy.ApellidoPaterno}" : "Desconocido",
-                    Team = p.ProjectUsers.Select(pu => new
+                    semesterName = p.Semester != null ? p.Semester.Name : "Sin semestre",
+                    createdBy = p.CreatedBy != null ? $"{p.CreatedBy.Nombre} {p.CreatedBy.ApellidoPaterno}" : "Desconocido",
+                    team = p.ProjectUsers.Select(pu => new
                     {
                         pu.ApplicationUserId,
-                        Name = pu.ApplicationUser != null ? $"{pu.ApplicationUser.Nombre} {pu.ApplicationUser.ApellidoPaterno}" : "",
+                        name = pu.ApplicationUser != null
+                                 ? $"{pu.ApplicationUser.Nombre} {pu.ApplicationUser.ApellidoPaterno}"
+                                 : "",
                         pu.RoleInProject,
                         pu.JoinedAt
                     })
@@ -532,10 +567,12 @@ namespace EduMobile.Server.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener proyectos para el semestre {SemesterId}", semesterId);
+                _logger.LogError(ex, "Error al obtener proyectos para el profesor.");
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
+
 
         // GET: api/Projects/professor/{id}
         // Este endpoint permite que un profesor (con rol "Profesor") obtenga los detalles completos de un proyecto,

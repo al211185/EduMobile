@@ -18,12 +18,14 @@ namespace EduMobile.Server.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<AuthController> _logger;
+        private readonly IEmailSender _emailSender;
 
-        public AuthController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, ILogger<AuthController> logger)
+        public AuthController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, ILogger<AuthController> logger, IEmailSender emailSender)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
+            _emailSender = emailSender;
         }
 
         [HttpPost("login")]
@@ -208,6 +210,74 @@ namespace EduMobile.Server.Controllers
         }
 
 
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { Message = "Datos no válidos." });
+            }
+
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                return Ok(new { Message = "Si el email existe, se enviarán instrucciones para recuperar la contraseña." });
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            // Genera el enlace apuntando a la URL del cliente (React)
+            // Asegúrate de que la URL base corresponde a donde se sirve tu aplicación React.
+            var baseUrl = $"{Request.Scheme}://{Request.Host}";
+            var resetLink = $"{baseUrl}/reset-password?email={user.Email}&token={System.Net.WebUtility.UrlEncode(token)}";
+
+            _logger.LogInformation($"ResetLink generado: {resetLink}");
+
+            // Construir el mensaje en formato HTML
+            var message = $@"
+        <html>
+          <body>
+            <p>Para reiniciar tu contraseña, haz clic en el siguiente enlace:</p>
+            <p><a href=""{resetLink}"">Restablecer contraseña</a></p>
+          </body>
+        </html>";
+
+            await _emailSender.SendEmailAsync(user.Email, "Restablecer Contraseña", message);
+
+            return Ok(new { Message = "Si el email existe, se enviarán instrucciones para recuperar la contraseña." });
+        }
+
+
+
+        [HttpGet("reset-password", Name = "ResetPassword")]
+        public IActionResult ResetPassword(string email, string token)
+        {
+            // Aquí puedes renderizar una vista o redirigir al cliente a la página de reinicio de contraseña.
+            return Ok(new { Message = "Página para reiniciar contraseña." });
+        }
+
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPasswordConfirm([FromBody] ResetPasswordConfirmRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new { Message = "Datos no válidos." });
+
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                return BadRequest(new { Message = "Usuario no encontrado." });
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, request.Token, request.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { Message = string.Join(", ", result.Errors.Select(e => e.Description)) });
+            }
+
+            return Ok(new { Message = "Contraseña actualizada correctamente." });
+        }
+
 
     }
 
@@ -259,5 +329,12 @@ namespace EduMobile.Server.Controllers
 
         [Required]
         public string ApellidoMaterno { get; set; }
+    }
+
+    public class ForgotPasswordRequest
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
     }
 }

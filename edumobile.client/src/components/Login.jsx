@@ -78,7 +78,7 @@ const Login = () => {
                             />
                             <label className="text-slate-500 text-sm">Recuérdame</label>
                         </div>
-                        <a href="#!" className="text-[#b0b0b0] text-sm">
+                        <a href="/forgot-password" className="text-[#b0b0b0] text-sm">
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>

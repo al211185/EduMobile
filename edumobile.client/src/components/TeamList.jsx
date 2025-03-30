@@ -40,7 +40,6 @@ const TeamList = ({ isCreator, refreshProject }) => {
             if (response.ok) {
                 alert(data.message || "Colaborador eliminado exitosamente.");
                 fetchTeam(); // Refresca la lista de colaboradores
-                // Si deseas refrescar información del proyecto en un componente padre, llama a refreshProject()
                 refreshProject && refreshProject();
             } else {
                 alert(data.message || "Error al eliminar el colaborador.");
@@ -50,21 +49,32 @@ const TeamList = ({ isCreator, refreshProject }) => {
         }
     };
 
-    if (loading) return <p>Cargando equipo...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading)
+        return (
+            <p className="text-center text-gray-600 p-4">Cargando equipo...</p>
+        );
+    if (error)
+        return (
+            <p className="text-center text-red-600 p-4">{error}</p>
+        );
 
     return (
-        <div className="team-list">
-            <h3>Equipo del Proyecto</h3>
+        <div className="team-list bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Equipo del Proyecto</h3>
             {team.length === 0 ? (
-                <p>No hay colaboradores en este proyecto.</p>
+                <p className="text-gray-600">No hay colaboradores en este proyecto.</p>
             ) : (
-                <ul>
+                <ul className="divide-y divide-gray-200">
                     {team.map((member) => (
-                        <li key={member.applicationUserId}>
-                            {member.nombre} {member.apellidoPaterno} - {member.roleInProject}
+                        <li key={member.applicationUserId} className="py-3 flex items-center justify-between">
+                            <span className="text-gray-700">
+                                {member.nombre} {member.apellidoPaterno} - <em>{member.roleInProject}</em>
+                            </span>
                             {isCreator && (
-                                <button onClick={() => handleRemove(member.applicationUserId)}>
+                                <button
+                                    onClick={() => handleRemove(member.applicationUserId)}
+                                    className="text-red-600 hover:text-red-800 font-semibold"
+                                >
                                     Eliminar
                                 </button>
                             )}

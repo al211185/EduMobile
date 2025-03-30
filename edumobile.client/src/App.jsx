@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "r
 import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import MainDashboard from "./components/MainDashboard"; // Dashboard centralizado para alumnos (u otros datos generales)
-import Dashboard from "./components/Dashboard"; // Dashboard para profesores (gestiÃ³n de cursos y registro de alumnos)
+import ForgotPassword from "./components/ForgotPassword"; // Importa el componente de recuperación
+import MainDashboard from "./components/MainDashboard"; // Dashboard para alumnos o datos generales
+import Dashboard from "./components/Dashboard"; // Dashboard para profesores (gestión de cursos)
 import CreateProject from "./components/CreateProject";
 import Profile from "./components/Profile";
 import MyProjects from "./components/MyProjects";
@@ -14,13 +15,18 @@ import DevelopmentPhase from "./components/DevelopmentPhase";
 import ProjectDetailsProfessor from "./components/ProjectDetailsProfessor";
 import MediaQueryDragAndDropWithReference from "./components/MediaQueryDragAndDropWithReference";
 import ErrorBoundary from "./components/ErrorBoundary";
+import ResetPassword from "./components/ResetPassword";
+
 import { useAuth } from "./contexts/AuthContext";
 import "./globals.css";
 
 const Layout = ({ children }) => {
     const location = useLocation();
-    // Si la ruta es /login o /register, no se muestra el sidebar
-    const hideSidebar = location.pathname === "/login" || location.pathname === "/register";
+    // Si la ruta es /login, /register o /forgot-password, no se muestra el sidebar
+    const hideSidebar =
+        location.pathname === "/login" ||
+        location.pathname === "/register" ||
+        location.pathname === "/forgot-password";
 
     return hideSidebar ? (
         <main className="main-container">{children}</main>
@@ -43,22 +49,27 @@ const App = () => {
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Nueva ruta */}
+                    <Route path="/reset-password" element={<ResetPassword />} />
+
                     <Route
                         path="/*"
                         element={
                             <Layout>
                                 <Routes>
-                                    {/* Ruta raÃ­z para todos (puede ser MainDashboard) */}
+                                    {/* Ruta raíz para todos (puede ser MainDashboard) */}
                                     <Route
                                         path="/"
-                                        element={user ? <MainDashboard /> : <Navigate to="/login" replace />}
+                                        element={
+                                            user ? <MainDashboard /> : <Navigate to="/login" replace />
+                                        }
                                     />
                                     <Route path="/create-project" element={<CreateProject />} />
                                     <Route path="/profile" element={<Profile />} />
                                     <Route path="/media-game" element={<MediaQueryDragAndDropWithReference />} />
                                     {user?.role === "Profesor" && (
                                         <>
-                                            {/* Ruta especÃ­fica para el dashboard de cursos para profesores */}
+                                            {/* Rutas específicas para profesores */}
                                             <Route path="/dashboard" element={<Dashboard />} />
                                             <Route path="/projects/professor/:id" element={<ProjectDetailsProfessor />} />
                                             <Route path="/projects/:projectId" element={<ProjectPhase />} />
