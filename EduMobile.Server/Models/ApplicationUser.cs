@@ -32,5 +32,6 @@ public class ApplicationUser : IdentityUser
 
     public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
 
+    public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
 }

@@ -273,6 +273,34 @@ namespace EduMobile.Server.Migrations
                     b.ToTable("KanbanItems");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
                 {
                     b.Property<int>("Id")
@@ -589,6 +617,38 @@ namespace EduMobile.Server.Migrations
                     b.ToTable("Semesters");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.TeacherFeedback", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FeedbackText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Phase")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId", "Phase")
+                        .IsUnique();
+
+                    b.ToTable("TeacherFeedbacks");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -776,6 +836,16 @@ namespace EduMobile.Server.Migrations
                     b.Navigation("DevelopmentPhase");
                 });
 
+            modelBuilder.Entity("EduMobile.Server.Models.Notification", b =>
+                {
+                    b.HasOne("ApplicationUser", "User")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
                 {
                     b.HasOne("EduMobile.Server.Models.Project", "Project")
@@ -921,6 +991,8 @@ namespace EduMobile.Server.Migrations
 
             modelBuilder.Entity("ApplicationUser", b =>
                 {
+                    b.Navigation("Notifications");
+
                     b.Navigation("ProjectUsers");
 
                     b.Navigation("Projects");

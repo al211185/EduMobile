@@ -50,10 +50,15 @@ export default defineConfig({
             '/api': {
                 target, // Redirige a la variable `target` que apunta al backend
                 secure: false,
-                changeOrigin: true, // Cambia el origen para evitar problemas de CORS
+                changeOrigin: true,
             },
             '/swagger': {
                 target, // Redirige las rutas de Swagger
+                secure: false,
+                changeOrigin: true,
+            },
+            '/notificationHub': {  // Agrega esta entrada para SignalR
+                target,
                 secure: false,
                 changeOrigin: true,
             }
@@ -64,5 +69,6 @@ export default defineConfig({
             cert: fs.readFileSync(certFilePath),
         },
     }
+
 
 })

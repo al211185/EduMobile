@@ -4,13 +4,16 @@ import Phase1Brief from "./Phase1Brief";
 import Phase2Benchmarking from "./Phase2Benchmarking";
 import Phase3Audience from "./Phase3Audience";
 
-const PlanningPhase = ({ readOnly = false }) => {
+const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () => { } }) => {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
     const [phaseData, setPhaseData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    // Estado local para manejar el feedback del profesor
+    const [localFeedback, setLocalFeedback] = useState(feedback);
 
     // Al montar, obtener la fase de planeación
     useEffect(() => {
@@ -33,6 +36,31 @@ const PlanningPhase = ({ readOnly = false }) => {
 
         if (projectId) {
             fetchPlanningPhase();
+        }
+    }, [projectId]);
+
+    // Cargar la retroalimentación guardada (para profesor y alumno)
+    useEffect(() => {
+        if (projectId) {
+            const fetchFeedback = async () => {
+                try {
+                    const response = await fetch(`/api/Feedbacks/${projectId}/1`);
+                    console.log("GET Feedback response:", response);
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log("Feedback data:", data);
+                        // Ajusta el nombre de la propiedad según lo que retorna tu API (por ejemplo, "feedbackText")
+                        setLocalFeedback(data.feedbackText || "");
+                    } else if (response.status === 404) {
+                        setLocalFeedback("");
+                    } else {
+                        console.error("Error al obtener la retroalimentación.");
+                    }
+                } catch (error) {
+                    console.error("Error en fetchFeedback:", error);
+                }
+            };
+            fetchFeedback();
         }
     }, [projectId]);
 
@@ -92,7 +120,7 @@ const PlanningPhase = ({ readOnly = false }) => {
         }
     };
 
-    // Si estamos en modo readOnly, evitamos intentar guardar datos
+    // Para alumnos, no se deben guardar datos de la fase; la función se ignora
     const handleSaveData = async (childData) => {
         if (readOnly) {
             return true;
@@ -106,6 +134,58 @@ const PlanningPhase = ({ readOnly = false }) => {
             alert("Error al guardar datos, intenta nuevamente.");
         }
         return saved;
+    };
+
+    // Función para guardar la retroalimentación del profesor en el controlador
+    const handleFeedbackSave = async () => {
+        try {
+            // Primero se intenta obtener la retroalimentación existente para este proyecto y fase (fase 1)
+            const getResponse = await fetch(`/api/Feedbacks/${projectId}/1`);
+            if (getResponse.ok) {
+                // Ya existe retroalimentación: actualizarla
+                const existingFeedback = await getResponse.json();
+                const feedbackId = existingFeedback.id;
+                const putResponse = await fetch(`/api/Feedbacks/${feedbackId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        ProjectId: parseInt(projectId, 10),
+                        Phase: 1,
+                        FeedbackText: localFeedback,
+                    }),
+                });
+                if (!putResponse.ok) {
+                    const errData = await putResponse.json();
+                    console.error("Error al actualizar feedback:", errData);
+                    alert("Error al actualizar la retroalimentación.");
+                } else {
+                    alert("Retroalimentación actualizada correctamente.");
+                }
+            } else if (getResponse.status === 404) {
+                // No existe retroalimentación: crear una nueva
+                const postResponse = await fetch("/api/Feedbacks", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        ProjectId: parseInt(projectId, 10),
+                        Phase: 1,
+                        FeedbackText: localFeedback,
+                    }),
+                });
+                if (!postResponse.ok) {
+                    const errData = await postResponse.json();
+                    console.error("Error al crear feedback:", errData);
+                    alert("Error al crear la retroalimentación.");
+                } else {
+                    alert("Retroalimentación creada correctamente.");
+                }
+            } else {
+                alert("Error al obtener la retroalimentación.");
+            }
+        } catch (error) {
+            console.error("Error en handleFeedbackSave:", error);
+            alert("Error al guardar la retroalimentación.");
+        }
     };
 
     // Navegación: Avanza o retrocede entre subfases
@@ -134,7 +214,6 @@ const PlanningPhase = ({ readOnly = false }) => {
 
     // Renderiza el componente hijo correspondiente según la fase actual
     const renderPhaseChild = () => {
-        // Se pasa readOnly para que cada componente hijo pueda deshabilitar la edición
         if (currentPhase === 1) {
             return <Phase1Brief data={phaseData} onSave={handleSaveData} readOnly={readOnly} />;
         } else if (currentPhase === 2) {
@@ -164,17 +243,57 @@ const PlanningPhase = ({ readOnly = false }) => {
             {/* Contenedor scrollable para el contenido */}
             <main className="flex-1 overflow-y-auto p-6">
                 {renderPhaseChild()}
+
+                {/* Bloque de retroalimentación para ambos perfiles */}
+                <div className="mt-6 p-4 border rounded bg-gray-50">
+                    <label htmlFor="teacherFeedback" className="block mb-2 font-bold text-gray-700">
+                        Retroalimentación del Profesor:
+                    </label>
+                    {readOnly ? (
+                        // Para el profesor: textarea editable con botón para guardar
+                        <>
+                            <textarea
+                                id="teacherFeedback"
+                                className="w-full p-2 border border-gray-300 rounded"
+                                rows={3}
+                                value={localFeedback}
+                                onChange={(e) => setLocalFeedback(e.target.value)}
+                            />
+                            <button
+                                onClick={handleFeedbackSave}
+                                className="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                            >
+                                Guardar Retroalimentación
+                            </button>
+                        </>
+                    ) : (
+                        // Para el alumno: solo se muestra en modo lectura
+                        <textarea
+                            id="teacherFeedback"
+                            className="w-full p-2 border border-gray-300 rounded bg-gray-100"
+                            rows={3}
+                            value={localFeedback}
+                            disabled
+                        />
+                    )}
+                </div>
             </main>
 
             {/* Botones de navegación */}
             <footer className="px-6 py-4 border-t border-gray-200">
                 <div className="flex justify-between">
                     {currentPhase > 1 && (
-                        <button onClick={handlePrev} className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+                        <button
+                            onClick={handlePrev}
+                            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+                        >
                             Anterior
                         </button>
                     )}
-                    <button onClick={handleNext} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+                    <button
+                        onClick={handleNext}
+                        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                    >
                         {currentPhase < 3 ? "Siguiente" : "Finalizar Planeación"}
                     </button>
                 </div>

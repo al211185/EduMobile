@@ -23,8 +23,12 @@ namespace EduMobile.Server.Data
 
         // NUEVO: DbSet para las tarjetas del Kanban
         public DbSet<KanbanItem> KanbanItems { get; set; }
-
         public DbSet<ProjectUser> ProjectUsers { get; set; }
+
+        // NUEVO: DbSet para la retroalimentación del profesor
+        public DbSet<TeacherFeedback> TeacherFeedbacks { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -113,6 +117,26 @@ namespace EduMobile.Server.Data
                 .WithMany(u => u.ProjectUsers)
                 .HasForeignKey(pu => pu.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Nueva configuración para TeacherFeedback
+            // Se impone un índice único para evitar que haya más de una retroalimentación por proyecto y fase.
+            builder.Entity<TeacherFeedback>()
+                .HasIndex(tf => new { tf.ProjectId, tf.Phase })
+                .IsUnique();
+
+            builder.Entity<Notification>(entity =>
+            {
+                // Fuerza la propiedad UserId a ser opcional (nullable)
+                entity.Property(n => n.UserId)
+                      .IsRequired(false);
+
+                // Configura la relación con ApplicationUser
+                entity.HasOne(n => n.User)
+                      .WithMany(u => u.Notifications)  // Asegúrate de que en ApplicationUser exista la colección Notifications
+                      .HasForeignKey(n => n.UserId)
+                      .OnDelete(DeleteBehavior.SetNull);
+            });
+
         }
     }
 }

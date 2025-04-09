@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@microsoft/signalr": "^8.0.7",
     "axios": "^1.7.9",
     "jspdf": "^3.0.0",
     "jspdf-autotable": "^5.0.2",

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using EduMobile.Server.Data;
 using EduMobile.Server.Models;
 using System.Configuration;
+using EduMobile.Server.Services;
+using EduMobile.Server.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,9 @@ builder.Services.AddControllers();
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddTransient<INotificationService, NotificationService>();
+
+builder.Services.AddSignalR();
 
 
 var app = builder.Build();
@@ -65,6 +70,8 @@ app.UseAuthorization();
 
 // Configuración de rutas de controladores
 app.MapControllers();
+
+app.MapHub<NotificationHub>("/notificationHub");
 
 // React como fallback para cualquier ruta no gestionada por controladores
 app.MapFallbackToFile("/index.html");

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext"; // Importa el contexto de autenticación
+import { useAuth } from "../contexts/AuthContext";
 import ProjectPlanning from "./PlanningPhase";
 import DesignPhase from "./DesignPhase";
 import DevelopmentPhase from "./DevelopmentPhase";
@@ -11,8 +11,8 @@ import TeamList from "./TeamList";
 const ProjectPhase = () => {
     const { projectId } = useParams();
     const navigate = useNavigate();
-    const { user } = useAuth(); // Obtenemos el usuario autenticado
-    const isProfessor = user?.role === "Profesor"; // Define si el usuario es profesor
+    const { user } = useAuth();
+    const isProfessor = user?.role === "Profesor"; // Si es profesor, se activa el modo readOnly
 
     const [project, setProject] = useState(null);
     const [phaseData, setPhaseData] = useState({});
@@ -24,6 +24,14 @@ const ProjectPhase = () => {
     const [currentPhase, setCurrentPhase] = useState(1);
     const [currentUserId, setCurrentUserId] = useState("");
 
+    // Estado para almacenar la retroalimentación del profesor por fase
+    const [teacherFeedback, setTeacherFeedback] = useState({
+        1: "",
+        2: "",
+        3: "",
+        4: ""
+    });
+
     useEffect(() => {
         const storedUserId = localStorage.getItem("currentUserId");
         if (storedUserId) setCurrentUserId(storedUserId);
@@ -32,7 +40,7 @@ const ProjectPhase = () => {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                // Si el profesor debe ver la información completa, puedes usar el mismo endpoint
+                // Usamos el mismo endpoint para todos los usuarios
                 const response = await fetch(`/api/projects/${projectId}`);
                 const data = await response.json();
                 if (response.ok) {
@@ -50,7 +58,7 @@ const ProjectPhase = () => {
     }, [projectId]);
 
     const handleSaveData = async (updatedData) => {
-        // Si el usuario es profesor, no se realizan cambios y se comporta en modo readonly.
+        // Si el usuario es profesor en modo readOnly, no se actualizan los datos principales
         if (isProfessor) {
             return true;
         }
@@ -95,7 +103,7 @@ const ProjectPhase = () => {
     };
 
     const handleNextPhase = () => {
-        // Permite la navegación entre fases incluso en modo readonly (profesor)
+        // Permite la navegación entre fases incluso en modo readOnly
         if (currentPhase < 4) {
             setCurrentPhase((prev) => prev + 1);
         } else {
@@ -109,8 +117,20 @@ const ProjectPhase = () => {
         }
     };
 
+    // Se definen las props comunes para cada fase. Si el usuario es profesor se incluye feedback.
+    const commonProps = {
+        projectId,
+        phaseData,
+        readOnly: isProfessor,
+        ...(isProfessor && {
+            feedback: teacherFeedback[currentPhase],
+            onFeedbackChange: (newFeedback) =>
+                setTeacherFeedback((prev) => ({ ...prev, [currentPhase]: newFeedback }))
+        })
+    };
+
+    // Renderiza el componente de la fase según el estado actual
     const renderPhaseComponent = () => {
-        // Pasa la prop readOnly (o isProfessor) a los componentes hijos para que se adapten al modo de solo lectura.
         switch (currentPhase) {
             case 1:
                 return (
@@ -119,7 +139,7 @@ const ProjectPhase = () => {
                         phaseData={phaseData}
                         onSave={handleSaveData}
                         onNext={handleNextPhase}
-                        readOnly={isProfessor}
+                        {...commonProps}
                     />
                 );
             case 2:
@@ -128,7 +148,7 @@ const ProjectPhase = () => {
                         projectId={projectId}
                         phaseData={phaseData}
                         onSave={handleSaveData}
-                        readOnly={isProfessor}
+                        {...commonProps}
                     />
                 );
             case 3:
@@ -139,7 +159,7 @@ const ProjectPhase = () => {
                         onSave={handleSaveData}
                         onPrev={handlePrevPhase}
                         onNext={handleNextPhase}
-                        readOnly={isProfessor}
+                        {...commonProps}
                     />
                 );
             case 4:
@@ -150,7 +170,7 @@ const ProjectPhase = () => {
                         onSave={handleSaveData}
                         onPrev={handlePrevPhase}
                         onNext={handleNextPhase}
-                        readOnly={isProfessor}
+                        {...commonProps}
                     />
                 );
             default:
@@ -189,7 +209,7 @@ const ProjectPhase = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    {/* Solo se muestra el botón "Agregar Participante" si no es profesor */}
+                    {/* El botón "Agregar Participante" solo se muestra para alumnos */}
                     {!isProfessor && (
                         <button
                             onClick={() => setIsModalOpen(true)}
@@ -226,9 +246,12 @@ const ProjectPhase = () => {
                 </div>
             </header>
 
-            <main className="p-4">{renderPhaseComponent()}</main>
+            <main className="p-4">
+                {renderPhaseComponent()}
+            </main>
 
-            {!isProfessor && currentPhase > 1 && (
+            {/* Se muestra el botón "Fase Anterior" siempre que currentPhase sea mayor a 1, para alumnos y profesores */}
+            {currentPhase > 1 && (
                 <footer className="sticky bottom-0 bg-white border-t border-gray-200 p-2 flex justify-end">
                     <button
                         onClick={handlePrevPhase}
