@@ -7,6 +7,7 @@ import DevelopmentPhase from "./DevelopmentPhase";
 import EvaluationPhase from "./EvaluationPhase";
 import AddParticipantModal from "./AddParticipantModal";
 import TeamList from "./TeamList";
+import PhaseAssignmentEditor from "./PhaseAssignmentEditor";
 
 const ProjectPhase = () => {
     const { projectId } = useParams();
@@ -20,6 +21,8 @@ const ProjectPhase = () => {
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showTeamList, setShowTeamList] = useState(false);
+    // Estado para mostrar el editor de asignaciones, visible solo para el creador
+    const [showPhaseAssignmentEditor, setShowPhaseAssignmentEditor] = useState(false);
     // 1: Planeación, 2: Diseño, 3: Desarrollo, 4: Evaluación
     const [currentPhase, setCurrentPhase] = useState(1);
     const [currentUserId, setCurrentUserId] = useState("");
@@ -231,6 +234,15 @@ const ProjectPhase = () => {
                     >
                         {showTeamList ? "Ocultar Equipo" : "Equipo del Proyecto"}
                     </button>
+                    {/* Botón para abrir el editor de asignación de fases, solo para el creador */}
+                    {isCreator && (
+                        <button
+                            onClick={() => setShowPhaseAssignmentEditor(true)}
+                            className="bg-purple-500 hover:bg-purple-600 text-white px-2 py-1 rounded text-sm"
+                        >
+                            Asignar Fases
+                        </button>
+                    )}
                     {showTeamList && (
                         <div className="absolute top-12 right-2 bg-white border border-gray-300 rounded shadow-md p-2 w-64 z-20">
                             <TeamList isCreator={isCreator} refreshProject={() => { }} />
@@ -260,6 +272,16 @@ const ProjectPhase = () => {
                         Fase Anterior
                     </button>
                 </footer>
+            )}
+            {/* Modal para editar asignaciones de fase */}
+            {showPhaseAssignmentEditor && (
+                <PhaseAssignmentEditor
+                    projectId={projectId}
+                    onClose={() => setShowPhaseAssignmentEditor(false)}
+                    onAssignmentsSaved={() => {
+                        // Aquí podrías refrescar la información del proyecto o del equipo si es necesario.
+                    }}
+                />
             )}
         </div>
     );

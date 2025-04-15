@@ -4,6 +4,7 @@ using EduMobile.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduMobile.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415212614_Mig27AsignacionFases")]
+    partial class Mig27AsignacionFases
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,7 +193,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("DesignPhases", (string)null);
+                    b.ToTable("DesignPhases");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.DevelopmentPhase", b =>
@@ -231,7 +234,7 @@ namespace EduMobile.Server.Migrations
                     b.HasIndex("ProjectId")
                         .IsUnique();
 
-                    b.ToTable("DevelopmentPhases", (string)null);
+                    b.ToTable("DevelopmentPhases");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.KanbanItem", b =>
@@ -270,7 +273,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("DevelopmentPhaseId");
 
-                    b.ToTable("KanbanItems", (string)null);
+                    b.ToTable("KanbanItems");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.Notification", b =>
@@ -298,7 +301,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications", (string)null);
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.Phase", b =>
@@ -329,7 +332,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("Phases", (string)null);
+                    b.ToTable("Phases");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.PhaseAssignment", b =>
@@ -356,7 +359,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("PhaseAssignments", (string)null);
+                    b.ToTable("PhaseAssignments");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.PlanningPhase", b =>
@@ -535,7 +538,7 @@ namespace EduMobile.Server.Migrations
                     b.HasIndex("ProjectId")
                         .IsUnique();
 
-                    b.ToTable("PlanningPhases", (string)null);
+                    b.ToTable("PlanningPhases");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.Project", b =>
@@ -577,7 +580,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("SemesterId");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.ProjectUser", b =>
@@ -599,7 +602,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ProjectUsers", (string)null);
+                    b.ToTable("ProjectUsers");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.Semester", b =>
@@ -641,7 +644,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("ProfessorId");
 
-                    b.ToTable("Semesters", (string)null);
+                    b.ToTable("Semesters");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.TeacherFeedback", b =>
@@ -673,7 +676,7 @@ namespace EduMobile.Server.Migrations
                     b.HasIndex("ProjectId", "Phase")
                         .IsUnique();
 
-                    b.ToTable("TeacherFeedbacks", (string)null);
+                    b.ToTable("TeacherFeedbacks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -827,7 +830,7 @@ namespace EduMobile.Server.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("SemesterStudents", (string)null);
+                    b.ToTable("SemesterStudents");
                 });
 
             modelBuilder.Entity("EduMobile.Server.Models.DesignPhase", b =>

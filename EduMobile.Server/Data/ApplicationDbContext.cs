@@ -30,6 +30,9 @@ namespace EduMobile.Server.Data
 
         public DbSet<Notification> Notifications { get; set; }
 
+        // NUEVO: DbSet para PhaseAssignment
+        public DbSet<PhaseAssignment> PhaseAssignments { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -135,6 +138,24 @@ namespace EduMobile.Server.Data
                       .WithMany(u => u.Notifications)  // Asegúrate de que en ApplicationUser exista la colección Notifications
                       .HasForeignKey(n => n.UserId)
                       .OnDelete(DeleteBehavior.SetNull);
+            });
+
+            // Configuración para PhaseAssignment
+            builder.Entity<PhaseAssignment>(entity =>
+            {
+                entity.HasKey(pa => pa.Id);
+
+                entity.HasOne(pa => pa.Project)
+                      .WithMany(p => p.PhaseAssignments)
+                      .HasForeignKey(pa => pa.ProjectId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(pa => pa.ApplicationUser)
+                      .WithMany(u => u.PhaseAssignments)
+                      .HasForeignKey(pa => pa.ApplicationUserId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Aquí, la propiedad AssignedPhase se maneja automáticamente como int (o enum)
             });
 
         }

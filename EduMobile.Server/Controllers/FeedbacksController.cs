@@ -48,7 +48,8 @@ namespace EduMobile.Server.Controllers
                 if (feedback == null)
                 {
                     _logger.LogWarning("No se encontró retroalimentación para ProjectId {ProjectId} y Phase {Phase}", projectId, phase);
-                    return NotFound(new { Message = "No se encontró retroalimentación para este proyecto y fase." });
+                    // Retornar objeto vacío o un mensaje amigable
+                    return Ok(new { Message = "No hay retroalimentación aún." });
                 }
 
                 _logger.LogInformation("Retroalimentación obtenida correctamente para ProjectId {ProjectId} y Phase {Phase}", projectId, phase);
@@ -60,6 +61,7 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
 
         /// <summary>
         /// Crea una nueva retroalimentación de profesor.

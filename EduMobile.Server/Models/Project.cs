@@ -47,6 +47,8 @@ namespace EduMobile.Server.Models
         //teams
         public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
 
+        public ICollection<PhaseAssignment> PhaseAssignments { get; set; } = new List<PhaseAssignment>();
+
 
     }
 

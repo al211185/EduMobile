@@ -16,6 +16,7 @@ import ProjectDetailsProfessor from "./components/ProjectDetailsProfessor";
 import MediaQueryDragAndDropWithReference from "./components/MediaQueryDragAndDropWithReference";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ResetPassword from "./components/ResetPassword";
+import ProjectEdit from "./components/ProjectEdit";
 
 import { useAuth } from "./contexts/AuthContext";
 import "./globals.css";
@@ -80,6 +81,7 @@ const App = () => {
                                     {user?.role === "Alumno" && (
                                         <>
                                             <Route path="/my-projects" element={<MyProjects />} />
+                                            <Route path="/projects/edit/:projectId" element={<ProjectEdit />} />
                                             <Route path="/projects/:projectId" element={<ProjectPhase />} />
                                             <Route path="/fase-2-diseno/:projectId" element={<DesignPhase />} />
                                             <Route path="/development-phase/:projectId" element={<DevelopmentPhase />} />

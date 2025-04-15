@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useNotificationHub } from "../hooks/useNotificationHub";
-import * as signalR from "@microsoft/signalr"; // Para acceder al enum de estados (opcional)
 
 const Sidebar = () => {
     const { user, logout } = useAuth();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const navigate = useNavigate();
-    // El hook retorna tanto las notificaciones en tiempo real como el estado de la conexión.
     const { notifications: realtimeNotifications, connectionState } = useNotificationHub();
 
     const toggleDropdown = () => {
@@ -21,7 +19,7 @@ const Sidebar = () => {
         navigate("/login");
     };
 
-    // Efecto para cargar notificaciones iniciales desde /api/Notifications (historial)
+    // Cargar historial de notificaciones
     useEffect(() => {
         const fetchNotifications = async () => {
             try {
@@ -31,22 +29,55 @@ const Sidebar = () => {
                     setNotifications(data);
                 }
             } catch (error) {
-                // Manejo de errores si es necesario
+                // Manejo de errores (opcional)
             }
         };
         fetchNotifications();
     }, []);
 
-    // Efecto para actualizar notificaciones cuando se reciben mensajes en tiempo real
+    // Actualizar notificaciones con las recibidas en tiempo real
     useEffect(() => {
         if (realtimeNotifications && realtimeNotifications.length > 0) {
             setNotifications(prev => [...realtimeNotifications, ...prev]);
         }
     }, [realtimeNotifications]);
 
-    // Log cada vez que cambia el estado de notificaciones (removido)
+    // Función para eliminar una notificación
+    const handleDeleteNotification = async (id) => {
+        try {
+            const response = await fetch(`/api/Notifications/${id}`, {
+                method: "DELETE"
+            });
+            if (response.ok) {
+                setNotifications((prev) => prev.filter((notif) => notif.id !== id));
+            } else {
+                alert("Error al eliminar la notificación.");
+            }
+        } catch (error) {
+            alert("Error al conectar con el servidor.");
+        }
+    };
 
-    // Función para enviar una notificación de prueba (removida la llamada y el botón)
+    // Función para marcar una notificación como leída
+    const handleMarkAsRead = async (id) => {
+        try {
+            const response = await fetch(`/api/Notifications/${id}/read`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" }
+            });
+            if (response.ok) {
+                setNotifications((prev) =>
+                    prev.map((notif) =>
+                        notif.id === id ? { ...notif, IsRead: true } : notif
+                    )
+                );
+            } else {
+                alert("Error al marcar la notificación como leída.");
+            }
+        } catch (error) {
+            alert("Error al conectar con el servidor.");
+        }
+    };
 
     return (
         <aside className="w-64 h-screen bg-gray-800 text-white flex flex-col">
@@ -100,9 +131,27 @@ const Sidebar = () => {
                     <p className="text-sm text-gray-300 mt-2">No hay notificaciones.</p>
                 ) : (
                     <ul className="mt-2 space-y-2">
-                        {notifications.map((notif, index) => (
-                            <li key={index} className="text-sm text-gray-300">
-                                {notif.message ? notif.message : notif}
+                        {notifications.map((notif) => (
+                            <li key={notif.id} className="text-sm text-gray-300 flex justify-between items-center">
+                                <span className={notif.IsRead ? "line-through" : ""}>
+                                    {notif.message}
+                                </span>
+                                <div className="flex gap-1">
+                                    {!notif.IsRead && (
+                                        <button
+                                            onClick={() => handleMarkAsRead(notif.id)}
+                                            className="text-green-400 hover:text-green-600 text-xs"
+                                        >
+                                            Marcar leída
+                                        </button>
+                                    )}
+                                    <button
+                                        onClick={() => handleDeleteNotification(notif.id)}
+                                        className="text-red-400 hover:text-red-600 text-xs"
+                                    >
+                                        Eliminar
+                                    </button>
+                                </div>
                             </li>
                         ))}
                     </ul>
@@ -132,7 +181,7 @@ const Sidebar = () => {
                         )}
                         <div className="relative mt-4">
                             <button
-                                onClick={toggleDropdown}
+                                onClick={() => setIsDropdownOpen((prev) => !prev)}
                                 className="w-full text-left py-2 px-4 rounded hover:bg-gray-700 focus:outline-none"
                             >
                                 {user.nombre} {user.apellidoPaterno}
