@@ -27,6 +27,8 @@ const ProjectPhase = () => {
     const [currentPhase, setCurrentPhase] = useState(1);
     const [currentUserId, setCurrentUserId] = useState("");
 
+    const [professorId, setProfessorId] = useState(null);
+
     // Estado para almacenar la retroalimentación del profesor por fase
     const [teacherFeedback, setTeacherFeedback] = useState({
         1: "",
@@ -48,6 +50,7 @@ const ProjectPhase = () => {
                 const data = await response.json();
                 if (response.ok) {
                     setProject(data);
+                    setProfessorId(data.semesterProfessorId);  // guardas el prof ID
                 } else {
                     setError(data.message || "No se pudo cargar el proyecto.");
                 }
@@ -118,6 +121,29 @@ const ProjectPhase = () => {
         if (currentPhase > 1) {
             setCurrentPhase((prev) => prev - 1);
         }
+    };
+
+    // Nueva función para confirmar el cierre del proyecto
+    const handleFinish = async () => {
+        const ok = window.confirm(
+            "¿Estás seguro de finalizar? Se notificará al profesor que has terminado el proyecto."
+        );
+        if (!ok) return;
+        // 1) enviar notificación
+        try {
+            await fetch("/api/Notifications", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    UserId: professorId,
+                    Message: `El alumno ${user.nombre} ha finalizado el proyecto "${project.title}".`
+                })
+            });
+        } catch (_) {
+            console.error("No se pudo enviar la notificación.");
+        }
+        // 2) navegar de vuelta
+        navigate("/my-projects");
     };
 
     // Se definen las props comunes para cada fase. Si el usuario es profesor se incluye feedback.
@@ -249,8 +275,8 @@ const ProjectPhase = () => {
                         </div>
                     )}
                     <button
-                        onClick={handleNextPhase}
-                        disabled={currentPhase >= 4}
+                        onClick={currentPhase < 4 ? handleNextPhase : handleFinish}
+                        disabled={currentPhase >= 4 && !professorId}
                         className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-sm"
                     >
                         {currentPhase < 4 ? "Siguiente Fase" : "Finalizar"}

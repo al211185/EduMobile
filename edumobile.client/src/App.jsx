@@ -48,43 +48,52 @@ const App = () => {
         <Router>
             <ErrorBoundary>
                 <Routes>
+                    {/* Rutas públicas */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Nueva ruta */}
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
 
+                    {/* Rutas protegidas dentro de Layout */}
                     <Route
                         path="/*"
                         element={
                             <Layout>
                                 <Routes>
-                                    {/* Ruta raíz para todos (puede ser MainDashboard) */}
+                                    {/* Ruta raíz ("/") */}
                                     <Route
-                                        path="/"
+                                        index
                                         element={
-                                            user ? <MainDashboard /> : <Navigate to="/login" replace />
+                                            user
+                                                ? <MainDashboard />
+                                                : <Navigate to="/login" replace />
                                         }
                                     />
-                                    <Route path="/create-project" element={<CreateProject />} />
-                                    <Route path="/profile" element={<Profile />} />
-                                    <Route path="/media-game" element={<MediaQueryDragAndDropWithReference />} />
+
+                                    {/* Rutas comunes */}
+                                    <Route path="create-project" element={<CreateProject />} />
+                                    <Route path="profile" element={<Profile />} />
+                                    <Route path="media-game" element={<MediaQueryDragAndDropWithReference />} />
+
+                                    {/* Rutas para el profesor */}
                                     {user?.role === "Profesor" && (
                                         <>
-                                            {/* Rutas específicas para profesores */}
-                                            <Route path="/dashboard" element={<Dashboard />} />
-                                            <Route path="/projects/professor/:id" element={<ProjectDetailsProfessor />} />
-                                            <Route path="/projects/:projectId" element={<ProjectPhase />} />
-                                            <Route path="/fase-2-diseno/:projectId" element={<DesignPhase />} />
-                                            <Route path="/development-phase/:projectId" element={<DevelopmentPhase />} />
+                                            <Route path="dashboard" element={<Dashboard />} />
+                                            <Route path="projects/professor/:id" element={<ProjectDetailsProfessor />} />
+                                            <Route path="projects/:projectId" element={<ProjectPhase />} />
+                                            <Route path="fase-2-diseno/:projectId" element={<DesignPhase />} />
+                                            <Route path="development-phase/:projectId" element={<DevelopmentPhase />} />
                                         </>
                                     )}
+
+                                    {/* Rutas para el alumno */}
                                     {user?.role === "Alumno" && (
                                         <>
-                                            <Route path="/my-projects" element={<MyProjects />} />
-                                            <Route path="/projects/edit/:projectId" element={<ProjectEdit />} />
-                                            <Route path="/projects/:projectId" element={<ProjectPhase />} />
-                                            <Route path="/fase-2-diseno/:projectId" element={<DesignPhase />} />
-                                            <Route path="/development-phase/:projectId" element={<DevelopmentPhase />} />
+                                            <Route path="my-projects" element={<MyProjects />} />
+                                            <Route path="projects/edit/:projectId" element={<ProjectEdit />} />
+                                            <Route path="projects/:projectId" element={<ProjectPhase />} />
+                                            <Route path="fase-2-diseno/:projectId" element={<DesignPhase />} />
+                                            <Route path="development-phase/:projectId" element={<DevelopmentPhase />} />
                                         </>
                                     )}
                                 </Routes>
@@ -92,6 +101,7 @@ const App = () => {
                         }
                     />
                 </Routes>
+
             </ErrorBoundary>
         </Router>
     );

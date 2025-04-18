@@ -33,6 +33,9 @@ namespace EduMobile.Server.Data
         // NUEVO: DbSet para PhaseAssignment
         public DbSet<PhaseAssignment> PhaseAssignments { get; set; }
 
+        public DbSet<GameScore> GameScores { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -157,6 +160,11 @@ namespace EduMobile.Server.Data
 
                 // Aquí, la propiedad AssignedPhase se maneja automáticamente como int (o enum)
             });
+
+            builder.Entity<GameScore>()
+                .HasIndex(gs => gs.UserId)
+                .IsUnique();
+
 
         }
     }

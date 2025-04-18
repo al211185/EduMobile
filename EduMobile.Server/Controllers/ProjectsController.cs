@@ -307,7 +307,8 @@ namespace EduMobile.Server.Controllers
                     project.CurrentPhase,
                     SemesterName = project.Semester != null ? project.Semester.Name : "Sin semestre",
                     CreatedByName = project.CreatedBy != null ? $"{project.CreatedBy.Nombre} {project.CreatedBy.ApellidoPaterno}" : "Desconocido",
-                    CreatedById = project.CreatedById // Agrega esta propiedad
+                    CreatedById = project.CreatedById, // Agrega esta propiedad
+                    SemesterProfessorId = project.Semester?.ProfessorId    // <<< aquí
                 };
 
                 return Ok(result);

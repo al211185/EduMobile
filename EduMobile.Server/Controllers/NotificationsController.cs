@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EduMobile.Server.Controllers
 {
@@ -31,9 +32,10 @@ namespace EduMobile.Server.Controllers
             return Ok(notifications);
         }
 
-        // PUT: api/Notifications/{id}/read
         // Marca como leída la notificación con el ID indicado.
+        // PUT: api/Notifications/{id}/read
         [HttpPut("{id}/read")]
+        [Authorize]
         public async Task<IActionResult> MarkAsRead(int id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -41,16 +43,15 @@ namespace EduMobile.Server.Controllers
                 .FirstOrDefaultAsync(n => n.Id == id && n.UserId == userId);
 
             if (notification == null)
-            {
                 return NotFound(new { Message = "Notificación no encontrada." });
-            }
 
             notification.IsRead = true;
-            _context.Notifications.Update(notification);
             await _context.SaveChangesAsync();
 
-            return Ok(new { Message = "Notificación marcada como leída." });
+            // Devuelves la notificación actualizada
+            return Ok(notification);
         }
+
 
         // DELETE: api/Notifications/{id}
         // Elimina la notificación con el ID indicado para el usuario autenticado.
@@ -71,5 +72,34 @@ namespace EduMobile.Server.Controllers
 
             return Ok(new { Message = "Notificación eliminada." });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNotification([FromBody] CreateNotificationDto dto)
+        {
+            // Opcionalmente puedes validar aquí que el usuario autenticado tenga permisos
+            var notification = new Notification
+            {
+                UserId = dto.UserId,
+                Message = dto.Message,
+                CreatedAt = DateTime.UtcNow,
+                IsRead = false
+            };
+
+            _context.Notifications.Add(notification);
+            await _context.SaveChangesAsync();
+
+            // Devuelve 201 con la notificación creada
+            return CreatedAtAction(
+                nameof(GetNotifications),
+                new { /* no necesitas id aquí para el listado */ },
+                notification
+            );
+        }
     }
+}
+
+public class CreateNotificationDto
+{
+    public string UserId { get; set; }
+    public string Message { get; set; }
 }

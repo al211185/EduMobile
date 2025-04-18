@@ -121,7 +121,7 @@ const PhaseAssignmentEditor = ({ projectId, onClose, onAssignmentsSaved }) => {
                                 <option value={1}>Planeación</option>
                                 <option value={2}>Diseño</option>
                                 <option value={3}>Desarrollo</option>
-                                <option value={4}>Despliegue</option>
+                                <option value={4}>Evaluación</option>
                             </select>
                         </div>
                     ))

@@ -23,7 +23,7 @@ const Sidebar = () => {
     useEffect(() => {
         const fetchNotifications = async () => {
             try {
-                const response = await fetch("/api/Notifications");
+                const response = await fetch("/api/Notifications", { credentials: "include" });
                 if (response.ok) {
                     const data = await response.json();
                     setNotifications(data);
@@ -61,22 +61,21 @@ const Sidebar = () => {
     // Función para marcar una notificación como leída
     const handleMarkAsRead = async (id) => {
         try {
-            const response = await fetch(`/api/Notifications/${id}/read`, {
+            const res = await fetch(`/api/Notifications/${id}/read`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" }
+                credentials: "include",
             });
-            if (response.ok) {
+            if (res.ok) {
                 setNotifications((prev) =>
-                    prev.map((notif) =>
-                        notif.id === id ? { ...notif, IsRead: true } : notif
-                    )
+                    prev.map((n) => (n.id === id ? { ...n, isRead: true } : n))
                 );
             } else {
                 alert("Error al marcar la notificación como leída.");
             }
-        } catch (error) {
+        } catch {
             alert("Error al conectar con el servidor.");
         }
+
     };
 
     return (
@@ -133,11 +132,11 @@ const Sidebar = () => {
                     <ul className="mt-2 space-y-2">
                         {notifications.map((notif) => (
                             <li key={notif.id} className="text-sm text-gray-300 flex justify-between items-center">
-                                <span className={notif.IsRead ? "line-through" : ""}>
+                                <span className={notif.isRead ? "line-through" : ""}>
                                     {notif.message}
                                 </span>
                                 <div className="flex gap-1">
-                                    {!notif.IsRead && (
+                                    {!notif.isRead && (
                                         <button
                                             onClick={() => handleMarkAsRead(notif.id)}
                                             className="text-green-400 hover:text-green-600 text-xs"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
     const [email, setEmail] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("Colaborador");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     CollaboratorEmail: email,
-                    RoleInProject: role || "Colaborador",
+                    RoleInProject: role,
                 }),
             });
 
@@ -33,7 +33,7 @@ const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
                     onClose && onClose();
                 }, 2000);
             }
-        } catch (err) {
+        } catch {
             setError("Error al conectar con el servidor");
         } finally {
             setLoading(false);
@@ -63,13 +63,14 @@ const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
                         <label className="block text-gray-700 mb-1">
                             Rol en el proyecto:
                         </label>
-                        <input
-                            type="text"
+                        <select
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
-                            placeholder="Colaborador"
-                            className="w-full border border-gray-300 rounded p-2"
-                        />
+                            className="w-full border border-gray-300 rounded p-2 bg-white"
+                        >
+                            <option value="Colaborador">Colaborador</option>
+                            <option value="Profesor">Profesor</option>
+                        </select>
                     </div>
                     <div className="flex justify-end space-x-2">
                         <button

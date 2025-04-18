@@ -8,7 +8,7 @@ namespace EduMobile.Server.Models
         Planeacion = 1,
         Diseno = 2,
         Desarrollo = 3,
-        Despliegue = 4
+        Evaluacion = 4
     }
 
     public class PhaseAssignment
