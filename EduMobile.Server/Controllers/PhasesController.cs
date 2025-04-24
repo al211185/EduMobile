@@ -71,6 +71,16 @@ namespace EduMobile.Server.Controllers
                 phase.UpdatedAt = DateTime.UtcNow;
 
                 _context.Phases.Update(phase);
+
+
+                // 2️⃣ También marca el Proyecto como “editado ahora”
+                var project = await _context.Projects.FindAsync(phase.ProjectId);
+                if (project != null)
+                {
+                    project.UpdatedAt = DateTime.UtcNow;
+                    _context.Projects.Update(project);
+                }
+
                 await _context.SaveChangesAsync();
 
                 return Ok(new { Message = "Fase actualizada exitosamente." });

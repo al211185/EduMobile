@@ -85,12 +85,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\1a7c92c4-f451-46d3-9a4f-52c393206c4a.png",
+      "PackagePath": "staticwebassets\\uploads\\1a7c92c4-f451-46d3-9a4f-52c393206c4a.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\5c88e59c-8980-407d-923c-2505bfc43dde.jpg",
       "PackagePath": "staticwebassets\\uploads\\5c88e59c-8980-407d-923c-2505bfc43dde.jpg"
     },
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\5d05d987-3530-419e-af74-33c667ecb66e.png",
       "PackagePath": "staticwebassets\\uploads\\5d05d987-3530-419e-af74-33c667ecb66e.png"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\af94b86b-0ac6-4aa0-abaf-145b4a42418a.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\af94b86b-0ac6-4aa0-abaf-145b4a42418a.jpeg"
     },
     {
       "Id": "obj\\Release\\net9.0\\staticwebassets\\msbuild.EduMobile.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

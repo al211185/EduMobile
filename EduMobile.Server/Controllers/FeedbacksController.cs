@@ -45,11 +45,12 @@ namespace EduMobile.Server.Controllers
                 var feedback = await _context.TeacherFeedbacks
                     .FirstOrDefaultAsync(f => f.ProjectId == projectId && f.Phase == phase);
 
+                // Ahora
                 if (feedback == null)
                 {
                     _logger.LogWarning("No se encontró retroalimentación para ProjectId {ProjectId} y Phase {Phase}", projectId, phase);
-                    // Retornar objeto vacío o un mensaje amigable
-                    return Ok(new { Message = "No hay retroalimentación aún." });
+                    // Retorna 404 para que el cliente sepa que debe POST en vez de PUT
+                    return NotFound();
                 }
 
                 _logger.LogInformation("Retroalimentación obtenida correctamente para ProjectId {ProjectId} y Phase {Phase}", projectId, phase);
@@ -188,5 +189,31 @@ namespace EduMobile.Server.Controllers
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
+
+        // GET: api/Feedbacks/project/{projectId}
+        // Devuelve **todas** las retroalimentaciones de un proyecto
+        [HttpGet("project/{projectId}")]
+        public async Task<IActionResult> GetAllFeedbackForProject(int projectId)
+        {
+            try
+            {
+                var list = await _context.TeacherFeedbacks
+                    .Where(f => f.ProjectId == projectId)
+                    .OrderBy(f => f.Phase)              // opcional: ordena por fase
+                    .ThenBy(f => f.CreatedAt)
+                    .ToListAsync();
+
+                if (!list.Any())
+                    return NotFound(new { Message = "No hay retroalimentación para este proyecto." });
+
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener todas las retroalimentaciones para el proyecto {ProjectId}", projectId);
+                return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
+            }
+        }
+
     }
 }

@@ -349,6 +349,7 @@ namespace EduMobile.Server.Controllers
                     project.CurrentPhase = request.CurrentPhase.Value;
                 }
 
+                project.UpdatedAt = DateTime.UtcNow;
                 _context.Projects.Update(project);
                 await _context.SaveChangesAsync();
 
@@ -398,8 +399,13 @@ namespace EduMobile.Server.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var project = await _context.Projects
                     .Include(p => p.Semester)
-                    .Where(p => p.CreatedById == userId)
-                    .OrderByDescending(p => p.CreatedAt)
+                    .Include(p => p.ProjectUsers)
+                    .Where(p =>
+                        p.CreatedById == userId                   // proyectos que creaste
+                        || p.ProjectUsers.Any(pu =>
+                            pu.ApplicationUserId == userId)       // o donde eres colaborador
+                    )
+                    .OrderByDescending(p => p.UpdatedAt)
                     .FirstOrDefaultAsync();
 
                 if (project == null)

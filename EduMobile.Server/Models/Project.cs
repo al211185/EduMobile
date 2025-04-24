@@ -44,6 +44,16 @@ namespace EduMobile.Server.Models
         public int? SemesterId { get; set; }
         public Semester Semester { get; set; }
 
+        // ——————————————————————————————
+        // Fecha de la última modificación
+        [Required]
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        // Token de concurrencia (opcional, pero recomendado)
+        [Timestamp]
+        public byte[]? RowVersion { get; set; }
+
+
         //teams
         public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
 

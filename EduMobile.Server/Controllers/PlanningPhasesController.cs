@@ -24,6 +24,19 @@ namespace EduMobile.Server.Controllers
             _environment = environment;
         }
 
+        /// <summary>
+        /// Marca el proyecto como modificado justo ahora.
+        /// </summary>
+        private async Task PropagateProjectTimestamp(int projectId)
+        {
+            var project = await _context.Projects.FindAsync(projectId);
+            if (project != null)
+            {
+                project.UpdatedAt = DateTime.UtcNow;
+                _context.Projects.Update(project);
+            }
+        }
+
         // ==========================
         //   GET (por projectId)
         // ==========================
@@ -191,6 +204,10 @@ namespace EduMobile.Server.Controllers
 
                 planningPhase.UpdatedAt = DateTime.UtcNow;
                 _context.PlanningPhases.Update(planningPhase);
+
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(planningPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 // Sincronizar automáticamente el backlog del DevelopmentPhase (Kanban board)
@@ -261,6 +278,9 @@ namespace EduMobile.Server.Controllers
                     developmentPhase.FunctionalRequirements = planningPhase.FunctionalRequirements;
                     developmentPhase.CustomRequirements = planningPhase.CustomRequirements;
                     developmentPhase.UpdatedAt = DateTime.UtcNow;
+
+                    // Marca el proyecto como actualizado:
+                    await PropagateProjectTimestamp(planningPhase.ProjectId);
 
                     await _context.SaveChangesAsync();
                 }
@@ -369,6 +389,10 @@ namespace EduMobile.Server.Controllers
 
                 planningPhase.UpdatedAt = DateTime.UtcNow;
                 _context.PlanningPhases.Update(planningPhase);
+
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(planningPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 return Ok(planningPhase);
@@ -463,6 +487,9 @@ namespace EduMobile.Server.Controllers
 
                 planningPhase.UpdatedAt = DateTime.UtcNow;
                 _context.PlanningPhases.Update(planningPhase);
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(planningPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 return Ok(planningPhase);

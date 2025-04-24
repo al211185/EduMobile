@@ -26,6 +26,19 @@ namespace EduMobile.Server.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Marca el proyecto como modificado justo ahora.
+        /// </summary>
+        private async Task PropagateProjectTimestamp(int projectId)
+        {
+            var project = await _context.Projects.FindAsync(projectId);
+            if (project != null)
+            {
+                project.UpdatedAt = DateTime.UtcNow;
+                _context.Projects.Update(project);
+            }
+        }
+
         #region Endpoints de Lectura y Creación
 
         // GET: api/DesignPhases/{projectId}
@@ -150,6 +163,10 @@ namespace EduMobile.Server.Controllers
                 designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
+
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(designPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 return Ok(designPhase);
@@ -201,6 +218,11 @@ namespace EduMobile.Server.Controllers
                 designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
+
+
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(designPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 return Ok(designPhase);
@@ -231,6 +253,11 @@ namespace EduMobile.Server.Controllers
                 designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
+
+
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(designPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 return Ok(designPhase);
@@ -261,6 +288,11 @@ namespace EduMobile.Server.Controllers
                 designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
+
+
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(designPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
 
                 return Ok(designPhase);

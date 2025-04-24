@@ -20,6 +20,19 @@ namespace EduMobile.Server.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Marca el proyecto como modificado justo ahora.
+        /// </summary>
+        private async Task PropagateProjectTimestamp(int projectId)
+        {
+            var project = await _context.Projects.FindAsync(projectId);
+            if (project != null)
+            {
+                project.UpdatedAt = DateTime.UtcNow;
+                _context.Projects.Update(project);
+            }
+        }
+
         // GET: api/DevelopmentPhases
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DevelopmentPhase>>> GetDevelopmentPhases()
@@ -85,6 +98,9 @@ namespace EduMobile.Server.Controllers
 
             try
             {
+                // Marca el proyecto como actualizado:
+                await PropagateProjectTimestamp(developmentPhase.ProjectId);
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

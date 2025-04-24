@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import ProjectsPanel from "./ProjectsPanel";
 import ProfessorCoursesDashboard from "./ProfessorCoursesDashboard";
+import StudentDashboard from "./StudentDashboard";  // <-- nuevo
 
 const MainDashboard = () => {
     const { user } = useAuth();
@@ -13,14 +14,17 @@ const MainDashboard = () => {
                     Bienvenido, {user.nombre}
                 </h1>
             </header>
+
             {user.role === "Profesor" ? (
                 <div className="space-y-12">
                     <ProjectsPanel />
                     <ProfessorCoursesDashboard />
                 </div>
+            ) : user.role === "Alumno" ? (
+                <StudentDashboard />          
             ) : (
-                <ProjectsPanel />
-            )}
+            <ProjectsPanel />                  
+      )}
         </div>
     );
 };
