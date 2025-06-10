@@ -234,6 +234,7 @@ namespace EduMobile.Server.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var projects = await _context.Projects
+                    .AsNoTracking()
                     .Where(p => p.CreatedById == userId || p.ProjectUsers.Any(pu => pu.ApplicationUserId == userId))
                     .Include(p => p.CreatedBy)
                     .Include(p => p.ProjectUsers)
@@ -278,6 +279,7 @@ namespace EduMobile.Server.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var project = await _context.Projects
+                    .AsNoTracking()
                     .Include(p => p.Semester)
                     .Include(p => p.CreatedBy)
                     .Include(p => p.ProjectUsers)  // Incluir colaboradores
@@ -398,6 +400,7 @@ namespace EduMobile.Server.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var project = await _context.Projects
+                    .AsNoTracking()
                     .Include(p => p.Semester)
                     .Include(p => p.ProjectUsers)
                     .Where(p =>
@@ -440,6 +443,7 @@ namespace EduMobile.Server.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var project = await _context.Projects
+                .AsNoTracking()
                 .Include(p => p.ProjectUsers)
                 .FirstOrDefaultAsync(p => p.Id == projectId);
 
@@ -450,7 +454,9 @@ namespace EduMobile.Server.Controllers
                 return Unauthorized(new { Message = "No tienes permiso para agregar colaboradores a este proyecto." });
 
             // Buscar al usuario por email
-            var collaborator = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.CollaboratorEmail);
+            var collaborator = await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Email == request.CollaboratorEmail);
             if (collaborator == null)
                 return NotFound(new { Message = "Usuario a agregar no encontrado." });
 
@@ -477,6 +483,7 @@ namespace EduMobile.Server.Controllers
         public async Task<IActionResult> GetTeamMembers(int projectId)
         {
             var project = await _context.Projects
+                .AsNoTracking()
                 .Include(p => p.ProjectUsers)
                     .ThenInclude(pu => pu.ApplicationUser)
                 .FirstOrDefaultAsync(p => p.Id == projectId);
@@ -504,6 +511,7 @@ namespace EduMobile.Server.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var project = await _context.Projects
+                .AsNoTracking()
                 .Include(p => p.ProjectUsers)
                 .FirstOrDefaultAsync(p => p.Id == projectId);
 
@@ -535,6 +543,7 @@ namespace EduMobile.Server.Controllers
 
                 // Filtra solo los proyectos en los que el usuario está incluido como "Profesor"
                 var projectsQuery = _context.Projects
+                    .AsNoTracking()
                     .Include(p => p.Semester)
                     .Include(p => p.CreatedBy)
                     .Include(p => p.ProjectUsers)
@@ -591,6 +600,7 @@ namespace EduMobile.Server.Controllers
             try
             {
                 var project = await _context.Projects
+                    .AsNoTracking()
                     .Include(p => p.Semester)
                     .Include(p => p.CreatedBy)
                     .Include(p => p.ProjectUsers)

@@ -99,6 +99,7 @@ namespace EduMobile.Server.Controllers
             try
             {
                 var phases = await _context.Phases
+                    .AsNoTracking()
                     .Where(p => p.ProjectId == projectId)
                     .OrderBy(p => p.PhaseNumber)
                     .Select(p => new
@@ -130,6 +131,7 @@ namespace EduMobile.Server.Controllers
             try
             {
                 var phase = await _context.Phases
+                    .AsNoTracking()
                     .Where(p => p.Id == id)
                     .Select(p => new
                     {

@@ -38,6 +38,7 @@ namespace EduMobile.Server.Controllers
         public async Task<ActionResult<IEnumerable<DevelopmentPhase>>> GetDevelopmentPhases()
         {
             return await _context.DevelopmentPhases
+                .AsNoTracking()
                 .Include(dp => dp.KanbanItems)
                 .ToListAsync();
         }
@@ -47,6 +48,7 @@ namespace EduMobile.Server.Controllers
         public async Task<ActionResult<DevelopmentPhase>> GetDevelopmentPhase(int id)
         {
             var developmentPhase = await _context.DevelopmentPhases
+                .AsNoTracking()
                 .Include(dp => dp.KanbanItems)
                 .FirstOrDefaultAsync(dp => dp.Id == id);
 
@@ -63,6 +65,7 @@ namespace EduMobile.Server.Controllers
         public async Task<ActionResult<DevelopmentPhase>> GetDevelopmentPhaseByProject(int projectId)
         {
             var developmentPhase = await _context.DevelopmentPhases
+                .AsNoTracking()
                 .Include(dp => dp.KanbanItems)
                 .FirstOrDefaultAsync(dp => dp.ProjectId == projectId);
 
@@ -142,6 +145,7 @@ namespace EduMobile.Server.Controllers
         public async Task<ActionResult<IEnumerable<KanbanItem>>> GetKanbanItems(int developmentPhaseId)
         {
             var items = await _context.KanbanItems
+                .AsNoTracking()
                 .Where(ki => ki.DevelopmentPhaseId == developmentPhaseId)
                 .ToListAsync();
             return items;

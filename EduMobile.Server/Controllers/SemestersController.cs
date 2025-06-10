@@ -52,11 +52,12 @@ namespace EduMobile.Server.Controllers
 
         // GET: api/Semesters
         [HttpGet]
-        public IActionResult GetSemesters()
+        public async Task<IActionResult> GetSemesters()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var semesters = _context.Semesters
+            var semesters = await _context.Semesters
+                .AsNoTracking()
                 .Where(s => s.ProfessorId == userId)
                 .Select(s => new
                 {
@@ -67,7 +68,7 @@ namespace EduMobile.Server.Controllers
                     s.Description,
                     s.Course
                 })
-                .ToList();
+                .ToListAsync();
 
             return Ok(semesters);
         }
@@ -133,6 +134,7 @@ namespace EduMobile.Server.Controllers
         public async Task<IActionResult> GetStudentsBySemester(int id)
         {
             var semester = await _context.Semesters
+                .AsNoTracking()
                 .Include(s => s.SemesterStudents)
                 .ThenInclude(ss => ss.Student)
                 .FirstOrDefaultAsync(s => s.Id == id);

@@ -30,6 +30,7 @@ namespace EduMobile.Server.Controllers
         {
             // Obtener usuarios del proyecto que no sean profesores
             var teamMembers = await _context.ProjectUsers
+                .AsNoTracking()
                 .Include(pu => pu.ApplicationUser)
                 .Where(pu => pu.ProjectId == projectId && pu.ApplicationUser.Role != "Profesor")
                 .ToListAsync();
@@ -76,7 +77,9 @@ namespace EduMobile.Server.Controllers
             // Obtener el ID del usuario autenticado
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             // Verifica que el usuario autenticado sea el creador del proyecto:
-            var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+            var project = await _context.Projects
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == projectId);
             if (project == null)
                 return NotFound(new { Message = "Proyecto no encontrado." });
             if (project.CreatedById != userId)
@@ -87,6 +90,7 @@ namespace EduMobile.Server.Controllers
             {
                 // Si el integrante no pertenece al equipo, o es un profesor, se omite
                 var projectUser = await _context.ProjectUsers
+                    .AsNoTracking()
                     .FirstOrDefaultAsync(pu => pu.ProjectId == projectId && pu.ApplicationUserId == assignment.ApplicationUserId);
                 if (projectUser == null || (projectUser.ApplicationUser != null && projectUser.ApplicationUser.Role == "Profesor"))
                 {

@@ -21,7 +21,9 @@ public class GameScoresController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var score = await _ctx.GameScores.SingleOrDefaultAsync(gs => gs.UserId == userId);
+        var score = await _ctx.GameScores
+            .AsNoTracking()
+            .SingleOrDefaultAsync(gs => gs.UserId == userId);
         if (score == null) return Ok(new { CorrectCount = 0, AttemptCount = 0 });
         return Ok(score);
     }

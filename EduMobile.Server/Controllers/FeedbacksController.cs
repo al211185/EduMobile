@@ -43,6 +43,7 @@ namespace EduMobile.Server.Controllers
             {
                 _logger.LogInformation("Obteniendo retroalimentación para ProjectId {ProjectId} y Phase {Phase}", projectId, phase);
                 var feedback = await _context.TeacherFeedbacks
+                    .AsNoTracking()
                     .FirstOrDefaultAsync(f => f.ProjectId == projectId && f.Phase == phase);
 
                 // Ahora
@@ -198,6 +199,7 @@ namespace EduMobile.Server.Controllers
             try
             {
                 var list = await _context.TeacherFeedbacks
+                    .AsNoTracking()
                     .Where(f => f.ProjectId == projectId)
                     .OrderBy(f => f.Phase)              // opcional: ordena por fase
                     .ThenBy(f => f.CreatedAt)

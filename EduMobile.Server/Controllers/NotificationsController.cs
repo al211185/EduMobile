@@ -27,6 +27,7 @@ namespace EduMobile.Server.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var notifications = await _context.Notifications
+                                        .AsNoTracking()
                                      .Where(n => n.UserId == userId)
                                      .ToListAsync();
             return Ok(notifications);
