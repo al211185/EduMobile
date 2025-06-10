@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import ProjectPlanning from "./PlanningPhase";
 import DesignPhase from "./DesignPhase";
@@ -12,6 +12,7 @@ import PhaseAssignmentEditor from "./PhaseAssignmentEditor";
 const ProjectPhase = () => {
     const { projectId } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const { user } = useAuth();
     const isProfessor = user?.role === "Profesor"; // Si es profesor, se activa el modo readOnly
 
@@ -36,6 +37,16 @@ const ProjectPhase = () => {
         3: "",
         4: ""
     });
+
+    // Si la URL incluye un parámetro ?phase, ajusta la fase inicial
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const phaseParam = parseInt(params.get("phase"), 10);
+        if (phaseParam >= 1 && phaseParam <= 4) {
+            setCurrentPhase(phaseParam);
+        }
+    }, [location.search]);
+
 
     useEffect(() => {
         const storedUserId = localStorage.getItem("currentUserId");

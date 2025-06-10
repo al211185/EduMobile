@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function calcCompletion(obj, keys) {
     if (!obj) return 0;
@@ -141,9 +142,21 @@ const StudentDashboard = () => {
         Evaluación: pctEval,
     };
 
+    const phaseLinks = {
+        Planeación: project ? `/projects/${project.id}` : "#",
+        Diseño: project ? `/fase-2-diseno/${project.id}` : "#",
+        Desarrollo: project ? `/development-phase/${project.id}` : "#",
+        Evaluación: project ? `/projects/${project.id}?phase=4` : "#",
+    };
+
+
     // ④ Render para cada círculo
     const renderCircle = (label, value) => (
-        <div key={label} className="flex items-center justify-between">
+        <Link
+            key={label}
+            to={phaseLinks[label]}
+            className="flex items-center justify-between hover:bg-gray-50 p-2 rounded"
+        >
             <span className="text-[#64748B] font-medium">{label}</span>
             <div style={{ width: 50, height: 50 }}>
                 <CircularProgressbar
@@ -157,7 +170,7 @@ const StudentDashboard = () => {
                     })}
                 />
             </div>
-        </div>
+        </Link>
     );
 
     return (
