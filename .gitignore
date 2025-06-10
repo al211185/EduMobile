@@ -1,0 +1,9 @@
+# Ignorar todas las dependencias de Node
+node_modules/
+**/node_modules/
+
+# Archivos temporales
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
