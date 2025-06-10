@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -10,6 +10,14 @@ const Login = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState("");
+
+    useEffect(() => {
+        if (message) {
+            const id = setTimeout(() => setMessage(""), 5000);
+            return () => clearTimeout(id);
+        }
+    }, [message]);
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -59,6 +67,7 @@ const Login = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[var(--color-bg)] focus:outline-none focus:border-blue-500"
+                            autoComplete="email"
                             required
                         />
                     </div>
@@ -70,6 +79,7 @@ const Login = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[var(--color-bg)] focus:outline-none focus:border-blue-500"
+                            autoComplete="current-password"
                             required
                         />
                     </div>

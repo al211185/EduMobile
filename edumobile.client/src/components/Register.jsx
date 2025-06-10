@@ -36,6 +36,13 @@ const Register = () => {
 
             if (response.ok) {
                 setMessage("✅ Registro exitoso. Ahora puedes iniciar sesión.");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+                setNombre("");
+                setApellidoPaterno("");
+                setApellidoMaterno("");
+                setMatricula("");
             } else {
                 const data = await response.json();
                 setMessage(`⚠️ ${data.message || "Error al registrarse."}`);
@@ -64,14 +71,14 @@ const Register = () => {
 
             <form onSubmit={handleRegister} className="space-y-5">
                 {[
-                    { label: "Nombre", value: nombre, setter: setNombre, type: "text", id: "nombre" },
-                    { label: "Apellido Paterno", value: apellidoPaterno, setter: setApellidoPaterno, type: "text", id: "apellidoPaterno" },
-                    { label: "Apellido Materno", value: apellidoMaterno, setter: setApellidoMaterno, type: "text", id: "apellidoMaterno" },
-                    { label: "Matrícula", value: matricula, setter: setMatricula, type: "text", id: "matricula" },
-                    { label: "Correo Electrónico", value: email, setter: setEmail, type: "email", id: "email" },
-                    { label: "Contraseña", value: password, setter: setPassword, type: "password", id: "password" },
-                    { label: "Confirmar Contraseña", value: confirmPassword, setter: setConfirmPassword, type: "password", id: "confirmPassword" },
-                ].map(({ label, value, setter, type, id }) => (
+                    { label: "Nombre", value: nombre, setter: setNombre, type: "text", id: "nombre", autoComplete: "given-name" },
+                    { label: "Apellido Paterno", value: apellidoPaterno, setter: setApellidoPaterno, type: "text", id: "apellidoPaterno", autoComplete: "family-name" },
+                    { label: "Apellido Materno", value: apellidoMaterno, setter: setApellidoMaterno, type: "text", id: "apellidoMaterno", autoComplete: "additional-name" },
+                    { label: "Matrícula", value: matricula, setter: setMatricula, type: "text", id: "matricula", autoComplete: "off" },
+                    { label: "Correo Electrónico", value: email, setter: setEmail, type: "email", id: "email", autoComplete: "email" },
+                    { label: "Contraseña", value: password, setter: setPassword, type: "password", id: "password", autoComplete: "new-password" },
+                    { label: "Confirmar Contraseña", value: confirmPassword, setter: setConfirmPassword, type: "password", id: "confirmPassword", autoComplete: "new-password" },
+                ].map(({ label, value, setter, type, id, autoComplete }) => (
                     <div key={id} className="flex flex-col">
                         <label htmlFor={id} className="mb-2 font-medium text-gray-700">
                             {label}
@@ -83,6 +90,7 @@ const Register = () => {
                                 value={value}
                                 onChange={(e) => setter(e.target.value)}
                                 required
+                                autoComplete={autoComplete}
                                 className="
                   border border-gray-300
                   rounded-lg
@@ -97,7 +105,8 @@ const Register = () => {
                                 rows={4}
                                 value={value}
                                 onChange={(e) => setter(e.target.value)}
-                                required
+                                    required
+                                    autoComplete={autoComplete}
                                 className="
                   border border-gray-300
                   rounded-lg
