@@ -3,11 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import Phase1Brief from "./Phase1Brief";
 import Phase2Benchmarking from "./Phase2Benchmarking";
 import Phase3Audience from "./Phase3Audience";
+import StepNavigation from "./StepNavigation";
 
 const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () => { } }) => {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
+    const steps = ["Brief", "Benchmarking", "Audiencia"];
     const [phaseData, setPhaseData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -212,6 +214,21 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
         }
     };
 
+    // Navegación con flechas del teclado
+    useEffect(() => {
+        const handler = (e) => {
+            const tag = document.activeElement.tagName.toLowerCase();
+            if (tag === "input" || tag === "textarea") return;
+            if (e.key === "ArrowRight") {
+                setCurrentPhase(p => Math.min(p + 1, 3));
+            } else if (e.key === "ArrowLeft") {
+                setCurrentPhase(p => Math.max(p - 1, 1));
+            }
+        };
+        window.addEventListener("keydown", handler);
+        return () => window.removeEventListener("keydown", handler);
+    }, []);
+
     // Renderiza el componente hijo correspondiente según la fase actual
     const renderPhaseChild = () => {
         if (currentPhase === 1) {
@@ -238,6 +255,11 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                         style={{ width: `${(currentPhase / 3) * 100}%` }}
                     ></div>
                 </div>
+                <StepNavigation
+                    steps={steps}
+                    currentStep={currentPhase}
+                    onStepChange={(step) => setCurrentPhase(step)}
+                />
             </header>
 
             {/* Contenedor scrollable para el contenido */}

@@ -4,11 +4,18 @@ import Phase1SiteMap from "./Phase1SiteMap";
 import Phase2Wireframes from "./Phase2Wireframes";
 import Phase3VisualDesign from "./Phase3VisualDesign";
 import Phase4ContentCreation from "./Phase4ContentCreation";
+import StepNavigation from "./StepNavigation";
 
 const DesignPhase = ({ readOnly = false }) => {
     const { projectId } = useParams();
     const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
+    const steps = [
+        "Mapa del Sitio",
+        "Wireframes",
+        "Diseño Visual",
+        "Contenido"
+    ];
     const [phaseData, setPhaseData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -127,6 +134,21 @@ const DesignPhase = ({ readOnly = false }) => {
         }
     };
 
+    // Navegación con flechas del teclado
+    useEffect(() => {
+        const handler = (e) => {
+            const tag = document.activeElement.tagName.toLowerCase();
+            if (tag === "input" || tag === "textarea") return;
+            if (e.key === "ArrowRight") {
+                setCurrentPhase((p) => Math.min(p + 1, 4));
+            } else if (e.key === "ArrowLeft") {
+                setCurrentPhase((p) => Math.max(p - 1, 1));
+            }
+        };
+        window.addEventListener("keydown", handler);
+        return () => window.removeEventListener("keydown", handler);
+    }, []);
+
     // Función para guardar la retroalimentación del profesor para la fase de diseño (fase 2)
     const handleFeedbackSave = async () => {
         try {
@@ -194,6 +216,11 @@ const DesignPhase = ({ readOnly = false }) => {
                         style={{ width: `${(currentPhase / 4) * 100}%` }}
                     ></div>
                 </div>
+                <StepNavigation
+                    steps={steps}
+                    currentStep={currentPhase}
+                    onStepChange={(step) => setCurrentPhase(step)}
+                />
             </header>
 
             {/* Renderizado condicional de fases */}
