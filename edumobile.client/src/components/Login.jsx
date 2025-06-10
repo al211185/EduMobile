@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
+    const navigate = useNavigate();
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState("");
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         try {
             const response = await fetch("/api/Auth/login", {
                 method: "POST",
@@ -22,13 +26,15 @@ const Login = () => {
                 login(data.user);
                 localStorage.setItem("currentUserId", data.user.id);
                 setMessage("Inicio de sesión exitoso.");
-                window.location.href = "/";
+                navigate("/");
             } else {
                 const errorData = await response.json();
                 setMessage(errorData.message || "Error al iniciar sesión.");
             }
         } catch (error) {
             setMessage("Ocurrió un error. Por favor, inténtalo de nuevo.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -78,18 +84,24 @@ const Login = () => {
                             />
                             <label className="text-slate-500 text-sm">Recuérdame</label>
                         </div>
-                        <a href="/forgot-password" className="text-[var(--color-gray)] text-sm">
+                        <Link to="/forgot-password" className="text-[var(--color-gray)] text-sm">
                             ¿Olvidaste tu contraseña?
-                        </a>
+                        </Link>
                     </div>
                     {/* Botón de envío */}
                     {/* Para cambiar el color del botón, modifica las clases bg-[#64748B] y hover:bg-[#5a6370] */}
                     <button
                         type="submit"
-                        className="w-full py-4 bg-[var(--color-gray)] text-white rounded-lg hover:bg-[var(--color-bg)] transition-colors"
+                        className="w-full py-4 bg-[var(--color-gray)] text-white rounded-lg hover:bg-[var(--color-bg)] transition-colors disabled:opacity-50"
+                        disabled={isSubmitting}
                     >
-                        Iniciar Sesión
+                        {isSubmitting ? "Iniciando..." : "Iniciar Sesión"}
                     </button>
+                    <div className="text-center">
+                        <Link to="/register" className="text-[var(--color-gray)] text-sm hover:underline">
+                            Registrar Maestro
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>
