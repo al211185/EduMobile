@@ -63,50 +63,83 @@ const ProjectEdit = () => {
     if (!project) return <p>Proyecto no encontrado.</p>;
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Editar Proyecto</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-4">
+        <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 space-y-6">
+            <h1 className="text-2xl font-bold text-[#4F46E5]">Editar Proyecto</h1>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Título */}
+                <div>
                     <label className="block text-gray-700 mb-1">Título:</label>
                     <input
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full border border-gray-300 rounded p-2"
+                        className="
+              w-full
+              border border-gray-200
+              rounded-2xl
+              p-3
+              focus:outline-none focus:ring-2 focus:ring-[#4F46E5]
+            "
                     />
                 </div>
-                <div className="mb-4">
+
+                {/* Descripción */}
+                <div>
                     <label className="block text-gray-700 mb-1">Descripción:</label>
                     <textarea
+                        rows={4}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="w-full border border-gray-300 rounded p-2"
-                        rows="4"
-                    ></textarea>
+                        className="
+              w-full
+              border border-gray-200
+              rounded-2xl
+              p-3
+              focus:outline-none focus:ring-2 focus:ring-[#4F46E5]
+            "
+                    />
                 </div>
+
+                {/* Botón Guardar */}
                 <button
                     type="submit"
-                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                    className="
+            bg-[#4F46E5] hover:bg-[#3730A3]
+            text-white font-semibold
+            px-6 py-2
+            rounded-2xl
+            shadow
+            transition-colors
+          "
                 >
                     Guardar Cambios
                 </button>
             </form>
-            <div className="mt-6">
-                {/* Botón para abrir el editor de asignaciones, solo para el creador */}
+
+            {/* Editar Asignaciones de Fase */}
+            <div>
                 <button
-                    className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded"
                     onClick={() => setShowAssignmentEditor(true)}
+                    className="
+            bg-purple-500 hover:bg-purple-600
+            text-white font-semibold
+            px-6 py-2
+            rounded-2xl
+            shadow
+            transition-colors
+          "
                 >
                     Editar Asignaciones de Fase
                 </button>
             </div>
+
+            {/* Modal de asignación de fases */}
             {showAssignmentEditor && (
                 <PhaseAssignmentEditor
                     projectId={projectId}
                     onClose={() => setShowAssignmentEditor(false)}
-                    onAssignmentsSaved={() => {
-                        // Opcional: refrescar la información del proyecto o notificar al usuario
-                    }}
+                // handleSave lo define internamente
                 />
             )}
         </div>

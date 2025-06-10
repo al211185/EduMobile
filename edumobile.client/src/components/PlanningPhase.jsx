@@ -228,20 +228,20 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
     if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg h-[90vh] flex flex-col overflow-hidden">
+        <div className="w-full bg-white rounded-2xl shadow-lg flex-1 flex flex-col overflow-hidden">
             {/* Header fijo */}
             <header className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-800">Etapa de Planeación</h2>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                     <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        className="bg-[#4F46E5] h-2 rounded-full transition-all duration-300"
                         style={{ width: `${(currentPhase / 3) * 100}%` }}
                     ></div>
                 </div>
             </header>
 
             {/* Contenedor scrollable para el contenido */}
-            <main className="flex-1 overflow-y-auto p-6">
+            <main className="flex-1 overflow-y-auto px-6 py-4 sm:px-8">
                 {renderPhaseChild()}
 
                 {/* Bloque de retroalimentación para ambos perfiles */}
@@ -261,7 +261,7 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                             />
                             <button
                                 onClick={handleFeedbackSave}
-                                className="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                                className="mt-2 bg-blue-500 hover:bg-[#4F46E5] text-white px-4 py-2 rounded"
                             >
                                 Guardar Retroalimentación
                             </button>
@@ -280,7 +280,7 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
             </main>
 
             {/* Botones de navegación */}
-            <footer className="px-6 py-4 border-t border-gray-200">
+            <footer className="sticky bottom-0 bg-white px-6 py-4 border-t border-gray-200 z-10">
                 <div className="flex justify-between">
                     {currentPhase > 1 && (
                         <button
@@ -292,7 +292,7 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                     )}
                     <button
                         onClick={handleNext}
-                        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                        className="bg-[#4F46E5] hover:bg-[#64748B] text-white px-4 py-2 rounded"
                     >
                         {currentPhase < 3 ? "Siguiente" : "Finalizar Planeación"}
                     </button>

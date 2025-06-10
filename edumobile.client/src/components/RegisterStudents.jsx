@@ -161,108 +161,110 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
     }
 
     return (
-        <div className="register-students p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+        <div className="rounded-2xl p-6 space-y-8">
+            <h3 className="text-2xl font-semibold text-[#4F46E5]">
                 Registrar Alumnos
             </h3>
 
             {/* Botón para regresar a la tabla */}
             <button
-                className="btn-secondary mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors"
+                className="inline-block bg-gray-50 border border-gray-200 text-[#64748B] px-4 py-2 rounded-md hover:bg-gray-100 transition"
                 onClick={() => setShowRegisterForm(false)}
             >
                 Volver a la Tabla de Estudiantes
             </button>
 
             {/* Registro Individual */}
-            <form onSubmit={handleIndividualSubmit} className="space-y-6 mb-8">
-                <h4 className="text-xl font-semibold text-gray-700">Registro Individual</h4>
-                <div className="form-group">
-                    <label
-                        htmlFor="matricula"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+            <section className="space-y-4">
+                <h4 className="text-xl font-semibold text-[#64748B]">Registro Individual</h4>
+                <form onSubmit={handleIndividualSubmit} className="space-y-6 mb-8">
+                    <div className="form-group">
+                        <label
+                            htmlFor="matricula"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                            Matrícula
+                        </label>
+                        <input
+                            type="text"
+                            id="matricula"
+                            name="matricula"
+                            value={individualData.matricula}
+                            onChange={handleInputChange}
+                            required
+                            placeholder="Ingrese la matrícula del alumno"
+                            className="w-full bg-[#E5E5E5] border-transparent rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B] transition"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label
+                            htmlFor="nombre"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                            Nombre
+                        </label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            value={individualData.nombre}
+                            onChange={handleInputChange}
+                            required
+                            placeholder="Ingrese el nombre del alumno"
+                            className="w-full bg-[#E5E5E5] border-transparent rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B] transition"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label
+                            htmlFor="apellidoPaterno"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                            Apellido Paterno
+                        </label>
+                        <input
+                            type="text"
+                            id="apellidoPaterno"
+                            name="apellidoPaterno"
+                            value={individualData.apellidoPaterno}
+                            onChange={handleInputChange}
+                            required
+                            placeholder="Ingrese el apellido paterno del alumno"
+                            className="w-full bg-[#E5E5E5] border-transparent rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B] transition"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label
+                            htmlFor="apellidoMaterno"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                            Apellido Materno
+                        </label>
+                        <input
+                            type="text"
+                            id="apellidoMaterno"
+                            name="apellidoMaterno"
+                            value={individualData.apellidoMaterno}
+                            onChange={handleInputChange}
+                            required
+                            placeholder="Ingrese el apellido materno del alumno"
+                            className="w-full bg-[#E5E5E5] border-transparent rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B] transition"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-[#4F46E5] hover:bg-[#64748B] text-white font-semibold py-2 rounded transition-colors"
                     >
-                        Matrícula
-                    </label>
-                    <input
-                        type="text"
-                        id="matricula"
-                        name="matricula"
-                        value={individualData.matricula}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Ingrese la matrícula del alumno"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <div className="form-group">
-                    <label
-                        htmlFor="nombre"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                        Nombre
-                    </label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        value={individualData.nombre}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Ingrese el nombre del alumno"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <div className="form-group">
-                    <label
-                        htmlFor="apellidoPaterno"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                        Apellido Paterno
-                    </label>
-                    <input
-                        type="text"
-                        id="apellidoPaterno"
-                        name="apellidoPaterno"
-                        value={individualData.apellidoPaterno}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Ingrese el apellido paterno del alumno"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <div className="form-group">
-                    <label
-                        htmlFor="apellidoMaterno"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                        Apellido Materno
-                    </label>
-                    <input
-                        type="text"
-                        id="apellidoMaterno"
-                        name="apellidoMaterno"
-                        value={individualData.apellidoMaterno}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Ingrese el apellido materno del alumno"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                >
-                    {isSubmitting ? "Cargando..." : "Registrar Alumno"}
-                </button>
-            </form>
+                        {isSubmitting ? "Cargando..." : "Registrar Alumno"}
+                    </button>
+                </form>
+            </section>
 
             <hr className="my-8" />
 
             {/* Registro Masivo */}
             <form onSubmit={handleFileSubmit} className="space-y-6">
-                <h4 className="text-xl font-semibold text-gray-700">Registro Masivo</h4>
+                <h4 className="text-xl font-semibold text-[#64748B]">Registro Masivo</h4>
                 <div className="form-group">
                     <label
                         htmlFor="file"
@@ -280,7 +282,7 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                 <button
                     type="submit"
                     disabled={!file || isSubmitting}
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    className="w-full bg-[#4F46E5] hover:bg-[#64748B] text-white font-semibold py-2 rounded transition-colors"
                 >
                     {isSubmitting ? "Cargando..." : "Registrar Alumnos"}
                 </button>

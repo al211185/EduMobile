@@ -42,53 +42,72 @@ const AddParticipantModal = ({ projectId, onClose, onParticipantAdded }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
-                <h2 className="text-xl font-bold mb-4">Agregar Participante</h2>
-                {error && <p className="text-red-500 mb-2">{error}</p>}
-                {message && <p className="text-green-500 mb-2">{message}</p>}
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 mb-1">
-                            Email del participante:
-                        </label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full border border-gray-300 rounded p-2"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 mb-1">
-                            Rol en el proyecto:
-                        </label>
-                        <select
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            className="w-full border border-gray-300 rounded p-2 bg-white"
-                        >
-                            <option value="Colaborador">Colaborador</option>
-                            <option value="Profesor">Profesor</option>
-                        </select>
-                    </div>
-                    <div className="flex justify-end space-x-2">
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-                        >
-                            {loading ? "Agregando..." : "Agregar"}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={onClose}
-                            className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded"
-                        >
-                            Cancelar
-                        </button>
-                    </div>
-                </form>
+            <div className="bg-white rounded-2xl shadow-lg w-full max-w-md overflow-hidden">
+                <div className="p-6 space-y-6">
+                    <h2 className="text-xl font-bold text-[#4F46E5]">
+                        Agregar Participante
+                    </h2>
+
+                    {error && (
+                        <p className="text-red-500 bg-red-50 border border-red-200 rounded-2xl p-2">
+                            {error}
+                        </p>
+                    )}
+                    {message && (
+                        <p className="text-green-600 bg-green-50 border border-green-200 rounded-2xl p-2">
+                            {message}
+                        </p>
+                    )}
+
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-gray-700 mb-1">
+                                Email del participante:
+                            </label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="w-full border border-gray-200 rounded-2xl p-2 focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-gray-700 mb-1">
+                                Rol en el proyecto:
+                            </label>
+                            <select
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
+                                className="w-full border border-gray-200 rounded-2xl p-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
+                            >
+                                <option value="Colaborador">Colaborador</option>
+                                <option value="Profesor">Profesor</option>
+                            </select>
+                        </div>
+
+                        <div className="flex justify-end space-x-2">
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className={`font-semibold py-2 px-4 rounded-2xl transition-colors ${loading
+                                        ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                                        : "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
+                                    }`}
+                            >
+                                {loading ? "Agregando..." : "Agregar"}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={onClose}
+                                className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded-2xl transition-colors"
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

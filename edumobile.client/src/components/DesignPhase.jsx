@@ -184,20 +184,20 @@ const DesignPhase = ({ readOnly = false }) => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <div className="w-full bg-white rounded-2xl shadow-lg flex-1 flex flex-col overflow-hidden">
             {/* Encabezado */}
-            <header className="mb-4">
-                <h1 className="text-2xl font-bold text-gray-800">EduMobile Web Design</h1>
-                <h2 className="text-xl text-gray-700">Etapa de Diseño</h2>
-                <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
+            <header className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-800">Etapa de Diseño</h2>
+                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                     <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        className="bg-[#4F46E5] h-2 rounded-full transition-all duration-300"
                         style={{ width: `${(currentPhase / 4) * 100}%` }}
                     ></div>
                 </div>
             </header>
 
             {/* Renderizado condicional de fases */}
+            <main className="flex-1 overflow-y-auto px-6 py-4 sm:px-8 space-y-6">
             {currentPhase === 1 && phaseData && (
                 <Phase1SiteMap data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
             )}
@@ -211,25 +211,8 @@ const DesignPhase = ({ readOnly = false }) => {
                 <Phase4ContentCreation data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
             )}
 
-            {/* Controles de navegación */}
-            <div className="mt-6 flex justify-center space-x-4">
-                <button
-                    onClick={handlePrevPhase}
-                    disabled={currentPhase === 1}
-                    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
-                >
-                    Anterior
-                </button>
-                <button
-                    onClick={() => handleNextPhase(phaseData)}
-                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
-                >
-                    {currentPhase < 4 ? "Siguiente" : "Finalizar Diseño"}
-                </button>
-            </div>
-
             {/* Bloque de retroalimentación */}
-            <div className="mt-6 p-4 border rounded bg-gray-50">
+                <div className="mt-6 p-4 border rounded bg-gray-50">
                 <label htmlFor="teacherFeedback" className="block mb-2 font-bold text-gray-700">
                     Retroalimentación del Profesor:
                 </label>
@@ -245,7 +228,7 @@ const DesignPhase = ({ readOnly = false }) => {
                         />
                         <button
                             onClick={handleFeedbackSave}
-                            className="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                                className="mt-2 bg-[#4F46E5] hover:bg-[#64748B] text-white px-4 py-2 rounded transition-colors"
                         >
                             Guardar Retroalimentación
                         </button>
@@ -260,7 +243,28 @@ const DesignPhase = ({ readOnly = false }) => {
                         disabled
                     />
                 )}
-            </div>
+                </div>
+            </main>
+
+            {/* Controles de navegación */}
+            <footer className="sticky bottom-0 bg-white px-6 py-4 border-t border-gray-200 z-10">
+                <div className="flex justify-between">
+                    {currentPhase > 1 && (
+                <button
+                    onClick={handlePrevPhase}
+                    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors"
+                >
+                    Anterior
+                </button>
+                    )}
+                <button
+                    onClick={() => handleNextPhase(phaseData)}
+                        className="bg-[#4F46E5] hover:bg-[#64748B] text-white px-4 py-2 rounded transition-colors"
+                >
+                    {currentPhase < 4 ? "Siguiente" : "Finalizar Diseño"}
+                    </button>
+                </div>
+            </footer>
         </div>
     );
 };

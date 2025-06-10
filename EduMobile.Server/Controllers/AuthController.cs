@@ -91,14 +91,14 @@ namespace EduMobile.Server.Controllers
                 ApellidoPaterno = request.ApellidoPaterno,
                 ApellidoMaterno = request.ApellidoMaterno,
                 Matricula = request.Matricula,
-                Role = "Alumno" // Asigna un rol predeterminado
+                Role = "Profesor" // Registro abierto solo para profesores
             };
 
             var result = await _userManager.CreateAsync(user, request.Password);
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Alumno"); // Añadir al rol predeterminado en Identity
+                await _userManager.AddToRoleAsync(user, "Profesor"); // Añadir al rol de profesor en Identity
                 return Ok(new { Message = "Registro exitoso." });
             }
             else

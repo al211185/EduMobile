@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "r
 import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import ForgotPassword from "./components/ForgotPassword"; // Importa el componente de recuperación
-import MainDashboard from "./components/MainDashboard"; // Dashboard para alumnos o datos generales
-import Dashboard from "./components/Dashboard"; // Dashboard para profesores (gestión de cursos)
+import ForgotPassword from "./components/ForgotPassword";
+import MainDashboard from "./components/MainDashboard";
+import Dashboard from "./components/Dashboard";
 import CreateProject from "./components/CreateProject";
 import Profile from "./components/Profile";
 import MyProjects from "./components/MyProjects";
@@ -23,7 +23,6 @@ import "./globals.css";
 
 const Layout = ({ children }) => {
     const location = useLocation();
-    // Si la ruta es /login, /register o /forgot-password, no se muestra el sidebar
     const hideSidebar =
         location.pathname === "/login" ||
         location.pathname === "/register" ||
@@ -32,9 +31,12 @@ const Layout = ({ children }) => {
     return hideSidebar ? (
         <main className="main-container">{children}</main>
     ) : (
-        <div className="flex">
+            <div className="flex h-screen">
             <Sidebar />
-            <main className="flex-1 p-6">{children}</main>
+            {/* ml-64 = margin-left: 16rem, igual al ancho de tu sidebar fixed */}
+                <main className="flex-1 flex flex-col overflow-hidden p-6 pt-16 md:pt-6 ml-0 md:ml-64">
+                {children}
+            </main>
         </div>
     );
 };
@@ -54,46 +56,62 @@ const App = () => {
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
 
-                    {/* Rutas protegidas dentro de Layout */}
+                    {/* Rutas protegidas */}
                     <Route
                         path="/*"
                         element={
                             <Layout>
                                 <Routes>
-                                    {/* Ruta raíz ("/") */}
                                     <Route
                                         index
-                                        element={
-                                            user
-                                                ? <MainDashboard />
-                                                : <Navigate to="/login" replace />
-                                        }
+                                        element={user ? <MainDashboard /> : <Navigate to="/login" replace />}
                                     />
 
                                     {/* Rutas comunes */}
                                     <Route path="create-project" element={<CreateProject />} />
                                     <Route path="profile" element={<Profile />} />
-                                    <Route path="media-game" element={<MediaQueryDragAndDropWithReference />} />
+                                    <Route
+                                        path="media-game"
+                                        element={<MediaQueryDragAndDropWithReference />}
+                                    />
 
-                                    {/* Rutas para el profesor */}
+                                    {/* Profesor */}
                                     {user?.role === "Profesor" && (
                                         <>
                                             <Route path="dashboard" element={<Dashboard />} />
-                                            <Route path="projects/professor/:id" element={<ProjectDetailsProfessor />} />
+                                            <Route
+                                                path="projects/professor/:id"
+                                                element={<ProjectDetailsProfessor />}
+                                            />
                                             <Route path="projects/:projectId" element={<ProjectPhase />} />
-                                            <Route path="fase-2-diseno/:projectId" element={<DesignPhase />} />
-                                            <Route path="development-phase/:projectId" element={<DevelopmentPhase />} />
+                                            <Route
+                                                path="fase-2-diseno/:projectId"
+                                                element={<DesignPhase />}
+                                            />
+                                            <Route
+                                                path="development-phase/:projectId"
+                                                element={<DevelopmentPhase />}
+                                            />
                                         </>
                                     )}
 
-                                    {/* Rutas para el alumno */}
+                                    {/* Alumno */}
                                     {user?.role === "Alumno" && (
                                         <>
                                             <Route path="my-projects" element={<MyProjects />} />
-                                            <Route path="projects/edit/:projectId" element={<ProjectEdit />} />
+                                            <Route
+                                                path="projects/edit/:projectId"
+                                                element={<ProjectEdit />}
+                                            />
                                             <Route path="projects/:projectId" element={<ProjectPhase />} />
-                                            <Route path="fase-2-diseno/:projectId" element={<DesignPhase />} />
-                                            <Route path="development-phase/:projectId" element={<DevelopmentPhase />} />
+                                            <Route
+                                                path="fase-2-diseno/:projectId"
+                                                element={<DesignPhase />}
+                                            />
+                                            <Route
+                                                path="development-phase/:projectId"
+                                                element={<DevelopmentPhase />}
+                                            />
                                         </>
                                     )}
                                 </Routes>
@@ -101,7 +119,6 @@ const App = () => {
                         }
                     />
                 </Routes>
-
             </ErrorBoundary>
         </Router>
     );

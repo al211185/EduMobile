@@ -218,8 +218,8 @@ const ProjectPhase = () => {
     const progress = (currentPhase / 4) * 100;
 
     return (
-        <div className="container mx-auto bg-gray-50 rounded-lg shadow-lg relative">
-            <header className="sticky top-0 bg-white z-10 border-b border-gray-200 px-3 py-2 flex items-center justify-between">
+        <div className="flex flex-col h-screen overflow-hidden">
+            <header className="sticky top-0 bg-white rounded-2xl px-6 py-4 flex items-center justify-between shadow-md z-10">
                 <div className="flex items-center gap-2">
                     <div className="flex flex-col">
                         <h1 className="text-lg font-semibold text-gray-800 leading-tight">
@@ -231,13 +231,14 @@ const ProjectPhase = () => {
                     </div>
                     <div className="bg-gray-200 h-2 w-32 md:w-48 rounded-full relative">
                         <div
-                            className="bg-blue-600 h-2 rounded-full absolute top-0 left-0 transition-all duration-300"
+                            className="bg-[#4F46E5] h-2 rounded-full absolute top-0 left-0 transition-all duration-300"
                             style={{ width: `${progress}%` }}
                         ></div>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 overflow-x-auto whitespace-nowrap py-2">
+                    
                     {/* El botón "Agregar Participante" solo se muestra para alumnos */}
                     {!isProfessor && (
                         <button
@@ -274,6 +275,15 @@ const ProjectPhase = () => {
                             <TeamList isCreator={isCreator} refreshProject={() => { }} />
                         </div>
                     )}
+
+                    {currentPhase > 1 && (
+                        <button
+                            onClick={handlePrevPhase}
+                            className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded text-sm"
+                        >
+                            Fase Anterior
+                        </button>
+                    )}
                     <button
                         onClick={currentPhase < 4 ? handleNextPhase : handleFinish}
                         disabled={currentPhase >= 4 && !professorId}
@@ -284,21 +294,11 @@ const ProjectPhase = () => {
                 </div>
             </header>
 
-            <main className="p-4">
+            <main className="flex-1 flex flex-col overflow-y-auto p-6">
                 {renderPhaseComponent()}
             </main>
 
-            {/* Se muestra el botón "Fase Anterior" siempre que currentPhase sea mayor a 1, para alumnos y profesores */}
-            {currentPhase > 1 && (
-                <footer className="sticky bottom-0 bg-white border-t border-gray-200 p-2 flex justify-end">
-                    <button
-                        onClick={handlePrevPhase}
-                        className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm"
-                    >
-                        Fase Anterior
-                    </button>
-                </footer>
-            )}
+      
             {/* Modal para editar asignaciones de fase */}
             {showPhaseAssignmentEditor && (
                 <PhaseAssignmentEditor

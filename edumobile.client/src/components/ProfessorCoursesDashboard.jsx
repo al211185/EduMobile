@@ -102,17 +102,20 @@ const ProfessorCoursesDashboard = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
-            <main className="space-y-8">
-                <h1 className="text-3xl font-bold text-gray-800 text-center">
-                    Gestión de Cursos
-                </h1>
+        <div className="w-full space-y-4">
+            <main className="space-y-4">
+                {/* Header */}
+                <header className="bg-white border border-gray-200 rounded-2xl px-6 py-4 w-full">
+                    <h1 className="text-2xl font-semibold text-[#64748B]">
+                        Gestión de Cursos
+                    </h1>
+                </header>
 
                 {message && (
                     <div
                         className={`p-3 rounded text-center text-sm ${message.startsWith("✅")
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
                             }`}
                     >
                         {message}
@@ -120,12 +123,12 @@ const ProfessorCoursesDashboard = () => {
                 )}
 
                 {/* Lista de Semestres / Cursos */}
-                <section>
+                <section className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-6">
                     {loading ? (
                         <p className="text-center text-gray-600">Cargando cursos...</p>
                     ) : semesters.length > 0 ? (
                         semesters.map((semester) => (
-                            <div key={semester.id} className="bg-white rounded shadow p-4 mb-6">
+                            <div key={semester.id} className="border border-gray-200 rounded-xl p-6 shadow-sm mb-6 space-y-4">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
                                         <h2 className="text-xl font-bold text-gray-800">
@@ -138,48 +141,48 @@ const ProfessorCoursesDashboard = () => {
                                     <div className="flex gap-2">
                                         <button
                                             onClick={() => handleDeleteSemester(semester.id)}
-                                            className="px-3 py-1 text-sm text-red-600 hover:text-red-800"
+                                            className="text-red-600 hover:text-red-800"
                                         >
                                             Eliminar
                                         </button>
                                         <button
                                             onClick={() => setRegisterCourse(semester.id)}
-                                            className="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded"
+                                            className="px-3 py-1 bg-[#4F46E5] hover:bg-[#64748B] text-white rounded-md text-sm transition"
                                         >
                                             Registrar Estudiantes
                                         </button>
                                     </div>
                                 </div>
 
-                                <div className="overflow-x-auto">
+                                <div className="overflow-x-auto rounded-xl overflow-hidden shadow-sm">
                                     {courseStudents[semester.id] ? (
                                         courseStudents[semester.id].length > 0 ? (
-                                            <table className="min-w-full bg-white border border-gray-200">
-                                                <thead className="bg-gray-100">
+                                            <table className="min-w-full bg-white divide-y divide-gray-200">
+                                                <thead className="bg-[#64748B]">
                                                     <tr>
-                                                        <th className="px-4 py-2 border">Nombre</th>
-                                                        <th className="px-4 py-2 border">Apellido Paterno</th>
-                                                        <th className="px-4 py-2 border">Apellido Materno</th>
-                                                        <th className="px-4 py-2 border">Email</th>
-                                                        <th className="px-4 py-2 border">Acciones</th>
+                                                        <th className="px-4 py-2 text-center text-xs font-medium text-white uppercase tracking-wider">Nombre</th>
+                                                        <th className="px-4 py-2 text-center text-xs font-medium text-white uppercase tracking-wider">Apellido Paterno</th>
+                                                        <th className="px-4 py-2 text-center text-xs font-medium text-white uppercase tracking-wider">Apellido Materno</th>
+                                                        <th className="px-4 py-2 text-center text-xs font-medium text-white uppercase tracking-wider">Email</th>
+                                                        <th className="px-4 py-2 text-center text-xs font-medium text-white uppercase tracking-wider">Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {courseStudents[semester.id].map((student) => (
                                                         <tr key={student.id} className="text-center">
-                                                            <td className="px-4 py-2 border">
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                                                                 {student.nombre}
                                                             </td>
-                                                            <td className="px-4 py-2 border">
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                                                                 {student.apellidoPaterno}
                                                             </td>
-                                                            <td className="px-4 py-2 border">
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                                                                 {student.apellidoMaterno}
                                                             </td>
-                                                            <td className="px-4 py-2 border">
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                                                                 {student.email}
                                                             </td>
-                                                            <td className="px-4 py-2 border">
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
                                                                 <button
                                                                     onClick={() => handleDeleteStudent(student.id)}
                                                                     className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
@@ -215,28 +218,6 @@ const ProfessorCoursesDashboard = () => {
                     ) : (
                         <p className="text-center text-gray-600">No hay cursos creados aún.</p>
                     )}
-                </section>
-
-                {/* Sección de Proyectos Activos (placeholder) */}
-                <section>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                        Proyectos Activos
-                    </h2>
-                    <p className="text-center text-gray-600">
-                        [Sección de proyectos no implementada]
-                    </p>
-                </section>
-
-                {/* Sección de Crear Nuevo Curso */}
-                <section className="p-4 bg-white rounded shadow text-center">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                        Diseño Web: HTML5 y CSS3 Adaptativo
-                    </h2>
-                    <p className="text-gray-700 mb-4">
-                        Explora técnicas avanzadas para construir sitios web adaptativos
-                        utilizando HTML5 y CSS3.
-                    </p>
-                    <CreateSemester selectedCourse="html-css-advanced" />
                 </section>
             </main>
         </div>

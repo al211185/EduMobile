@@ -96,95 +96,123 @@ const Phase1SiteMap = ({ data, onNext }) => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800">Fase 1: Mapa del Sitio</h2>
-            <p className="text-gray-700">
-                Define la estructura de navegación de tu sitio web.
-            </p>
+        <div className="w-full flex flex-col flex-1 rounded-2xl overflow-hidden">
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                }}
+                className="flex flex-col h-full">
+                <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
+                    {/* Título */}
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">
+                            Fase 1: Mapa del Sitio
+                        </legend>
+                        <p className="text-gray-700">
+                            Define la estructura de navegación de tu sitio web.
+                        </p>
+                    </fieldset>
 
-            <input
-                type="file"
-                accept="image/*"
-                name="siteMapFilePath"
-                onChange={handleFileChange}
-                className="w-full border border-gray-300 rounded p-2"
-            />
+                    {/* Carga de imagen */}
+                    <div className="space-y-4">
+                        <input
+                            type="file"
+                            accept="image/*"
+                            name="siteMapFilePath"
+                            onChange={handleFileChange}
+                            className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        />
 
-            {formData.siteMapPreviewUrl ? (
-                <div className="mt-4 image-preview">
-                    <img
-                        src={formData.siteMapPreviewUrl}
-                        alt="Mapa del sitio"
-                        className="max-w-full max-h-64 object-contain rounded mx-auto"
-                    />
+                        {formData.siteMapPreviewUrl ? (
+                            <div className="mt-4 image-preview text-center">
+                                <img
+                                    src={formData.siteMapPreviewUrl}
+                                    alt="Mapa del sitio"
+                                    className="max-w-full max-h-64 object-contain rounded mx-auto"
+                                />
+                            </div>
+                        ) : (
+                            <p className="mt-4 text-gray-500">
+                                No se ha seleccionado ninguna imagen para la vista previa.
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Checklist */}
+                    <fieldset className="rounded-2xl ">
+                        <div className="mt-4 space-y-2">
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="isHierarchyClear"
+                                    checked={formData.isHierarchyClear}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿La jerarquía de la información es clara?
+                                </span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="areSectionsIdentified"
+                                    checked={formData.areSectionsIdentified}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿Las secciones principales están claramente identificadas?
+                                </span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="areLinksClear"
+                                    checked={formData.areLinksClear}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿Los enlaces a las secciones y páginas son fácilmente
+                                    identificables en el gráfico?
+                                </span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="areVisualElementsUseful"
+                                    checked={formData.areVisualElementsUseful}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿Se utilizan elementos visuales que faciliten la comprensión
+                                    del mapa?
+                                </span>
+                            </label>
+                        </div>
+                    </fieldset>
                 </div>
-            ) : (
-                <p className="mt-4 text-gray-500">
-                    No se ha seleccionado ninguna imagen para la vista previa.
-                </p>
-            )}
 
-            <div className="mt-4 checklist space-y-2">
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="isHierarchyClear"
-                        checked={formData.isHierarchyClear}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">
-                        ¿La jerarquía de la información es clara?
-                    </span>
-                </label>
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="areSectionsIdentified"
-                        checked={formData.areSectionsIdentified}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">
-                        ¿Las secciones principales están claramente identificadas?
-                    </span>
-                </label>
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="areLinksClear"
-                        checked={formData.areLinksClear}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">
-                        ¿Los enlaces a las secciones y páginas son fácilmente identificables en el gráfico?
-                    </span>
-                </label>
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="areVisualElementsUseful"
-                        checked={formData.areVisualElementsUseful}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">
-                        ¿Se utilizan elementos visuales que faciliten la comprensión del mapa?
-                    </span>
-                </label>
-            </div>
-
-            <button
-                onClick={handleSubmit}
-                disabled={!formData.isHierarchyClear}
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mt-6"
-            >
-                Completar Fase 1
-            </button>
+                {/* Botón fijo */}
+                <div className="sticky bottom-0 bg-white p-4">
+                    <button
+                        type="submit"
+                        disabled={!formData.isHierarchyClear}
+                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.isHierarchyClear
+                                ? "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
+                                : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                            }`}
+                    >
+                        Completar Fase 1
+                    </button>
+                </div>
+            </form>
         </div>
     );
-
 };
+
 
 export default Phase1SiteMap;

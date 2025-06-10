@@ -33,7 +33,7 @@ const CreateProject = () => {
 
             if (response.ok) {
                 alert("✅ Proyecto creado exitosamente.");
-                navigate("/dashboard");
+                navigate("/my-projects");
             } else {
                 const errorData = await response.json();
                 console.error("Error en el servidor:", errorData);
@@ -57,13 +57,13 @@ const CreateProject = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 mt-10">
-            <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
+        <div className="w-full max-w-xl mx-auto bg-white rounded-2xl shadow-sm p-6 mt-10">
+            <h1 className="text-xl font-semibold text-[#64748B] text-center mb-6">
                 Crear Nuevo Proyecto
             </h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="flex flex-col">
-                    <label htmlFor="title" className="mb-1 font-medium text-gray-700">
+                    <label htmlFor="title" className="mb-2 font-medium text-gray-700">
                         Nombre del Proyecto
                     </label>
                     <input
@@ -73,11 +73,11 @@ const CreateProject = () => {
                         value={formData.title}
                         onChange={handleInputChange}
                         required
-                        className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4F46E5] transition"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <label htmlFor="description" className="mb-1 font-medium text-gray-700">
+                    <label htmlFor="description" className="mb-2 font-medium text-gray-700">
                         Descripción
                     </label>
                     <textarea
@@ -86,7 +86,7 @@ const CreateProject = () => {
                         value={formData.description}
                         onChange={handleInputChange}
                         rows="4"
-                        className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4F46E5] transition"
                     ></textarea>
                 </div>
                 {errorMessages.length > 0 && (
@@ -99,7 +99,7 @@ const CreateProject = () => {
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-75"
+                    className="w-full bg-[#4F46E5] hover:bg-[#4338CA] text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:ring-opacity-50 disabled:opacity-50 transition"
                 >
                     {isSubmitting ? "Creando..." : "Crear Proyecto"}
                 </button>

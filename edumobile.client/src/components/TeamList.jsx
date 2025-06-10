@@ -59,29 +59,35 @@ const TeamList = ({ isCreator, refreshProject }) => {
         );
 
     return (
-        <div className="team-list bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Equipo del Proyecto</h3>
-            {team.length === 0 ? (
-                <p className="text-gray-600">No hay colaboradores en este proyecto.</p>
-            ) : (
-                <ul className="divide-y divide-gray-200">
-                    {team.map((member) => (
-                        <li key={member.applicationUserId} className="py-3 flex items-center justify-between">
-                            <span className="text-gray-700">
-                                {member.nombre} {member.apellidoPaterno} - <em>{member.roleInProject}</em>
-                            </span>
-                            {isCreator && (
-                                <button
-                                    onClick={() => handleRemove(member.applicationUserId)}
-                                    className="text-red-600 hover:text-red-800 font-semibold"
-                                >
-                                    Eliminar
-                                </button>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            )}
+        <div className="rounded-2xl w-full max-w-sm overflow-auto">
+            <div className="p-6 space-y-4">
+                <h3 className="text-lg font-bold text-[#4F46E5]">Equipo del Proyecto</h3>
+                {team.length === 0 ? (
+                    <p className="text-gray-600">No hay colaboradores en este proyecto.</p>
+                ) : (
+                    <ul className="divide-y divide-gray-200">
+                        {team.map((member) => (
+                            <li
+                                key={member.applicationUserId}
+                                className="py-3 flex items-center justify-between"
+                            >
+                                <span className="text-gray-700">
+                                    {member.nombre} {member.apellidoPaterno} –{" "}
+                                    <em>{member.roleInProject}</em>
+                                </span>
+                                {isCreator && (
+                                    <button
+                                        onClick={() => handleRemove(member.applicationUserId)}
+                                        className="text-red-600 hover:text-red-800 font-semibold rounded-2xl px-3 py-1 transition-colors"
+                                    >
+                                        Eliminar
+                                    </button>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
     );
 };

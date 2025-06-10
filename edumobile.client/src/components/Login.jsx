@@ -33,9 +33,9 @@ const Login = () => {
     };
 
     return (
-        <div className="bg-[#575757] min-h-screen flex items-center justify-center relative">
+        <div className="bg-[var(--color-gray)] min-h-screen flex items-center justify-center relative">
             {/* Fondo */}
-            <div className="absolute inset-0 bg-[#e4e4e4]"></div>
+            <div className="absolute inset-0 bg-[var(--color-bg)]"></div>
             {/* Card de Login */}
             <div className="bg-white rounded-[20px] shadow-lg p-8 z-10 max-w-sm w-full min-h-[450px] flex flex-col justify-center items-center">
                 <div className="text-center mb-8">
@@ -52,7 +52,7 @@ const Login = () => {
                             placeholder="Correo Electrónico"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[#E5E5E5] focus:outline-none focus:border-blue-500"
+                            className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[var(--color-bg)] focus:outline-none focus:border-blue-500"
                             required
                         />
                     </div>
@@ -63,7 +63,7 @@ const Login = () => {
                             placeholder="Contraseña"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[#E5E5E5] focus:outline-none focus:border-blue-500"
+                            className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[var(--color-bg)] focus:outline-none focus:border-blue-500"
                             required
                         />
                     </div>
@@ -78,7 +78,7 @@ const Login = () => {
                             />
                             <label className="text-slate-500 text-sm">Recuérdame</label>
                         </div>
-                        <a href="/forgot-password" className="text-[#b0b0b0] text-sm">
+                        <a href="/forgot-password" className="text-[var(--color-gray)] text-sm">
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
@@ -86,7 +86,7 @@ const Login = () => {
                     {/* Para cambiar el color del botón, modifica las clases bg-[#64748B] y hover:bg-[#5a6370] */}
                     <button
                         type="submit"
-                        className="w-full py-4 bg-[#64748B] text-white rounded-lg hover:bg-[#5a6370] transition-colors"
+                        className="w-full py-4 bg-[var(--color-gray)] text-white rounded-lg hover:bg-[var(--color-bg)] transition-colors"
                     >
                         Iniciar Sesión
                     </button>

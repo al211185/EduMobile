@@ -314,47 +314,50 @@ const Phase2Benchmarking = ({ data, onSave }) => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg space-y-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="w-full flex flex-col flex-1 rounded-2xl overflow-hidden">
+            <form onSubmit={handleSubmit} className="flex flex-col h-full">
+              <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
                 {/* Introducción */}
-                <fieldset className="border border-gray-300 p-4 rounded">
-                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                    <fieldset className="rounded-2xl">
+                    <legend className="text-xl font-bold text-[#4F46E5] mb-2 px-2">
                         Introducción (Fase 2)
                     </legend>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 font-medium mb-1">
-                            Objetivo del análisis:
-                        </label>
-                        <textarea
-                            name="analysisObjective"
-                            value={formData.introduction.analysisObjective}
-                            onChange={handleIntroChange}
-                            className="w-full border border-gray-300 rounded p-2 text-sm"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-1">
-                            Descripción general del sector:
-                        </label>
-                        <textarea
-                            name="sectorDescription"
-                            value={formData.introduction.sectorDescription}
-                            onChange={handleIntroChange}
-                            className="w-full border border-gray-300 rounded p-2 text-sm"
-                        />
+                        <div className="grid grid-cols-1 gap-4">
+                            <div className="flex flex-col space-y-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                Objetivo del análisis:
+                                </label>
+                            <textarea
+                                name="analysisObjective"
+                                value={formData.introduction.analysisObjective}
+                                onChange={handleIntroChange}
+                                className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                            ></textarea>
+                            </div>
+                            <div className="flex flex-col space-y-1">
+                            <label className="flex items-center space-x-2 text-[#64748B]">
+                                Descripción general del sector:
+                            </label>
+                            <textarea
+                                name="sectorDescription"
+                                value={formData.introduction.sectorDescription}
+                                onChange={handleIntroChange}
+                                className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                            ></textarea>
+                        </div>
                     </div>
                 </fieldset>
 
                 {/* Competidores */}
-                <fieldset className="border border-gray-300 p-4 rounded">
-                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">
                         Competidores
                     </legend>
                     {/* Competidor 1 */}
-                    <div className="mb-6">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Competidor 1</h3>
-                        <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-semibold text-[#4F46E5] mb-2">Competidor 1</h3>
+                        <div className="flex flex-col space-y-1">
+                            <label className="flex items-center space-x-2 text-[#64748B]">
                                 Nombre:
                             </label>
                             <input
@@ -363,18 +366,18 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(0, "companyName", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                            <label className="flex items-center space-x-2 text-[#64748B]">
                                 Subir imagen (Captura):
                             </label>
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChangeCompetitor1}
-                                className="w-full"
+                                    className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                             />
                             {formData.competitors[0].screenshot && (
                                 <div className="mt-2">
@@ -387,7 +390,7 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                             )}
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                            <label className="flex items-center space-x-2 text-[#64748B]">
                                 URL:
                             </label>
                             <input
@@ -396,11 +399,11 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(0, "url", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                            <label className="flex items-center space-x-2 text-[#64748B]">
                                 Aspectos positivos:
                             </label>
                             <textarea
@@ -408,11 +411,11 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(0, "positives", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-700 font-medium mb-1">
+                            <label className="flex items-center space-x-2 text-[#64748B]">
                                 Aspectos negativos:
                             </label>
                             <textarea
@@ -420,16 +423,16 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(0, "negatives", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                     </div>
 
                     {/* Competidor 2 */}
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Competidor 2</h3>
-                        <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-semibold text-[#4F46E5] mb-4">Competidor 2</h3>
+                            <div className="flex flex-col space-y-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
                                 Nombre:
                             </label>
                             <input
@@ -438,18 +441,18 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(1, "companyName", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
                                 Subir imagen (Captura):
                             </label>
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChangeCompetitor2}
-                                className="w-full"
+                                    className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                             />
                             {formData.competitors[1].screenshot && (
                                 <div className="mt-2">
@@ -462,7 +465,7 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                             )}
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
                                 URL:
                             </label>
                             <input
@@ -471,11 +474,11 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(1, "url", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
                                 Aspectos positivos:
                             </label>
                             <textarea
@@ -483,11 +486,11 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(1, "positives", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-700 font-medium mb-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
                                 Aspectos negativos:
                             </label>
                             <textarea
@@ -495,25 +498,25 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                 onChange={(e) =>
                                     handleCompetitorChange(1, "negatives", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                     </div>
                 </fieldset>
 
                 {/* Análisis comparativo */}
-                <fieldset className="border border-gray-300 p-4 rounded">
-                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">
                         Análisis comparativo
                     </legend>
                     {/* Competidor 1 */}
                     <div className="mb-6">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                            <h3 className="text-lg font-semibold text-[#4F46E5] mb-2">
                             Competidor 1
                         </h3>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
-                                Facilidad de uso (1-5):
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                    <strong>Facilidad de uso (1-5):</strong>
                             </label>
                             <input
                                 type="range"
@@ -527,20 +530,20 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
-                                Dificultades:
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                    <strong>Dificultades:</strong>
                             </label>
                             <textarea
                                 value={formData.analysis[0].difficulty}
                                 onChange={(e) =>
                                     handleAnalysisChange(0, "difficulty", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-700 font-medium mb-1">
-                                Características útiles (Comp1):
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                    <strong>Características útiles (Comp1):</strong>
                             </label>
                             {usefulFeaturesOptions.map((opt) => (
                                 <label key={opt.value} className="flex items-center space-x-2">
@@ -550,7 +553,7 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                         onChange={() => handleUsefulFeaturesChange(0, opt.value)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{opt.label}</span>
+                                    <span className="text-gray-700">{opt.label}</span>
                                 </label>
                             ))}
                         </div>
@@ -558,12 +561,12 @@ const Phase2Benchmarking = ({ data, onSave }) => {
 
                     {/* Competidor 2 */}
                     <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                            <h3 className="text-lg font-semibold text-[#4F46E5] mb-2">
                             Competidor 2
                         </h3>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
-                                Facilidad de uso (1-5):
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                    <strong>Facilidad de uso (1-5):</strong>
                             </label>
                             <input
                                 type="range"
@@ -577,20 +580,20 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 font-medium mb-1">
-                                Dificultades:
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                    <strong>Dificultades:</strong>
                             </label>
                             <textarea
                                 value={formData.analysis[1].difficulty}
                                 onChange={(e) =>
                                     handleAnalysisChange(1, "difficulty", e.target.value)
                                 }
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                    className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-700 font-medium mb-1">
-                                Características útiles (Comp2):
+                                <label className="flex items-center space-x-2 text-[#64748B]">
+                                    <strong>Características útiles (Comp2):</strong>
                             </label>
                             {usefulFeaturesOptions.map((opt) => (
                                 <label key={opt.value} className="flex items-center space-x-2">
@@ -600,7 +603,7 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                         onChange={() => handleUsefulFeaturesChange(1, opt.value)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{opt.label}</span>
+                                    <span className="text-gray-700">{opt.label}</span>
                                 </label>
                             ))}
                         </div>
@@ -608,8 +611,8 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                 </fieldset>
 
                 {/* Conclusiones */}
-                <fieldset className="border border-gray-300 p-4 rounded">
-                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">
                         Conclusiones
                     </legend>
                     <div className="mb-4">
@@ -625,7 +628,7 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                     conclusions: { ...prev.conclusions, findings: e.target.value },
                                 }))
                             }
-                            className="w-full border border-gray-300 rounded p-2 text-sm"
+                                className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                         />
                     </div>
                     <div>
@@ -641,20 +644,20 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                     conclusions: { ...prev.conclusions, improvements: e.target.value },
                                 }))
                             }
-                            className="w-full border border-gray-300 rounded p-2 text-sm"
+                                className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                         />
                     </div>
                 </fieldset>
 
                 {/* Ejercicio reflexivo */}
-                <fieldset className="border border-gray-300 p-4 rounded">
-                    <legend className="text-xl font-semibold text-gray-800 mb-2">
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">
                         Ejercicio reflexivo (Fase 2)
                     </legend>
-                    <p className="text-gray-700 mb-4">
+                    <p className="text-gray-700">
                         Responde a las siguientes preguntas marcando en el cuadro.
                     </p>
-                    <div className="space-y-2">
+                        <div className="mt-4 space-y-2">
                         {reflectiveQuestions.map((question) => (
                             <label key={question.value} className="flex items-center space-x-2">
                                 <input
@@ -664,15 +667,21 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                     onChange={() => handleReflectiveChange(question.value)}
                                     className="h-4 w-4"
                                 />
-                                <span className="text-gray-700 text-sm">{question.label}</span>
+                                <span className="text-gray-700">{question.label}</span>
                             </label>
                         ))}
                     </div>
-                </fieldset>
-                <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded text-sm">
-                    Guardar
-                </button>
+                    </fieldset>
+                </div>
+
+                {/* Contenedor fijo para los botones de navegación */}
+                <div className="sticky bottom-0 p-4">
+                    <button type="submit" className="w-full bg-[#4F46E5] hover:bg-[#64748B] text-white font-semibold py-2 rounded transition-colors">
+                        Guardar
+                    </button>
+                </div>
             </form>
+
         </div>
     );
 };

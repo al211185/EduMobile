@@ -6,7 +6,7 @@
 
 :root {
     --base-medium-font-family: "Poppins", Helvetica;
-    --base-medium-font-size: 14x;
+    --base-medium-font-size: 14px;
     --base-medium-font-style: normal;
     --base-medium-font-weight: 500;
     --base-medium-letter-spacing: 0px;
@@ -33,11 +33,48 @@
     --XL-semibold-font-weight: 600;
     --XL-semibold-letter-spacing: 0px;
     --XL-semibold-line-height: 140%;
+    /* Colores claros */
+    --color-bg: #E5E5E5;
+    --color-surface: #FFFFFF;
+    --color-primary: rgba(79, 70, 229, 1);
+    --color-primary-dark: rgba(67, 56, 202, 1);
+    --color-primary-light: rgba(238, 242, 255, 1);
+    --color-text-primary: #64748B;
+    --color-text-secondary: #4F46E5;
+    --color-border: rgba(226, 232, 240, 1);
+    --color-gray: #64748B;
+    --color-dark-purple: #4F46E5;
+    --color-light-purple: #EEF2FF;
+    /* Colores claros var(--color-gray)*/
 }
 
-html,
-body,
-#root {
+html, body, #root {
+    background-color: #E5E5E5;
     height: 100%;
+    padding: 0;
 }
 
+/* Cuando el <html> o <body> tenga la clase .dark */
+.dark {
+    --color-bg: #1A202C;
+    --color-surface: #2D3748;
+    --color-primary: #805AD5;
+    --color-primary-dark: #6B46C1;
+    --color-primary-light: #D6BCFA;
+    --color-text-primary: #E2E8F0;
+    --color-text-secondary: #A0AEC0;
+    --color-border: #4A5568;
+}
+
+/* Clase utilitaria para ocultar la barra de scroll */
+.hide-scrollbar {
+    /* Firefox */
+    scrollbar-width: none;
+    /* IE, Edge */
+    -ms-overflow-style: none;
+}
+
+    .hide-scrollbar::-webkit-scrollbar {
+        /* Chrome, Safari y Opera */
+        display: none;
+    }

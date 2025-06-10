@@ -172,12 +172,12 @@ const Phase1Brief = ({ data, onSave }) => {
 
     return (
         // Contenedor con altura fija y display flex en columna
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg h-[90vh] flex flex-col">
+        <div className="w-full flex flex-col flex-1 rounded-2xl overflow-hidden">
             <form onSubmit={handleSubmit} className="flex flex-col h-full">
                 {/* Contenedor scrollable para el contenido */}
                 <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 px-2">Fase 1: Brief de diseño</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Fase 1: Brief de diseño</legend>
                         <p className="text-gray-700">
                             En esta sección resolverás las fases de <strong>Identificación de los objetivos del proyecto web</strong> y <strong>Establecimiento de los requisitos del cliente</strong> del proyecto web.
                         </p>
@@ -187,62 +187,62 @@ const Phase1Brief = ({ data, onSave }) => {
                     </fieldset>
 
                     {/* Información general */}
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-lg font-semibold text-gray-800 mb-2">Información general del proyecto</legend>
+                    <fieldset className="rounded‐2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Información general del proyecto</legend>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="flex flex-col">
-                                <label htmlFor="projectName" className="text-gray-700 font-medium">Nombre del proyecto:</label>
+                                <label htmlFor="projectName" className="flex items-center space-x-2 text-[#64748B]">Nombre del proyecto:</label>
                                 <input
                                     type="text"
                                     id="projectName"
                                     name="projectName"
                                     value={formData.projectName}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded p-2"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label htmlFor="clienteName" className="text-gray-700 font-medium">Nombre del cliente:</label>
+                                <label htmlFor="clienteName" className="flex items-center space-x-2 text-[#64748B]">Nombre del cliente:</label>
                                 <input
                                     type="text"
                                     id="clienteName"
                                     name="clienteName"
                                     value={formData.clienteName}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded p-2"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label htmlFor="responsable" className="text-gray-700 font-medium">Responsable del proyecto:</label>
+                                <label htmlFor="responsable" className="flex items-center space-x-2 text-[#64748B]">Responsable del proyecto:</label>
                                 <input
                                     type="text"
                                     id="responsable"
                                     name="responsable"
                                     value={formData.responsable}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded p-2"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label htmlFor="startDate" className="text-gray-700 font-medium">Fecha de inicio:</label>
+                                <label htmlFor="startDate" className="flex items-center space-x-2 text-[#64748B]">Fecha de inicio:</label>
                                 <input
                                     type="date"
                                     id="startDate"
                                     name="startDate"
                                     value={formData.startDate}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded p-2"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 />
                             </div>
                         </div>
                     </fieldset>
 
                     {/* Objetivos del proyecto */}
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-lg font-semibold text-gray-800 mb-2">Objetivos del proyecto</legend>
+                    <fieldset className="rounded‐2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Objetivos del proyecto</legend>
                         <div className="grid grid-cols-1 gap-4">
                             <div className="flex flex-col">
-                                <label htmlFor="generalObjective" className="text-gray-700 font-medium">
+                                <label htmlFor="generalObjective" className="flex items-center space-x-2 text-[#64748B]">
                                     <strong>Objetivo general:</strong>
                                 </label>
                                 <textarea
@@ -250,11 +250,11 @@ const Phase1Brief = ({ data, onSave }) => {
                                     name="generalObjective"
                                     value={formData.generalObjective}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded p-2"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 ></textarea>
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-gray-700 font-medium">
+                                <label className="flex items-center space-x-2 text-[#64748B]">
                                     <strong>Objetivos específicos:</strong> Escribir de 2 a 3 objetivos claros y medibles
                                 </label>
                                 {formData.specificObjectives.map((obj, index) => (
@@ -265,7 +265,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                             id={`obj${index + 1}`}
                                             value={obj}
                                             onChange={(e) => handleSpecificObjectiveChange(index, e.target.value)}
-                                            className="border border-gray-300 rounded p-2"
+                                            className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                         />
                                     </div>
                                 ))}
@@ -274,12 +274,10 @@ const Phase1Brief = ({ data, onSave }) => {
                     </fieldset>
 
                     {/* Requisitos del cliente */}
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-lg font-semibold text-gray-800 mb-2">Requisitos del cliente</legend>
-                        <div className="space-y-4">
-                            <div>
-                                <label className="text-gray-700 font-medium"><strong>Requisitos funcionales:</strong></label>
-                                <div className="mt-2 space-y-1">
+                    <fieldset className="rounded‐2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Requisitos del cliente</legend>
+                            <label className="flex items-center space-x-2 text-[#64748B]"><strong>Requisitos funcionales:</strong></label>
+                                <div className="mt-2 grid grid-cols-2 gap-x-6 gap-y-3">
                                     {[
                                         { value: "formularios_contacto", label: "Formularios de contacto" },
                                         { value: "formularios_registro", label: "Formularios de registro de usuarios" },
@@ -296,7 +294,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                         { value: "notificaciones_push", label: "Notificaciones push" },
                                         { value: "plataforma_ecommerce", label: "Comercio electrónico" }
                                     ].map((item) => (
-                                        <label key={item.value} className="flex items-center space-x-2">
+                                        <label key={item.value} className="flex items-center space-x-2 text-[#64748B]">
                                             <input
                                                 type="checkbox"
                                                 value={item.value}
@@ -308,9 +306,8 @@ const Phase1Brief = ({ data, onSave }) => {
                                         </label>
                                     ))}
                                 </div>
-                            </div>
-                            <div className="mt-2">
-                                <label htmlFor="otros" className="text-gray-700 font-medium">Otros requisitos:</label>
+                            <div className="mt-4">
+                                <label htmlFor="otros" className="flex items-center space-x-2 text-[#64748B]">Otros requisitos:</label>
                                 <input
                                     type="text"
                                     id="otros"
@@ -321,20 +318,17 @@ const Phase1Brief = ({ data, onSave }) => {
                                             requisitos: { ...prev.requisitos, otros: e.target.value }
                                         }))
                                     }
-                                    className="border border-gray-300 rounded p-2 mt-1 w-full"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 />
                             </div>
-                        </div>
                     </fieldset>
 
                     {/* Restricciones y preferencias */}
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-lg font-semibold text-gray-800 mb-2">Restricciones y preferencias</legend>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div className="flex flex-col">
-                                <label className="text-gray-700 font-medium"><strong>Colores corporativos:</strong></label>
-                                <div className="space-y-2 mt-2">
-                                    <div>
+                    <fieldset className="rounded‐2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Restricciones y preferencias</legend>
+                            <label className="flex items-center space-x-2 text-[#64748B] mb-2"><strong>Colores corporativos:</strong></label>
+                                <div className="flex items-center flex space-x-4 mb-6">  
+                                    <div className="flex-1 flex flex-col items-center">
                                         <label htmlFor="primaryColor" className="block text-gray-600">Color primario</label>
                                         <input
                                             type="color"
@@ -347,7 +341,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                             className="w-full h-10 p-0 border border-gray-300 rounded"
                                         />
                                     </div>
-                                    <div>
+                                    <div className="flex-1 flex flex-col items-center">
                                         <label htmlFor="secondary1Color" className="block text-gray-600">Color secundario 1</label>
                                         <input
                                             type="color"
@@ -360,7 +354,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                             className="w-full h-10 p-0 border border-gray-300 rounded"
                                         />
                                     </div>
-                                    <div>
+                                    <div className="flex-1 flex flex-col items-center">
                                         <label htmlFor="secondary2Color" className="block text-gray-600">Color secundario 2</label>
                                         <input
                                             type="color"
@@ -372,11 +366,12 @@ const Phase1Brief = ({ data, onSave }) => {
                                             }
                                             className="w-full h-10 p-0 border border-gray-300 rounded"
                                         />
+                                    
                                     </div>
                                 </div>
-                            </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="flex flex-col">
-                                <label htmlFor="font" className="text-gray-700 font-medium"><strong>Tipografías corporativas:</strong></label>
+                                <label htmlFor="font" className="flex items-center space-x-2 text-[#64748B]"><strong>Tipografías corporativas:</strong></label>
                                 <input
                                     type="text"
                                     id="font"
@@ -386,12 +381,12 @@ const Phase1Brief = ({ data, onSave }) => {
                                     onChange={(e) =>
                                         handleNestedChange("preferencias", "font", e.target.value)
                                     }
-                                    className="border border-gray-300 rounded p-2 mt-2"
+                                    className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                 />
                             </div>
                             <div className="sm:col-span-2">
-                                <label className="text-gray-700 font-medium"><strong>Tecnologías permitidas:</strong></label>
-                                <div className="mt-2 space-y-1">
+                                <label className="flex items-center space-x-2 text-[#64748B]"><strong>Tecnologías permitidas:</strong></label>
+                                <div className="mt-2 grid grid-cols-2 gap-x-6 gap-y-3">
                                     {[
                                         { value: "js", label: "JavaScript: Para interacción en el lado del cliente." },
                                         { value: "php", label: "PHP: Para manejo de formularios y procesamiento." },
@@ -404,7 +399,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                         { value: "pyt", label: "Python" },
                                         { value: "rest", label: "REST APIs" }
                                     ].map((item) => (
-                                        <label key={item.value} className="flex items-center space-x-2">
+                                        <label key={item.value} className="flex items-center space-x-2 text-[#64748B]">
                                             <input
                                                 type="checkbox"
                                                 value={item.value}
@@ -417,7 +412,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                     ))}
                                 </div>
                                 <div className="mt-2">
-                                    <label htmlFor="tec" className="text-gray-700 font-medium">Otras tecnologías:</label>
+                                    <label htmlFor="tec" className="flex items-center space-x-2 text-[#64748B]">Otras tecnologías:</label>
                                     <input
                                         type="text"
                                         id="tec"
@@ -432,7 +427,7 @@ const Phase1Brief = ({ data, onSave }) => {
                                                 }
                                             }))
                                         }
-                                        className="border border-gray-300 rounded p-2 mt-1 w-full"
+                                        className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                                     />
                                 </div>
                             </div>
@@ -440,8 +435,8 @@ const Phase1Brief = ({ data, onSave }) => {
                     </fieldset>
 
                     {/* Ejercicio reflexivo */}
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-lg font-semibold text-gray-800 mb-2">Ejercicio reflexivo</legend>
+                    <fieldset className="rounded‐2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Ejercicio reflexivo</legend>
                         <p className="text-gray-700">
                             Responde a las siguientes preguntas marcando en el recuadro y presiona el botón para pasar a la siguiente sección.
                         </p>
@@ -479,13 +474,14 @@ const Phase1Brief = ({ data, onSave }) => {
                 </div>
 
                 {/* Contenedor fijo para los botones de navegación */}
-                <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4">
-                    <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+                <div className="sticky bottom-0 p-4">
+                    <button type="submit" className="w-full bg-[#64748B] hover:bg-[#4F46E5] text-white font-semibold py-2 rounded transition-colors">
                         Guardar
                     </button>
                 </div>
             </form>
         </div>
+
     );
 };
 

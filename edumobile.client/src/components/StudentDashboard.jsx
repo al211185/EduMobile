@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { FaUserCircle } from "react-icons/fa";
 
-// ① Helper genérico para calcular porcentaje de completitud
 function calcCompletion(obj, keys) {
     if (!obj) return 0;
     const total = keys.length;
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
     const [team, setTeam] = useState([]);
     const [feedback, setFeedback] = useState([]);
 
-    // ② Claves "requeridas"
+    // 2 Claves "requeridas"
     const planningPhase1Keys = [
         "projectName", "clienteName", "responsable", "startDate",
         "generalObjective", "specificObjectives",
@@ -162,7 +162,7 @@ const StudentDashboard = () => {
 
     return (
         <div className="space-y-6">
-            {/* — Header — */}
+            {/* — Capsulita única — */}
             <div className="bg-white rounded-2xl px-6 py-4">
                 <h1 className="text-2xl font-bold text-[#64748B]">
                     Bienvenido, {user.nombre}
@@ -211,11 +211,8 @@ const StudentDashboard = () => {
                     <ul className="space-y-3">
                         {team.map((m) => (
                             <li key={m.applicationUserId} className="flex items-center gap-3">
-                                <img
-                                    src={m.profilePicUrl || "/default-avatar.png"}
-                                    alt={m.nombre}
-                                    className="w-10 h-10 rounded-full"
-                                />
+                                {/* Icono en lugar de avatar */}
+                                <FaUserCircle className="w-7 h-7 text-[#64748B]" />
                                 <span className="text-[#64748B]">
                                     {m.nombre} {m.apellidoPaterno}
                                 </span>
@@ -226,28 +223,45 @@ const StudentDashboard = () => {
             </div>
 
             {/* — Retroalimentación — */}
-            <div className="bg-white rounded-2xl p-6">
-                <h2 className="text-xl font-semibold text-[#64748B] mb-4">
-                    Retroalimentación
-                </h2>
-                {feedback.length === 0 ? (
-                    <p className="text-[#64748B]">No hay retroalimentación aún.</p>
-                ) : (
-                    feedback.map((f) => (
-                        <div
-                            key={f.id}
-                            className="border border-gray-200 p-4 rounded mb-2"
-                        >
-                            <p className="text-xs text-gray-500 mb-1">
-                                Fase {f.phase} –{" "}
-                                {new Date(f.createdAt).toLocaleDateString("es-ES")}{" "}
-                                {new Date(f.createdAt).toLocaleTimeString()}
-                            </p>
-                            <p className="text-[#64748B]">{f.feedbackText}</p>
-                        </div>
-                    ))
-                )}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Sólo las dos primeras columnas */}
+                <div className="lg:col-span-2">
+                    <div className="bg-white rounded-2xl p-6">
+                        {/* Título como en las otras tarjetas */}
+                        <h2 className="text-xl font-semibold text-[#64748B] mb-4">
+                            Retroalimentación
+                        </h2>
+
+                        {feedback.length === 0 ? (
+                            <p className="text-[#64748B]">No hay retroalimentación aún.</p>
+                        ) : (
+                            feedback.map((f) => (
+                                <div
+                                    key={f.id}
+                                    className="bg-[#7C7C7C] text-white rounded-2xl px-6 py-4 mb-4"
+                                >
+                                    <div className="flex items-center text-sm text-gray-300 space-x-2 mb-2">
+                                        <span>{new Date(f.createdAt).toLocaleDateString("es-ES")}</span>
+                                        <span>•</span>
+                                        <span>
+                                            {new Date(f.createdAt).toLocaleTimeString("es-ES", {
+                                                hour: "2-digit",
+                                                minute: "2-digit",
+                                            })}
+                                        </span>
+                                    </div>
+                                    <p className="text-gray-200">{f.feedbackText}</p>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
+                {/* Esta columna queda vacía */}
+                <div className="hidden lg:block" />
             </div>
+
+
+
         </div>
     );
 };

@@ -33,8 +33,18 @@ public class GameScoresController : ControllerBase
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var score = await _ctx.GameScores.SingleOrDefaultAsync(gs => gs.UserId == userId)
                     ?? new GameScore { UserId = userId, CorrectCount = 0, AttemptCount = 0 };
-        score.CorrectCount += dto.AddCorrect;
-        score.AttemptCount += dto.AddAttempts;
+
+        if (dto.SetAbsolute)
+        {
+            score.CorrectCount = dto.CorrectCount;
+            score.AttemptCount = dto.AttemptCount;
+        }
+        else
+        {
+            score.CorrectCount += dto.CorrectCount;
+            score.AttemptCount += dto.AttemptCount;
+        }
+
         score.LastPlayedAt = DateTime.UtcNow;
         if (score.Id == 0) _ctx.GameScores.Add(score); else _ctx.GameScores.Update(score);
         await _ctx.SaveChangesAsync();
@@ -45,6 +55,7 @@ public class GameScoresController : ControllerBase
 // DTO
 public class GameScoreUpdateDto
 {
-    public int AddCorrect { get; set; }
-    public int AddAttempts { get; set; }
+    public int CorrectCount { get; set; }
+    public int AttemptCount { get; set; }
+    public bool SetAbsolute { get; set; }
 }

@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 const Phase2Wireframes = ({ data, onNext }) => {
-    // Endpoints usando rutas relativas
     const FILE_UPLOAD_ENDPOINT = "/api/Files/upload";
     const FILE_IMAGE_ENDPOINT = "/api/Files/image";
 
-    // Estado inicial del formulario
     const [formData, setFormData] = useState({
         wireframe480pxPath: "",
         wireframe480pxPreviewUrl: "",
@@ -19,14 +17,12 @@ const Phase2Wireframes = ({ data, onNext }) => {
         isVisualConsistencyMet: false,
     });
 
-    // Helper: Construye la URL de vista previa usando la ruta relativa
     const getPreviewUrl = useCallback(
         (filePath) =>
             filePath ? `${FILE_IMAGE_ENDPOINT}/${filePath.split("/").pop()}` : "",
-        [FILE_IMAGE_ENDPOINT]
+        []
     );
 
-    // Sincroniza la data recibida con el estado del formulario
     useEffect(() => {
         if (data) {
             setFormData({
@@ -44,51 +40,43 @@ const Phase2Wireframes = ({ data, onNext }) => {
         }
     }, [data, getPreviewUrl]);
 
-    // Maneja los cambios en inputs (texto o checkbox)
     const handleInputChange = (e) => {
-        const { name, type, value, checked } = e.target;
+        const { name, type, checked } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: type === "checkbox" ? checked : prev[name],
         }));
     };
 
-    // Función para subir el archivo
     const uploadFile = async (file) => {
         const payload = new FormData();
         payload.append("file", file);
-
-        const response = await fetch(FILE_UPLOAD_ENDPOINT, {
-            method: "POST",
-            body: payload,
-        });
-        if (!response.ok) {
-            throw new Error("Error al subir el archivo. Inténtalo nuevamente.");
-        }
-        const result = await response.json();
-        if (!result.filePath) {
-            throw new Error("No se pudo obtener la ruta del archivo.");
-        }
+        const res = await fetch(FILE_UPLOAD_ENDPOINT, { method: "POST", body: payload });
+        if (!res.ok) throw new Error("Error al subir el archivo. Inténtalo nuevamente.");
+        const result = await res.json();
+        if (!result.filePath) throw new Error("No se pudo obtener la ruta del archivo.");
         return result.filePath;
     };
 
-    // Maneja la carga de archivos para cada input, mostrando una vista previa local y luego la URL final
     const handleFileChange = async (e, key) => {
         const file = e.target.files[0];
+        // calculamos el campo preview correcto
+        const previewKey = key.replace("Path", "PreviewUrl");
+
         if (!file) {
             setFormData((prev) => ({
                 ...prev,
                 [key]: "",
-                [`${key}PreviewUrl`]: "",
+                [previewKey]: "",
             }));
             return;
         }
 
-        // Vista previa local inmediata
-        const localPreviewUrl = URL.createObjectURL(file);
+        // vista previa local inmediata
+        const localUrl = URL.createObjectURL(file);
         setFormData((prev) => ({
             ...prev,
-            [`${key}PreviewUrl`]: localPreviewUrl,
+            [previewKey]: localUrl,
         }));
 
         try {
@@ -96,161 +84,154 @@ const Phase2Wireframes = ({ data, onNext }) => {
             setFormData((prev) => ({
                 ...prev,
                 [key]: filePath,
-                [`${key}PreviewUrl`]: getPreviewUrl(filePath),
+                [previewKey]: getPreviewUrl(filePath),
             }));
-        } catch (error) {
-            console.error(error);
-            alert(error.message);
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
         }
     };
 
-    // Envía el formulario validando que se hayan subido todos los archivos requeridos
+    const allUploaded =
+        formData.wireframe480pxPath &&
+        formData.wireframe768pxPath &&
+        formData.wireframe1024pxPath;
+    const allChecked =
+        formData.isMobileFirst &&
+        formData.isNavigationClear &&
+        formData.isDesignFunctional &&
+        formData.isVisualConsistencyMet;
+
     const handleSubmit = () => {
-        if (
-            !formData.wireframe480pxPath ||
-            !formData.wireframe768pxPath ||
-            !formData.wireframe1024pxPath
-        ) {
+        if (!allUploaded) {
             alert("Por favor, sube todos los archivos requeridos antes de continuar.");
+            return;
+        }
+        if (!allChecked) {
+            alert("Por favor, marca todas las opciones antes de continuar.");
             return;
         }
         onNext(formData);
     };
 
     return (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800">Fase 2: Wireframes</h2>
-            <p className="text-gray-700">
-                Sube los wireframes para los diferentes tamaños de pantalla y responde las preguntas.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                    <label className="block text-gray-700 font-medium mb-1">Wireframes 480px:</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleFileChange(e, "wireframe480pxPath")}
-                        className="w-full border border-gray-300 rounded p-2"
-                    />
-                    {formData.wireframe480pxPreviewUrl ? (
-                        <div className="mt-2">
-                            <img
-                                src={formData.wireframe480pxPreviewUrl}
-                                alt="Wireframe 480px"
-                                className="max-w-full max-h-40 object-contain rounded mx-auto"
-                            />
-                        </div>
-                    ) : (
-                        <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block text-gray-700 font-medium mb-1">Wireframes 768px:</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleFileChange(e, "wireframe768pxPath")}
-                        className="w-full border border-gray-300 rounded p-2"
-                    />
-                    {formData.wireframe768pxPreviewUrl ? (
-                        <div className="mt-2">
-                            <img
-                                src={formData.wireframe768pxPreviewUrl}
-                                alt="Wireframe 768px"
-                                className="max-w-full max-h-40 object-contain rounded mx-auto"
-                            />
-                        </div>
-                    ) : (
-                        <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
-                    )}
-                </div>
-                <div>
-                    <label className="block text-gray-700 font-medium mb-1">Wireframes 1024px:</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleFileChange(e, "wireframe1024pxPath")}
-                        className="w-full border border-gray-300 rounded p-2"
-                    />
-                    {formData.wireframe1024pxPreviewUrl ? (
-                        <div className="mt-2">
-                            <img
-                                src={formData.wireframe1024pxPreviewUrl}
-                                alt="Wireframe 1024px"
-                                className="max-w-full max-h-40 object-contain rounded mx-auto"
-                            />
-                        </div>
-                    ) : (
-                        <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
-                    )}
-                </div>
-            </div>
-
-            <div className="checklist space-y-4 mt-6">
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="isMobileFirst"
-                        checked={formData.isMobileFirst}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">¿Cumple con Mobile First?</span>
-                </label>
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="isNavigationClear"
-                        checked={formData.isNavigationClear}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">¿La navegación es clara?</span>
-                </label>
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="isDesignFunctional"
-                        checked={formData.isDesignFunctional}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">¿El diseño es funcional?</span>
-                </label>
-                <label className="flex items-center space-x-2">
-                    <input
-                        type="checkbox"
-                        name="isVisualConsistencyMet"
-                        checked={formData.isVisualConsistencyMet}
-                        onChange={handleInputChange}
-                        className="h-4 w-4"
-                    />
-                    <span className="text-gray-700 text-sm">¿Es visualmente consistente?</span>
-                </label>
-                <p className="text-sm text-red-500">
-                    * Debe seleccionar todos los checkbox antes de guardar.
-                </p>
-            </div>
-
-            <button
-                onClick={handleSubmit}
-                disabled={
-                    !formData.wireframe480pxPath ||
-                    !formData.wireframe768pxPath ||
-                    !formData.wireframe1024pxPath ||
-                    !formData.isMobileFirst ||
-                    !formData.isNavigationClear ||
-                    !formData.isDesignFunctional ||
-                    !formData.isVisualConsistencyMet
-                }
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mt-6 text-sm"
+        <div className="w-full flex flex-col flex-1 rounded-2xl overflow-hidden">
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                }}
+                className="flex flex-col h-full"
             >
-                Completar Fase 2
-            </button>
+                {/* Contenido scrollable */}
+                <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">
+                            Fase 2: Wireframes
+                        </legend>
+                        <p className="text-gray-700">
+                            Sube los wireframes para los diferentes tamaños de pantalla y responde las preguntas.
+                        </p>
+                    </fieldset>
+
+                    {/* Tres inputs de file en grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {[
+                            { label: "480px", key: "wireframe480pxPath", preview: "wireframe480pxPreviewUrl" },
+                            { label: "768px", key: "wireframe768pxPath", preview: "wireframe768pxPreviewUrl" },
+                            { label: "1024px", key: "wireframe1024pxPath", preview: "wireframe1024pxPreviewUrl" },
+                        ].map(({ label, key, preview }) => (
+                            <div key={key}>
+                                <label className="block text-gray-700 font-medium mb-1">
+                                    Wireframe {label}
+                                </label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleFileChange(e, key)}
+                                    className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                                />
+                                {formData[preview] ? (
+                                    <div className="mt-2 text-center">
+                                        <img
+                                            src={formData[preview]}
+                                            alt={`Wireframe ${label}`}
+                                            className="max-w-full max-h-40 object-contain rounded mx-auto"
+                                        />
+                                    </div>
+                                ) : (
+                                    <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Checklist */}
+                    <fieldset className="rounded-2xl">
+                        <div className="mt-4 space-y-2">
+                        <label className="flex items-center space-x-2">
+                            <input
+                                type="checkbox"
+                                name="isMobileFirst"
+                                checked={formData.isMobileFirst}
+                                onChange={handleInputChange}
+                                className="h-4 w-4"
+                            />
+                            <span className="text-gray-700">¿Cumple con Mobile First?</span>
+                        </label>
+                        <label className="flex items-center space-x-2">
+                            <input
+                                type="checkbox"
+                                name="isNavigationClear"
+                                checked={formData.isNavigationClear}
+                                onChange={handleInputChange}
+                                className="h-4 w-4"
+                            />
+                            <span className="text-gray-700">¿La navegación es clara?</span>
+                        </label>
+                        <label className="flex items-center space-x-2">
+                            <input
+                                type="checkbox"
+                                name="isDesignFunctional"
+                                checked={formData.isDesignFunctional}
+                                onChange={handleInputChange}
+                                className="h-4 w-4"
+                            />
+                            <span className="text-gray-700">¿El diseño es funcional?</span>
+                        </label>
+                        <label className="flex items-center space-x-2">
+                            <input
+                                type="checkbox"
+                                name="isVisualConsistencyMet"
+                                checked={formData.isVisualConsistencyMet}
+                                onChange={handleInputChange}
+                                className="h-4 w-4"
+                            />
+                            <span className="text-gray-700">¿Es visualmente consistente?</span>
+                        </label>
+                        <p className="text-sm text-red-500">
+                            * Debes seleccionar todas las opciones antes de continuar.
+                            </p>
+                        </div>
+                    </fieldset>
+                </div>
+
+                {/* Botón fijo abajo */}
+                <div className="sticky bottom-0 p-4">
+                    <button
+                        type="submit"
+                        disabled={!(allUploaded && allChecked)}
+                        className={`w-full font-semibold py-2 rounded transition-colors ${allUploaded && allChecked
+                                ? "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
+                                : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                            }`}
+                    >
+                        Completar Fase 2
+                    </button>
+                </div>
+            </form>
         </div>
     );
-
 };
 
 export default Phase2Wireframes;

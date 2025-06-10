@@ -202,48 +202,103 @@ const DevelopmentPhase = ({ projectId, readOnly = false }) => {
     if (!developmentPhase) return <div>No se encontró la fase de desarrollo para este proyecto.</div>;
 
     return (
-        <div className="w-full min-h-screen p-6 bg-gray-50">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Kanban Board del Proyecto {projectId}
-            </h2>
-            <DragDropContext onDragEnd={onDragEnd}>
-                <div className="flex gap-4 h-[calc(100vh-220px)]">
-                    {statuses.map((status) => renderColumn(status))}
-                </div>
-            </DragDropContext>
+        <div className="w-full flex-1 flex flex-col rounded-2xl overflow-hidden bg-white">
+            {/* Contenido con scroll */}
+            <div className="overflow-y-auto flex-1 p-6 space-y-6">
+                <h2 className="text-2xl font-bold text-[#4F46E5]">
+                    Kanban Board del Proyecto {projectId}
+                </h2>
 
-            {/* Bloque de retroalimentación */}
-            <div className="mt-6 p-4 border rounded bg-gray-50">
-                <label htmlFor="teacherFeedback" className="block mb-2 font-bold text-gray-700">
-                    Retroalimentación del Profesor:
-                </label>
-                {readOnly ? (
-                    // Para el profesor: textarea editable y botón para guardar
-                    <>
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <div className="flex gap-4 overflow-x-auto pb-4">
+                        {statuses.map((status) => (
+                            <Droppable droppableId={status} key={status}>
+                                {(provided) => {
+                                    const items = kanbanItems.filter((i) => i.status === status);
+                                    return (
+                                        <div
+                                            className="min-w-[240px] bg-gray-100 p-4 rounded-2xl border border-gray-200 flex-shrink-0 flex flex-col"
+                                            ref={provided.innerRef}
+                                            {...provided.droppableProps}
+                                        >
+                                            <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                                                {status}
+                                            </h3>
+                                            <div className="flex-1 space-y-2 overflow-y-auto">
+                                                {items.map((item, index) => (
+                                                    <Draggable
+                                                        key={String(item.id)}
+                                                        draggableId={String(item.id)}
+                                                        index={index}
+                                                        isDragDisabled={readOnly}
+                                                    >
+                                                        {(prov, snap) => (
+                                                            <div
+                                                                className="bg-white p-3 rounded-md border border-gray-200 shadow-sm"
+                                                                ref={prov.innerRef}
+                                                                {...prov.draggableProps}
+                                                                {...prov.dragHandleProps}
+                                                                style={{
+                                                                    ...prov.draggableProps.style,
+                                                                    opacity: snap.isDragging ? 0.8 : 1,
+                                                                }}
+                                                            >
+                                                                <h4 className="text-md font-medium text-gray-800">
+                                                                    {item.title}
+                                                                </h4>
+                                                                <p className="text-sm text-gray-600">
+                                                                    {item.description}
+                                                                </p>
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                                {provided.placeholder}
+                                            </div>
+                                        </div>
+                                    );
+                                }}
+                            </Droppable>
+                        ))}
+                    </div>
+                </DragDropContext>
+
+                {/* Retroalimentación */}
+                <fieldset className="rounded-2xl border border-gray-200 p-4">
+                    <legend className="sr-only">Retroalimentación del Profesor</legend>
+                    <label
+                        htmlFor="teacherFeedback"
+                        className="block mb-2 font-bold text-gray-700"
+                    >
+                        Retroalimentación del Profesor:
+                    </label>
+
+                    {readOnly ? (
+                        <>
+                            <textarea
+                                id="teacherFeedback"
+                                className="w-full p-2 border border-gray-300 rounded"
+                                rows={3}
+                                value={localFeedback}
+                                onChange={(e) => setLocalFeedback(e.target.value)}
+                            />
+                            <button
+                                onClick={handleFeedbackSave}
+                                className="mt-2 bg-[#4F46E5] hover:bg-[#3730A3] text-white px-4 py-2 rounded"
+                            >
+                                Guardar Retroalimentación
+                            </button>
+                        </>
+                    ) : (
                         <textarea
                             id="teacherFeedback"
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="w-full p-2 border border-gray-300 rounded bg-gray-100"
                             rows={3}
                             value={localFeedback}
-                            onChange={(e) => setLocalFeedback(e.target.value)}
+                            disabled
                         />
-                        <button
-                            onClick={handleFeedbackSave}
-                            className="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-                        >
-                            Guardar Retroalimentación
-                        </button>
-                    </>
-                ) : (
-                    // Para el alumno: solo se muestra la retroalimentación en modo de solo lectura
-                    <textarea
-                        id="teacherFeedback"
-                        className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                        rows={3}
-                        value={localFeedback}
-                        disabled
-                    />
-                )}
+                    )}
+                </fieldset>
             </div>
         </div>
     );

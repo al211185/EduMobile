@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPlusCircle } from "react-icons/fa";
 
 const MyProjects = () => {
     const [projects, setProjects] = useState([]);
@@ -28,21 +29,19 @@ const MyProjects = () => {
     };
 
     const handleEditClick = (event, projectId) => {
-        event.stopPropagation(); // Evita que se active el clic en la tarjeta
+        event.stopPropagation(); // para que no dispare el onClick de la tarjeta
         navigate(`/projects/edit/${projectId}`);
     };
 
     const handleDeleteClick = async (event, projectId) => {
-        event.stopPropagation(); // Evita que se active el clic en la tarjeta
+        event.stopPropagation();
         if (window.confirm("¿Estás seguro de que quieres eliminar este proyecto?")) {
             try {
                 const response = await fetch(`/api/projects/${projectId}`, {
                     method: "DELETE",
                 });
                 if (response.ok) {
-                    setProjects((prev) =>
-                        prev.filter((project) => project.id !== projectId)
-                    );
+                    setProjects((prev) => prev.filter((p) => p.id !== projectId));
                     alert("Proyecto eliminado con éxito.");
                 } else {
                     const data = await response.json();
@@ -57,35 +56,72 @@ const MyProjects = () => {
     };
 
     return (
-        <div className="container mx-auto p-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Mis Proyectos</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects.map((project) => (
-                    <div
-                        key={project.id}
-                        className="cursor-pointer bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200"
-                        onClick={() => handleProjectClick(project.id)}
-                    >
-                        <h2 className="text-xl font-semibold text-gray-800">
-                            {project.title}
-                        </h2>
-                        <p className="text-gray-600 mt-2">{project.description}</p>
-                        <div className="mt-4 flex justify-end space-x-2">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded"
-                                onClick={(event) => handleEditClick(event, project.id)}
-                            >
-                                Editar
-                            </button>
-                            <button
-                                className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1 rounded"
-                                onClick={(event) => handleDeleteClick(event, project.id)}
-                            >
-                                Eliminar
-                            </button>
+        <div className="flex-1 overflow-auto">
+            {/* Cabecera estilo cápsula más grande y sin fondo blanco */}
+            <div className="bg-white border border-gray-200 rounded-2xl px-6 py-4 mb-8 w-full">
+                <h1 className="text-2xl font-bold text-[#64748B]">Proyectos</h1>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {projects.map((project) => {
+                    const fecha = project.createdAt
+                        ? new Date(project.createdAt).toLocaleDateString("es-ES", {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                        })
+                        : "";
+
+                    return (
+                        <div
+                            key={project.id}
+                            className="cursor-pointer bg-white rounded-xl border border-gray-200 shadow-sm p-6 hover:shadow-md transition-shadow duration-200 flex flex-col justify-between"
+                            onClick={() => handleProjectClick(project.id)}
+                        >
+                            <div>
+                                <h2 className="text-2xl font-bold text-[#64748B] text-center mb-2">
+                                    {project.title}
+                                </h2>
+                                {project.description && (
+                                    <p className="text-[#64748B] text-center mb-2">
+                                        {project.description}
+                                    </p>
+                                )}
+                                {fecha && (
+                                    <p className="text-[#64748B] text-center text-sm mb-4">
+                                        Fecha de creación: {fecha}
+                                    </p>
+                                )}
+                            </div>
+                            <div className="flex space-x-2 self-center mt-4">
+                                <button
+                                    className="bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium px-6 py-2 rounded"
+                                    onClick={(event) => handleEditClick(event, project.id)}
+                                >
+                                    Editar
+                                </button>
+                                <button
+                                    className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-6 py-2 rounded"
+                                    onClick={(e) => handleDeleteClick(e, project.id)}
+                                >
+                                    Eliminar
+                                    </button>
+                            </div>
                         </div>
+                    );
+                })}
+
+                {/* Nueva tarjeta de crear */}
+                <div
+                    key="create"
+                    className="cursor-pointer bg-white rounded-xl border border-gray-200 shadow-sm p-6 hover:shadow-md transition-shadow duration-200 flex flex-col items-center justify-center text-[#64748B]"
+                    onClick={() => navigate("/create-project")}
+                >
+                    <h2 className="text-2xl font-bold mb-2 text-center">Crear Proyecto</h2>
+                    <div className="mt-4">
+                        <FaPlusCircle className="w-8 h-8" />
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import seedrandom from "seedrandom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -87,9 +87,15 @@ const MediaQueryGameMinWidth = () => {
         setSolved(false);
     }, [initCorrectOrder, rng]);
 
-    const handleDragStart = (e, token) => e.dataTransfer.setData("token", token);
-    const handleDragOver = (e) => e.preventDefault();
-    const handleDrop = (e, idx) => {
+    const handleDragStart = useCallback((e, token) => {
+        e.dataTransfer.setData("token", token);
+    }, []);
+
+    const handleDragOver = useCallback((e) => {
+        e.preventDefault();
+    }, []);
+
+    const handleDrop = useCallback((e, idx) => {
         e.preventDefault();
         const token = e.dataTransfer.getData("token");
         setSlots((old) => {
@@ -99,8 +105,9 @@ const MediaQueryGameMinWidth = () => {
             return next;
         });
         setTokensPool((p) => p.filter((t) => t !== token));
-    };
-    const handleSlotClick = (idx) => {
+    }, [setSlots, setTokensPool]);
+
+    const handleSlotClick = useCallback((idx) => {
         setSlots((old) => {
             const next = [...old];
             const t = next[idx];
@@ -110,15 +117,16 @@ const MediaQueryGameMinWidth = () => {
             }
             return next;
         });
-    };
-    const handleReset = () => {
+    }, [setSlots, setTokensPool]);
+
+    const handleReset = useCallback(() => {
         setSlots(Array(initCorrectOrder.length).fill(null));
         setTokensPool(shuffle(initCorrectOrder));
         setSolved(false);
-    };
+    }, [initCorrectOrder, rng]);
 
     // 5) Comprobar, pero **solo** incrementar el sessionScore
-    const checkAnswer = () => {
+    const checkAnswer = useCallback(() => {
         const correct = slots.join(" ") === initCorrectOrder.join(" ");
         setSolved(correct);
 
@@ -126,10 +134,10 @@ const MediaQueryGameMinWidth = () => {
             correct: old.correct + (correct ? 1 : 0),
             attempts: old.attempts + 1,
         }));
-    };
+    }, [slots, initCorrectOrder]);
 
     // 6) Al terminar los 10 ejercicios, permite **guardar** mejor puntaje
-    const finish = async () => {
+    const finish = useCallback(async () => {
         // ¿fue esta sesión mejor que el histórico?
         const oldPct = bestScore.attempts
             ? bestScore.correct / bestScore.attempts
@@ -157,7 +165,7 @@ const MediaQueryGameMinWidth = () => {
         // Reiniciar sesión
         setSessionScore({ correct: 0, attempts: 0 });
         setCurrent(0);
-    };
+    }, [bestScore, sessionScore, initCorrectOrder]);
 
     // Vista previa
     const previewStyle = {
@@ -167,7 +175,7 @@ const MediaQueryGameMinWidth = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-3xl shadow-xl">
+        <div className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-3xl shadow-xl max-h-[80vh] overflow-y-auto md:max-h-none hide-scrollbar">
             {/* Cabecera con ambos puntajes */}
             <header className="flex justify-between items-center mb-6">
                 <h1 className="text-4xl font-extrabold text-indigo-700">

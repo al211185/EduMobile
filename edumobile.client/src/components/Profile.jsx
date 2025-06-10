@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { FaUserCircle } from "react-icons/fa";
 
 const Profile = () => {
     const { user } = useAuth();
@@ -126,180 +127,155 @@ const Profile = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-            {/* Navigation Tabs */}
-            <nav className="mb-4 border-b pb-2">
-                <ul className="flex space-x-4">
-                    <li>
-                        <button
-                            onClick={() => setCurrentTab("profile")}
-                            className={`px-4 py-2 font-medium ${currentTab === "profile"
-                                    ? "border-b-2 border-blue-500 text-blue-500"
-                                    : "text-gray-600 hover:text-blue-500"
-                                }`}
-                        >
-                            Perfil
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            onClick={() => setCurrentTab("email")}
-                            className={`px-4 py-2 font-medium ${currentTab === "email"
-                                    ? "border-b-2 border-blue-500 text-blue-500"
-                                    : "text-gray-600 hover:text-blue-500"
-                                }`}
-                        >
-                            Email
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            onClick={() => setCurrentTab("change-password")}
-                            className={`px-4 py-2 font-medium ${currentTab === "change-password"
-                                    ? "border-b-2 border-blue-500 text-blue-500"
-                                    : "text-gray-600 hover:text-blue-500"
-                                }`}
-                        >
-                            Cambiar Contraseña
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+        <div className="space-y-6">
+            {/* — Avatar y Nombre — */}
+            <div className="bg-white rounded-2xl p-6 flex items-center space-x-4 shadow">
+                <FaUserCircle className="w-16 h-16 text-[#64748B]" />
+                <div>
+                    <h2 className="text-xl font-semibold text-[#64748B]">
+                        {user.nombre} {user.apellidoPaterno} {user.apellidoMaterno}
+                    </h2>
+                    <p className="text-gray-600">{user.email}</p>
+                </div>
+            </div>
 
-            {/* Content Area */}
-            <div className="profile-content">
-                {currentTab === "profile" && (
-                    <div>
-                        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                            Información del Perfil
-                        </h2>
-                        <p className="text-gray-700 mb-2">
-                            <strong>Nombre:</strong> {user.nombre} {user.apellidoPaterno}{" "}
-                            {user.apellidoMaterno}
-                        </p>
-                        <p className="text-gray-700 mb-2">
-                            <strong>Email:</strong> {user.email}
-                        </p>
-                        <p className="text-gray-700">
-                            <strong>Matrícula:</strong> {user.matricula}
-                        </p>
-                    </div>
-                )}
+            {/* — Tabs + Contenido — */}
+            <div className="bg-white rounded-2xl p-6 shadow ">
+                {/* — Navigation Tabs — */}
+                <nav className="border-b border-gray-200 mb-4">
+                    <ul className="flex space-x-4">
+                        {["profile", "email", "change-password"].map(tab => {
+                            const labels = {
+                                profile: "Perfil",
+                                email: "Email",
+                                "change-password": "Cambiar Contraseña"
+                            };
+                            return (
+                                <li key={tab}>
+                                    <button
+                                        onClick={() => setCurrentTab(tab)}
+                                        className={`px-4 py-2 font-medium ${currentTab === tab
+                                                ? "border-b-2 border-[#64748B] text-[#64748B]"
+                                                : "text-gray-600 hover:text-[#64748B]"
+                                            }`}
+                                    >
+                                        {labels[tab]}
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
 
-                {currentTab === "email" && (
-                    <div>
-                        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                            Actualizar Email
-                        </h2>
-                        <form className="space-y-4">
-                            <div>
-                                <label
-                                    htmlFor="newEmail"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
-                                >
-                                    Nuevo Email:
-                                </label>
-                                <input
-                                    type="email"
-                                    id="newEmail"
-                                    placeholder="Ingresa tu nuevo email"
-                                    required
-                                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-                            >
-                                Actualizar
-                            </button>
-                        </form>
-                    </div>
-                )}
+                {/* — Content Area — */}
+                <div>
+                    {currentTab === "profile" && (
+                        <div>
+                            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                                Información del Perfil
+                            </h2>
+                            <p className="text-gray-700 mb-2">
+                                <strong>Nombre:</strong> {user.nombre} {user.apellidoPaterno}{" "}
+                                {user.apellidoMaterno}
+                            </p>
+                            <p className="text-gray-700 mb-2">
+                                <strong>Email:</strong> {user.email}
+                            </p>
+                            <p className="text-gray-700">
+                                <strong>Matrícula:</strong> {user.matricula}
+                            </p>
+                        </div>
+                    )}
 
-                {currentTab === "change-password" && (
-                    <div>
-                        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                            Cambiar Contraseña
-                        </h2>
-                        {message && (
-                            <div
-                                className={`p-2 rounded mb-4 text-sm ${message.startsWith("✅")
-                                        ? "bg-green-100 text-green-800"
-                                        : "bg-red-100 text-red-800"
-                                    }`}
-                            >
-                                {message}
-                            </div>
-                        )}
-                        <form onSubmit={handleChangePassword} className="space-y-4">
-                            <div>
-                                <label
-                                    htmlFor="currentPassword"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
+                    {currentTab === "email" && (
+                        <div>
+                            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                                Actualizar Email
+                            </h2>
+                            <form className="space-y-4">
+                                <div>
+                                    <label
+                                        htmlFor="newEmail"
+                                        className="block text-sm font-medium text-gray-700 mb-1"
+                                    >
+                                        Nuevo Email:
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="newEmail"
+                                        placeholder="Ingresa tu nuevo email"
+                                        required
+                                        className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full bg-[#64748B] hover:bg-[#5a6370] text-white font-semibold py-2 rounded-md transition-colors"
                                 >
-                                    Contraseña Actual:
-                                </label>
-                                <input
-                                    type="password"
-                                    id="currentPassword"
-                                    value={currentPassword}
-                                    onChange={(e) => setCurrentPassword(e.target.value)}
-                                    placeholder="Ingresa tu contraseña actual"
-                                    required
-                                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="newPassword"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
-                                >
-                                    Nueva Contraseña:
-                                </label>
-                                <input
-                                    type="password"
-                                    id="newPassword"
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
-                                    placeholder="Ingresa tu nueva contraseña"
-                                    required
-                                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="confirmPassword"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
-                                >
-                                    Confirmar Contraseña:
-                                </label>
-                                <input
-                                    type="password"
-                                    id="confirmPassword"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    placeholder="Confirma tu nueva contraseña"
-                                    required
-                                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-                            >
-                                Actualizar
-                            </button>
-                        </form>
-                    </div>
-                )}
+                                    Actualizar
+                                </button>
+                            </form>
+                        </div>
+                    )}
 
-                {currentTab !== "profile" &&
-                    currentTab !== "email" &&
-                    currentTab !== "change-password" && <p>Selecciona una opción del menú.</p>}
+                    {currentTab === "change-password" && (
+                        <div>
+                            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                                Cambiar Contraseña
+                            </h2>
+                            {message && (
+                                <div
+                                    className={`p-2 rounded mb-4 text-sm ${message.startsWith("✅")
+                                            ? "bg-green-100 text-green-800"
+                                            : "bg-red-100 text-red-800"
+                                        }`}
+                                >
+                                    {message}
+                                </div>
+                            )}
+                            <form onSubmit={handleChangePassword} className="space-y-4">
+                                {[
+                                    { id: "currentPassword", label: "Contraseña Actual", val: currentPassword, setter: setCurrentPassword },
+                                    { id: "newPassword", label: "Nueva Contraseña", val: newPassword, setter: setNewPassword },
+                                    { id: "confirmPassword", label: "Confirmar Contraseña", val: confirmPassword, setter: setConfirmPassword }
+                                ].map(({ id, label, val, setter }) => (
+                                    <div key={id}>
+                                        <label
+                                            htmlFor={id}
+                                            className="block text-sm font-medium text-gray-700 mb-1"
+                                        >
+                                            {label}:
+                                        </label>
+                                        <input
+                                            type="password"
+                                            id={id}
+                                            value={val}
+                                            onChange={e => setter(e.target.value)}
+                                            placeholder={id === "currentPassword"
+                                                ? "Ingresa tu contraseña actual"
+                                                : id === "newPassword"
+                                                    ? "Ingresa tu nueva contraseña"
+                                                    : "Confirma tu nueva contraseña"}
+                                            required
+                                            className="w-full bg-[#E5E5E5] border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                                        />
+                                    </div>
+                                ))}
+                                <button
+                                    type="submit"
+                                    className="w-full bg-[#64748B] hover:bg-[#5a6370] text-white font-semibold py-2 rounded-md transition-colors"
+                                >
+                                    Actualizar
+                                </button>
+                            </form>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
+
+
 
 };
 

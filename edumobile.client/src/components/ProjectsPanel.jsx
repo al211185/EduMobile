@@ -118,18 +118,26 @@ const ProjectsPanel = () => {
         return <p className="text-center text-gray-600 mt-4">Cargando...</p>;
 
     return (
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Proyectos Activos</h2>
+        <section className="w-full bg-white border border-gray-200 rounded-2xl p-6 mb-6 shadow-sm">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-[#4F46E5]">
+                    Proyectos Activos
+                </h2>
+                {/* aquí podrías poner un botón de acción si lo necesitas */}
+            </div>
 
             {user?.role === "Profesor" && (
-                <>
-                    <div className="mb-4">
+                
+                <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
+                    {/* Select de semestre */}
+                    <div className="flex items-center gap-2">
                         <label htmlFor="semesterSelect" className="mr-2 text-gray-700">
                             Selecciona un semestre:
                         </label>
                         <select
                             id="semesterSelect"
-                            className="border rounded p-2"
+                            className="border border-gray-200 rounded-2xl p-2 pr-8 bg-white appearance-none focus:outline-none focus:border-[#4F46E5]"
                             value={selectedSemester}
                             onChange={(e) => setSelectedSemester(e.target.value)}
                         >
@@ -139,43 +147,45 @@ const ProjectsPanel = () => {
                                 </option>
                             ))}
                         </select>
+
                     </div>
-                    <div className="mb-4">
+
+                    <div className="flex-1">
                         <input
                             type="text"
                             placeholder="Buscar alumno..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="border rounded p-2 w-full max-w-xs"
+                            className="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#4F46E5] transition"
                         />
                     </div>
-                </>
+                </div>
             )}
 
             {filteredProjects.length > 0 ? (
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto rounded-xl overflow-hidden shadow-sm">
                     <table className="min-w-full bg-white divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-[#64748B]">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                     ID
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                     Título
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                     Descripción
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                     Creado Por
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                     Semestre
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                                     Equipo
                                 </th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">
                                     Acciones
                                 </th>
                             </tr>
@@ -226,7 +236,7 @@ const ProjectsPanel = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
                                             <button
-                                                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors"
+                                                className="px-3 py-1 bg-[#4F46E5] hover:bg-[#64748B] text-white rounded-md text-sm transition"
                                                 onClick={() =>
                                                     navigate(
                                                         project.createdById
@@ -249,7 +259,8 @@ const ProjectsPanel = () => {
                     No hay proyectos activos en este momento.
                 </p>
             )}
-        </div>
+               
+        </section>
     );
 };
 

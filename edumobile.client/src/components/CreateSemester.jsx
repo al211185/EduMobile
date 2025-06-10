@@ -23,7 +23,7 @@ const CreateSemester = ({ selectedCourse }) => {
                     year: parseInt(year),
                     period,
                     description,
-                    course: selectedCourse,
+                    course: "Diseño web HTML5 y CSS3 Adaptativo",
                 }),
             });
 
@@ -44,63 +44,97 @@ const CreateSemester = ({ selectedCourse }) => {
     };
 
     return (
-        <div className="create-semester-container">
-            <h2>Crear Semestre</h2>
+        <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
             {message && (
-                <div className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`}>
+                <div
+                    className={`sm:col-span-2 text-center py-2 rounded-md text-sm ${message.startsWith("✅")
+                            ? "bg-green-50 text-green-700"
+                            : "bg-red-50 text-red-700"
+                        }`}
+                >
                     {message}
                 </div>
             )}
-            <form onSubmit={handleSubmit}>
-                <div className="form-floating">
-                    <label htmlFor="year">Año</label>
-                    <input
-                        type="number"
-                        id="year"
-                        className="styled-input"
-                        value={year}
-                        onChange={(e) => setYear(e.target.value)}
-                        placeholder="Ingrese el año (e.g., 2024)"
-                        required
-                    />
-                </div>
-                <div className="form-floating">
-                    <label htmlFor="period">Periodo</label>
-                    <select
-                        id="period"
-                        className="styled-input"
-                        value={period}
-                        onChange={(e) => setPeriod(e.target.value)}
-                        required
-                    >
-                        <option value="A">A (Primavera)</option>
-                        <option value="B">B (Otoño)</option>
-                    </select>
-                </div>
-                <div className="form-floating">
-                    <label htmlFor="description">Descripción</label>
-                    <textarea
-                        id="description"
-                        className="styled-input"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Descripción opcional del semestre"
-                    />
-                </div>
-                <div className="form-floating">
-                    <label htmlFor="distinctive">Distintivo</label>
-                    <input
-                        type="text"
-                        id="distinctive"
-                        className="styled-input"
-                        value={distinctive}
-                        onChange={(e) => setDistinctive(e.target.value)}
-                        placeholder="Añadir un distintivo (e.g., 'Especialidad en Frontend')"
-                    />
-                </div>
-                <button type="submit" className="btn-primary">Crear Semestre</button>
-            </form>
-        </div>
+
+            {/* Año */}
+            <div className="flex flex-col">
+                <label htmlFor="year" className="mb-1 font-medium text-[#64748B]">
+                    Año
+                </label>
+                <input
+                    id="year"
+                    type="number"
+                    required
+                    placeholder="2025"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    className="bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                />
+            </div>
+
+            {/* Periodo */}
+            <div className="flex flex-col">
+                <label htmlFor="period" className="mb-1 font-medium text-[#64748B]">
+                    Periodo
+                </label>
+                <select
+                    id="period"
+                    required
+                    value={period}
+                    onChange={(e) => setPeriod(e.target.value)}
+                    className="bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                >
+                    <option value="A">A (Primavera)</option>
+                    <option value="B">B (Otoño)</option>
+                </select>
+            </div>
+
+            {/* Descripción */}
+            <div className="sm:col-span-2 flex flex-col">
+                <label htmlFor="description" className="mb-1 font-medium text-[#64748B]">
+                    Descripción <span className="text-gray-500">(opcional)</span>
+                </label>
+                <textarea
+                    id="description"
+                    rows={2}
+                    placeholder="Descripción del semestre"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                />
+            </div>
+
+            {/* Distintivo */}
+            <div className="sm:col-span-2 flex flex-col">
+                <label
+                    htmlFor="distinctive"
+                    className="mb-1 font-medium text-[#64748B]"
+                >
+                    Distintivo <span className="text-gray-500">(opcional)</span>
+                </label>
+                <input
+                    id="distinctive"
+                    type="text"
+                    placeholder="e.g., Especialidad en Frontend"
+                    value={distinctive}
+                    onChange={(e) => setDistinctive(e.target.value)}
+                    className="bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
+                />
+            </div>
+
+            {/* Botón Crear */}
+            <div className="sm:col-span-2 flex justify-end">
+                <button
+                    type="submit"
+                    className="bg-[#4F46E5] hover:bg-[#4338CA] text-white font-semibold px-6 py-2 rounded-lg transition"
+                >
+                    Crear Semestre
+                </button>
+            </div>
+        </form>
     );
 };
 

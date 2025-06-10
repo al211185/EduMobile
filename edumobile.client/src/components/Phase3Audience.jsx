@@ -148,29 +148,39 @@ const Phase3Audience = ({ data, onSave }) => {
         let y = 40;
 
         // Encabezado con fondo oscuro y título centrado
-        doc.setFillColor(52, 73, 94);
+        doc.setFillColor(79, 70, 229);
         doc.rect(0, 0, pageWidth, 60, "F");
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(24);
+        doc.setFontSize(20);
         doc.setTextColor(255, 255, 255);
         doc.text("Encuesta de Investigación de Audiencia", pageWidth / 2, 35, { align: "center" });
+
         y = 80;
 
         // Función para agregar secciones con formato moderno y espaciado
         const addSection = (title, questions) => {
             if (questions.length === 0) return;
+
+            // Pill background
+            const pillBg = [238, 242, 255]; // #EEF2FF
+            doc.setFillColor(...pillBg);
+            doc.roundedRect(40, y - 6, pageWidth - 80, 24, 6, 6, "F");
+
             doc.setFont("helvetica", "bold");
             doc.setFontSize(16);
-            doc.setTextColor(52, 73, 94);
-            doc.text(title, 40, y);
-            y += 25;
+            doc.setTextColor(79, 70, 229);
+            doc.text(title, 50, y + 12);
+            y += 36;
+
             doc.setFont("helvetica", "normal");
             doc.setFontSize(12);
             doc.setTextColor(44, 62, 80);
+
             questions.forEach((q, idx) => {
-                doc.text(`${idx + 1}. ${q}`, 50, y);
+                doc.circle(50, y - 4, 2, "F");
+                doc.text(`${idx + 1}. ${q}`, 60, y);
                 y += 20;
-                if (y > 750) {
+                if (y > doc.internal.pageSize.getHeight() - 80) {
                     doc.addPage();
                     y = 40;
                 }
@@ -214,19 +224,19 @@ const Phase3Audience = ({ data, onSave }) => {
         onSave(updatedData);
     };
     return (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg h-[90vh] flex flex-col overflow-hidden">
+        <div className="w-full flex flex-col flex-1 rounded-2xl overflow-hidden">
             <form onSubmit={handleSubmit} className="flex flex-col h-full">
                 {/* Área scrollable para el contenido */}
                 <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 px-2">Introducción</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Introducción</legend>
                         <p className="text-gray-700">
                             Seleccione las preguntas que considere útiles para formar el cuestionario de investigación de audiencia. También puede agregar preguntas personalizadas.
                         </p>
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Datos Demográficos</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Datos Demográficos</legend>
                         {demographicsQuestions.map((q, idx) => (
                             <div key={idx}>
                                 <label className="flex items-center space-x-2">
@@ -236,14 +246,14 @@ const Phase3Audience = ({ data, onSave }) => {
                                         onChange={() => toggleQuestion("demographics", q)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{q}</span>
+                                    <span className="text-gray-700">{q}</span>
                                 </label>
                             </div>
                         ))}
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Preguntas sobre Comportamiento</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Preguntas sobre Comportamiento</legend>
                         {behaviorQuestions.map((q, idx) => (
                             <div key={idx}>
                                 <label className="flex items-center space-x-2">
@@ -253,14 +263,14 @@ const Phase3Audience = ({ data, onSave }) => {
                                         onChange={() => toggleQuestion("behavior", q)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{q}</span>
+                                    <span className="text-gray-700">{q}</span>
                                 </label>
                             </div>
                         ))}
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Expectativas y Opiniones</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Expectativas y Opiniones</legend>
                         {expectationsQuestions.map((q, idx) => (
                             <div key={idx}>
                                 <label className="flex items-center space-x-2">
@@ -270,14 +280,14 @@ const Phase3Audience = ({ data, onSave }) => {
                                         onChange={() => toggleQuestion("expectations", q)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{q}</span>
+                                    <span className="text-gray-700">{q}</span>
                                 </label>
                             </div>
                         ))}
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Preferencias Tecnológicas</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Preferencias Tecnológicas</legend>
                         {preferencesQuestions.map((q, idx) => (
                             <div key={idx}>
                                 <label className="flex items-center space-x-2">
@@ -287,32 +297,32 @@ const Phase3Audience = ({ data, onSave }) => {
                                         onChange={() => toggleQuestion("preferences", q)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{q}</span>
+                                    <span className="text-gray-700">{q}</span>
                                 </label>
                             </div>
                         ))}
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Preguntas Personalizadas</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Preguntas Personalizadas</legend>
                         <div className="flex items-center space-x-2">
                             <input
                                 type="text"
                                 value={customQuestion}
                                 onChange={(e) => setCustomQuestion(e.target.value)}
                                 placeholder="Escribe tu pregunta personalizada"
-                                className="w-full border border-gray-300 rounded p-2 text-sm"
+                                className="w-full border border-gray-300 rounded p-2"
                             />
                             <button
                                 type="button"
                                 onClick={addCustomQuestion}
-                                className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded text-sm"
+                                className="bg-[#4F46E5] hover:bg-[#64748B] text-white font-semibold py-2 px-4 rounded text-sm"
                             >
                                 Agregar Pregunta
                             </button>
                         </div>
                         {customQuestions.length > 0 && (
-                            <ul className="mt-2 list-disc pl-5 text-sm text-gray-700">
+                            <ul className="mt-2 list-disc pl-5 text-gray-700">
                                 {customQuestions.map((q, idx) => (
                                     <li key={idx}>{q}</li>
                                 ))}
@@ -320,44 +330,44 @@ const Phase3Audience = ({ data, onSave }) => {
                         )}
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Resumen de Preguntas Seleccionadas</legend>
-                        <div className="text-sm text-gray-700 space-y-2">
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Resumen de Preguntas Seleccionadas</legend>
+                        <div className="mt-4 space-y-2">
                             <div>
-                                <h4 className="font-semibold">Datos Demográficos:</h4>
-                                <ul className="list-disc pl-5">
+                                <p className="font-semibold text-[#64748B]">Datos Demográficos:</p>
+                                <ul className="list-disc pl-5 text-[#64748B]">
                                     {selectedQuestions.demographics.map((q, idx) => (
                                         <li key={idx}>{q}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold">Preguntas sobre Comportamiento:</h4>
-                                <ul className="list-disc pl-5">
+                                <p className="font-semibold text-[#64748B]">Preguntas sobre Comportamiento:</p>
+                                <ul className="list-disc pl-5 text-[#64748B]">
                                     {selectedQuestions.behavior.map((q, idx) => (
                                         <li key={idx}>{q}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold">Expectativas y Opiniones:</h4>
-                                <ul className="list-disc pl-5">
+                                <p className="font-semibold text-[#64748B]">Expectativas y Opiniones:</p>
+                                <ul className="list-disc pl-5 text-[#64748B]">
                                     {selectedQuestions.expectations.map((q, idx) => (
                                         <li key={idx}>{q}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold">Preferencias Tecnológicas:</h4>
-                                <ul className="list-disc pl-5">
+                                <p className="font-semibold text-[#64748B]">Preferencias Tecnológicas:</p>
+                                <ul className="list-disc pl-5 text-[#64748B]">
                                     {selectedQuestions.preferences.map((q, idx) => (
                                         <li key={idx}>{q}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold">Preguntas Personalizadas:</h4>
-                                <ul className="list-disc pl-5">
+                                <p className="font-semibold text-[#64748B]">Preguntas Personalizadas:</p>
+                                <ul className="list-disc pl-5 text-[#64748B]">
                                     {customQuestions.map((q, idx) => (
                                         <li key={idx}>{q}</li>
                                     ))}
@@ -366,12 +376,12 @@ const Phase3Audience = ({ data, onSave }) => {
                         </div>
                     </fieldset>
 
-                    <fieldset className="border border-gray-300 p-4 rounded">
-                        <legend className="text-xl font-semibold text-gray-800 mb-2">Ejercicio reflexivo</legend>
+                    <fieldset className="rounded-2xl">
+                        <legend className="text-xl font-bold text-[#4F46E5] mb-4 px-2">Ejercicio reflexivo</legend>
                         <p className="text-gray-700 mb-4">
                             Responde a las siguientes preguntas marcando las opciones que consideres que mejor describen la situación:
                         </p>
-                        <div className="space-y-2">
+                        <div className="mt-4 space-y-2">
                             {reflectiveQuestions.map((question) => (
                                 <label key={question.value} className="flex items-center space-x-2">
                                     <input
@@ -381,7 +391,7 @@ const Phase3Audience = ({ data, onSave }) => {
                                         onChange={() => toggleQuestionReflective(question.value)}
                                         className="h-4 w-4"
                                     />
-                                    <span className="text-gray-700 text-sm">{question.label}</span>
+                                    <span className="text-gray-700">{question.label}</span>
                                 </label>
                             ))}
                         </div>
@@ -389,12 +399,12 @@ const Phase3Audience = ({ data, onSave }) => {
                 </div>
 
                 {/* Contenedor fijo para el botón de navegación */}
-                <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4">
-                    <div className="flex justify-between">
-                        <button type="button" onClick={generatePDF} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded text-sm">
+                <div className="sticky bottom-0 p-4">
+                    <div className="flex justify-between space-x-4">
+                        <button type="button" onClick={generatePDF} className="bg-[#4F46E5] hover:bg-[#64748B] text-white font-semibold py-2 px-4 rounded text-sm">
                             Descargar PDF
                         </button>
-                        <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded text-sm">
+                        <button type="submit" className="w-full bg-[#64748B] hover:bg-[#4F46E5] text-white font-semibold py-2 px-4 rounded text-sm">
                             Guardar
                         </button>
                     </div>

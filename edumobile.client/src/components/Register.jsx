@@ -46,100 +46,81 @@ const Register = () => {
     };
 
     return (
-        <div className="container">
-            <h1 className="main-heading">Registrarse</h1>
-            <form onSubmit={handleRegister}>
-                <h2>Crea una nueva cuenta</h2>
-                {message && (
-                    <div className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`}>
-                        {message}
+        <div className="w-full max-w-md mx-auto mt-16 bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+            <h1 className="text-2xl font-semibold text-[#64748B] text-center mb-6">
+                Registro de Profesores
+            </h1>
+
+            {message && (
+                <div
+                    className={`px-4 py-2 rounded-md text-sm mb-6 ${message.startsWith("✅")
+                        ? "bg-green-50 text-green-700"
+                        : "bg-red-50 text-red-700"
+                        }`}
+                >
+                    {message}
+                </div>
+            )}
+
+            <form onSubmit={handleRegister} className="space-y-5">
+                {[
+                    { label: "Nombre", value: nombre, setter: setNombre, type: "text", id: "nombre" },
+                    { label: "Apellido Paterno", value: apellidoPaterno, setter: setApellidoPaterno, type: "text", id: "apellidoPaterno" },
+                    { label: "Apellido Materno", value: apellidoMaterno, setter: setApellidoMaterno, type: "text", id: "apellidoMaterno" },
+                    { label: "Matrícula", value: matricula, setter: setMatricula, type: "text", id: "matricula" },
+                    { label: "Correo Electrónico", value: email, setter: setEmail, type: "email", id: "email" },
+                    { label: "Contraseña", value: password, setter: setPassword, type: "password", id: "password" },
+                    { label: "Confirmar Contraseña", value: confirmPassword, setter: setConfirmPassword, type: "password", id: "confirmPassword" },
+                ].map(({ label, value, setter, type, id }) => (
+                    <div key={id} className="flex flex-col">
+                        <label htmlFor={id} className="mb-2 font-medium text-gray-700">
+                            {label}
+                        </label>
+                        {type !== "textarea" ? (
+                            <input
+                                id={id}
+                                type={type}
+                                value={value}
+                                onChange={(e) => setter(e.target.value)}
+                                required
+                                className="
+                  border border-gray-300
+                  rounded-lg
+                  px-4 py-2
+                  focus:outline-none focus:ring-2 focus:ring-[#4F46E5]
+                  transition
+                "
+                            />
+                        ) : (
+                            <textarea
+                                id={id}
+                                rows={4}
+                                value={value}
+                                onChange={(e) => setter(e.target.value)}
+                                required
+                                className="
+                  border border-gray-300
+                  rounded-lg
+                  px-4 py-2
+                  focus:outline-none focus:ring-2 focus:ring-[#4F46E5]
+                  transition
+                "
+                            />
+                        )}
                     </div>
-                )}
-                <div className="form-floating mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="nombre"
-                        placeholder="Nombre"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="nombre">Nombre</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="apellidoPaterno"
-                        placeholder="Apellido Paterno"
-                        value={apellidoPaterno}
-                        onChange={(e) => setApellidoPaterno(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="apellidoPaterno">Apellido Paterno</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="apellidoMaterno"
-                        placeholder="Apellido Materno"
-                        value={apellidoMaterno}
-                        onChange={(e) => setApellidoMaterno(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="apellidoMaterno">Apellido Materno</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="matricula"
-                        placeholder="Matrícula"
-                        value={matricula}
-                        onChange={(e) => setMatricula(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="matricula">Matrícula</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="Correo Electrónico"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="email">Correo Electrónico</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="password">Contraseña</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="confirmPassword"
-                        placeholder="Confirmar Contraseña"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="confirmPassword">Confirmar Contraseña</label>
-                </div>
-                <button type="submit" className="btn btn-primary w-100">
+                ))}
+
+                <button
+                    type="submit"
+                    className="
+            w-full
+            bg-[#4F46E5] hover:bg-[#4338CA]
+            text-white font-semibold
+            py-2 rounded-full
+            focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:ring-opacity-50
+            transition
+          "
+                >
                     Registrarse
                 </button>
             </form>
