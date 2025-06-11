@@ -92,7 +92,17 @@ namespace EduMobile.Server.Controllers
                 var subject = $"Nueva retroalimentación - Fase {feedback.Phase}";
                 var message = $"Se ha recibido nueva retroalimentación: {feedback.FeedbackText}";
                 _logger.LogInformation("Enviando notificación por correo: Subject: {Subject}, Message: {Message}", subject, message);
-                await _notificationService.SendTeamNotificationAsync(feedback.ProjectId, subject, message);
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await _notificationService.SendTeamNotificationAsync(feedback.ProjectId, subject, message);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error enviando correos de notificación");
+                    }
+                });
 
                 // GUARDAR LAS NOTIFICACIONES EN LA BASE DE DATOS PARA LOS ALUMNOS (excluyendo al profesor)
                 var studentUserIds = await _context.ProjectUsers
@@ -155,7 +165,17 @@ namespace EduMobile.Server.Controllers
                 var subject = $"Retroalimentación actualizada - Fase {feedback.Phase}";
                 var message = $"La retroalimentación se ha actualizado: {feedback.FeedbackText}";
                 _logger.LogInformation("Enviando notificación por correo: Subject: {Subject}, Message: {Message}", subject, message);
-                await _notificationService.SendTeamNotificationAsync(feedback.ProjectId, subject, message);
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await _notificationService.SendTeamNotificationAsync(feedback.ProjectId, subject, message);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error enviando correos de notificación");
+                    }
+                });
 
                 // GUARDAR LAS NOTIFICACIONES EN LA BASE DE DATOS PARA LOS ALUMNOS (excluyendo al profesor)
                 var studentUserIds = await _context.ProjectUsers

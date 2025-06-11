@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\0d2a20db-319e-4757-ade0-87b6908b57bc.png",
+      "PackagePath": "staticwebassets\\uploads\\0d2a20db-319e-4757-ade0-87b6908b57bc.png"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\1a7c92c4-f451-46d3-9a4f-52c393206c4a.png",
       "PackagePath": "staticwebassets\\uploads\\1a7c92c4-f451-46d3-9a4f-52c393206c4a.png"
     },

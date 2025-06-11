@@ -252,6 +252,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-U7H\u002BU8xa3oH0nknlAI8pPIHKDB5Fy/R0tKIm2Z/YElE="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1120"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022U7H\u002BU8xa3oH0nknlAI8pPIHKDB5Fy/R0tKIm2Z/YElE=\u0022"},{"Name":"Last-Modified","Value":"Sat, 14 Dec 2024 11:17:07 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/EduMobile.Server/uploads/0d2a20db-319e-4757-ade0-87b6908b57bc.e2tc1zy2bd.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0d2a20db-319e-4757-ade0-87b6908b57bc.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"e2tc1zy2bd"},{"Name":"integrity","Value":"sha256-Jstyyq8z\u002B2EdZxui9ngDPyoqQBBDz14BKJf1pRQQ2HU="},{"Name":"label","Value":"_content/EduMobile.Server/uploads/0d2a20db-319e-4757-ade0-87b6908b57bc.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"86711"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022Jstyyq8z\u002B2EdZxui9ngDPyoqQBBDz14BKJf1pRQQ2HU=\u0022"},{"Name":"Last-Modified","Value":"Tue, 10 Jun 2025 06:51:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/EduMobile.Server/uploads/0d2a20db-319e-4757-ade0-87b6908b57bc.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0d2a20db-319e-4757-ade0-87b6908b57bc.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Jstyyq8z\u002B2EdZxui9ngDPyoqQBBDz14BKJf1pRQQ2HU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"86711"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022Jstyyq8z\u002B2EdZxui9ngDPyoqQBBDz14BKJf1pRQQ2HU=\u0022"},{"Name":"Last-Modified","Value":"Tue, 10 Jun 2025 06:51:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/EduMobile.Server/uploads/1a7c92c4-f451-46d3-9a4f-52c393206c4a.jnifzmf0nc.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1a7c92c4-f451-46d3-9a4f-52c393206c4a.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

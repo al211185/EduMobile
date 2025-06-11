@@ -21,15 +21,13 @@ namespace EduMobile.Server.Services
         {
             // Suponiendo que la entidad ProjectUser relaciona el proyecto y el usuario
             // y que el campo ApplicationUser.Role determina si es "Profesor" o "Alumno"
-            var teamMembers = await _context.ProjectUsers
+            var emails = await _context.ProjectUsers
                 .Include(pu => pu.ApplicationUser)
                 .Where(pu => pu.ProjectId == projectId && pu.ApplicationUser.Role != "Profesor")
+                .Select(pu => pu.ApplicationUser.Email)
                 .ToListAsync();
 
-            foreach (var member in teamMembers)
-            {
-                await _emailSender.SendEmailAsync(member.ApplicationUser.Email, subject, message);
-            }
+            await _emailSender.SendEmailsAsync(emails, subject, message);
         }
     }
 }
