@@ -115,7 +115,18 @@ const StudentDashboard = () => {
         fetchAll();
     }, []);
 
-    if (loading) return <p className="text-center mt-8">Cargando dashboard…</p>;
+    if (loading)
+        return (
+            <div className="space-y-6 animate-pulse">
+                <div className="bg-white rounded-2xl px-6 py-8 h-20" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-2xl p-6 h-40" />
+                    <div className="bg-white rounded-2xl p-6 h-40" />
+                    <div className="bg-white rounded-2xl p-6 h-40" />
+                </div>
+                <div className="bg-white rounded-2xl p-6 h-40" />
+            </div>
+        );
     if (!project) return <p className="text-center mt-8">No hay proyecto asignado.</p>;
 
     // ③ Cálculo de porcentajes
@@ -149,6 +160,13 @@ const StudentDashboard = () => {
         Evaluación: project ? `/projects/${project.id}?phase=4` : "#",
     };
 
+    const getProgressColor = (value) => {
+        if (value < 25) return "#DC2626"; // rojo
+        if (value < 50) return "#F59E0B"; // naranja
+        if (value < 75) return "#EAB308"; // amarillo
+        return "#16A34A"; // verde
+    };
+
 
     // ④ Render para cada círculo
     const renderCircle = (label, value) => (
@@ -163,9 +181,9 @@ const StudentDashboard = () => {
                     value={value}
                     text={`${value}%`}
                     styles={buildStyles({
-                        pathColor: "#4F46E5",
+                        pathColor: getProgressColor(value),
                         trailColor: "#E5E7EB",
-                        textColor: "#4F46E5",
+                        textColor: getProgressColor(value),
                         textSize: "28px",
                     })}
                 />
@@ -219,18 +237,22 @@ const StudentDashboard = () => {
                 {/* — Equipo — */}
                 <div className="bg-white rounded-2xl p-6">
                     <h2 className="text-xl font-semibold text-[#64748B] mb-4">
-                        Equipo
+                        Equipo ({team.length})
                     </h2>
                     <ul className="space-y-3">
-                        {team.map((m) => (
-                            <li key={m.applicationUserId} className="flex items-center gap-3">
-                                {/* Icono en lugar de avatar */}
-                                <FaUserCircle className="w-7 h-7 text-[#64748B]" />
-                                <span className="text-[#64748B]">
-                                    {m.nombre} {m.apellidoPaterno}
-                                </span>
-                            </li>
-                        ))}
+                        {team.length === 0 ? (
+                            <li className="text-[#64748B]">Sin miembros.</li>
+                        ) : (
+                            team.map((m) => (
+                                <li key={m.applicationUserId} className="flex items-center gap-3">
+                                    {/* Icono en lugar de avatar */}
+                                    <FaUserCircle className="w-7 h-7 text-[#64748B]" />
+                                    <span className="text-[#64748B]">
+                                        {m.nombre} {m.apellidoPaterno}
+                                    </span>
+                                </li>
+                            ))
+                        )}
                     </ul>
                 </div>
             </div>

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useParams } from "react-router-dom";
 
 // Definimos los estados o columnas del Kanban Board
 const statuses = ["Backlog", "Todo", "InProgress", "Done"];
 
 const DevelopmentPhase = ({ projectId, readOnly = false }) => {
+    const { projectId: paramId } = useParams();
+    projectId = projectId || paramId;
+
     const [developmentPhase, setDevelopmentPhase] = useState(null);
     const [kanbanItems, setKanbanItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,6 +20,8 @@ const DevelopmentPhase = ({ projectId, readOnly = false }) => {
 
     // Cargar la fase de desarrollo y sus KanbanItems a partir del projectId
     useEffect(() => {
+        if (!projectId) return;
+
         const fetchDevelopmentPhase = async () => {
             try {
                 const response = await axios.get(`/api/DevelopmentPhases/byproject/${projectId}`);

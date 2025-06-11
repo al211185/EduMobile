@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
@@ -7,16 +8,17 @@ const Login = () => {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [message, setMessage] = useState("");
+    const [alert, setAlert] = useState({ text: "", type: "" });
 
     useEffect(() => {
-        if (message) {
-            const id = setTimeout(() => setMessage(""), 5000);
+        if (alert.text) {
+            const id = setTimeout(() => setAlert({ text: "", type: "" }), 5000);
             return () => clearTimeout(id);
         }
-    }, [message]);
+    }, [alert]);
 
 
     const handleLogin = async (e) => {
@@ -33,14 +35,20 @@ const Login = () => {
                 const data = await response.json();
                 login(data.user);
                 localStorage.setItem("currentUserId", data.user.id);
-                setMessage("Inicio de sesión exitoso.");
+                setAlert({ text: "Inicio de sesión exitoso.", type: "success" });
                 navigate("/");
             } else {
                 const errorData = await response.json();
-                setMessage(errorData.message || "Error al iniciar sesión.");
+                setAlert({
+                    text: errorData.message || "Error al iniciar sesión.",
+                    type: "error",
+                });
             }
         } catch (error) {
-            setMessage("Ocurrió un error. Por favor, inténtalo de nuevo.");
+            setAlert({
+                text: "Ocurrió un error. Por favor, inténtalo de nuevo.",
+                type: "error",
+            });
         } finally {
             setIsSubmitting(false);
         }
@@ -56,8 +64,8 @@ const Login = () => {
                     <h2 className="text-3xl font-medium text-slate-500">Ingresar</h2>
                 </div>
                 <form onSubmit={handleLogin} className="w-full space-y-6">
-                    {message && (
-                        <div className="text-center text-red-500">{message}</div>
+                    {alert.text && (
+                        <div className={`text-center ${alert.type === 'error' ? 'text-red-500' : 'text-green-600'}`}>{alert.text}</div>
                     )}
                     {/* Campo de email */}
                     <div className="relative">
@@ -74,14 +82,25 @@ const Login = () => {
                     {/* Campo de contraseña */}
                     <div className="relative">
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             placeholder="Contraseña"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full py-3 pl-3 pr-3 border border-gray-300 rounded-lg bg-[var(--color-bg)] focus:outline-none focus:border-blue-500"
+                            className="w-full py-3 pl-3 pr-10 border border-gray-300 rounded-lg bg-[var(--color-bg)] focus:outline-none focus:border-blue-500"
                             autoComplete="current-password"
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword((s) => !s)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                        >
+                            {showPassword ? (
+                                <FaEyeSlash className="w-4 h-4" />
+                            ) : (
+                                <FaEye className="w-4 h-4" />
+                            )}
+                        </button>
                     </div>
                     {/* Checkbox y enlace de "Olvidaste tu contraseña" */}
                     <div className="flex items-center justify-between">
