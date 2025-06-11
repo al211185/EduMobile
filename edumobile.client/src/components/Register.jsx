@@ -7,7 +7,6 @@ const Register = () => {
     const [nombre, setNombre] = useState("");
     const [apellidoPaterno, setApellidoPaterno] = useState("");
     const [apellidoMaterno, setApellidoMaterno] = useState("");
-    const [matricula, setMatricula] = useState("");
     const [message, setMessage] = useState("");
 
     // Manejar el registro
@@ -23,8 +22,7 @@ const Register = () => {
             password,
             nombre,
             apellidoPaterno,
-            apellidoMaterno,
-            matricula
+            apellidoMaterno
         };
 
         try {
@@ -42,7 +40,6 @@ const Register = () => {
                 setNombre("");
                 setApellidoPaterno("");
                 setApellidoMaterno("");
-                setMatricula("");
             } else {
                 const data = await response.json();
                 setMessage(`⚠️ ${data.message || "Error al registrarse."}`);
@@ -57,6 +54,9 @@ const Register = () => {
             <h1 className="text-2xl font-semibold text-[#64748B] text-center mb-6">
                 Registro de Profesores
             </h1>
+            <p className="text-center text-sm text-gray-600 mb-4">
+                Si eres alumno, espera a que tu profesor te registre
+            </p>
 
             {message && (
                 <div
@@ -74,7 +74,6 @@ const Register = () => {
                     { label: "Nombre", value: nombre, setter: setNombre, type: "text", id: "nombre", autoComplete: "given-name" },
                     { label: "Apellido Paterno", value: apellidoPaterno, setter: setApellidoPaterno, type: "text", id: "apellidoPaterno", autoComplete: "family-name" },
                     { label: "Apellido Materno", value: apellidoMaterno, setter: setApellidoMaterno, type: "text", id: "apellidoMaterno", autoComplete: "additional-name" },
-                    { label: "Matrícula", value: matricula, setter: setMatricula, type: "text", id: "matricula", autoComplete: "off" },
                     { label: "Correo Electrónico", value: email, setter: setEmail, type: "email", id: "email", autoComplete: "email" },
                     { label: "Contraseña", value: password, setter: setPassword, type: "password", id: "password", autoComplete: "new-password" },
                     { label: "Confirmar Contraseña", value: confirmPassword, setter: setConfirmPassword, type: "password", id: "confirmPassword", autoComplete: "new-password" },

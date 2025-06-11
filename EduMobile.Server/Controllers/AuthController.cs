@@ -90,7 +90,7 @@ namespace EduMobile.Server.Controllers
                 Nombre = request.Nombre,
                 ApellidoPaterno = request.ApellidoPaterno,
                 ApellidoMaterno = request.ApellidoMaterno,
-                Matricula = request.Matricula,
+                Matricula = request.Matricula ?? string.Empty,
                 Role = "Profesor" // Registro abierto solo para profesores
             };
 
@@ -300,7 +300,7 @@ namespace EduMobile.Server.Controllers
         [Required] public string Nombre { get; set; }
         [Required] public string ApellidoPaterno { get; set; }
         [Required] public string ApellidoMaterno { get; set; }
-        [Required] public string Matricula { get; set; }
+        public string? Matricula { get; set; }
     }
 
     public class ChangePasswordRequest

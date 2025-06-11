@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class ApplicationUser : IdentityUser
 {
-    [Required]
     [MaxLength(10)]
-    public string Matricula { get; set; }
+    public string? Matricula { get; set; }
 
     [Required]
     [MaxLength(50)]
