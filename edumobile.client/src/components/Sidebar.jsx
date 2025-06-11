@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useNotificationHub } from "../hooks/useNotificationHub";
+import NotificationBell from "./NotificationBell";
 import {
     FaHome,
     FaBook,
@@ -17,11 +17,8 @@ import {
 const Sidebar = () => {
     const { user, logout } = useAuth();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [notifications, setNotifications] = useState([]);
     const [mobileOpen, setMobileOpen] = useState(false);
     const navigate = useNavigate();
-    const { notifications: realtimeNotifications } = useNotificationHub();
-    const [showPopup, setShowPopup] = useState(true);
 
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
@@ -32,28 +29,6 @@ const Sidebar = () => {
         navigate("/login");
     };
 
-    // Cargar historial de notificaciones
-    useEffect(() => {
-        const fetchNotifications = async () => {
-            try {
-                const response = await fetch("/api/Notifications", { credentials: "include" });
-                if (response.ok) {
-                    const data = await response.json();
-                    setNotifications(data);
-                }
-            } catch (error) {
-                console.error("Error fetching notifications:", error);
-            }
-        };
-        fetchNotifications();
-    }, []);
-
-    // Actualizar notificaciones con las recibidas en tiempo real
-    useEffect(() => {
-        if (realtimeNotifications?.length) {
-            setNotifications((prev) => [...realtimeNotifications, ...prev]);
-        }
-    }, [realtimeNotifications]);
 
     // Link styles
     const baseLink =
@@ -122,7 +97,10 @@ const Sidebar = () => {
                         {/*<img src="/logo-2.svg" alt="Logo" className="w-6 h-6" />*/}
                         <span className="text-xl font-bold text-black">Edumobile</span>
                     </div>
-                    <nav className="space-y-3 text-sm">{navItems}</nav>
+                    <nav className="space-y-3 text-sm">
+                        {navItems}
+                        <NotificationBell />
+                    </nav>
                 </div>
 
                 {/* PERFIL / LOGIN */}
@@ -181,7 +159,10 @@ const Sidebar = () => {
                                 <img src="/logo-2.svg" alt="Logo" className="w-6 h-6" />
                                 <span className="text-xl font-bold text-black">Edumobile</span>
                             </div>
-                            <nav className="space-y-3 text-sm">{navItems}</nav>
+                            <nav className="space-y-3 text-sm">
+                                {navItems}
+                                <NotificationBell />
+                            </nav>
                         </div>
 
                         <div className="pt-4 border-t border-gray-200">
@@ -220,29 +201,6 @@ const Sidebar = () => {
                         </div>
                     </aside>
                 </div>
-            )}
-            {/* Barra de notificaciones abajo-derecha */}
-            {showPopup && (
-                <div className="fixed bottom-4 right-4 z-50 w-80 bg-[#EEF2FF] rounded-2xl shadow-lg p-4">
-                    {/* Header con título y botón de cerrar */}
-                    <div className="flex justify-between items-center mb-3">
-                        <h3 className="text-[#4F46E5] font-semibold text-lg">Notificaciones</h3>
-                        <button onClick={() => setShowPopup(false)}
-                            className="text-[#4F46E5] font-bold">X
-                        </button>
-                    </div>
-                    {notifications.length === 0 ? (
-                        <p className="text-[#4F46E5] text-sm text-center">No hay notificaciones</p>
-                    ) : (
-                        <ul className="space-y-2 max-h-60 overflow-y-auto">
-                            {notifications.map((n) => (
-                                <li key={n.id} className="text-[#4F46E5] text-sm">
-                                    {n.message}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div >
             )}
         </>
     );
