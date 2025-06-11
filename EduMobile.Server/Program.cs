@@ -65,11 +65,14 @@ if (app.Environment.IsDevelopment())
 // Middleware para archivos estáticos (asegúrate de que wwwroot esté correctamente configurado)
 app.UseStaticFiles();
 
-app.Use(async (context, next) =>
+if (app.Environment.IsDevelopment())
 {
-    Console.WriteLine($"Ruta solicitada: {context.Request.Path}");
-    await next();
-});
+    app.Use(async (context, next) =>
+    {
+        Console.WriteLine($"Ruta solicitada: {context.Request.Path}");
+        await next();
+    });
+}
 
 // Middleware para autenticación y autorización
 app.UseAuthentication();
