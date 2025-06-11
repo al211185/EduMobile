@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
+import NotificationBell from "./components/NotificationBell";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ForgotPassword from "./components/ForgotPassword";
@@ -36,7 +37,8 @@ const Layout = ({ children }) => {
             {/* ml-64 = margin-left: 16rem, igual al ancho de tu sidebar fixed */}
                 <main className="flex-1 flex flex-col overflow-hidden p-6 pt-16 md:pt-6 ml-0 md:ml-64">
                 {children}
-            </main>
+                </main>
+                <NotificationBell />
         </div>
     );
 };

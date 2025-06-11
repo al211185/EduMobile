@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import NotificationBell from "./NotificationBell";
 import {
     FaHome,
     FaBook,
@@ -99,7 +98,6 @@ const Sidebar = () => {
                     </div>
                     <nav className="space-y-3 text-sm">
                         {navItems}
-                        <NotificationBell />
                     </nav>
                 </div>
 
@@ -161,7 +159,6 @@ const Sidebar = () => {
                             </div>
                             <nav className="space-y-3 text-sm">
                                 {navItems}
-                                <NotificationBell />
                             </nav>
                         </div>
 
