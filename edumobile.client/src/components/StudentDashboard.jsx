@@ -155,8 +155,8 @@ const StudentDashboard = () => {
 
     const phaseLinks = {
         Planeación: project ? `/projects/${project.id}` : "#",
-        Diseño: project ? `/fase-2-diseno/${project.id}` : "#",
-        Desarrollo: project ? `/development-phase/${project.id}` : "#",
+        Diseño: project ? `/projects/${project.id}?phase=2` : "#",
+        Desarrollo: project ? `/projects/${project.id}?phase=3` : "#",
         Evaluación: project ? `/projects/${project.id}?phase=4` : "#",
     };
 

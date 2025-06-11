@@ -211,8 +211,8 @@ const DevelopmentPhase = ({ projectId, readOnly = false }) => {
         <div className="w-full flex-1 flex flex-col rounded-2xl overflow-hidden bg-white">
             {/* Contenido con scroll */}
             <div className="overflow-y-auto flex-1 p-6 space-y-6">
-                <h2 className="text-2xl font-bold text-[#4F46E5]">
-                    Kanban Board del Proyecto {projectId}
+                <h2 className="text-2xl font-bold text-gray-800">
+                    Etapa de desarrollo
                 </h2>
 
                 <DragDropContext onDragEnd={onDragEnd}>

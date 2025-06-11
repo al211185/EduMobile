@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import {
@@ -17,6 +17,7 @@ const Sidebar = () => {
     const { user, logout } = useAuth();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
     const toggleDropdown = () => {
@@ -27,6 +28,35 @@ const Sidebar = () => {
         logout();
         navigate("/login");
     };
+
+    useEffect(() => {
+        const handleKey = (e) => {
+            if (e.key === "Escape") {
+                setMobileOpen(false);
+                setIsDropdownOpen(false);
+            }
+        };
+        if (mobileOpen) {
+            document.body.classList.add("overflow-hidden");
+            document.addEventListener("keydown", handleKey);
+        }
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+            document.removeEventListener("keydown", handleKey);
+        };
+    }, [mobileOpen]);
+
+    useEffect(() => {
+        if (!isDropdownOpen) return;
+        function handleClick(e) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setIsDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, [isDropdownOpen]);
+
 
 
     // Link styles
@@ -113,7 +143,7 @@ const Sidebar = () => {
                             </NavLink>
                         </>
                     ) : (
-                            <div className="relative flex items-center justify-between w-full overflow-visible">
+                            <div ref={dropdownRef} className="relative flex items-center justify-between w-full overflow-visible">
                             <NavLink to="/profile" className="flex items-center gap-2 hover:opacity-90">
                                 <FaUserCircle className="w-6 h-6 text-gray-500" />
                                 <span className="text-[#64748B]">
@@ -121,7 +151,7 @@ const Sidebar = () => {
                                 </span>
                             </NavLink>
                             <button onClick={() => setIsDropdownOpen(o => !o)}>
-                                <FaChevronRight className="w-4 h-4 text-gray-500" />
+                                    <FaChevronRight className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-90' : ''}`} />
                             </button>
                             {isDropdownOpen && (
                                     <div className="absolute bottom-0 left-full ml-2 mb-2 bg-white border rounded shadow w-32 z-50">
@@ -145,7 +175,7 @@ const Sidebar = () => {
                     <div className="absolute inset-0 bg-black/30" onClick={() => setMobileOpen(false)} />
 
                     {/* drawer content */}
-                    <aside className="relative w-64 bg-white p-4 pt-8 flex flex-col justify-between shadow-lg">
+                    <aside className="relative w-64 bg-white p-4 pt-8 flex flex-col justify-between shadow-lg transform transition-transform duration-300">
                         <div>
                             <button
                                 onClick={() => setMobileOpen(false)}
@@ -173,7 +203,7 @@ const Sidebar = () => {
                                     </NavLink>
                                 </>
                             ) : (
-                                    <div className="relative flex items-center justify-between w-full overflow-visible">
+                                    <div ref={dropdownRef} className="relative flex items-center justify-between w-full overflow-visible">
                                     <NavLink to="/profile" className="flex items-center gap-2 hover:opacity-90">
                                         <FaUserCircle className="w-6 h-6 text-gray-500" />
                                         <span className="text-[#64748B]">
@@ -181,7 +211,7 @@ const Sidebar = () => {
                                         </span>
                                     </NavLink>
                                     <button onClick={() => setIsDropdownOpen(o => !o)}>
-                                        <FaChevronRight className="w-4 h-4 text-gray-500" />
+                                            <FaChevronRight className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-90' : ''}`} />
                                     </button>
                                     {isDropdownOpen && (
                                             <div className="absolute bottom-0 left-full ml-2 mb-2 bg-white border rounded shadow w-32 z-50">
