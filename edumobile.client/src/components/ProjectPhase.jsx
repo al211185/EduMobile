@@ -135,6 +135,44 @@ const ProjectPhase = () => {
         }
     };
 
+    const formatValue = (val) => {
+        if (val === null || val === undefined) return "";
+        if (typeof val === "boolean") return val ? "Sí" : "No";
+        if (typeof val === "string") {
+            try {
+                const parsed = JSON.parse(val);
+                if (Array.isArray(parsed)) return parsed.join(", ");
+                if (typeof parsed === "object")
+                    return Object.entries(parsed)
+                        .map(([k, v]) => `${k}: ${v}`)
+                        .join(", ");
+            } catch { }
+            return val.replace(/;/g, "; ");
+        }
+        if (typeof val === "object") return objectToLines(val).join("\n");
+        return val.toString();
+    };
+
+    const objectToLines = (obj) => {
+        const skip = ["id", "projectId", "project", "updatedAt", "createdAt"];
+        const lines = [];
+        for (const [key, value] of Object.entries(obj || {})) {
+            if (skip.includes(key.toLowerCase())) continue;
+            const label = key
+                .replace(/([A-Z])/g, " $1")
+                .replace(/^./, (c) => c.toUpperCase())
+                .trim();
+            if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+                lines.push(`${label}:`);
+                objectToLines(value).forEach((l) => lines.push(`  ${l}`));
+            } else {
+                lines.push(`${label}: ${formatValue(value)}`);
+            }
+        }
+        return lines;
+    };
+
+
     // Genera un PDF con la información de todas las fases del proyecto
     const handleDownloadPDF = async () => {
         try {
@@ -158,7 +196,7 @@ const ProjectPhase = () => {
                 doc.text(title, 10, y);
                 y += 6;
                 doc.setFontSize(10);
-                const lines = doc.splitTextToSize(JSON.stringify(data, null, 2), pageWidth - 20);
+                const lines = doc.splitTextToSize(objectToLines(data).join("\n"), pageWidth - 20);
                 doc.text(lines, 10, y);
                 y += lines.length * 5 + 10;
             };
