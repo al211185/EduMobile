@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Generador EM Experimental</title>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tweakpane@4.0.2/dist/tweakpane.min.js"></script>
+<style>body{margin:0;display:flex;}</style>
+</head>
+<body>
+<script>
+let params = {
+  seed: 1,            // cambiar = nueva “familia”
+  petals: 4,          // nº de lóbulos (tipo referencias)
+  radius: 140,        // tamaño base
+  roundness: 0.55,    // 0 (puntiagudo) … 1 (orgánico)
+  rotate: 0,          // grados de giro
+  bg: "#ffffff",
+  fg: "#000000",
+  saveSVG: () => save('logo.svg')
+};
+
+new Tweakpane.Pane()
+  .addInput(params,'seed',{min:0,max:999,step:1})
+  .addInput(params,'petals',{min:2,max:8,step:1})
+  .addInput(params,'radius',{min:60,max:200,step:1})
+  .addInput(params,'roundness',{min:0,max:1})
+  .addInput(params,'rotate',{min:0,max:360})
+  .addInput(params,'fg')
+  .addInput(params,'bg')
+  .addButton({title:'⬇︎ Exportar SVG'}).on('click',()=>params.saveSVG());
+
+let gfx;               // buffer para exportar
+
+function setup(){
+  createCanvas(400,400,SVG); // p5.js-svg mode
+  angleMode(DEGREES);
+  noLoop();
+}
+
+function draw(){
+  randomSeed(params.seed);
+  background(params.bg);
+  translate(width/2,height/2);
+  rotate(params.rotate);
+  strokeWeight(0);
+  fill(params.fg);
+
+  // Construir “pétalos” siguiendo la lógica de tus referencias
+  let r = params.radius;
+  for(let i=0;i<params.petals;i++){
+    push();
+    rotate(i*180/params.petals);
+    let w = r;
+    let h = r*params.roundness;
+    beginShape();
+    curveVertex(-w/2, 0);
+    curveVertex(-w/2, 0);
+    curveVertex(0,-h);
+    curveVertex(w/2,0);
+    curveVertex(w/2,0);
+    endShape(CLOSE);
+    pop();
+  }
+
+  // Eje central para insinuar la “E”
+  fill(params.bg);
+  rect(-params.radius*0.15,-params.radius,params.radius*0.3,params.radius*2);
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { jsPDF } from "jspdf";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import ProjectPlanning from "./PlanningPhase";
@@ -133,6 +134,46 @@ const ProjectPhase = () => {
             setCurrentPhase((prev) => prev - 1);
         }
     };
+
+    // Genera un PDF con la información de todas las fases del proyecto
+    const handleDownloadPDF = async () => {
+        try {
+            const [planRes, designRes, devRes] = await Promise.all([
+                fetch(`/api/planningphases/${projectId}`),
+                fetch(`/api/designphases/${projectId}`),
+                fetch(`/api/developmentphases/byproject/${projectId}`)
+            ]);
+            const planData = planRes.ok ? await planRes.json() : {};
+            const designData = designRes.ok ? await designRes.json() : {};
+            const devData = devRes.ok ? await devRes.json() : {};
+
+            const doc = new jsPDF();
+            const pageWidth = doc.internal.pageSize.getWidth();
+            doc.setFontSize(16);
+            doc.text(project.title || "Proyecto", pageWidth / 2, 20, { align: "center" });
+            let y = 30;
+
+            const addSection = (title, data) => {
+                doc.setFontSize(14);
+                doc.text(title, 10, y);
+                y += 6;
+                doc.setFontSize(10);
+                const lines = doc.splitTextToSize(JSON.stringify(data, null, 2), pageWidth - 20);
+                doc.text(lines, 10, y);
+                y += lines.length * 5 + 10;
+            };
+
+            addSection("Planeaci\u00f3n", planData);
+            addSection("Dise\u00f1o", designData);
+            addSection("Desarrollo", devData);
+
+            doc.save("reporte_proyecto.pdf");
+        } catch (err) {
+            console.error("Error al generar PDF", err);
+            alert("Error al generar el PDF");
+        }
+    };
+
 
     // Nueva función para confirmar el cierre del proyecto
     const handleFinish = async () => {
@@ -293,6 +334,14 @@ const ProjectPhase = () => {
                             className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded text-sm"
                         >
                             Fase Anterior
+                        </button>
+                    )}
+                    {currentPhase === 4 && (
+                        <button
+                            onClick={handleDownloadPDF}
+                            className="bg-indigo-500 hover:bg-indigo-600 text-white px-2 py-1 rounded text-sm"
+                        >
+                            Descargar PDF
                         </button>
                     )}
                     <button
