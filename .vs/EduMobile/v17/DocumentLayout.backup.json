@@ -3,6 +3,114 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\EduMobile\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\registerstudents.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\registerstudents.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\gamescorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\gamescorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\planningphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\planningphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\services\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\services\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\developmentphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\developmentphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\designphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\designphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\planningphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\planningphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\semesterscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\semesterscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\createproject.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\createproject.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobiletests\\unit\\notificationservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|solutionrelative:edumobiletests\\unit\\notificationservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobiletests\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|solutionrelative:edumobiletests\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\semester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\semester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\developmentphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\developmentphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\projectuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\projectuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobiletests\\edumobiletests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|solutionrelative:edumobiletests\\edumobiletests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobiletests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F039F9A7-38AC-4117-B50F-C9129D031616}|EduMobileTests\\EduMobileTests.csproj|solutionrelative:edumobiletests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\projectphase.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\projectphase.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -43,18 +151,6 @@
       "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\registerstudents.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\registerstudents.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\notificationbell.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\notificationbell.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -63,24 +159,8 @@
       "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\feedbackscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\feedbackscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\services\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\services\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\stepnavigation.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -103,36 +183,12 @@
       "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\resetpassword.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\semesterscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\semesterscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\phasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\phasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\planningphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\planningphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\phaseassignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\phaseassignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\gamescorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\gamescorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\developmentphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\developmentphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\mediaquerydraganddropwithreference.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -145,10 +201,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\kanbanitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\kanbanitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\developmentphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\developmentphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\edumobile.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -197,10 +249,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\usermenu.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -323,10 +371,6 @@
       "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\createsemester.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.client\\src\\components\\createproject.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}|edumobile.client\\edumobile.client.esproj|solutionrelative:edumobile.client\\src\\components\\createproject.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\teacherfeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\teacherfeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -335,24 +379,8 @@
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\semesterstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\semester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\semester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\resetpasswordconfirmrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\resetpasswordconfirmrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\projectuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\projectuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\planningphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\models\\planningphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\models\\phaseassignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -383,24 +411,12 @@
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\filescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\controllers\\designphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\controllers\\designphasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\migrations\\20250415212614_mig27asignacionfases.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\migrations\\20250415212614_mig27asignacionfases.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250415223910_Mig28AsignacionFases2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EduMobile.Server\\Migrations\\20250415223910_Mig28AsignacionFases2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|c:\\users\\dell\\desktop\\edumobile\\edumobile.server\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E970F5F6-E568-4B20-9D99-7D822771DC30}|EduMobile.Server\\EduMobile.Server.csproj|solutionrelative:edumobile.server\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250409050442_Mig27NotificationModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -572,7 +588,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -584,188 +600,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Login.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Login.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Login.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Login.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Login.jsx",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAewGYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T17:29:09.3Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StudentDashboard.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StudentDashboard.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\StudentDashboard.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StudentDashboard.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\StudentDashboard.jsx",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAIwJYAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-04-24T18:50:33.519Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DevelopmentPhase.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DevelopmentPhase.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\DevelopmentPhase.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DevelopmentPhase.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\DevelopmentPhase.jsx",
-              "ViewState": "AgIAAMIAAAAAAAAAAAAIwNQAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T17:02:19.001Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "App.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\App.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\App.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\App.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\App.jsx",
-              "ViewState": "AgIAABEAAAAAAAAAAAAIwCgAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-01-07T00:07:57.57Z"
+              "DocumentIndex": 4,
+              "Title": "NotificationService.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\NotificationService.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Services\\NotificationService.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\NotificationService.cs",
+              "RelativeToolTip": "EduMobile.Server\\Services\\NotificationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T21:19:02.098Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Header.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Header.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Header.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-16T22:08:18.018Z"
+              "Title": "PlanningPhase.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\PlanningPhase.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\PlanningPhase.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\PlanningPhase.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\PlanningPhase.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAA4wFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T23:00:48.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificationsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\NotificationsController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\NotificationsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\NotificationsController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\NotificationsController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T21:48:46.767Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Sidebar.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Sidebar.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Sidebar.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Sidebar.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Sidebar.jsx",
-              "ViewState": "AgIAALwAAAAAAAAAAAAIwNUAAACcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-01-06T08:44:31.527Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProjectPhase.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPhase.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectPhase.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPhase.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectPhase.jsx",
-              "ViewState": "AgIAALUAAAAAAAAAAAAIwMMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T17:29:46.702Z",
+              "Title": "GameScoresController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\GameScoresController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\GameScoresController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\GameScoresController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\GameScoresController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T03:04:59.154Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AddParticipantModal.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\AddParticipantModal.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\AddParticipantModal.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\AddParticipantModal.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\AddParticipantModal.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-20T00:25:51.475Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACMBAAAAAAAAAAAYwDUBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T08:23:01.551Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EvaluationPhase.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\EvaluationPhase.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\EvaluationPhase.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\EvaluationPhase.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\EvaluationPhase.jsx",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAACYAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-13T15:52:34.778Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "20250611012251_Mig30RegistroProfesores.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
-              "RelativeToolTip": "EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T01:22:51.838Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\ApplicationUser.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ApplicationUser.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T20:22:28.186Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "RegisterStudents.jsx",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\RegisterStudents.jsx",
               "RelativeDocumentMoniker": "edumobile.client\\src\\components\\RegisterStudents.jsx",
               "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\RegisterStudents.jsx",
               "RelativeToolTip": "edumobile.client\\src\\components\\RegisterStudents.jsx",
-              "ViewState": "AgIAAAcBAAAAAAAAAAAswCYBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAABcAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-18T19:25:50.554Z"
+              "WhenOpened": "2025-03-18T19:25:50.554Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Register.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Register.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Register.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Register.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Register.jsx",
-              "ViewState": "AgIAADsAAAAAAAAAAAAIwEsAAACsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-19T03:39:28.37Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Program.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Program.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Program.cs",
-              "RelativeToolTip": "EduMobile.Server\\Program.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAIwEoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T19:31:25.449Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 5,
               "Title": "INotificationService.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\INotificationService.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Services\\INotificationService.cs",
@@ -777,775 +674,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "EmailSender.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\EmailSender.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Services\\EmailSender.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\EmailSender.cs",
-              "RelativeToolTip": "EduMobile.Server\\Services\\EmailSender.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowAoAAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T06:09:20.888Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FeedbacksController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\FeedbacksController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\FeedbacksController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\FeedbacksController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\FeedbacksController.cs",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAIwKsAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T20:36:06.501Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "NotificationBell.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\NotificationBell.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\NotificationBell.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\NotificationBell.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\NotificationBell.jsx",
-              "ViewState": "AgIAADoAAAAAAAAAAAAYwFoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-06-11T00:42:59.92Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "NotificationService.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\NotificationService.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Services\\NotificationService.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\NotificationService.cs",
-              "RelativeToolTip": "EduMobile.Server\\Services\\NotificationService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAkwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T21:19:02.098Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "PlanningPhase.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PlanningPhase.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\PlanningPhase.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PlanningPhase.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\PlanningPhase.jsx",
-              "ViewState": "AgIAAO0AAAAAAAAAAAAIwAUBAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T17:45:03.311Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ResetPassword.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ResetPassword.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ResetPassword.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ResetPassword.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ResetPassword.jsx",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAswGoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-30T06:43:42.879Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "StepNavigation.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StepNavigation.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\StepNavigation.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StepNavigation.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\StepNavigation.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-06-10T23:32:39.57Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "DesignPhase.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DesignPhase.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\DesignPhase.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DesignPhase.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\DesignPhase.jsx",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAIwN4AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-01-06T23:57:42.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "PhaseAssignmentEditor.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAswKIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-04-15T22:20:12.433Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "SemestersController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\SemestersController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\SemestersController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\SemestersController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\SemestersController.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAIwIoAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T18:24:37.783Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "ProjectsController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\ProjectsController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\ProjectsController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\ProjectsController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\ProjectsController.cs",
-              "ViewState": "AgIAAEQCAAAAAAAAAAAIwFoCAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:16:11.901Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "PhasesController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhasesController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\PhasesController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhasesController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\PhasesController.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAADwv4UAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T18:03:59.651Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "PlanningPhasesController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
-              "ViewState": "AgIAAIUCAAAAAAAAAAAcwJkCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:57:32.693Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "PhaseAssignmentsController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAADwv2MAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T21:40:17.72Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "NotificationsController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\NotificationsController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\NotificationsController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\NotificationsController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\NotificationsController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAswB4AAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T21:48:46.767Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "GameScoresController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\GameScoresController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\GameScoresController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\GameScoresController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\GameScoresController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAswBkAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T03:04:59.154Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 6,
               "Title": "DevelopmentPhasesController.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\DevelopmentPhasesController.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\DevelopmentPhasesController.cs",
               "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\DevelopmentPhasesController.cs",
               "RelativeToolTip": "EduMobile.Server\\Controllers\\DevelopmentPhasesController.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAADwv5MAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAJMAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T17:00:45.696Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "MediaQueryDragAndDropWithReference.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAIwKcAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-26T07:24:04.409Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "DesignPhase.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DesignPhase.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\DesignPhase.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DesignPhase.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\DesignPhase.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwC8AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "DesignPhasesController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\DesignPhasesController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\DesignPhasesController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\DesignPhasesController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\DesignPhasesController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAIsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-11T00:56:27.931Z"
+              "WhenOpened": "2025-01-13T06:34:08.801Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "KanbanItem.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\KanbanItem.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\KanbanItem.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\KanbanItem.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\KanbanItem.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAqwCAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "PlanningPhasesController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\PlanningPhasesController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAJkCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T23:07:13.916Z"
+              "WhenOpened": "2025-03-10T17:57:32.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "DevelopmentPhase.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DevelopmentPhase.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\DevelopmentPhase.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DevelopmentPhase.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\DevelopmentPhase.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAiwB0AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "ProjectsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\ProjectsController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\ProjectsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\ProjectsController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\ProjectsController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAKsCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:51:25.574Z"
+              "WhenOpened": "2025-03-10T17:16:11.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "vite.config.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\vite.config.js",
-              "RelativeDocumentMoniker": "edumobile.client\\vite.config.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\vite.config.js",
-              "RelativeToolTip": "edumobile.client\\vite.config.js",
-              "ViewState": "AgIAABEAAAAAAAAAAAAjwCUAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-09T03:49:45.768Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "eslint.config.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\eslint.config.js",
-              "RelativeDocumentMoniker": "edumobile.client\\eslint.config.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\eslint.config.js",
-              "RelativeToolTip": "edumobile.client\\eslint.config.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-10T17:10:51.275Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "index.html.__projection.g.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\index.html.__projection.g.js",
-              "RelativeDocumentMoniker": "edumobile.client\\index.html.__projection.g.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\index.html.__projection.g.js",
-              "RelativeToolTip": "edumobile.client\\index.html.__projection.g.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-20T20:05:11.025Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "edumobile.client.esproj",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\edumobile.client.esproj",
-              "RelativeDocumentMoniker": "edumobile.client\\edumobile.client.esproj",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\edumobile.client.esproj",
-              "RelativeToolTip": "edumobile.client\\edumobile.client.esproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-08T21:36:53.456Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "package.json",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\package.json",
-              "RelativeDocumentMoniker": "edumobile.client\\package.json",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\package.json",
-              "RelativeToolTip": "edumobile.client\\package.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-24T22:05:40.123Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "postcss.config.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\postcss.config.js",
-              "RelativeDocumentMoniker": "edumobile.client\\postcss.config.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\postcss.config.js",
-              "RelativeToolTip": "edumobile.client\\postcss.config.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-24T22:24:09.325Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "README.md",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\README.md",
-              "RelativeDocumentMoniker": "edumobile.client\\README.md",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\README.md",
-              "RelativeToolTip": "edumobile.client\\README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-03-20T20:04:48.685Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "tailwind.config.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\tailwind.config.js",
-              "RelativeDocumentMoniker": "edumobile.client\\tailwind.config.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\tailwind.config.js",
-              "RelativeToolTip": "edumobile.client\\tailwind.config.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-18T21:39:33.113Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\appsettings.json",
-              "RelativeDocumentMoniker": "EduMobile.Server\\appsettings.json",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\appsettings.json",
-              "RelativeToolTip": "EduMobile.Server\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-03T20:15:19.255Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "EduMobile.Server\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAswKsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "SemestersController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\SemestersController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\SemestersController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\SemestersController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\SemestersController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAIoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T20:20:03.605Z"
+              "WhenOpened": "2025-03-10T18:24:37.783Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "jquery.min.map",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-              "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-              "RelativeToolTip": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA1NAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-09T03:49:38.225Z"
+              "DocumentIndex": 11,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T08:23:01.551Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "jquery.min.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-              "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-              "RelativeToolTip": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAEAAABdNwEAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-09T03:49:34.459Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "jquery.js",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-              "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-              "RelativeToolTip": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-              "ViewState": "AgIAAFYmAAAAAAAAAAAAAF0mAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-09T03:49:15.201Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "UserMenu.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\UserMenu.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\UserMenu.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\UserMenu.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\UserMenu.jsx",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAswCwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-04-15T21:44:57.436Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "RequirementsSection.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\RequirementsSection.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\RequirementsSection.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\RequirementsSection.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\RequirementsSection.jsx",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAswJIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-02T02:52:53.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "TeamList.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\TeamList.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\TeamList.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\TeamList.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\TeamList.jsx",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAswF4AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-04-08T21:27:36.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "Tooltip.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Tooltip.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Tooltip.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Tooltip.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Tooltip.jsx",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAswCMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-04-15T21:44:56.707Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "ReflectiveExercise.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ReflectiveExercise.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ReflectiveExercise.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ReflectiveExercise.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ReflectiveExercise.jsx",
-              "ViewState": "AgIAACoAAAAAAAAAAAAswEkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-16T22:10:38.276Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "ProjectPlanning.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPlanning.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectPlanning.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPlanning.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectPlanning.jsx",
-              "ViewState": "AgIAACsBAAAAAAAAAAAswEoBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-16T22:10:27.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "ProjectEdit.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectEdit.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectEdit.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectEdit.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectEdit.jsx",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAswJQAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-04-15T22:51:35.556Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "ProjectDetailsProfessor.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
-              "ViewState": "AgIAANYAAAAAAAAAAAAswPUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-20T01:35:45.375Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "ProjectDetails.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetails.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectDetails.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetails.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectDetails.jsx",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAswJEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-19T03:43:00.833Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "Profile.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Profile.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Profile.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Profile.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Profile.jsx",
-              "ViewState": "AgIAAPsAAAAAAAAAAAAswBoBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T17:29:03.644Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "ProfessorCoursesDashboard.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
-              "ViewState": "AgIAAMMAAAAAAAAAAAAswOIAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-24T06:30:11.6Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
-              "Title": "ProjectsPanel.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectsPanel.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectsPanel.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectsPanel.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectsPanel.jsx",
-              "ViewState": "AgIAAOwAAAAAAAAAAAAswAsBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-24T06:30:41.395Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "PreferencesSection.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PreferencesSection.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\PreferencesSection.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PreferencesSection.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\PreferencesSection.jsx",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAswHkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-16T22:09:47.569Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "Phase4ContentCreation.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAswLAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-13T15:48:30.873Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "Phase3VisualDesign.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAswMUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-26T20:35:20.687Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "Phase3Audience.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3Audience.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase3Audience.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3Audience.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase3Audience.jsx",
-              "ViewState": "AgIAAIMBAAAAAAAAAAAswKIBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T18:36:54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "Phase2Wireframes.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Wireframes.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase2Wireframes.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Wireframes.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase2Wireframes.jsx",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAswO0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-26T19:48:16.908Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "Phase2Benchmarking.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
-              "ViewState": "AgIAAJICAAAAAAAAAAAswLECAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T18:49:15.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
-              "Title": "Phase1SiteMap.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1SiteMap.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase1SiteMap.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1SiteMap.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase1SiteMap.jsx",
-              "ViewState": "AgIAALoAAAAAAAAAAAAswNkAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T18:53:15.604Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "Phase1Brief.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1Brief.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase1Brief.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1Brief.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Phase1Brief.jsx",
-              "ViewState": "AgIAAMkBAAAAAAAAAAAswOgBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-10T18:36:56.514Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "ObjectiveSection.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ObjectiveSection.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ObjectiveSection.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ObjectiveSection.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ObjectiveSection.jsx",
-              "ViewState": "AgIAADUAAAAAAAAAAAAswFQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-02T02:31:11.588Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "MyProjects.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MyProjects.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\MyProjects.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MyProjects.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\MyProjects.jsx",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-20T00:44:18.072Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "MainDashboard.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MainDashboard.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\MainDashboard.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MainDashboard.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\MainDashboard.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-24T06:29:48.197Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "Layout.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Layout.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Layout.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Layout.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Layout.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-26T07:08:57.919Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "GeneralInformation.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\GeneralInformation.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\GeneralInformation.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\GeneralInformation.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\GeneralInformation.jsx",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAswH0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-06T20:58:40.493Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "ForgotPassword.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ForgotPassword.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ForgotPassword.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ForgotPassword.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ForgotPassword.jsx",
-              "ViewState": "AgIAADIAAAAAAAAAAAAswFEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-29T05:52:03.887Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
-              "Title": "ErrorBoundary.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ErrorBoundary.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ErrorBoundary.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ErrorBoundary.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\ErrorBoundary.jsx",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAswCMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-07T00:29:55.165Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
-              "Title": "Header.css",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.css",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Header.css",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.css",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Header.css",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAiwHQAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-06T08:44:30.911Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 78,
-              "Title": "Dashboard.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Dashboard.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Dashboard.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Dashboard.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\Dashboard.jsx",
-              "ViewState": "AgIAABIBAAAAAAAAAAAswDEBAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-06T23:17:24.621Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "CreateSemester.jsx",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\CreateSemester.jsx",
-              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\CreateSemester.jsx",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\CreateSemester.jsx",
-              "RelativeToolTip": "edumobile.client\\src\\components\\CreateSemester.jsx",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAswI0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-06T23:16:41.74Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 12,
               "Title": "CreateProject.jsx",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\CreateProject.jsx",
               "RelativeDocumentMoniker": "edumobile.client\\src\\components\\CreateProject.jsx",
@@ -1557,55 +758,91 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
-              "Title": "TeacherFeedback.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\TeacherFeedback.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\TeacherFeedback.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\TeacherFeedback.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\TeacherFeedback.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "NotificationServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\Unit\\NotificationServiceTests.cs",
+              "RelativeDocumentMoniker": "EduMobileTests\\Unit\\NotificationServiceTests.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\Unit\\NotificationServiceTests.cs",
+              "RelativeToolTip": "EduMobileTests\\Unit\\NotificationServiceTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T20:36:44.515Z"
+              "WhenOpened": "2025-07-21T01:31:46.839Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
-              "Title": "SemesterStudent.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\SemesterStudent.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\SemesterStudent.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\SemesterStudent.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\SemesterStudent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "Test1.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\Test1.cs",
+              "RelativeDocumentMoniker": "EduMobileTests\\Test1.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\Test1.cs",
+              "RelativeToolTip": "EduMobileTests\\Test1.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T17:13:35.486Z"
+              "WhenOpened": "2025-07-21T01:15:37.913Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 17,
               "Title": "Semester.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Semester.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\Semester.cs",
               "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Semester.cs",
               "RelativeToolTip": "EduMobile.Server\\Models\\Semester.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAABkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-11T00:42:16.099Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
-              "Title": "ResetPasswordConfirmRequest.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 18,
+              "Title": "DevelopmentPhase.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DevelopmentPhase.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\DevelopmentPhase.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DevelopmentPhase.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\DevelopmentPhase.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAiwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T06:41:43.909Z"
+              "WhenOpened": "2025-03-10T16:51:25.574Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 19,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAA8wCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T20:22:28.186Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Data\\SeedData.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\SeedData.cs",
+              "RelativeToolTip": "EduMobile.Server\\Data\\SeedData.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAACoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T19:44:35.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Project.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\Project.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Project.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\Project.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwDsAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:15:14.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "ProjectUser.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ProjectUser.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\ProjectUser.cs",
@@ -1617,31 +854,895 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
-              "Title": "Project.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Project.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\Project.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Project.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\Project.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAAEAAAAABAAAAAAAAAA==",
+              "DocumentIndex": 21,
+              "Title": "EduMobileTests.csproj",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\EduMobileTests.csproj",
+              "RelativeDocumentMoniker": "EduMobileTests\\EduMobileTests.csproj",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\EduMobileTests.csproj",
+              "RelativeToolTip": "EduMobileTests\\EduMobileTests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-21T01:15:32.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MSTestSettings.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\MSTestSettings.cs",
+              "RelativeDocumentMoniker": "EduMobileTests\\MSTestSettings.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobileTests\\MSTestSettings.cs",
+              "RelativeToolTip": "EduMobileTests\\MSTestSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:15:14.78Z"
+              "WhenOpened": "2025-07-21T01:14:26.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "EmailSender.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\EmailSender.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Services\\EmailSender.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Services\\EmailSender.cs",
+              "RelativeToolTip": "EduMobile.Server\\Services\\EmailSender.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowAoAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T06:09:20.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "NotificationHub.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Hubs\\NotificationHub.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Hubs\\NotificationHub.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Hubs\\NotificationHub.cs",
+              "RelativeToolTip": "EduMobile.Server\\Hubs\\NotificationHub.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAcwB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T21:31:07.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Program.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Program.cs",
+              "RelativeToolTip": "EduMobile.Server\\Program.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAFsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T19:31:25.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "EduMobile.Server\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAuwKsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T20:20:03.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ProjectPhase.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPhase.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectPhase.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPhase.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectPhase.jsx",
+              "ViewState": "AgIAALUAAAAAAAAAAAAIwMQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T17:29:46.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Sidebar.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Sidebar.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Sidebar.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Sidebar.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Sidebar.jsx",
+              "ViewState": "AgIAALwAAAAAAAAAAAAIwNUAAACcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-01-06T08:44:31.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Header.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Header.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Header.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-16T22:08:18.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "App.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\App.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\App.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\App.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\App.jsx",
+              "ViewState": "AgIAABEAAAAAAAAAAAAIwCgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-01-07T00:07:57.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DevelopmentPhase.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DevelopmentPhase.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\DevelopmentPhase.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DevelopmentPhase.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\DevelopmentPhase.jsx",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAIwNQAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T17:02:19.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "StudentDashboard.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StudentDashboard.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\StudentDashboard.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StudentDashboard.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\StudentDashboard.jsx",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAIwJYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-04-24T18:50:33.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Login.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Login.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Login.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Login.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Login.jsx",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAewGYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T17:29:09.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "AddParticipantModal.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\AddParticipantModal.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\AddParticipantModal.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\AddParticipantModal.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\AddParticipantModal.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-20T00:25:51.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "EvaluationPhase.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\EvaluationPhase.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\EvaluationPhase.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\EvaluationPhase.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\EvaluationPhase.jsx",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAACYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-13T15:52:34.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "20250611012251_Mig30RegistroProfesores.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
+              "RelativeToolTip": "EduMobile.Server\\Migrations\\20250611012251_Mig30RegistroProfesores.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T01:22:51.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Register.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Register.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Register.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Register.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Register.jsx",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwEsAAACsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-19T03:39:28.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "FeedbacksController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\FeedbacksController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\FeedbacksController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\FeedbacksController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\FeedbacksController.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAIwKsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:36:06.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "NotificationBell.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\NotificationBell.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\NotificationBell.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\NotificationBell.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\NotificationBell.jsx",
+              "ViewState": "AgIAADoAAAAAAAAAAAAYwFoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-06-11T00:42:59.92Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "PlanningPhase.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PlanningPhase.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\PlanningPhase.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PlanningPhase.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\PlanningPhase.jsx",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAIwAUBAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T17:45:03.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "ResetPassword.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ResetPassword.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ResetPassword.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ResetPassword.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ResetPassword.jsx",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAswGoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-30T06:43:42.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "StepNavigation.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StepNavigation.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\StepNavigation.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\StepNavigation.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\StepNavigation.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-06-10T23:32:39.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "DesignPhase.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DesignPhase.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\DesignPhase.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\DesignPhase.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\DesignPhase.jsx",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAIwN4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-01-06T23:57:42.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "PhaseAssignmentEditor.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\PhaseAssignmentEditor.jsx",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAswKIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-04-15T22:20:12.433Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "PhasesController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhasesController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\PhasesController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhasesController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\PhasesController.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAADwv4UAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T18:03:59.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "PhaseAssignmentsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
+              "RelativeToolTip": "EduMobile.Server\\Controllers\\PhaseAssignmentsController.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAADwv2MAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T21:40:17.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "MediaQueryDragAndDropWithReference.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\MediaQueryDragAndDropWithReference.jsx",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAIwKcAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-26T07:24:04.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "DesignPhase.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DesignPhase.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\DesignPhase.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\DesignPhase.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\DesignPhase.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T00:56:27.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "KanbanItem.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\KanbanItem.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\KanbanItem.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\KanbanItem.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\KanbanItem.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T23:07:13.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "vite.config.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\vite.config.js",
+              "RelativeDocumentMoniker": "edumobile.client\\vite.config.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\vite.config.js",
+              "RelativeToolTip": "edumobile.client\\vite.config.js",
+              "ViewState": "AgIAABEAAAAAAAAAAAAjwCUAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-09T03:49:45.768Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "eslint.config.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\eslint.config.js",
+              "RelativeDocumentMoniker": "edumobile.client\\eslint.config.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\eslint.config.js",
+              "RelativeToolTip": "edumobile.client\\eslint.config.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-10T17:10:51.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "index.html.__projection.g.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\index.html.__projection.g.js",
+              "RelativeDocumentMoniker": "edumobile.client\\index.html.__projection.g.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\index.html.__projection.g.js",
+              "RelativeToolTip": "edumobile.client\\index.html.__projection.g.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-20T20:05:11.025Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "edumobile.client.esproj",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\edumobile.client.esproj",
+              "RelativeDocumentMoniker": "edumobile.client\\edumobile.client.esproj",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\edumobile.client.esproj",
+              "RelativeToolTip": "edumobile.client\\edumobile.client.esproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-08T21:36:53.456Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\package.json",
+              "RelativeDocumentMoniker": "edumobile.client\\package.json",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\package.json",
+              "RelativeToolTip": "edumobile.client\\package.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-24T22:05:40.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "postcss.config.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\postcss.config.js",
+              "RelativeDocumentMoniker": "edumobile.client\\postcss.config.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\postcss.config.js",
+              "RelativeToolTip": "edumobile.client\\postcss.config.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-24T22:24:09.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\README.md",
+              "RelativeDocumentMoniker": "edumobile.client\\README.md",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\README.md",
+              "RelativeToolTip": "edumobile.client\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-03-20T20:04:48.685Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "tailwind.config.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\tailwind.config.js",
+              "RelativeDocumentMoniker": "edumobile.client\\tailwind.config.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\tailwind.config.js",
+              "RelativeToolTip": "edumobile.client\\tailwind.config.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-18T21:39:33.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "EduMobile.Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\appsettings.json",
+              "RelativeToolTip": "EduMobile.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-03T20:15:19.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "jquery.min.map",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+              "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+              "RelativeToolTip": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA1NAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-09T03:49:38.225Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "jquery.min.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+              "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+              "RelativeToolTip": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAEAAABdNwEAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-09T03:49:34.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "jquery.js",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+              "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+              "RelativeToolTip": "EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+              "ViewState": "AgIAAFYmAAAAAAAAAAAAAF0mAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-09T03:49:15.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "UserMenu.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\UserMenu.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\UserMenu.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\UserMenu.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\UserMenu.jsx",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-04-15T21:44:57.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "RequirementsSection.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\RequirementsSection.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\RequirementsSection.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\RequirementsSection.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\RequirementsSection.jsx",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAswJIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-02T02:52:53.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "TeamList.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\TeamList.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\TeamList.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\TeamList.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\TeamList.jsx",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAswF4AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-04-08T21:27:36.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "Tooltip.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Tooltip.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Tooltip.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Tooltip.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Tooltip.jsx",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-04-15T21:44:56.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "ReflectiveExercise.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ReflectiveExercise.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ReflectiveExercise.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ReflectiveExercise.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ReflectiveExercise.jsx",
+              "ViewState": "AgIAACoAAAAAAAAAAAAswEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-16T22:10:38.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "ProjectPlanning.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPlanning.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectPlanning.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectPlanning.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectPlanning.jsx",
+              "ViewState": "AgIAACsBAAAAAAAAAAAswEoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-16T22:10:27.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "ProjectEdit.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectEdit.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectEdit.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectEdit.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectEdit.jsx",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAswJQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-04-15T22:51:35.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "ProjectDetailsProfessor.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectDetailsProfessor.jsx",
+              "ViewState": "AgIAANYAAAAAAAAAAAAswPUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-20T01:35:45.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "ProjectDetails.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetails.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectDetails.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectDetails.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectDetails.jsx",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAswJEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-19T03:43:00.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "Profile.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Profile.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Profile.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Profile.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Profile.jsx",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAswBoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T17:29:03.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "ProfessorCoursesDashboard.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProfessorCoursesDashboard.jsx",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAswOIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-24T06:30:11.6Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "ProjectsPanel.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectsPanel.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ProjectsPanel.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ProjectsPanel.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ProjectsPanel.jsx",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAswAsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-24T06:30:41.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "PreferencesSection.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PreferencesSection.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\PreferencesSection.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\PreferencesSection.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\PreferencesSection.jsx",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAswHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-16T22:09:47.569Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "Phase4ContentCreation.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase4ContentCreation.jsx",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAswLAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-13T15:48:30.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "Phase3VisualDesign.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase3VisualDesign.jsx",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAswMUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-26T20:35:20.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "Phase3Audience.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3Audience.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase3Audience.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase3Audience.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase3Audience.jsx",
+              "ViewState": "AgIAAIMBAAAAAAAAAAAswKIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T18:36:54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "Phase2Wireframes.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Wireframes.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase2Wireframes.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Wireframes.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase2Wireframes.jsx",
+              "ViewState": "AgIAAM4AAAAAAAAAAAAswO0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-26T19:48:16.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "Phase2Benchmarking.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase2Benchmarking.jsx",
+              "ViewState": "AgIAAJICAAAAAAAAAAAswLECAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T18:49:15.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "Phase1SiteMap.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1SiteMap.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase1SiteMap.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1SiteMap.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase1SiteMap.jsx",
+              "ViewState": "AgIAALoAAAAAAAAAAAAswNkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T18:53:15.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "Phase1Brief.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1Brief.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Phase1Brief.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Phase1Brief.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Phase1Brief.jsx",
+              "ViewState": "AgIAAMkBAAAAAAAAAAAswOgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-10T18:36:56.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "ObjectiveSection.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ObjectiveSection.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ObjectiveSection.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ObjectiveSection.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ObjectiveSection.jsx",
+              "ViewState": "AgIAADUAAAAAAAAAAAAswFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-02T02:31:11.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "MyProjects.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MyProjects.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\MyProjects.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MyProjects.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\MyProjects.jsx",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-20T00:44:18.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "MainDashboard.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MainDashboard.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\MainDashboard.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\MainDashboard.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\MainDashboard.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-24T06:29:48.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "Layout.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Layout.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Layout.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Layout.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Layout.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-26T07:08:57.919Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 87,
-              "Title": "PlanningPhase.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\PlanningPhase.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\PlanningPhase.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\PlanningPhase.cs",
-              "RelativeToolTip": "EduMobile.Server\\Models\\PlanningPhase.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAA6wFcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T23:00:48.342Z"
+              "Title": "GeneralInformation.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\GeneralInformation.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\GeneralInformation.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\GeneralInformation.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\GeneralInformation.jsx",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAswH0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-06T20:58:40.493Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 88,
+              "Title": "ForgotPassword.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ForgotPassword.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ForgotPassword.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ForgotPassword.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ForgotPassword.jsx",
+              "ViewState": "AgIAADIAAAAAAAAAAAAswFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-29T05:52:03.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "ErrorBoundary.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ErrorBoundary.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\ErrorBoundary.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\ErrorBoundary.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\ErrorBoundary.jsx",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-07T00:29:55.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "Header.css",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.css",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Header.css",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Header.css",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Header.css",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAiwHQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-06T08:44:30.911Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "Dashboard.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Dashboard.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\Dashboard.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\Dashboard.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\Dashboard.jsx",
+              "ViewState": "AgIAABIBAAAAAAAAAAAswDEBAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-06T23:17:24.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "CreateSemester.jsx",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\CreateSemester.jsx",
+              "RelativeDocumentMoniker": "edumobile.client\\src\\components\\CreateSemester.jsx",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\components\\CreateSemester.jsx",
+              "RelativeToolTip": "edumobile.client\\src\\components\\CreateSemester.jsx",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAswI0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-06T23:16:41.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "TeacherFeedback.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\TeacherFeedback.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\TeacherFeedback.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\TeacherFeedback.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\TeacherFeedback.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:36:44.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "SemesterStudent.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\SemesterStudent.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\SemesterStudent.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\SemesterStudent.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\SemesterStudent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T17:13:35.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "ResetPasswordConfirmRequest.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
+              "RelativeDocumentMoniker": "EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
+              "RelativeToolTip": "EduMobile.Server\\Models\\ResetPasswordConfirmRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T06:41:43.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
               "Title": "PhaseAssignment.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\PhaseAssignment.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\PhaseAssignment.cs",
@@ -1653,7 +1754,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 96,
               "Title": "Phase.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Phase.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\Phase.cs",
@@ -1665,7 +1766,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 97,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\Notification.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\Notification.cs",
@@ -1677,7 +1778,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 98,
               "Title": "GameScore.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\GameScore.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\GameScore.cs",
@@ -1689,7 +1790,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 99,
               "Title": "EmailSettings.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Models\\EmailSettings.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Models\\EmailSettings.cs",
@@ -1701,7 +1802,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 100,
               "Title": "StudentsController.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\StudentsController.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\StudentsController.cs",
@@ -1713,7 +1814,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 101,
               "Title": "FilesController.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\FilesController.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\FilesController.cs",
@@ -1725,31 +1826,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
-              "Title": "DesignPhasesController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\DesignPhasesController.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Controllers\\DesignPhasesController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Controllers\\DesignPhasesController.cs",
-              "RelativeToolTip": "EduMobile.Server\\Controllers\\DesignPhasesController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAowIsBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T06:34:08.801Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 96,
-              "Title": "SeedData.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\SeedData.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Data\\SeedData.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Data\\SeedData.cs",
-              "RelativeToolTip": "EduMobile.Server\\Data\\SeedData.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T19:44:35.49Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 137,
+              "DocumentIndex": 141,
               "Title": "20250424185530_Mig29AddProjectUpdatedAt.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250424185530_Mig29AddProjectUpdatedAt.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250424185530_Mig29AddProjectUpdatedAt.cs",
@@ -1761,7 +1838,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 136,
+              "DocumentIndex": 140,
               "Title": "20250418030431_Mig28GameScore.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250418030431_Mig28GameScore.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250418030431_Mig28GameScore.cs",
@@ -1773,7 +1850,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 102,
               "Title": "20250415212614_Mig27AsignacionFases.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250415212614_Mig27AsignacionFases.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250415212614_Mig27AsignacionFases.cs",
@@ -1785,7 +1862,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 103,
               "Title": "20250415223910_Mig28AsignacionFases2.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250415223910_Mig28AsignacionFases2.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250415223910_Mig28AsignacionFases2.cs",
@@ -1797,7 +1874,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 138,
+              "DocumentIndex": 142,
               "Title": "useNotificationHub.js",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\hooks\\useNotificationHub.js",
               "RelativeDocumentMoniker": "edumobile.client\\src\\hooks\\useNotificationHub.js",
@@ -1809,7 +1886,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 139,
+              "DocumentIndex": 143,
               "Title": "AuthContext.jsx",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\contexts\\AuthContext.jsx",
               "RelativeDocumentMoniker": "edumobile.client\\src\\contexts\\AuthContext.jsx",
@@ -1821,19 +1898,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
-              "Title": "NotificationHub.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Hubs\\NotificationHub.cs",
-              "RelativeDocumentMoniker": "EduMobile.Server\\Hubs\\NotificationHub.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Hubs\\NotificationHub.cs",
-              "RelativeToolTip": "EduMobile.Server\\Hubs\\NotificationHub.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T21:31:07.527Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 133,
+              "DocumentIndex": 137,
               "Title": "20250409051014_Mig26NotificationModel.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250409051014_Mig26NotificationModel.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250409051014_Mig26NotificationModel.cs",
@@ -1845,7 +1910,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 104,
               "Title": "20250409050442_Mig27NotificationModel.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250409050442_Mig27NotificationModel.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250409050442_Mig27NotificationModel.cs",
@@ -1857,7 +1922,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 105,
               "Title": "20250409050205_Mig26NotificationModel.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250409050205_Mig26NotificationModel.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250409050205_Mig26NotificationModel.cs",
@@ -1869,7 +1934,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 106,
               "Title": "CHANGELOG.md",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\CHANGELOG.md",
               "RelativeDocumentMoniker": "EduMobile.Server\\CHANGELOG.md",
@@ -1881,7 +1946,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 134,
+              "DocumentIndex": 138,
               "Title": "20250408204210_Mig25FeedbackPerRelation.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250408204210_Mig25FeedbackPerRelation.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250408204210_Mig25FeedbackPerRelation.cs",
@@ -1893,7 +1958,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 135,
+              "DocumentIndex": 139,
               "Title": "20250408204030_Mig24Feedback.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250408204030_Mig24Feedback.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250408204030_Mig24Feedback.cs",
@@ -1905,7 +1970,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 107,
               "Title": "ps2dzyic.sql",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Debug\\net9.0\\ps2dzyic.sql",
               "RelativeDocumentMoniker": "EduMobile.Server\\obj\\Debug\\net9.0\\ps2dzyic.sql",
@@ -1916,7 +1981,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 108,
               "Title": "ForgotPassword.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
@@ -1928,7 +1993,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 109,
               "Title": "ForgotPassword.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
               "RelativeDocumentMoniker": "EduMobile.Server\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
@@ -1940,7 +2005,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
+              "DocumentIndex": 110,
               "Title": "ConfirmEmail.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
               "RelativeDocumentMoniker": "EduMobile.Server\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
@@ -1952,7 +2017,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 111,
               "Title": "AccessDenied.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
               "RelativeDocumentMoniker": "EduMobile.Server\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
@@ -1964,7 +2029,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 108,
+              "DocumentIndex": 112,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "EduMobile.Server\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -1976,7 +2041,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 140,
+              "DocumentIndex": 144,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\main.jsx",
               "RelativeDocumentMoniker": "edumobile.client\\src\\main.jsx",
@@ -1988,7 +2053,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 141,
+              "DocumentIndex": 145,
               "Title": "globals.css",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\src\\globals.css",
               "RelativeDocumentMoniker": "edumobile.client\\src\\globals.css",
@@ -2000,7 +2065,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 109,
+              "DocumentIndex": 113,
               "Title": "Monitor.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\AppData\\Local\\Temp\\.vsdbgsrc\\5cc853cce4d889494bb666801459a6b3267d487e0005aa554ba6d6d6657a354d\\Monitor.cs",
               "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\5cc853cce4d889494bb666801459a6b3267d487e0005aa554ba6d6d6657a354d\\Monitor.cs",
@@ -2012,7 +2077,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 110,
+              "DocumentIndex": 114,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\index.html",
               "RelativeDocumentMoniker": "edumobile.client\\index.html",
@@ -2024,7 +2089,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 111,
+              "DocumentIndex": 115,
               "Title": "packages.config",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\packages.config",
               "RelativeDocumentMoniker": "edumobile.client\\packages.config",
@@ -2036,7 +2101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 112,
+              "DocumentIndex": 116,
               "Title": "CHANGELOG.md",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\CHANGELOG.md",
               "RelativeDocumentMoniker": "edumobile.client\\CHANGELOG.md",
@@ -2048,7 +2113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 116,
+              "DocumentIndex": 120,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\ApplicationDbContextModelSnapshot.cs",
@@ -2060,7 +2125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 114,
+              "DocumentIndex": 118,
               "Title": "20250310231557_Mig21Kanban.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250310231557_Mig21Kanban.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250310231557_Mig21Kanban.cs",
@@ -2072,7 +2137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 113,
+              "DocumentIndex": 117,
               "Title": "20250323210444_Mig23Teams.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250323210444_Mig23Teams.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250323210444_Mig23Teams.cs",
@@ -2084,7 +2149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 115,
+              "DocumentIndex": 119,
               "Title": "20250310234207_Mig22IgnoreDevPhaseKanban.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250310234207_Mig22IgnoreDevPhaseKanban.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250310234207_Mig22IgnoreDevPhaseKanban.cs",
@@ -2096,7 +2161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 117,
+              "DocumentIndex": 121,
               "Title": "EduMobile.Server.http",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\EduMobile.Server.http",
               "RelativeDocumentMoniker": "EduMobile.Server\\EduMobile.Server.http",
@@ -2108,7 +2173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 120,
+              "DocumentIndex": 124,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "EduMobile.Server\\Pages\\_ViewStart.cshtml",
@@ -2120,7 +2185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 119,
+              "DocumentIndex": 123,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "EduMobile.Server\\wwwroot\\js\\site.js",
@@ -2132,7 +2197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 118,
+              "DocumentIndex": 122,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "EduMobile.Server\\Properties\\launchSettings.json",
@@ -2144,7 +2209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 121,
+              "DocumentIndex": 125,
               "Title": "scheduler.development.js",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\node_modules\\scheduler\\cjs\\scheduler.development.js",
               "RelativeDocumentMoniker": "edumobile.client\\node_modules\\scheduler\\cjs\\scheduler.development.js",
@@ -2156,7 +2221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 122,
+              "DocumentIndex": 126,
               "Title": "dbo.ProjectUsers.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.ProjectUsers.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.ProjectUsers.sql",
@@ -2165,7 +2230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 123,
+              "DocumentIndex": 127,
               "Title": "dbo.AspNetUsers.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.AspNetUsers.sql",
@@ -2174,7 +2239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 124,
+              "DocumentIndex": 128,
               "Title": "20250307002650_Mig16Bench.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250307002650_Mig16Bench.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250307002650_Mig16Bench.cs",
@@ -2186,7 +2251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 125,
+              "DocumentIndex": 129,
               "Title": "dbo.SemesterStudents.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.SemesterStudents.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.SemesterStudents.sql",
@@ -2195,7 +2260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 126,
+              "DocumentIndex": 130,
               "Title": "dbo.DevelopmentPhases.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.DevelopmentPhases.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.DevelopmentPhases.sql",
@@ -2204,7 +2269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 127,
+              "DocumentIndex": 131,
               "Title": "dbo.KanbanItems.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.KanbanItems.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/EduMobile/True/SqlTable/dbo.KanbanItems.sql",
@@ -2213,7 +2278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 128,
+              "DocumentIndex": 132,
               "Title": ".editorconfig",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\.editorconfig",
               "RelativeDocumentMoniker": "edumobile.client\\.editorconfig",
@@ -2225,7 +2290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 131,
+              "DocumentIndex": 135,
               "Title": "20250310170139_Mig20CrearDevelopment.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250310170139_Mig20CrearDevelopment.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250310170139_Mig20CrearDevelopment.cs",
@@ -2237,7 +2302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 132,
+              "DocumentIndex": 136,
               "Title": "20250310165944_Mig19Development.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250310165944_Mig19Development.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250310165944_Mig19Development.cs",
@@ -2249,7 +2314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 130,
+              "DocumentIndex": 134,
               "Title": "20250310025525_Mig18Design.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250310025525_Mig18Design.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250310025525_Mig18Design.cs",
@@ -2261,7 +2326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 129,
+              "DocumentIndex": 133,
               "Title": "20250307001712_Mig16Bench.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\Migrations\\20250307001712_Mig16Bench.cs",
               "RelativeDocumentMoniker": "EduMobile.Server\\Migrations\\20250307001712_Mig16Bench.cs",

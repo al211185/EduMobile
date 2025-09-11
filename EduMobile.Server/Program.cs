@@ -87,3 +87,6 @@ app.MapHub<NotificationHub>("/notificationHub");
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+// Para que WebApplicationFactory pueda hallar el entry point
+public partial class Program { }

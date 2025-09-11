@@ -10,7 +10,9 @@ C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\EduMobile.Serv
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\EduMobile.Server.pdb
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Azure.Identity.dll
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Humanizer.dll
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\MailKit.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
@@ -59,6 +61,7 @@ C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.Visu
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\MimeKit.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Mono.TextTemplating.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\NuGet.Common.dll
@@ -355,6 +358,3 @@ C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\EduMobile.Serv
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\EduMobile.Server.genruntimeconfig.cache
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\ref\EduMobile.Server.dll
 C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
-C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
-C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\MailKit.dll
-C:\Users\DELL\Desktop\EduMobile\EduMobile.Server\bin\Debug\net9.0\MimeKit.dll

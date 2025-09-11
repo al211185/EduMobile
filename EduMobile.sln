@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduMobile.Server", "EduMobi
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "edumobile.client", "edumobile.client\edumobile.client.esproj", "{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduMobileTests", "EduMobileTests\EduMobileTests.csproj", "{F039F9A7-38AC-4117-B50F-C9129D031616}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6B4B9A1-6E97-4F73-BA35-B8205309ED38}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F039F9A7-38AC-4117-B50F-C9129D031616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F039F9A7-38AC-4117-B50F-C9129D031616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F039F9A7-38AC-4117-B50F-C9129D031616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F039F9A7-38AC-4117-B50F-C9129D031616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

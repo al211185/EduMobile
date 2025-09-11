@@ -21,7 +21,7 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
             alert("Por favor, selecciona un archivo y un semestre válido.");
             return;
         }
-        if (file.type !== "text/csv") {
+        if (!file.name.toLowerCase().endsWith(".csv")) {
             alert("Por favor, sube un archivo CSV válido.");
             return;
         }
