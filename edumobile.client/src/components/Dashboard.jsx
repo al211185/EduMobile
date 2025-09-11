@@ -19,30 +19,44 @@ const Dashboard = () => {
     const [selectedSemester, setSelectedSemester] = useState(null);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
 
+    const fetchSemesters = async (selectFirst = false) => {
+        setLoadingSemesters(true);
+        try {
+            const res = await fetch("/api/semesters");
+            const data = await res.json();
+            if (res.ok) {
+                setSemesters(data);
+                if (selectFirst && data.length > 0) {
+                    const first = data[0];
+                    setSelectedSemester(first);
+                    loadCourseData(first.id);
+                }
+            } else {
+                console.error("Error al cargar cursos:", data.message);
+            }
+        } catch (err) {
+            console.error("Error al obtener cursos:", err);
+        } finally {
+            setLoadingSemesters(false);
+        }
+    };
+
     // --- Carga inicial de semestres y selección automática del primero ---
     useEffect(() => {
-        const fetchSemesters = async () => {
-            try {
-                const res = await fetch("/api/semesters");
-                const data = await res.json();
-                if (res.ok) {
-                    setSemesters(data);
-                    if (data.length > 0) {
-                        const first = data[0];
-                        setSelectedSemester(first);
-                        loadCourseData(first.id);
-                    }
-                } else {
-                    console.error("Error al cargar cursos:", data.message);
-                }
-            } catch (err) {
-                console.error("Error al obtener cursos:", err);
-            } finally {
-                setLoadingSemesters(false);
-            }
-        };
-        fetchSemesters();
+        fetchSemesters(true);
     }, []);
+
+    const handleSemesterCreated = () => {
+        fetchSemesters();
+    };
+
+    const handleStudentsRegistered = () => {
+        if (selectedSemester) {
+            loadCourseData(selectedSemester.id);
+            setShowRegisterForm(false);
+        }
+    };
+
 
     // --- Función para cargar estudiantes y proyectos de un semestre ---
     const loadCourseData = async (semesterId) => {
@@ -133,7 +147,7 @@ const Dashboard = () => {
                         {/* --- Sección de creación de semestre --- */}
                         <section className="bg-white rounded-2xl shadow-sm p-6">
                             <h2 className="text-xl font-semibold text-[#4F46E5] mb-4">Crear Nuevo Curso</h2>
-                            <CreateSemester />
+                            <CreateSemester onSemesterCreated={handleSemesterCreated} />
                         </section>
 
                         {/* --- Sección de selección de semestres existentes --- */}
@@ -292,7 +306,8 @@ const Dashboard = () => {
                             ) : selectedSemester && showRegisterForm ? (
                                 <RegisterStudents
                                     selectedSemester={selectedSemester}
-                                    setShowRegisterForm={setShowRegisterForm}
+                                        setShowRegisterForm={setShowRegisterForm}
+                                        onStudentsRegistered={handleStudentsRegistered}
                                 />
                             ) : null}
                                 </section>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CreateSemester = ({ selectedCourse }) => {
+const CreateSemester = ({ selectedCourse, onSemesterCreated }) => {
     const [year, setYear] = useState("");
     const [period, setPeriod] = useState("A");
     const [description, setDescription] = useState("");
@@ -35,6 +35,7 @@ const CreateSemester = ({ selectedCourse }) => {
                 setPeriod("A");
                 setDescription("");
                 setDistinctive("");
+                onSemesterCreated && onSemesterCreated();
             } else {
                 setMessage(`⚠️ Error: ${data.message || "No se pudo crear el semestre."}`);
             }

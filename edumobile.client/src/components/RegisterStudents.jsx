@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
 
-const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
+const RegisterStudents = ({ selectedSemester, setShowRegisterForm, onStudentsRegistered }) => {
     const [file, setFile] = useState(null);
     const [individualData, setIndividualData] = useState({
         matricula: "",
@@ -78,6 +78,7 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                     setIsSubmitting(false);
                     alert("✅ Alumnos registrados y asignados exitosamente.");
                     setFile(null);
+                    onStudentsRegistered && onStudentsRegistered();
                 } catch (error) {
                     setIsSubmitting(false);
                     console.error("Error al registrar o asignar alumnos:", error);
@@ -143,6 +144,7 @@ const RegisterStudents = ({ selectedSemester, setShowRegisterForm }) => {
                 apellidoPaterno: "",
                 apellidoMaterno: "",
             });
+            onStudentsRegistered && onStudentsRegistered();
         } catch (error) {
             alert(`⚠️ ${error.message}`);
             console.error(error);
