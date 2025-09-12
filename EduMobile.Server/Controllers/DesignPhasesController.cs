@@ -247,9 +247,12 @@ namespace EduMobile.Server.Controllers
                 }
 
                 designPhase.VisualDesignFilePath = request.VisualDesignFilePath;
-                designPhase.AreVisualElementsBeneficialForSmallScreens = request.AreVisualElementsBeneficialForSmallScreens;
-                designPhase.DoesDesignPrioritizeContentForMobile = request.DoesDesignPrioritizeContentForMobile;
-                designPhase.DoesDesignImproveLoadingSpeed = request.DoesDesignImproveLoadingSpeed;
+                if (request.AreVisualElementsBeneficialForSmallScreens.HasValue)
+                    designPhase.AreVisualElementsBeneficialForSmallScreens = request.AreVisualElementsBeneficialForSmallScreens.Value;
+                if (request.DoesDesignPrioritizeContentForMobile.HasValue)
+                    designPhase.DoesDesignPrioritizeContentForMobile = request.DoesDesignPrioritizeContentForMobile.Value;
+                if (request.DoesDesignImproveLoadingSpeed.HasValue)
+                    designPhase.DoesDesignImproveLoadingSpeed = request.DoesDesignImproveLoadingSpeed.Value;
                 designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
@@ -282,9 +285,12 @@ namespace EduMobile.Server.Controllers
                 }
 
                 designPhase.ContentFilePath = request.ContentFilePath;
-                designPhase.AreContentsRelevantForMobile = request.AreContentsRelevantForMobile;
-                designPhase.AreContentsClearAndNavigable = request.AreContentsClearAndNavigable;
-                designPhase.DoContentsGuideUserAttention = request.DoContentsGuideUserAttention;
+                if (request.AreContentsRelevantForMobile.HasValue)
+                    designPhase.AreContentsRelevantForMobile = request.AreContentsRelevantForMobile.Value;
+                if (request.AreContentsClearAndNavigable.HasValue)
+                    designPhase.AreContentsClearAndNavigable = request.AreContentsClearAndNavigable.Value;
+                if (request.DoContentsGuideUserAttention.HasValue)
+                    designPhase.DoContentsGuideUserAttention = request.DoContentsGuideUserAttention.Value;
                 designPhase.UpdatedAt = DateTime.UtcNow;
 
                 _context.DesignPhases.Update(designPhase);
@@ -341,18 +347,18 @@ namespace EduMobile.Server.Controllers
     {
         public int ProjectId { get; set; }
         public string SiteMapFilePath { get; set; }
-        public bool IsHierarchyClear { get; set; }
-        public bool AreSectionsIdentified { get; set; }
-        public bool AreLinksClear { get; set; }
-        public bool AreVisualElementsUseful { get; set; }
+        public bool? IsHierarchyClear { get; set; }
+        public bool? AreSectionsIdentified { get; set; }
+        public bool? AreLinksClear { get; set; }
+        public bool? AreVisualElementsUseful { get; set; }
         // Fase 2
         public string Wireframe480pxPath { get; set; }
         public string Wireframe768pxPath { get; set; }
         public string Wireframe1024pxPath { get; set; }
-        public bool IsMobileFirst { get; set; }
-        public bool IsNavigationClear { get; set; }
-        public bool IsDesignFunctional { get; set; }
-        public bool IsVisualConsistencyMet { get; set; }
+        public bool? IsMobileFirst { get; set; }
+        public bool? IsNavigationClear { get; set; }
+        public bool? IsDesignFunctional { get; set; }
+        public bool? IsVisualConsistencyMet { get; set; }
     }
 
     public class UpdateDesignPhaseRequest
@@ -378,17 +384,17 @@ namespace EduMobile.Server.Controllers
     public class UpdateVisualDesignRequest
     {
         public string VisualDesignFilePath { get; set; }
-        public bool AreVisualElementsBeneficialForSmallScreens { get; set; }
-        public bool DoesDesignPrioritizeContentForMobile { get; set; }
-        public bool DoesDesignImproveLoadingSpeed { get; set; }
+        public bool? AreVisualElementsBeneficialForSmallScreens { get; set; }
+        public bool? DoesDesignPrioritizeContentForMobile { get; set; }
+        public bool? DoesDesignImproveLoadingSpeed { get; set; }
     }
 
     public class UpdateContentCreationRequest
     {
         public string ContentFilePath { get; set; }
-        public bool AreContentsRelevantForMobile { get; set; }
-        public bool AreContentsClearAndNavigable { get; set; }
-        public bool DoContentsGuideUserAttention { get; set; }
+        public bool? AreContentsRelevantForMobile { get; set; }
+        public bool? AreContentsClearAndNavigable { get; set; }
+        public bool? DoContentsGuideUserAttention { get; set; }
     }
 
     #endregion

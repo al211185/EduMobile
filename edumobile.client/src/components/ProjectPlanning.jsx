@@ -93,7 +93,7 @@ const ProjectPlanning = ({ projectData = {} }) => {
         functionalRequirements: initializeFunctionalRequirements(predefinedRequirements, projectData.functionalRequirements),
         customRequirements: projectData.customRequirements || [],
         corporateColors: parseCorporateColors(projectData.corporateColors),
-        corporateFont: projectData.corporateFont || "Arial",
+        corporateFont: projectData.corporateFont || "",
         allowedTechnologies: initializeAllowedTechnologies(predefinedTechnologies, projectData.allowedTechnologies),
         customTechnologies: projectData.customTechnologies || [],
         customTechnology: "",
@@ -209,7 +209,7 @@ const ProjectPlanning = ({ projectData = {} }) => {
                 secondary1: formData.corporateColors.secondary1,
                 secondary2: formData.corporateColors.secondary2,
             },
-            corporateFont: formData.corporateFont || "Arial",
+            corporateFont: formData.corporateFont || "",
             allowedTechnologies: formData.allowedTechnologies
                 .filter((tech) => tech.checked)
                 .map((tech) => tech.name),

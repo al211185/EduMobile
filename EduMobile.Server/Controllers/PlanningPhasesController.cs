@@ -172,8 +172,8 @@ namespace EduMobile.Server.Controllers
                 if (!string.IsNullOrWhiteSpace(request.Responsable))
                     planningPhase.Responsable = request.Responsable;
 
-                if (request.StartDate != default)
-                    planningPhase.StartDate = request.StartDate;
+                if (request.StartDate.HasValue)
+                    planningPhase.StartDate = request.StartDate.Value;
 
                 if (!string.IsNullOrWhiteSpace(request.GeneralObjective))
                     planningPhase.GeneralObjective = request.GeneralObjective;
@@ -373,9 +373,12 @@ namespace EduMobile.Server.Controllers
                 if (!string.IsNullOrWhiteSpace(request.BenchmarkImprovements))
                     planningPhase.BenchmarkImprovements = request.BenchmarkImprovements;
 
-                planningPhase.BenchmarkUsedSmartphoneForScreens = request.BenchmarkUsedSmartphoneForScreens;
-                planningPhase.BenchmarkUsedSmartphoneForComparative = request.BenchmarkUsedSmartphoneForComparative;
-                planningPhase.BenchmarkConsideredMobileFirst = request.BenchmarkConsideredMobileFirst;
+                if (request.BenchmarkUsedSmartphoneForScreens.HasValue)
+                    planningPhase.BenchmarkUsedSmartphoneForScreens = request.BenchmarkUsedSmartphoneForScreens.Value;
+                if (request.BenchmarkUsedSmartphoneForComparative.HasValue)
+                    planningPhase.BenchmarkUsedSmartphoneForComparative = request.BenchmarkUsedSmartphoneForComparative.Value;
+                if (request.BenchmarkConsideredMobileFirst.HasValue)
+                    planningPhase.BenchmarkConsideredMobileFirst = request.BenchmarkConsideredMobileFirst.Value;
 
                 // Reflexivos
                 if (!string.IsNullOrWhiteSpace(request.ReflectionPhase2))
@@ -556,7 +559,7 @@ namespace EduMobile.Server.Controllers
         public string ProjectName { get; set; } // Fase 1
         public string ClienteName { get; set; }
         public string Responsable { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public string GeneralObjective { get; set; }
         public string SpecificObjectives { get; set; }
         public string FunctionalRequirements { get; set; }
@@ -589,9 +592,9 @@ namespace EduMobile.Server.Controllers
         public string Competitor2UsefulFeatures { get; set; }
         public string BenchmarkFindings { get; set; }
         public string BenchmarkImprovements { get; set; }
-        public bool BenchmarkUsedSmartphoneForScreens { get; set; }
-        public bool BenchmarkUsedSmartphoneForComparative { get; set; }
-        public bool BenchmarkConsideredMobileFirst { get; set; }
+        public bool? BenchmarkUsedSmartphoneForScreens { get; set; }
+        public bool? BenchmarkUsedSmartphoneForComparative { get; set; }
+        public bool? BenchmarkConsideredMobileFirst { get; set; }
         public string ReflectionPhase2 { get; set; }
 
         // Fase 3
@@ -605,7 +608,7 @@ namespace EduMobile.Server.Controllers
         public string ProjectName { get; set; }
         public string ClienteName { get; set; }
         public string Responsable { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public string GeneralObjective { get; set; }
         public string SpecificObjectives { get; set; }
         public string FunctionalRequirements { get; set; }
@@ -647,14 +650,15 @@ namespace EduMobile.Server.Controllers
         public string BenchmarkFindings { get; set; }
         public string BenchmarkImprovements { get; set; }
 
-        public bool BenchmarkUsedSmartphoneForScreens { get; set; }
-        public bool BenchmarkUsedSmartphoneForComparative { get; set; }
-        public bool BenchmarkConsideredMobileFirst { get; set; }
+        public bool? BenchmarkUsedSmartphoneForScreens { get; set; }
+        public bool? BenchmarkUsedSmartphoneForComparative { get; set; }
+        public bool? BenchmarkConsideredMobileFirst { get; set; }
 
         public string ReflectionPhase2 { get; set; }
         public string AudienceQuestions { get; set; }
         public string ReflectionPhase3 { get; set; }
     }
+
 
     // Fase 3 - Update
     public class UpdatePlanningPhaseF3Request

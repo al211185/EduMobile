@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EduMobileTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb9be3a2366dfdac85a375a81374cc4dba5f13a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+718f94f99baf5ca48ba907d339a59b9b16700d8f")]
 [assembly: System.Reflection.AssemblyProductAttribute("EduMobileTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EduMobileTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

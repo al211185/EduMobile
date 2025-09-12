@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hBZ8D0W4OCfff52iKevaZFRXfCknYxIsXArd1+qD1kY=",
+  "Hash": "pW9kxflGQaHUnAjnUHgN5LBmAekzzfp37YnPSxbDqIU=",
   "Source": "EduMobile.Server",
   "BasePath": "_content/EduMobile.Server",
   "Mode": "Default",
@@ -1373,12 +1373,12 @@
       "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\html2canvas.esm-CBrSDip1.js"
     },
     {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js",
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js",
       "SourceId": "edumobile.client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\",
       "BasePath": "/",
-      "RelativePath": "assets/index.es-BOotlGVk.js",
+      "RelativePath": "assets/index.es-c_p-X7m3.js",
       "AssetKind": "Publish",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1387,19 +1387,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ahv20jk02u",
-      "Integrity": "Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4=",
+      "Fingerprint": "3mw9x51dzf",
+      "Integrity": "W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js"
+      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js"
     },
     {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js",
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js",
       "SourceId": "edumobile.client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\",
       "BasePath": "/",
-      "RelativePath": "assets/index-C7UTtgZy.js",
+      "RelativePath": "assets/index-Co0c92bW.js",
       "AssetKind": "Publish",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1408,11 +1408,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "w34ln57mt0",
-      "Integrity": "9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI=",
+      "Fingerprint": "jsschew942",
+      "Integrity": "wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js"
+      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js"
     },
     {
       "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-izNl5T8c.css",
@@ -1471,8 +1471,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "3mnd1sh6gn",
-      "Integrity": "y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY=",
+      "Fingerprint": "9yazwo89hc",
+      "Integrity": "MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\index.html"
@@ -2864,7 +2864,49 @@
       "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-izNl5T8c.css"
     },
     {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-3mnd1sh6gn.br",
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\6xuzkrzhag-3mw9x51dzf.br",
+      "SourceId": "edumobile.client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
+      "BasePath": "/",
+      "RelativePath": "assets/index.es-c_p-X7m3.js.br",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "br",
+      "Fingerprint": "mk4wby4wk3",
+      "Integrity": "JtK+imZw3tMgIPngOajTCAzbq7ecyFIe3gaDeUlt2mU=",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\6xuzkrzhag-3mw9x51dzf.gz",
+      "SourceId": "edumobile.client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
+      "BasePath": "/",
+      "RelativePath": "assets/index.es-c_p-X7m3.js.gz",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "cdufew6i3z",
+      "Integrity": "gHWAm+qnCUkJIZqLM/Amuqb/hSCCtFKzT9XdbmnrIis=",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-9yazwo89hc.br",
       "SourceId": "edumobile.client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
@@ -2878,14 +2920,14 @@
       "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "br",
-      "Fingerprint": "918xurxo0m",
-      "Integrity": "7eA27G8LdNhehSx1rMGvPvb1HR0KQ3Eo6SQsxbpPYwk=",
+      "Fingerprint": "jl1ggzbafe",
+      "Integrity": "6eeacpbYOxKIdVEy56VLCBRtXNzEXGveC7HPbKfmbfQ=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\index.html"
     },
     {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-3mnd1sh6gn.gz",
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-9yazwo89hc.gz",
       "SourceId": "edumobile.client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
@@ -2899,8 +2941,8 @@
       "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "kvgvqy2xer",
-      "Integrity": "0BZHMfeI8lqM030chPAQtwGJ00MyM6DyYhogUpvLT5s=",
+      "Fingerprint": "4zsim5dtcu",
+      "Integrity": "MH07ZXeTwgV878ZNiqGa62lrtDQBQNJTHmtUyrmDjeg=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\index.html"
@@ -3305,6 +3347,48 @@
       "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h7bp6kqgnw-jsschew942.br",
+      "SourceId": "edumobile.client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
+      "BasePath": "/",
+      "RelativePath": "assets/index-Co0c92bW.js.br",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "br",
+      "Fingerprint": "64cu0975iz",
+      "Integrity": "KvPrJRcc9HCZCrQJ9dV02WmeUlf1qjcGWnvPx/5/z6I=",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h7bp6kqgnw-jsschew942.gz",
+      "SourceId": "edumobile.client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
+      "BasePath": "/",
+      "RelativePath": "assets/index-Co0c92bW.js.gz",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "mgor9jojis",
+      "Integrity": "lsl+Pebyix0gC+hCLBkYak0BQuks7Sq1+m9l7aEGwRc=",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js"
+    },
+    {
       "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h9vwtoirpy-j5mq2jizvt.br",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
@@ -3576,48 +3660,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.0\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
-    },
-    {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\l976606n4e-ahv20jk02u.br",
-      "SourceId": "edumobile.client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
-      "BasePath": "/",
-      "RelativePath": "assets/index.es-BOotlGVk.js.br",
-      "AssetKind": "Publish",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "br",
-      "Fingerprint": "wz0gez329m",
-      "Integrity": "9KwONyWHz+yNdWyKOFBWJ5myQ7lSzi4TnmNVnIf+XiE=",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js"
-    },
-    {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\l976606n4e-ahv20jk02u.gz",
-      "SourceId": "edumobile.client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
-      "BasePath": "/",
-      "RelativePath": "assets/index.es-BOotlGVk.js.gz",
-      "AssetKind": "Publish",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "vuiq0u3pnc",
-      "Integrity": "CXZVkDtq3cWKmL431uD05o8lPrnDWNz8fxekS9yJCSA=",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js"
     },
     {
       "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\ldxy2n3w6q-356vix0kms.br",
@@ -4227,48 +4269,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.0\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.js"
-    },
-    {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\tq40wv9rkh-w34ln57mt0.br",
-      "SourceId": "edumobile.client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
-      "BasePath": "/",
-      "RelativePath": "assets/index-C7UTtgZy.js.br",
-      "AssetKind": "Publish",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "br",
-      "Fingerprint": "aezrw2xqji",
-      "Integrity": "DhyUC+54RVafO8oy1hFuQde4e3K8YYJncZGXU5X2s3c=",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js"
-    },
-    {
-      "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\tq40wv9rkh-w34ln57mt0.gz",
-      "SourceId": "edumobile.client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\",
-      "BasePath": "/",
-      "RelativePath": "assets/index-C7UTtgZy.js.gz",
-      "AssetKind": "Publish",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "zp3fmr026f",
-      "Integrity": "aZ2jWJCAARDNB2yNaOfchYihDgh6kP5dSFwOhuRodoA=",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js"
     },
     {
       "Identity": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\u8428c4e9i-ee0r1s7dh0.br",
@@ -5807,7 +5807,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5846,7 +5846,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5901,7 +5901,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5954,7 +5954,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5999,7 +5999,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6022,8 +6022,8 @@
       ]
     },
     {
-      "Route": "assets/index.es-BOotlGVk.js",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-BOotlGVk.js",
+      "Route": "assets/index.es-c_p-X7m3.js",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index.es-c_p-X7m3.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6040,11 +6040,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4=\""
+          "Value": "\"W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6054,18 +6054,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4="
+          "Value": "sha256-W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw="
         }
       ]
     },
     {
-      "Route": "assets/index.es-BOotlGVk.js",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\l976606n4e-ahv20jk02u.br",
+      "Route": "assets/index.es-c_p-X7m3.js",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\6xuzkrzhag-3mw9x51dzf.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000021749059"
+          "Quality": "0.000021774158"
         }
       ],
       "ResponseHeaders": [
@@ -6075,15 +6075,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45978"
+          "Value": "45925"
         },
         {
           "Name": "ETag",
-          "Value": "\"9KwONyWHz+yNdWyKOFBWJ5myQ7lSzi4TnmNVnIf+XiE=\""
+          "Value": "\"JtK+imZw3tMgIPngOajTCAzbq7ecyFIe3gaDeUlt2mU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6103,19 +6103,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4=\""
+          "Value": "W/\"W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4="
+          "Value": "sha256-W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw="
         }
       ]
     },
     {
-      "Route": "assets/index.es-BOotlGVk.js",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\l976606n4e-ahv20jk02u.gz",
+      "Route": "assets/index.es-c_p-X7m3.js",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\6xuzkrzhag-3mw9x51dzf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6134,11 +6134,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CXZVkDtq3cWKmL431uD05o8lPrnDWNz8fxekS9yJCSA=\""
+          "Value": "\"gHWAm+qnCUkJIZqLM/Amuqb/hSCCtFKzT9XdbmnrIis=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6158,19 +6158,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4=\""
+          "Value": "W/\"W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Iog8xhZK7aXuQcytE07iKkL6a2QbQ5k0YJ2GbofM7q4="
+          "Value": "sha256-W1LxyoWjaYs4uPROVL0dSfBJQ/Ylzkm/8rVNUbY1Yrw="
         }
       ]
     },
     {
-      "Route": "assets/index.es-BOotlGVk.js.br",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\l976606n4e-ahv20jk02u.br",
+      "Route": "assets/index.es-c_p-X7m3.js.br",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\6xuzkrzhag-3mw9x51dzf.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6179,7 +6179,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45978"
+          "Value": "45925"
         },
         {
           "Name": "Content-Type",
@@ -6187,11 +6187,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9KwONyWHz+yNdWyKOFBWJ5myQ7lSzi4TnmNVnIf+XiE=\""
+          "Value": "\"JtK+imZw3tMgIPngOajTCAzbq7ecyFIe3gaDeUlt2mU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6209,13 +6209,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9KwONyWHz+yNdWyKOFBWJ5myQ7lSzi4TnmNVnIf+XiE="
+          "Value": "sha256-JtK+imZw3tMgIPngOajTCAzbq7ecyFIe3gaDeUlt2mU="
         }
       ]
     },
     {
-      "Route": "assets/index.es-BOotlGVk.js.gz",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\l976606n4e-ahv20jk02u.gz",
+      "Route": "assets/index.es-c_p-X7m3.js.gz",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\6xuzkrzhag-3mw9x51dzf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6232,11 +6232,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CXZVkDtq3cWKmL431uD05o8lPrnDWNz8fxekS9yJCSA=\""
+          "Value": "\"gHWAm+qnCUkJIZqLM/Amuqb/hSCCtFKzT9XdbmnrIis=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6254,13 +6254,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-CXZVkDtq3cWKmL431uD05o8lPrnDWNz8fxekS9yJCSA="
+          "Value": "sha256-gHWAm+qnCUkJIZqLM/Amuqb/hSCCtFKzT9XdbmnrIis="
         }
       ]
     },
     {
-      "Route": "assets/index-C7UTtgZy.js",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-C7UTtgZy.js",
+      "Route": "assets/index-Co0c92bW.js",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\edumobile.client\\dist\\assets\\index-Co0c92bW.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6269,7 +6269,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "949241"
+          "Value": "949386"
         },
         {
           "Name": "Content-Type",
@@ -6277,11 +6277,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI=\""
+          "Value": "\"wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6291,18 +6291,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI="
+          "Value": "sha256-wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38="
         }
       ]
     },
     {
-      "Route": "assets/index-C7UTtgZy.js",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\tq40wv9rkh-w34ln57mt0.br",
+      "Route": "assets/index-Co0c92bW.js",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h7bp6kqgnw-jsschew942.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000004106287"
+          "Quality": "0.000004103726"
         }
       ],
       "ResponseHeaders": [
@@ -6312,15 +6312,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "243528"
+          "Value": "243680"
         },
         {
           "Name": "ETag",
-          "Value": "\"DhyUC+54RVafO8oy1hFuQde4e3K8YYJncZGXU5X2s3c=\""
+          "Value": "\"KvPrJRcc9HCZCrQJ9dV02WmeUlf1qjcGWnvPx/5/z6I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6340,24 +6340,24 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI=\""
+          "Value": "W/\"wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI="
+          "Value": "sha256-wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38="
         }
       ]
     },
     {
-      "Route": "assets/index-C7UTtgZy.js",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\tq40wv9rkh-w34ln57mt0.gz",
+      "Route": "assets/index-Co0c92bW.js",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h7bp6kqgnw-jsschew942.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000003449799"
+          "Quality": "0.000003449037"
         }
       ],
       "ResponseHeaders": [
@@ -6367,15 +6367,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "289871"
+          "Value": "289935"
         },
         {
           "Name": "ETag",
-          "Value": "\"aZ2jWJCAARDNB2yNaOfchYihDgh6kP5dSFwOhuRodoA=\""
+          "Value": "\"lsl+Pebyix0gC+hCLBkYak0BQuks7Sq1+m9l7aEGwRc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6395,19 +6395,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI=\""
+          "Value": "W/\"wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9Fye11TdXxbFqJcEdxvEyAVBChB2zThlPr43kJbZcpI="
+          "Value": "sha256-wwVwndNlQZx/enSF+18c7pYkTns2LnTMKWWp2kYWN38="
         }
       ]
     },
     {
-      "Route": "assets/index-C7UTtgZy.js.br",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\tq40wv9rkh-w34ln57mt0.br",
+      "Route": "assets/index-Co0c92bW.js.br",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h7bp6kqgnw-jsschew942.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6416,7 +6416,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "243528"
+          "Value": "243680"
         },
         {
           "Name": "Content-Type",
@@ -6424,11 +6424,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DhyUC+54RVafO8oy1hFuQde4e3K8YYJncZGXU5X2s3c=\""
+          "Value": "\"KvPrJRcc9HCZCrQJ9dV02WmeUlf1qjcGWnvPx/5/z6I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6446,13 +6446,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-DhyUC+54RVafO8oy1hFuQde4e3K8YYJncZGXU5X2s3c="
+          "Value": "sha256-KvPrJRcc9HCZCrQJ9dV02WmeUlf1qjcGWnvPx/5/z6I="
         }
       ]
     },
     {
-      "Route": "assets/index-C7UTtgZy.js.gz",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\tq40wv9rkh-w34ln57mt0.gz",
+      "Route": "assets/index-Co0c92bW.js.gz",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\h7bp6kqgnw-jsschew942.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6461,7 +6461,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "289871"
+          "Value": "289935"
         },
         {
           "Name": "Content-Type",
@@ -6469,11 +6469,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aZ2jWJCAARDNB2yNaOfchYihDgh6kP5dSFwOhuRodoA=\""
+          "Value": "\"lsl+Pebyix0gC+hCLBkYak0BQuks7Sq1+m9l7aEGwRc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6491,7 +6491,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aZ2jWJCAARDNB2yNaOfchYihDgh6kP5dSFwOhuRodoA="
+          "Value": "sha256-lsl+Pebyix0gC+hCLBkYak0BQuks7Sq1+m9l7aEGwRc="
         }
       ]
     },
@@ -6518,7 +6518,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6557,7 +6557,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6612,7 +6612,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6665,7 +6665,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6710,7 +6710,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6755,7 +6755,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6794,7 +6794,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6849,7 +6849,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6902,7 +6902,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6947,7 +6947,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22747,11 +22747,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY=\""
+          "Value": "\"MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22761,18 +22761,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY="
+          "Value": "sha256-MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY="
         }
       ]
     },
     {
       "Route": "index.html",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-3mnd1sh6gn.br",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-9yazwo89hc.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.005586592179"
+          "Quality": "0.005649717514"
         }
       ],
       "ResponseHeaders": [
@@ -22782,15 +22782,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "178"
+          "Value": "176"
         },
         {
           "Name": "ETag",
-          "Value": "\"7eA27G8LdNhehSx1rMGvPvb1HR0KQ3Eo6SQsxbpPYwk=\""
+          "Value": "\"6eeacpbYOxKIdVEy56VLCBRtXNzEXGveC7HPbKfmbfQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22810,24 +22810,24 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY=\""
+          "Value": "W/\"MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY="
+          "Value": "sha256-MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY="
         }
       ]
     },
     {
       "Route": "index.html",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-3mnd1sh6gn.gz",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-9yazwo89hc.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.003412969283"
+          "Quality": "0.003401360544"
         }
       ],
       "ResponseHeaders": [
@@ -22837,15 +22837,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "292"
+          "Value": "293"
         },
         {
           "Name": "ETag",
-          "Value": "\"0BZHMfeI8lqM030chPAQtwGJ00MyM6DyYhogUpvLT5s=\""
+          "Value": "\"MH07ZXeTwgV878ZNiqGa62lrtDQBQNJTHmtUyrmDjeg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22865,19 +22865,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY=\""
+          "Value": "W/\"MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-y9luVy6JfQwy5wELqPHrwT8Z5MAtXf5i//w9aG84sJY="
+          "Value": "sha256-MWImSVNWj5YkMXaPabhLYuxETRdZIaNyKHHg+9NxMwY="
         }
       ]
     },
     {
       "Route": "index.html.br",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-3mnd1sh6gn.br",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-9yazwo89hc.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -22886,7 +22886,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "178"
+          "Value": "176"
         },
         {
           "Name": "Content-Type",
@@ -22894,11 +22894,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7eA27G8LdNhehSx1rMGvPvb1HR0KQ3Eo6SQsxbpPYwk=\""
+          "Value": "\"6eeacpbYOxKIdVEy56VLCBRtXNzEXGveC7HPbKfmbfQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22916,13 +22916,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-7eA27G8LdNhehSx1rMGvPvb1HR0KQ3Eo6SQsxbpPYwk="
+          "Value": "sha256-6eeacpbYOxKIdVEy56VLCBRtXNzEXGveC7HPbKfmbfQ="
         }
       ]
     },
     {
       "Route": "index.html.gz",
-      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-3mnd1sh6gn.gz",
+      "AssetFile": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\obj\\Release\\net9.0\\compressed\\publish\\76uhjm4vfx-9yazwo89hc.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -22931,7 +22931,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "292"
+          "Value": "293"
         },
         {
           "Name": "Content-Type",
@@ -22939,11 +22939,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0BZHMfeI8lqM030chPAQtwGJ00MyM6DyYhogUpvLT5s=\""
+          "Value": "\"MH07ZXeTwgV878ZNiqGa62lrtDQBQNJTHmtUyrmDjeg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 23:14:34 GMT"
+          "Value": "Thu, 11 Sep 2025 23:53:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -22961,7 +22961,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0BZHMfeI8lqM030chPAQtwGJ00MyM6DyYhogUpvLT5s="
+          "Value": "sha256-MH07ZXeTwgV878ZNiqGa62lrtDQBQNJTHmtUyrmDjeg="
         }
       ]
     },

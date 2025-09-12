@@ -119,49 +119,49 @@ namespace EduMobile.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("AreContentsClearAndNavigable")
+                    b.Property<bool?>("AreContentsClearAndNavigable")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AreContentsRelevantForMobile")
+                    b.Property<bool?>("AreContentsRelevantForMobile")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AreLinksClear")
+                    b.Property<bool?>("AreLinksClear")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AreSectionsIdentified")
+                    b.Property<bool?>("AreSectionsIdentified")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AreVisualElementsBeneficialForSmallScreens")
+                    b.Property<bool?>("AreVisualElementsBeneficialForSmallScreens")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AreVisualElementsUseful")
+                    b.Property<bool?>("AreVisualElementsUseful")
                         .HasColumnType("bit");
 
                     b.Property<string>("ContentFilePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("DoContentsGuideUserAttention")
+                    b.Property<bool?>("DoContentsGuideUserAttention")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("DoesDesignImproveLoadingSpeed")
+                    b.Property<bool?>("DoesDesignImproveLoadingSpeed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("DoesDesignPrioritizeContentForMobile")
+                    b.Property<bool?>("DoesDesignPrioritizeContentForMobile")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDesignFunctional")
+                    b.Property<bool?>("IsDesignFunctional")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsHierarchyClear")
+                    b.Property<bool?>("IsHierarchyClear")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsMobileFirst")
+                    b.Property<bool?>("IsMobileFirst")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsNavigationClear")
+                    b.Property<bool?>("IsNavigationClear")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsVisualConsistencyMet")
+                    b.Property<bool?>("IsVisualConsistencyMet")
                         .HasColumnType("bit");
 
                     b.Property<int>("ProjectId")
@@ -403,7 +403,7 @@ namespace EduMobile.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("BenchmarkConsideredMobileFirst")
+                    b.Property<bool?>("BenchmarkConsideredMobileFirst")
                         .HasColumnType("bit");
 
                     b.Property<string>("BenchmarkFindings")
@@ -426,10 +426,10 @@ namespace EduMobile.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("BenchmarkUsedSmartphoneForComparative")
+                    b.Property<bool?>("BenchmarkUsedSmartphoneForComparative")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("BenchmarkUsedSmartphoneForScreens")
+                    b.Property<bool?>("BenchmarkUsedSmartphoneForScreens")
                         .HasColumnType("bit");
 
                     b.Property<string>("ClienteName")
@@ -552,7 +552,7 @@ namespace EduMobile.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("UpdatedAt")

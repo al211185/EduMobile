@@ -22,7 +22,7 @@ namespace EduMobile.Server.Models
         public string ClienteName { get; set; }
         [MaxLength(100)]
         public string Responsable { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public string GeneralObjective { get; set; }
         // Por simplicidad, se guarda como string (JSON o separado por ';')
@@ -34,7 +34,7 @@ namespace EduMobile.Server.Models
 
         // Restricciones y preferencias
         public string CorporateColors { get; set; } = "#000000,#000000,#000000";
-        public string CorporateFont { get; set; } = "Arial";
+        public string CorporateFont { get; set; } = string.Empty;
         public string AllowedTechnologies { get; set; }
         public string CustomTechnologies { get; set; }
 
@@ -69,9 +69,9 @@ namespace EduMobile.Server.Models
         public string BenchmarkFindings { get; set; }
         public string BenchmarkImprovements { get; set; }
 
-        public bool BenchmarkUsedSmartphoneForScreens { get; set; }
-        public bool BenchmarkUsedSmartphoneForComparative { get; set; }
-        public bool BenchmarkConsideredMobileFirst { get; set; }
+        public bool? BenchmarkUsedSmartphoneForScreens { get; set; }
+        public bool? BenchmarkUsedSmartphoneForComparative { get; set; }
+        public bool? BenchmarkConsideredMobileFirst { get; set; }
 
         // Ejercicio reflexivo Fase 2
         public string ReflectionPhase2 { get; set; }

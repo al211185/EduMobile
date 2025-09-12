@@ -86,16 +86,16 @@ namespace EduMobile.Server.Controllers
                     var planningPhase = new PlanningPhase
                     {
                         ProjectId = project.Id,
-                        ProjectName = project.Title,
+                        ProjectName = "",
                         ClienteName = "",
                         Responsable = "",
-                        StartDate = DateTime.UtcNow,
+                        StartDate = null,
                         GeneralObjective = "",
                         SpecificObjectives = "",
                         FunctionalRequirements = "",
                         CustomRequirements = "",
                         CorporateColors = "#000000,#000000,#000000",
-                        CorporateFont = "Arial",
+                        CorporateFont = "",
                         AllowedTechnologies = "",
                         CustomTechnologies = "",
                         ReflectionPhase1 = "",
@@ -120,9 +120,6 @@ namespace EduMobile.Server.Controllers
                         Competitor2UsefulFeatures = "",
                         BenchmarkFindings = "",
                         BenchmarkImprovements = "",
-                        BenchmarkUsedSmartphoneForScreens = false,
-                        BenchmarkUsedSmartphoneForComparative = false,
-                        BenchmarkConsideredMobileFirst = false,
                         ReflectionPhase2 = "",
                         AudienceQuestions = "",
                         ReflectionPhase3 = "",
@@ -137,17 +134,9 @@ namespace EduMobile.Server.Controllers
                     {
                         ProjectId = project.Id,
                         SiteMapFilePath = "",
-                        IsHierarchyClear = false,
-                        AreSectionsIdentified = false,
-                        AreLinksClear = false,
-                        AreVisualElementsUseful = false,
                         Wireframe480pxPath = "",
                         Wireframe768pxPath = "",
                         Wireframe1024pxPath = "",
-                        IsMobileFirst = false,
-                        IsNavigationClear = false,
-                        IsDesignFunctional = false,
-                        IsVisualConsistencyMet = false,
                         UpdatedAt = DateTime.UtcNow
                     };
 
