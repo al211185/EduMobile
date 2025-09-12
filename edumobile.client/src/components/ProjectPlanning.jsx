@@ -219,7 +219,6 @@ const ProjectPlanning = ({ projectData = {} }) => {
             responsable: formData.responsable || "Sin responsable",
         };
 
-        console.log("Datos enviados al servidor (Guardar Progreso):", payload);
 
         try {
             const response = await fetch("/api/projects/save-phase-data", {
@@ -253,7 +252,6 @@ const ProjectPlanning = ({ projectData = {} }) => {
 
         try {
             await saveProgress(); // Guarda los datos
-            console.log("Fase 1 completada. Redirigiendo a Fase 2 (Diseño)...");
             navigate(`/fase-2-diseno/${projectData.id}`); // Incluye el projectId en la URL
         } catch (error) {
             console.error("Error al completar la fase:", error);

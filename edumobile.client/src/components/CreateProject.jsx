@@ -21,7 +21,6 @@ const CreateProject = () => {
         setErrorMessages([]);
 
         try {
-            console.log("Datos enviados al servidor:", formData);
 
             const response = await fetch("/api/projects/create", {
                 method: "POST",

@@ -36,7 +36,6 @@ const DesignPhase = ({ readOnly = false }) => {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    console.log("Datos de la fase obtenidos:", data);
                     setPhaseData(data);
                 } else {
                     console.error("Error al cargar los datos de la fase", await response.json());
@@ -57,7 +56,6 @@ const DesignPhase = ({ readOnly = false }) => {
             const fetchFeedback = async () => {
                 try {
                     const response = await fetch(`/api/Feedbacks/${projectId}/2`);
-                    console.log("GET Feedback response:", response);
                     if (response.ok) {
                         const data = await response.json();
                         // Ajusta el nombre de la propiedad según lo que retorne tu API
