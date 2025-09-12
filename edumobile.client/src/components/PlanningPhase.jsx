@@ -50,7 +50,6 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                     console.log("GET Feedback response:", response);
                     if (response.ok) {
                         const data = await response.json();
-                        console.log("Feedback data:", data);
                         // Ajusta el nombre de la propiedad según lo que retorna tu API (por ejemplo, "feedbackText")
                         setLocalFeedback(data.feedbackText || "");
                     } else if (response.status === 404) {
