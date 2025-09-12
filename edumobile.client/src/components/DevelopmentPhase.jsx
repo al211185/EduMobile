@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 
 // Definimos los estados o columnas del Kanban Board
-const statuses = ["Backlog", "Todo", "InProgress", "Done"];
+const statuses = ["Backlog", "To Do", "In Progress", "Done"];
 
 const DevelopmentPhase = ({ projectId, readOnly = false }) => {
     const { projectId: paramId } = useParams();
@@ -215,55 +215,75 @@ const DevelopmentPhase = ({ projectId, readOnly = false }) => {
 
                 <DragDropContext onDragEnd={onDragEnd}>
                     <div className="flex gap-4 overflow-x-auto pb-4">
-                        {statuses.map((status) => (
-                            <Droppable droppableId={status} key={status}>
-                                {(provided) => {
-                                    const items = kanbanItems.filter((i) => i.status === status);
-                                    return (
-                                        <div
-                                            className="min-w-[240px] bg-gray-100 p-4 rounded-2xl border border-gray-200 flex-shrink-0 flex flex-col"
-                                            ref={provided.innerRef}
-                                            {...provided.droppableProps}
-                                        >
-                                            <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                                                {status}
-                                            </h3>
-                                            <div className="flex-1 space-y-2 overflow-y-auto">
-                                                {items.map((item, index) => (
-                                                    <Draggable
-                                                        key={String(item.id)}
-                                                        draggableId={String(item.id)}
-                                                        index={index}
-                                                        isDragDisabled={readOnly}
-                                                    >
-                                                        {(prov, snap) => (
-                                                            <div
-                                                                className="bg-white p-3 rounded-md border border-gray-200 shadow-sm"
-                                                                ref={prov.innerRef}
-                                                                {...prov.draggableProps}
-                                                                {...prov.dragHandleProps}
-                                                                style={{
-                                                                    ...prov.draggableProps.style,
-                                                                    opacity: snap.isDragging ? 0.8 : 1,
-                                                                }}
-                                                            >
-                                                                <h4 className="text-md font-medium text-gray-800">
-                                                                    {item.title}
-                                                                </h4>
-                                                                <p className="text-sm text-gray-600">
-                                                                    {item.description}
-                                                                </p>
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
-                                                ))}
-                                                {provided.placeholder}
+                        {statuses.map((status) => {
+                            let statusColor = "";
+                            switch (status) {
+                                case "Backlog":
+                                    statusColor = "bg-blue-100";
+                                    break;
+                                case "To Do":
+                                    statusColor = "bg-purple-200";
+                                    break;
+                                case "In Progress":
+                                    statusColor = "bg-yellow-100";
+                                    break;
+                                case "Done":
+                                    statusColor = "bg-green-100";
+                                    break;
+                                default:
+                                    statusColor = "bg-gray-100";
+                            }
+
+                            return (
+                                <Droppable droppableId={status} key={status}>
+                                    {(provided) => {
+                                        const items = kanbanItems.filter((i) => i.status === status);
+                                        return (
+                                            <div
+                                                className={`min-w-[240px] p-4 rounded-2xl border border-gray-200 flex-shrink-0 flex flex-col ${statusColor}`}
+                                                ref={provided.innerRef}
+                                                {...provided.droppableProps}
+                                            >
+                                                <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                                                    {status}
+                                                </h3>
+                                                <div className="flex-1 space-y-2 overflow-y-auto">
+                                                    {items.map((item, index) => (
+                                                        <Draggable
+                                                            key={String(item.id)}
+                                                            draggableId={String(item.id)}
+                                                            index={index}
+                                                            isDragDisabled={readOnly}
+                                                        >
+                                                            {(prov, snap) => (
+                                                                <div
+                                                                    className="bg-white p-3 rounded-md border border-gray-200 shadow-sm"
+                                                                    ref={prov.innerRef}
+                                                                    {...prov.draggableProps}
+                                                                    {...prov.dragHandleProps}
+                                                                    style={{
+                                                                        ...prov.draggableProps.style,
+                                                                        opacity: snap.isDragging ? 0.8 : 1,
+                                                                    }}
+                                                                >
+                                                                    <h4 className="text-md font-medium text-gray-800">
+                                                                        {item.title}
+                                                                    </h4>
+                                                                    <p className="text-sm text-gray-600">
+                                                                        {item.description}
+                                                                    </p>
+                                                                </div>
+                                                            )}
+                                                        </Draggable>
+                                                    ))}
+                                                    {provided.placeholder}
+                                                </div>
                                             </div>
-                                        </div>
-                                    );
-                                }}
-                            </Droppable>
-                        ))}
+                                        );
+                                    }}
+                                </Droppable>
+                            );
+                        })}
                     </div>
                 </DragDropContext>
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { jsPDF } from "jspdf";
 
 // Preguntas predefinidas por categoría
@@ -176,14 +177,23 @@ const Phase3Audience = ({ data, onSave }) => {
             doc.setFontSize(12);
             doc.setTextColor(44, 62, 80);
 
+            const lineHeight = 14;
+            const pageHeight = doc.internal.pageSize.getHeight();
+
             questions.forEach((q, idx) => {
-                doc.circle(50, y - 4, 2, "F");
-                doc.text(`${idx + 1}. ${q}`, 60, y);
-                y += 20;
-                if (y > doc.internal.pageSize.getHeight() - 80) {
-                    doc.addPage();
-                    y = 40;
-                }
+                const textLines = doc.splitTextToSize(`${idx + 1}. ${q}`, pageWidth - 100);
+                textLines.forEach((line, lineIdx) => {
+                    if (y > pageHeight - 80) {
+                        doc.addPage();
+                        y = 40;
+                    }
+                    if (lineIdx === 0) {
+                        doc.circle(50, y - 4, 2, "F");
+                    }
+                    doc.text(line, 60, y);
+                    y += lineHeight;
+                });
+                y += 6;
             });
             y += 20;
         };

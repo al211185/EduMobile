@@ -162,7 +162,28 @@ const ProjectPhase = () => {
                 .replace(/([A-Z])/g, " $1")
                 .replace(/^./, (c) => c.toUpperCase())
                 .trim();
-            if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+            if (key.toLowerCase() === "audiencequestions") {
+                try {
+                    const parsed = JSON.parse(value);
+                    lines.push("Preguntas de Audiencia:");
+                    const catMap = {
+                        demographics: "Datos Demográficos",
+                        behavior: "Preguntas sobre Comportamiento",
+                        expectations: "Expectativas y Opiniones",
+                        preferences: "Preferencias Tecnológicas",
+                        custom: "Preguntas Personalizadas"
+                    };
+                    for (const [cat, arr] of Object.entries(parsed || {})) {
+                        if (Array.isArray(arr) && arr.length) {
+                            const capCat = catMap[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+                            lines.push(`  ${capCat}:`);
+                            arr.forEach((q, idx) => lines.push(`    ${idx + 1}. ${q}`));
+                        }
+                    }
+                } catch {
+                    lines.push(`${label}: ${formatValue(value)}`);
+                }
+            } else if (typeof value === "object" && value !== null && !Array.isArray(value)) {
                 lines.push(`${label}:`);
                 objectToLines(value).forEach((l) => lines.push(`  ${l}`));
             } else {
@@ -185,25 +206,140 @@ const ProjectPhase = () => {
             const designData = designRes.ok ? await designRes.json() : {};
             const devData = devRes.ok ? await devRes.json() : {};
 
-            const doc = new jsPDF();
+            const doc = new jsPDF("p", "pt", "a4");
             const pageWidth = doc.internal.pageSize.getWidth();
-            doc.setFontSize(16);
-            doc.text(project.title || "Proyecto", pageWidth / 2, 20, { align: "center" });
-            let y = 30;
+            doc.setFillColor(79, 70, 229);
+            doc.rect(0, 0, pageWidth, 60, "F");
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(20);
+            doc.setTextColor(255, 255, 255);
+            doc.text("Reporte del Proyecto", pageWidth / 2, 35, { align: "center" });
+
+            let y = 80;
 
             const addSection = (title, data) => {
-                doc.setFontSize(14);
-                doc.text(title, 10, y);
-                y += 6;
-                doc.setFontSize(10);
-                const lines = doc.splitTextToSize(objectToLines(data).join("\n"), pageWidth - 20);
-                doc.text(lines, 10, y);
-                y += lines.length * 5 + 10;
+
+                const lines = objectToLines(data);
+                if (!lines.length) return;
+
+                // Fondo tipo "pill" para el título
+                const pillBg = [238, 242, 255]; // #EEF2FF
+                doc.setFillColor(...pillBg);
+                doc.roundedRect(40, y - 6, pageWidth - 80, 24, 6, 6, "F");
+
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(16);
+                doc.setTextColor(79, 70, 229);
+                doc.text(title, 50, y + 12);
+                y += 36;
+
+                const marginX = 40;
+                const contentWidth = pageWidth - marginX * 2;
+
+                const fields = lines.map((line) => {
+                    const indent = (line.match(/^\s*/)[0].length / 2) || 0;
+                    const text = line.trim();
+                    if (text.endsWith(":") && !text.includes(": ")) {
+                        return { heading: true, label: text.slice(0, -1), indent };
+                    }
+                    const [label, value] = text.split(/:(.+)/);
+                    return {
+                        heading: false,
+                        label: (label || "").trim(),
+                        value: (value || "").trim(),
+                        indent
+                    };
+                });
+
+                fields.forEach((field) => {
+                    if (field.heading) {
+                        if (y > doc.internal.pageSize.getHeight() - 60) {
+                            doc.addPage();
+                            y = 40;
+                        }
+                        doc.setFont("helvetica", "bold");
+                        doc.setFontSize(12);
+                        doc.setTextColor(79, 70, 229);
+                        doc.text(field.label, marginX + field.indent * 20, y);
+                        y += 20;
+                        return;
+                    }
+
+                    const x = marginX + field.indent * 20;
+                    const usableWidth = contentWidth - field.indent * 20;
+
+                    if (!field.value) {
+                        if (/^\d+\.\s/.test(field.label)) {
+                            if (y > doc.internal.pageSize.getHeight() - 40) {
+                                doc.addPage();
+                                y = 40;
+                            }
+                            doc.setFont("helvetica", "normal");
+                            doc.setFontSize(12);
+                            doc.setTextColor(44, 62, 80);
+                            const qLines = doc.splitTextToSize(field.label, usableWidth - 10);
+                            qLines.forEach((line, idx) => {
+                                if (y > doc.internal.pageSize.getHeight() - 40) {
+                                    doc.addPage();
+                                    y = 40;
+                                }
+                                if (idx === 0) doc.circle(x - 10, y - 4, 2, "F");
+                                doc.text(line, x, y);
+                                y += 14;
+                            });
+                            y += 6;
+                            return;
+                        }
+                        if (y > doc.internal.pageSize.getHeight() - 40) {
+                            doc.addPage();
+                            y = 40;
+                        }
+                        doc.setFont("helvetica", "normal");
+                        doc.setFontSize(12);
+                        doc.setTextColor(44, 62, 80);
+                        doc.text(field.label, x, y);
+                        y += 20;
+                        return;
+                    }
+
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(12);
+                    doc.setTextColor(79, 70, 229);
+                    doc.text(field.label, x, y);
+
+                    const valueLines = doc.splitTextToSize(field.value, usableWidth - 10);
+                    const boxHeight = valueLines.length * 16 + 6;
+                    const requiredHeight = boxHeight + 24;
+
+                    if (y + requiredHeight > doc.internal.pageSize.getHeight() - 40) {
+                        doc.addPage();
+                        y = 40;
+                    }
+
+                    doc.setFillColor(243, 244, 246); // #F3F4F6
+                    doc.roundedRect(x, y + 4, usableWidth, boxHeight, 4, 4, "F");
+                    doc.setFont("helvetica", "normal");
+                    doc.setTextColor(44, 62, 80);
+                    doc.text(valueLines, x + 5, y + 18);
+
+                    y += requiredHeight;
+                });
+
+                y += 10;
             };
 
             addSection("Planeaci\u00f3n", planData);
             addSection("Dise\u00f1o", designData);
             addSection("Desarrollo", devData);
+
+            const footerY = doc.internal.pageSize.getHeight() - 40;
+            doc.setDrawColor(200, 200, 200);
+            doc.setLineWidth(1);
+            doc.line(40, footerY, pageWidth - 40, footerY);
+            doc.setFontSize(10);
+            doc.setTextColor(128, 128, 128);
+            const currentDate = new Date().toLocaleDateString();
+            doc.text(`Generado el: ${currentDate}`, 40, footerY + 15);
 
             doc.save("reporte_proyecto.pdf");
         } catch (err) {
@@ -328,7 +464,7 @@ const ProjectPhase = () => {
                 </div>
 
                 <div className="flex items-center gap-2 overflow-x-auto whitespace-nowrap py-2">
-                    
+
                     {/* El botón "Agregar Participante" solo se muestra para alumnos */}
                     {!isProfessor && (
                         <button
@@ -396,7 +532,7 @@ const ProjectPhase = () => {
                 {renderPhaseComponent()}
             </main>
 
-      
+
             {/* Modal para editar asignaciones de fase */}
             {showPhaseAssignmentEditor && (
                 <PhaseAssignmentEditor

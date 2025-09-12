@@ -2,7 +2,7 @@ import React from "react";
 
 const StepNavigation = ({ steps, currentStep, onStepChange }) => {
     return (
-        <nav className="flex justify-center mb-4 space-x-2">
+        <nav className="flex justify-center mt-4 mb-4 space-x-2">
             {steps.map((label, idx) => {
                 const step = idx + 1;
                 const active = step === currentStep;
