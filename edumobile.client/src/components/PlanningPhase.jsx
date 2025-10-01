@@ -47,7 +47,6 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
             const fetchFeedback = async () => {
                 try {
                     const response = await fetch(`/api/Feedbacks/${projectId}/1`);
-                    console.log("GET Feedback response:", response);
                     if (response.ok) {
                         const data = await response.json();
                         // Ajusta el nombre de la propiedad según lo que retorna tu API (por ejemplo, "feedbackText")

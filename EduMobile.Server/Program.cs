@@ -2,21 +2,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using EduMobile.Server.Data;
 using EduMobile.Server.Models;
-using System.Configuration;
 using EduMobile.Server.Services;
 using EduMobile.Server.Hubs;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de la cadena de conexión
+// ConfiguraciÃ³n de la cadena de conexiÃ³n
 var connectionString = builder.Configuration.GetConnectionString("UserContextConnection")
     ?? throw new InvalidOperationException("Connection string 'UserContextConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Configuración de Identity con ApplicationUser y roles
+// ConfiguraciÃ³n de Identity con ApplicationUser y roles
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -32,7 +31,7 @@ builder.Services
     .AddControllers()
     .AddJsonOptions(opt =>
     {
-        // Ignorar ciclos de referencia EF en la serialización JSON
+        // Ignorar ciclos de referencia EF en la serializaciÃ³n JSON
         opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
@@ -58,14 +57,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "EduMobile API v1");
-        options.RoutePrefix = "api-docs"; // Swagger estará en /api-docs
-    });
-}
-
-// Middleware para archivos estáticos (asegúrate de que wwwroot esté correctamente configurado)
-app.UseStaticFiles();
-
-if (app.Environment.IsDevelopment())
 {
     app.Use(async (context, next) =>
     {
@@ -74,11 +65,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// Middleware para autenticación y autorización
+// Middleware para autenticaciÃ³n y autorizaciÃ³n
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Configuración de rutas de controladores
+// ConfiguraciÃ³n de rutas de controladores
 app.MapControllers();
 
 app.MapHub<NotificationHub>("/notificationHub");
