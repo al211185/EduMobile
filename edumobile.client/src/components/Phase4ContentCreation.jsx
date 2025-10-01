@@ -1,21 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import useAutoSave from "../hooks/useAutoSave";
 
-const Phase4ContentCreation = ({ data, onNext }) => {
+const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const fileUploadEndpoint = "/api/Files/upload";
     const fileImageEndpoint = "/api/Files/image";
 
-    const [formData, setFormData] = useState({
-        contentFilePath: data?.contentFilePath || "",
-        contentPreviewUrl: data?.contentFilePath
-            ? `${fileImageEndpoint}/${data.contentFilePath.split("/").pop()}`
-            : "",
-        areContentsRelevantForMobile: data?.areContentsRelevantForMobile || false,
-        areContentsClearAndNavigable: data?.areContentsClearAndNavigable || false,
-        doContentsGuideUserAttention: data?.doContentsGuideUserAttention || false,
-    });
+    const getPreviewUrl = useCallback(
+        (filePath) =>
+            filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "",
+        [fileImageEndpoint]
+    );
 
-    const getPreviewUrl = (filePath) =>
-        filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "";
+    const initialState = useMemo(
+        () => ({
+            contentFilePath: data?.contentFilePath || "",
+            contentPreviewUrl: data?.contentFilePath ? getPreviewUrl(data.contentFilePath) : "",
+            areContentsRelevantForMobile: data?.areContentsRelevantForMobile || false,
+            areContentsClearAndNavigable: data?.areContentsClearAndNavigable || false,
+            doContentsGuideUserAttention: data?.doContentsGuideUserAttention || false,
+        }),
+        [data, getPreviewUrl]
+    );
+
+    const initialSnapshot = useMemo(() => JSON.stringify(initialState), [initialState]);
+
+    const [formData, setFormData] = useState(initialState);
+
+    useEffect(() => {
+        setFormData((prev) => {
+            const prevSnapshot = JSON.stringify(prev);
+            return prevSnapshot === initialSnapshot ? prev : initialState;
+        });
+    }, [initialState, initialSnapshot]);
 
     const handleInputChange = (e) => {
         const { name, type, checked } = e.target;
@@ -25,14 +41,34 @@ const Phase4ContentCreation = ({ data, onNext }) => {
         }));
     };
 
+    useEffect(() => {
+        if (onDataChange) {
+            onDataChange(formData);
+        }
+    }, [formData, onDataChange]);
+
+    const autoSaveEnabled = !readOnly && typeof onAutoSave === "function";
+
+    const buildPayload = useCallback(() => formData, [formData]);
+
+    const { isSaving, saveNow } = useAutoSave({
+        data: formData,
+        buildPayload,
+        onSave: onAutoSave || (async () => true),
+        delay: 2000,
+        enabled: autoSaveEnabled,
+        initialSnapshot,
+    });
+
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (!file) {
-            return setFormData((prev) => ({
+            setFormData((prev) => ({
                 ...prev,
                 contentFilePath: "",
                 contentPreviewUrl: "",
             }));
+            return;
         }
 
         // preview local
@@ -64,7 +100,13 @@ const Phase4ContentCreation = ({ data, onNext }) => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        if (autoSaveEnabled) {
+            const saved = await saveNow({ showAlerts: true, force: true });
+            if (!saved) {
+                return;
+            }
+        }
         onNext(formData);
     };
 
@@ -73,7 +115,7 @@ const Phase4ContentCreation = ({ data, onNext }) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    handleSubmit();
+                    void handleSubmit();
                 }}
                 className="flex flex-col h-full"
             >
@@ -159,13 +201,13 @@ const Phase4ContentCreation = ({ data, onNext }) => {
                 <div className="sticky bottom-0 bg-white p-4">
                     <button
                         type="submit"
-                        disabled={!formData.contentFilePath}
-                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.contentFilePath
+                        disabled={!formData.contentFilePath || isSaving}
+                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.contentFilePath && !isSaving
                                 ? "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
                                 : "bg-gray-300 text-gray-600 cursor-not-allowed"
-                            }`}
+                        }`}
                     >
-                        Completar Fase 4
+                        {isSaving ? "Guardando..." : "Completar Fase 4"}
                     </button>
                 </div>
             </form>

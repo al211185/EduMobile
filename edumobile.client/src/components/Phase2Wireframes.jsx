@@ -1,44 +1,49 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import useAutoSave from "../hooks/useAutoSave";
 
-const Phase2Wireframes = ({ data, onNext }) => {
+const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const FILE_UPLOAD_ENDPOINT = "/api/Files/upload";
     const FILE_IMAGE_ENDPOINT = "/api/Files/image";
 
-    const [formData, setFormData] = useState({
-        wireframe480pxPath: "",
-        wireframe480pxPreviewUrl: "",
-        wireframe768pxPath: "",
-        wireframe768pxPreviewUrl: "",
-        wireframe1024pxPath: "",
-        wireframe1024pxPreviewUrl: "",
-        isMobileFirst: false,
-        isNavigationClear: false,
-        isDesignFunctional: false,
-        isVisualConsistencyMet: false,
-    });
 
     const getPreviewUrl = useCallback(
         (filePath) =>
             filePath ? `${FILE_IMAGE_ENDPOINT}/${filePath.split("/").pop()}` : "",
-        []
+        [FILE_IMAGE_ENDPOINT]
     );
 
+    const initialState = useMemo(
+        () => ({
+            wireframe480pxPath: data?.wireframe480pxPath || "",
+            wireframe480pxPreviewUrl: data?.wireframe480pxPath
+                ? getPreviewUrl(data.wireframe480pxPath)
+                : "",
+            wireframe768pxPath: data?.wireframe768pxPath || "",
+            wireframe768pxPreviewUrl: data?.wireframe768pxPath
+                ? getPreviewUrl(data.wireframe768pxPath)
+                : "",
+            wireframe1024pxPath: data?.wireframe1024pxPath || "",
+            wireframe1024pxPreviewUrl: data?.wireframe1024pxPath
+                ? getPreviewUrl(data.wireframe1024pxPath)
+                : "",
+            isMobileFirst: data?.isMobileFirst || false,
+            isNavigationClear: data?.isNavigationClear || false,
+            isDesignFunctional: data?.isDesignFunctional || false,
+            isVisualConsistencyMet: data?.isVisualConsistencyMet || false,
+        }),
+        [data, getPreviewUrl]
+    );
+
+    const initialSnapshot = useMemo(() => JSON.stringify(initialState), [initialState]);
+
+    const [formData, setFormData] = useState(initialState);
+
     useEffect(() => {
-        if (data) {
-            setFormData({
-                wireframe480pxPath: data.wireframe480pxPath || "",
-                wireframe480pxPreviewUrl: getPreviewUrl(data.wireframe480pxPath),
-                wireframe768pxPath: data.wireframe768pxPath || "",
-                wireframe768pxPreviewUrl: getPreviewUrl(data.wireframe768pxPath),
-                wireframe1024pxPath: data.wireframe1024pxPath || "",
-                wireframe1024pxPreviewUrl: getPreviewUrl(data.wireframe1024pxPath),
-                isMobileFirst: data.isMobileFirst || false,
-                isNavigationClear: data.isNavigationClear || false,
-                isDesignFunctional: data.isDesignFunctional || false,
-                isVisualConsistencyMet: data.isVisualConsistencyMet || false,
-            });
-        }
-    }, [data, getPreviewUrl]);
+        setFormData((prev) => {
+            const prevSnapshot = JSON.stringify(prev);
+            return prevSnapshot === initialSnapshot ? prev : initialState;
+        });
+    }, [initialState, initialSnapshot]);
 
     const handleInputChange = (e) => {
         const { name, type, checked } = e.target;
@@ -47,6 +52,25 @@ const Phase2Wireframes = ({ data, onNext }) => {
             [name]: type === "checkbox" ? checked : prev[name],
         }));
     };
+
+    useEffect(() => {
+        if (onDataChange) {
+            onDataChange(formData);
+        }
+    }, [formData, onDataChange]);
+
+    const autoSaveEnabled = !readOnly && typeof onAutoSave === "function";
+
+    const buildPayload = useCallback(() => formData, [formData]);
+
+    const { isSaving, saveNow } = useAutoSave({
+        data: formData,
+        buildPayload,
+        onSave: onAutoSave || (async () => true),
+        delay: 2000,
+        enabled: autoSaveEnabled,
+        initialSnapshot,
+    });
 
     const uploadFile = async (file) => {
         const payload = new FormData();
@@ -102,7 +126,7 @@ const Phase2Wireframes = ({ data, onNext }) => {
         formData.isDesignFunctional &&
         formData.isVisualConsistencyMet;
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!allUploaded) {
             alert("Por favor, sube todos los archivos requeridos antes de continuar.");
             return;
@@ -110,6 +134,12 @@ const Phase2Wireframes = ({ data, onNext }) => {
         if (!allChecked) {
             alert("Por favor, marca todas las opciones antes de continuar.");
             return;
+        }
+        if (autoSaveEnabled) {
+            const saved = await saveNow({ showAlerts: true, force: true });
+            if (!saved) {
+                return;
+            }
         }
         onNext(formData);
     };
@@ -119,7 +149,7 @@ const Phase2Wireframes = ({ data, onNext }) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    handleSubmit();
+                    void handleSubmit();
                 }}
                 className="flex flex-col h-full"
             >
@@ -169,48 +199,48 @@ const Phase2Wireframes = ({ data, onNext }) => {
                     {/* Checklist */}
                     <fieldset className="rounded-2xl">
                         <div className="mt-4 space-y-2">
-                        <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="isMobileFirst"
-                                checked={formData.isMobileFirst}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">¿Cumple con Mobile First?</span>
-                        </label>
-                        <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="isNavigationClear"
-                                checked={formData.isNavigationClear}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">¿La navegación es clara?</span>
-                        </label>
-                        <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="isDesignFunctional"
-                                checked={formData.isDesignFunctional}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">¿El diseño es funcional?</span>
-                        </label>
-                        <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="isVisualConsistencyMet"
-                                checked={formData.isVisualConsistencyMet}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">¿Es visualmente consistente?</span>
-                        </label>
-                        <p className="text-sm text-red-500">
-                            * Debes seleccionar todas las opciones antes de continuar.
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="isMobileFirst"
+                                    checked={formData.isMobileFirst}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">¿Cumple con Mobile First?</span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="isNavigationClear"
+                                    checked={formData.isNavigationClear}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">¿La navegación es clara?</span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="isDesignFunctional"
+                                    checked={formData.isDesignFunctional}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">¿El diseño es funcional?</span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="isVisualConsistencyMet"
+                                    checked={formData.isVisualConsistencyMet}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">¿Es visualmente consistente?</span>
+                            </label>
+                            <p className="text-sm text-red-500">
+                                * Debes seleccionar todas las opciones antes de continuar.
                             </p>
                         </div>
                     </fieldset>
@@ -220,13 +250,13 @@ const Phase2Wireframes = ({ data, onNext }) => {
                 <div className="sticky bottom-0 p-4">
                     <button
                         type="submit"
-                        disabled={!(allUploaded && allChecked)}
-                        className={`w-full font-semibold py-2 rounded transition-colors ${allUploaded && allChecked
+                        disabled={!(allUploaded && allChecked) || isSaving}
+                        className={`w-full font-semibold py-2 rounded transition-colors ${allUploaded && allChecked && !isSaving
                                 ? "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
                                 : "bg-gray-300 text-gray-600 cursor-not-allowed"
-                            }`}
+                        }`}
                     >
-                        Completar Fase 2
+                        {isSaving ? "Guardando..." : "Completar Fase 2"}
                     </button>
                 </div>
             </form>

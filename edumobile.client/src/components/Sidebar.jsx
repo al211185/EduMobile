@@ -97,7 +97,7 @@ const Sidebar = () => {
                 <span>Configuración</span>
             </NavLink>
             <a
-                href="https://docs.google.com/forms/…"
+                href="https://forms.gle/gGAbr6kbWGAEH2Kx9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={baseLink}

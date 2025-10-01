@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Phase1SiteMap from "./Phase1SiteMap";
 import Phase2Wireframes from "./Phase2Wireframes";
@@ -19,6 +19,8 @@ const DesignPhase = ({ readOnly = false }) => {
     const [phaseData, setPhaseData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [phaseDrafts, setPhaseDrafts] = useState({});
+
 
     // Estado local para retroalimentación (fase de diseño: fase 2)
     const [localFeedback, setLocalFeedback] = useState("");
@@ -74,57 +76,124 @@ const DesignPhase = ({ readOnly = false }) => {
     }, [projectId]);
 
     // Función para guardar los datos de la fase
-    const savePhaseData = async (updatedData) => {
-        // En modo readonly (profesor) no guardamos datos de la fase
-        if (readOnly) return true;
-        try {
+    const handlePhaseDraftChange = useCallback((phaseNumber, updatedDraft) => {
+        setPhaseDrafts((prev) => ({ ...prev, [phaseNumber]: updatedDraft }));
+        setPhaseData((prev) => (prev ? { ...prev, ...updatedDraft } : updatedDraft));
+    }, []);
+
+    const persistPhaseData = useCallback(
+        async (phaseNumber, updatedData, { showAlerts = false } = {}) => {
+            if (readOnly) {
+                return true;
+            }
+
             const designPhaseId = phaseData?.id || phaseData?.PhaseId || phaseData?.Id;
+            if (!designPhaseId) {
+                const message = "No se pudo identificar la fase de diseño.";
+                if (showAlerts) {
+                    alert(message);
+                } else {
+                    console.warn(message);
+                }
+                throw new Error(message);
+            }
+
             let endpoint = `/api/designphases/${designPhaseId}`;
-            if (currentPhase === 2) {
+            if (phaseNumber === 2) {
                 endpoint = `/api/designphases/Phase2/${designPhaseId}`;
-            } else if (currentPhase === 3) {
+            } else if (phaseNumber === 3) {
                 endpoint = `/api/designphases/Phase3/${designPhaseId}`;
-            } else if (currentPhase === 4) {
+            } else if (phaseNumber === 4) {
                 endpoint = `/api/designphases/Phase4/${designPhaseId}`;
             }
 
-            const response = await fetch(endpoint, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updatedData),
-            });
+            try {
+                const response = await fetch(endpoint, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(updatedData),
+                });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error("Error al guardar los datos de la fase:", errorData);
-                return false;
+                if (!response.ok) {
+                    let message = "Error al guardar los datos de la fase.";
+                    try {
+                        const errorData = await response.json();
+                        message = errorData.message || message;
+                    } catch {
+                        // Ignorar errores al leer el cuerpo
+                    }
+
+                    if (showAlerts) {
+                        alert(message);
+                    }
+                    throw new Error(message);
+                }
+
+                let serverData = null;
+                try {
+                    const raw = await response.text();
+                    if (raw) {
+                        serverData = JSON.parse(raw);
+                    }
+                } catch (parseError) {
+                    console.warn("No se pudo interpretar la respuesta del guardado de fase:", parseError);
+                }
+
+                if (serverData && typeof serverData === "object") {
+                    setPhaseData((prev) => (prev ? { ...prev, ...serverData } : serverData));
+                } else {
+                    setPhaseData((prev) => (prev ? { ...prev, ...updatedData } : updatedData));
+                }
+
+                setPhaseDrafts((prev) => ({ ...prev, [phaseNumber]: updatedData }));
+
+                if (showAlerts) {
+                    alert("Datos guardados exitosamente.");
+                }
+
+                return true;
+            } catch (error) {
+                console.error("Error al guardar los datos de la fase:", error);
+                throw error;
             }
+        },
+        [phaseData, readOnly]
+    );
 
-            const data = await response.json();
-            setPhaseData(data);
-            return true;
-        } catch (error) {
-            console.error("Error en la solicitud PUT:", error);
-            return false;
-        }
-    };
+    const handleNextPhase = useCallback(
+        async (updatedData, phaseNumber = currentPhase) => {
+            const payload = updatedData || phaseDrafts[phaseNumber];
 
-    const handleNextPhase = async (updatedData) => {
-        if (!readOnly) {
-            const saved = await savePhaseData(updatedData);
-            if (!saved) {
-                alert("Error al guardar los datos, intenta nuevamente.");
+            if (!payload && !readOnly) {
+                alert("No hay datos para guardar en esta fase.");
                 return;
             }
-        }
-        if (currentPhase < 4) {
-            setCurrentPhase((prev) => prev + 1);
-        } else {
-            if (!readOnly) {
+            if (!readOnly && payload) {
+                try {
+                    await persistPhaseData(phaseNumber, payload, { showAlerts: true });
+                } catch (saveError) {
+                    return;
+                }
+            }
+
+            if (phaseNumber < 4) {
+                setCurrentPhase(phaseNumber + 1);
+            } else if (!readOnly) {
                 alert("Diseño finalizado y datos guardados exitosamente.");
             }
-        }
-    };
+        },
+        [currentPhase, persistPhaseData, phaseDrafts, readOnly]
+    );
+
+    const phaseAutoSaveHandlers = useMemo(
+        () => ({
+            1: (payload, options) => persistPhaseData(1, payload, options),
+            2: (payload, options) => persistPhaseData(2, payload, options),
+            3: (payload, options) => persistPhaseData(3, payload, options),
+            4: (payload, options) => persistPhaseData(4, payload, options),
+        }),
+        [persistPhaseData]
+    );
 
     const handlePrevPhase = () => {
         if (currentPhase > 1) {
@@ -224,16 +293,40 @@ const DesignPhase = ({ readOnly = false }) => {
             {/* Renderizado condicional de fases */}
             <main className="flex-1 overflow-y-auto px-6 py-4 sm:px-8 space-y-6">
             {currentPhase === 1 && phaseData && (
-                <Phase1SiteMap data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
+                    <Phase1SiteMap
+                        data={phaseData}
+                        onNext={(payload) => handleNextPhase(payload, 1)}
+                        readOnly={readOnly}
+                        onAutoSave={phaseAutoSaveHandlers[1]}
+                        onDataChange={(draft) => handlePhaseDraftChange(1, draft)}
+                    />
             )}
             {currentPhase === 2 && phaseData && (
-                <Phase2Wireframes data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
+                    <Phase2Wireframes
+                        data={phaseData}
+                        onNext={(payload) => handleNextPhase(payload, 2)}
+                        readOnly={readOnly}
+                        onAutoSave={phaseAutoSaveHandlers[2]}
+                        onDataChange={(draft) => handlePhaseDraftChange(2, draft)}
+                    />
             )}
             {currentPhase === 3 && (
-                <Phase3VisualDesign data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
+                    <Phase3VisualDesign
+                        data={phaseData}
+                        onNext={(payload) => handleNextPhase(payload, 3)}
+                        readOnly={readOnly}
+                        onAutoSave={phaseAutoSaveHandlers[3]}
+                        onDataChange={(draft) => handlePhaseDraftChange(3, draft)}
+                    />
             )}
             {currentPhase === 4 && (
-                <Phase4ContentCreation data={phaseData} onNext={handleNextPhase} readOnly={readOnly} />
+                    <Phase4ContentCreation
+                        data={phaseData}
+                        onNext={(payload) => handleNextPhase(payload, 4)}
+                        readOnly={readOnly}
+                        onAutoSave={phaseAutoSaveHandlers[4]}
+                        onDataChange={(draft) => handlePhaseDraftChange(4, draft)}
+                    />
             )}
 
             {/* Bloque de retroalimentación */}
@@ -283,7 +376,7 @@ const DesignPhase = ({ readOnly = false }) => {
                 </button>
                     )}
                 <button
-                    onClick={() => handleNextPhase(phaseData)}
+                        onClick={() => handleNextPhase(undefined, currentPhase)}
                         className="bg-[#4F46E5] hover:bg-[#64748B] text-white px-4 py-2 rounded transition-colors"
                 >
                     {currentPhase < 4 ? "Siguiente" : "Finalizar Diseño"}

@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import useAutoSave from "../hooks/useAutoSave";
 
-const Phase1SiteMap = ({ data, onNext }) => {
-    // Estado inicial del formulario
-    const [formData, setFormData] = useState({
-        siteMapFilePath: "",
-        siteMapPreviewUrl: "",
-        isHierarchyClear: false,
-        areSectionsIdentified: false,
-        areLinksClear: false,
-        areVisualElementsUseful: false,
-    });
-
-    // Endpoints usando el formato de rutas de Phase2Benchmarking
+const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const fileUploadEndpoint = "/api/Files/upload";
     const fileImageEndpoint = "/api/Files/image";
 
-    // Helper para obtener la URL de vista previa a partir de la ruta del archivo
-    const getPreviewUrl = (filePath) =>
-        filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "";
 
-    // Sincroniza la data recibida con el estado del formulario
+    const getPreviewUrl = useCallback(
+        (filePath) =>
+            filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "",
+        [fileImageEndpoint]
+    );
+
+    const initialState = useMemo(
+        () => ({
+            siteMapFilePath: data?.siteMapFilePath || "",
+            siteMapPreviewUrl: data?.siteMapFilePath
+                ? getPreviewUrl(data.siteMapFilePath)
+                : "",
+            isHierarchyClear: data?.isHierarchyClear || false,
+            areSectionsIdentified: data?.areSectionsIdentified || false,
+            areLinksClear: data?.areLinksClear || false,
+            areVisualElementsUseful: data?.areVisualElementsUseful || false,
+        }),
+        [data, getPreviewUrl]
+    );
+
+    const initialSnapshot = useMemo(() => JSON.stringify(initialState), [initialState]);
+
+    const [formData, setFormData] = useState(initialState);
+
+
     useEffect(() => {
-        if (data) {
-            setFormData({
-                siteMapFilePath: data.siteMapFilePath || "",
-                siteMapPreviewUrl: getPreviewUrl(data.siteMapFilePath),
-                isHierarchyClear: data.isHierarchyClear || false,
-                areSectionsIdentified: data.areSectionsIdentified || false,
-                areLinksClear: data.areLinksClear || false,
-                areVisualElementsUseful: data.areVisualElementsUseful || false,
-            });
-        }
-    }, [data]);
+        setFormData((prev) => {
+            const prevSnapshot = JSON.stringify(prev);
+            return prevSnapshot === initialSnapshot ? prev : initialState;
+        });
+    }, [initialState, initialSnapshot]);
 
     // Maneja los cambios en los inputs (checkbox o texto)
     const handleInputChange = (e) => {
@@ -43,6 +48,26 @@ const Phase1SiteMap = ({ data, onNext }) => {
     };
 
     // Maneja la carga del archivo
+    useEffect(() => {
+        if (onDataChange) {
+            onDataChange(formData);
+        }
+    }, [formData, onDataChange]);
+
+    const autoSaveEnabled = !readOnly && typeof onAutoSave === "function";
+
+    const buildPayload = useCallback(() => formData, [formData]);
+
+    const { isSaving, saveNow } = useAutoSave({
+        data: formData,
+        buildPayload,
+        onSave: onAutoSave || (async () => true),
+        delay: 2000,
+        enabled: autoSaveEnabled,
+        initialSnapshot,
+    });
+
+
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (!file) {
@@ -87,10 +112,16 @@ const Phase1SiteMap = ({ data, onNext }) => {
     };
 
     // Maneja el envío del formulario
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!formData.siteMapFilePath) {
             alert("Por favor, sube un archivo antes de continuar.");
             return;
+        }
+        if (autoSaveEnabled) {
+            const saved = await saveNow({ showAlerts: true, force: true });
+            if (!saved) {
+                return;
+            }
         }
         onNext(formData);
     };
@@ -100,9 +131,10 @@ const Phase1SiteMap = ({ data, onNext }) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    handleSubmit();
+                    void handleSubmit();
                 }}
-                className="flex flex-col h-full">
+                className="flex flex-col h-full"
+            >
                 <div className="overflow-y-auto flex-1 pr-4 space-y-8 p-6">
                     {/* Título */}
                     <fieldset className="rounded-2xl">
@@ -175,8 +207,7 @@ const Phase1SiteMap = ({ data, onNext }) => {
                                     className="h-4 w-4"
                                 />
                                 <span className="text-gray-700">
-                                    ¿Los enlaces a las secciones y páginas son fácilmente
-                                    identificables en el gráfico?
+                                    ¿Los enlaces a las secciones y páginas son fácilmente identificables en el gráfico?
                                 </span>
                             </label>
                             <label className="flex items-center space-x-2">
@@ -188,8 +219,7 @@ const Phase1SiteMap = ({ data, onNext }) => {
                                     className="h-4 w-4"
                                 />
                                 <span className="text-gray-700">
-                                    ¿Se utilizan elementos visuales que faciliten la comprensión
-                                    del mapa?
+                                    ¿Se utilizan elementos visuales que faciliten la comprensión del mapa?
                                 </span>
                             </label>
                         </div>
@@ -200,13 +230,13 @@ const Phase1SiteMap = ({ data, onNext }) => {
                 <div className="sticky bottom-0 bg-white p-4">
                     <button
                         type="submit"
-                        disabled={!formData.isHierarchyClear}
-                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.isHierarchyClear
+                        disabled={!formData.isHierarchyClear || isSaving}
+                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.isHierarchyClear && !isSaving
                                 ? "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
                                 : "bg-gray-300 text-gray-600 cursor-not-allowed"
-                            }`}
+                        }`}
                     >
-                        Completar Fase 1
+                        {isSaving ? "Guardando..." : "Completar Fase 1"}
                     </button>
                 </div>
             </form>

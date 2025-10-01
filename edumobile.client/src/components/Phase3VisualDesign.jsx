@@ -1,34 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import useAutoSave from "../hooks/useAutoSave";
 
-const Phase3VisualDesign = ({ data, onNext }) => {
+const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const FILE_UPLOAD_ENDPOINT = "/api/Files/upload";
     const FILE_IMAGE_ENDPOINT = "/api/Files/image";
 
-    const [formData, setFormData] = useState({
-        visualDesignFilePath: "",
-        visualDesignPreviewUrl: "",
-        areVisualElementsBeneficialForSmallScreens: false,
-        doesDesignPrioritizeContentForMobile: false,
-        doesDesignImproveLoadingSpeed: false,
-    });
+    const getPreviewUrl = useCallback(
+        (filePath) =>
+            filePath ? `${FILE_IMAGE_ENDPOINT}/${filePath.split("/").pop()}` : "",
+        [FILE_IMAGE_ENDPOINT]
+    );
+
+    const initialState = useMemo(
+        () => ({
+            visualDesignFilePath: data?.visualDesignFilePath || "",
+            visualDesignPreviewUrl: data?.visualDesignFilePath
+                ? getPreviewUrl(data.visualDesignFilePath)
+                : "",
+            areVisualElementsBeneficialForSmallScreens:
+                data?.areVisualElementsBeneficialForSmallScreens || false,
+            doesDesignPrioritizeContentForMobile:
+                data?.doesDesignPrioritizeContentForMobile || false,
+            doesDesignImproveLoadingSpeed: data?.doesDesignImproveLoadingSpeed || false,
+        }),
+        [data, getPreviewUrl]
+    );
+
+    const initialSnapshot = useMemo(() => JSON.stringify(initialState), [initialState]);
+
+    const [formData, setFormData] = useState(initialState);
 
     // Carga inicial si vienen datos preexistentes
     useEffect(() => {
-        if (data) {
-            setFormData({
-                visualDesignFilePath: data.visualDesignFilePath || "",
-                visualDesignPreviewUrl: data.visualDesignFilePath
-                    ? `${FILE_IMAGE_ENDPOINT}/${data.visualDesignFilePath.split("/").pop()}`
-                    : "",
-                areVisualElementsBeneficialForSmallScreens:
-                    data.areVisualElementsBeneficialForSmallScreens || false,
-                doesDesignPrioritizeContentForMobile:
-                    data.doesDesignPrioritizeContentForMobile || false,
-                doesDesignImproveLoadingSpeed:
-                    data.doesDesignImproveLoadingSpeed || false,
-            });
-        }
-    }, [data]);
+        setFormData((prev) => {
+            const prevSnapshot = JSON.stringify(prev);
+            return prevSnapshot === initialSnapshot ? prev : initialState;
+        });
+    }, [initialState, initialSnapshot]);
 
     const handleInputChange = (e) => {
         const { name, type, checked } = e.target;
@@ -37,6 +45,25 @@ const Phase3VisualDesign = ({ data, onNext }) => {
             [name]: type === "checkbox" ? checked : prev[name],
         }));
     };
+
+    useEffect(() => {
+        if (onDataChange) {
+            onDataChange(formData);
+        }
+    }, [formData, onDataChange]);
+
+    const autoSaveEnabled = !readOnly && typeof onAutoSave === "function";
+
+    const buildPayload = useCallback(() => formData, [formData]);
+
+    const { isSaving, saveNow } = useAutoSave({
+        data: formData,
+        buildPayload,
+        onSave: onAutoSave || (async () => true),
+        delay: 2000,
+        enabled: autoSaveEnabled,
+        initialSnapshot,
+    });
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
@@ -71,7 +98,7 @@ const Phase3VisualDesign = ({ data, onNext }) => {
             setFormData((prev) => ({
                 ...prev,
                 visualDesignFilePath: result.filePath,
-                visualDesignPreviewUrl: `${FILE_IMAGE_ENDPOINT}/${result.filePath.split("/").pop()}`,
+                visualDesignPreviewUrl: getPreviewUrl(result.filePath),
             }));
         } catch (err) {
             console.error(err);
@@ -79,10 +106,16 @@ const Phase3VisualDesign = ({ data, onNext }) => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!formData.visualDesignFilePath) {
             alert("Por favor, sube el diseño visual antes de continuar.");
             return;
+        }
+        if (autoSaveEnabled) {
+            const saved = await saveNow({ showAlerts: true, force: true });
+            if (!saved) {
+                return;
+            }
         }
         onNext(formData);
     };
@@ -92,7 +125,7 @@ const Phase3VisualDesign = ({ data, onNext }) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    handleSubmit();
+                    void handleSubmit();
                 }}
                 className="flex flex-col h-full"
             >
@@ -136,41 +169,42 @@ const Phase3VisualDesign = ({ data, onNext }) => {
                     {/* Checklist */}
                     <fieldset className="rounded-2xl">
                         <div className="mt-4 space-y-2">
-                        <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="areVisualElementsBeneficialForSmallScreens"
-                                checked={formData.areVisualElementsBeneficialForSmallScreens}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">
-                                ¿Los elementos visuales contribuyen a una buena experiencia en pantallas pequeñas?
-                            </span>
-                        </label>
-                        <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="doesDesignPrioritizeContentForMobile"
-                                checked={formData.doesDesignPrioritizeContentForMobile}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">
-                                ¿El diseño visual prioriza el contenido para dispositivos móviles?
-                            </span>
-                        </label>
+                        
                             <label className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="doesDesignImproveLoadingSpeed"
-                                checked={formData.doesDesignImproveLoadingSpeed}
-                                onChange={handleInputChange}
-                                className="h-4 w-4"
-                            />
-                            <span className="text-gray-700">
-                                ¿El diseño visual ayuda a mejorar la velocidad de carga en dispositivos móviles?
-                            </span>
+                                <input
+                                    type="checkbox"
+                                    name="areVisualElementsBeneficialForSmallScreens"
+                                    checked={formData.areVisualElementsBeneficialForSmallScreens}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿Los elementos visuales contribuyen a una buena experiencia en pantallas pequeñas?
+                                </span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="doesDesignPrioritizeContentForMobile"
+                                    checked={formData.doesDesignPrioritizeContentForMobile}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿El diseño visual prioriza el contenido para dispositivos móviles?
+                                </span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="checkbox"
+                                    name="doesDesignImproveLoadingSpeed"
+                                    checked={formData.doesDesignImproveLoadingSpeed}
+                                    onChange={handleInputChange}
+                                    className="h-4 w-4"
+                                />
+                                <span className="text-gray-700">
+                                    ¿El diseño visual ayuda a mejorar la velocidad de carga en dispositivos móviles?
+                                </span>
                             </label>
                         </div>
                     </fieldset>
@@ -180,13 +214,13 @@ const Phase3VisualDesign = ({ data, onNext }) => {
                 <div className="sticky bottom-0 p-4">
                     <button
                         type="submit"
-                        disabled={!formData.visualDesignFilePath}
-                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.visualDesignFilePath
+                        disabled={!formData.visualDesignFilePath || isSaving}
+                        className={`w-full font-semibold py-2 rounded transition-colors ${formData.visualDesignFilePath && !isSaving
                                 ? "bg-[#4F46E5] hover:bg-[#3730A3] text-white"
                                 : "bg-gray-300 text-gray-600 cursor-not-allowed"
-                            }`}
+                        }`}
                     >
-                        Completar Fase 3
+                        {isSaving ? "Guardando..." : "Completar Fase 3"}
                     </button>
                 </div>
             </form>

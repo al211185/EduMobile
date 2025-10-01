@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import GeneralInformation from "./GeneralInformation";
 import ObjectiveSection from "./ObjectiveSection";
 import RequirementsSection from "./RequirementsSection";
 import PreferencesSection from "./PreferencesSection";
 import ReflectiveExercise from "./ReflectiveExercise";
-import DesignPhase from "./DesignPhase";
+import useAutoSave from "../hooks/useAutoSave";
 
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -79,7 +79,7 @@ const ProjectPlanning = ({ projectData = {} }) => {
         }));
     };
 
-    const initialFormData = {
+    const initialFormData = useMemo(() => ({
         title: projectData.title || "",
         clienteName: projectData.clienteName || "",
         responsable: projectData.responsable || "",
@@ -108,13 +108,12 @@ const ProjectPlanning = ({ projectData = {} }) => {
             }
         })(),
         description: projectData.description || "",
-    };
+    }), [projectData]);
 
 
 
     const [formData, setFormData] = useState(initialFormData);
     const [allFieldsCompleted, setAllFieldsCompleted] = useState(false);
-    const [isSaving, setIsSaving] = useState(false);
     const [errorMessages, setErrorMessages] = useState([]);
     const handlePreferencesChange = useCallback((updatedPreferences) => {
         setFormData((prev) => ({
@@ -185,64 +184,105 @@ const ProjectPlanning = ({ projectData = {} }) => {
         setAllFieldsCompleted(validateFields());
     }, [formData]);
 
-    const saveProgress = async () => {
+    const createPayloadFromData = useCallback((data) => {
         if (!projectData.id) {
-            alert("Error: No se encontró el ID del proyecto.");
-            return;
+            return null;
         }
 
-        setIsSaving(true);
-
-        const payload = {
+        return {
             projectId: projectData.id,
-            title: formData.title,
-            description: formData.description || "",
-            startDate: formData.startDate || null,
-            generalObjective: formData.generalObjective || "",
-            specificObjectives: formData.specificObjectives || [],
-            functionalRequirements: formData.functionalRequirements
+            title: data.title,
+            description: data.description || "",
+            startDate: data.startDate || null,
+            generalObjective: data.generalObjective || "",
+            specificObjectives: data.specificObjectives || [],
+            functionalRequirements: data.functionalRequirements
                 .filter((req) => req.checked)
                 .map((req) => req.name),
-            customRequirements: formData.customRequirements || [],
+            customRequirements: data.customRequirements || [],
             corporateColors: {
-                primary: formData.corporateColors.primary,
-                secondary1: formData.corporateColors.secondary1,
-                secondary2: formData.corporateColors.secondary2,
+                primary: data.corporateColors.primary,
+                secondary1: data.corporateColors.secondary1,
+                secondary2: data.corporateColors.secondary2,
             },
             corporateFont: formData.corporateFont || "",
             allowedTechnologies: formData.allowedTechnologies
                 .filter((tech) => tech.checked)
                 .map((tech) => tech.name),
-            customTechnologies: formData.customTechnologies || [],
-            reflectiveAnswers: JSON.stringify(formData.reflectiveAnswers || {}),
-            clienteName: formData.clienteName || "",
-            responsable: formData.responsable || "Sin responsable",
+            customTechnologies: data.customTechnologies || [],
+            reflectiveAnswers: JSON.stringify(data.reflectiveAnswers || {}),
+            clienteName: data.clienteName || "",
+            responsable: data.responsable || "Sin responsable",
         };
+    }, [projectData.id]);
+
+    const buildPayload = useCallback(
+        () => createPayloadFromData(formData),
+        [createPayloadFromData, formData]
+    );
 
 
-        try {
-            const response = await fetch("/api/projects/save-phase-data", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
+    const initialPayloadSnapshot = useMemo(() => {
+        const payload = createPayloadFromData(initialFormData);
+        return payload ? JSON.stringify(payload) : null;
+    }, [createPayloadFromData, initialFormData]);
 
-            if (response.ok) {
-                alert("Progreso guardado exitosamente");
-            } else {
-                const errorData = await response.json();
-                console.error("Error al guardar progreso:", errorData);
-                alert(errorData.message || "Error desconocido al guardar el progreso.");
+    const persistPayload = useCallback(
+        async (payload, { showAlerts = false } = {}) => {
+            if (!payload) {
+                const message = "Error: No se encontró el ID del proyecto.";
+                if (showAlerts) {
+                    alert(message);
+                } else {
+                    console.warn(message);
+                }
+                throw new Error(message);
             }
-        } catch (error) {
-            console.error("Error al guardar el progreso:", error);
-            alert("Hubo un error al guardar el progreso.");
-        } finally {
-            setIsSaving(false);
-        }
-    };
+            try {
+                const response = await fetch("/api/projects/save-phase-data", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                if (!response.ok) {
+                    let errorMessage = "Error desconocido al guardar el progreso.";
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.message || errorMessage;
+                    } catch {
+                        // Ignorar errores al leer el cuerpo
+                    }
+
+                    if (showAlerts) {
+                        alert(errorMessage);
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                if (showAlerts) {
+                    alert("Progreso guardado exitosamente");
+                }
+            } catch (error) {
+                if (!showAlerts) {
+                    console.error("Error al autoguardar el progreso:", error);
+                }
+                throw error;
+            }
+        },
+        []
+    );
+
+    const { isSaving, saveNow: saveProgress } = useAutoSave({
+        data: formData,
+        buildPayload,
+        onSave: persistPayload,
+        delay: 3000,
+        enabled: Boolean(projectData.id),
+        initialSnapshot: initialPayloadSnapshot,
+    });
 
     const completePhase = async () => {
         if (!allFieldsCompleted) {
@@ -251,7 +291,10 @@ const ProjectPlanning = ({ projectData = {} }) => {
         }
 
         try {
-            await saveProgress(); // Guarda los datos
+            const saved = await saveProgress({ showAlerts: true, force: true });
+            if (!saved) {
+                return;
+            }
             navigate(`/fase-2-diseno/${projectData.id}`); // Incluye el projectId en la URL
         } catch (error) {
             console.error("Error al completar la fase:", error);
@@ -301,7 +344,9 @@ const ProjectPlanning = ({ projectData = {} }) => {
             <div className="buttons-container">
                 <button
                     disabled={isSaving}
-                    onClick={saveProgress}
+                    onClick={() => {
+                        void saveProgress({ showAlerts: true, force: true });
+                    }}
                     className="btn-secondary"
                 >
                     {isSaving ? "Guardando..." : "Guardar Progreso"}
