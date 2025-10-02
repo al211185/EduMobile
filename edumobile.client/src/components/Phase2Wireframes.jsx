@@ -90,15 +90,16 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
                 .then((error) => error.message || "Error al subir el archivo. Inténtalo nuevamente.")
                 .catch(() => "Error al subir el archivo. Inténtalo nuevamente.");
             throw new Error(errorMessage);
-
-            const result = await res.json();
-
-            const filePath = extractFilePath(result);
-            if (!filePath) {
-                throw new Error("No se pudo obtener la ruta del archivo.");
-            }
-            return filePath;
         }
+
+        const result = await res.json();
+        const filePath = extractFilePath(result);
+
+        if (!filePath) {
+            throw new Error("No se pudo obtener la ruta del archivo.");
+        }
+
+        return filePath;
     };
 
     const handleFileChange = async (file, key) => {
@@ -120,6 +121,7 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
         // vista previa local inmediata
         const previousPath = formData[key];
         const previousPreview = formData[previewKey];
+        const localUrl = URL.createObjectURL(file);
         setFormData((prev) => ({
             ...prev,
             [previewKey]: localUrl,
@@ -141,9 +143,7 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
                 [previewKey]: previousPreview,
             }));
         } finally {
-            if (localUrl) {
-                URL.revokeObjectURL(localUrl);
-            }
+            URL.revokeObjectURL(localUrl);
         }
     };
 

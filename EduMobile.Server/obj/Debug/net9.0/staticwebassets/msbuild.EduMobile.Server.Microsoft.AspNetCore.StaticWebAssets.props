@@ -414,24 +414,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\1a7c92c4-f451-46d3-9a4f-52c393206c4a.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2871795f-e122-4920-94a2-f3810ff943e3.jpeg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>EduMobile.Server</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/EduMobile.Server</BasePath>
-      <RelativePath>uploads/2871795f-e122-4920-94a2-f3810ff943e3.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4fcvqx3bf1</Fingerprint>
-      <Integrity>YEEjXNYeBlOEG9x//EjQFX34I1PTd1nSG9uicOoCZLI=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2871795f-e122-4920-94a2-f3810ff943e3.jpeg'))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\29128a87-12c4-49d1-a73f-f6982f2e17b2.png'))">
       <SourceType>Package</SourceType>
       <SourceId>EduMobile.Server</SourceId>
@@ -450,6 +432,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\29128a87-12c4-49d1-a73f-f6982f2e17b2.png'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2f26ddf7-49e1-4f58-987e-56a51c2ecd44.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/2f26ddf7-49e1-4f58-987e-56a51c2ecd44.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>v94mtijfms</Fingerprint>
+      <Integrity>3YvPuPgZblW87VzEqW01xOLqy0vopdAKzfkpTpbXAFw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2f26ddf7-49e1-4f58-987e-56a51c2ecd44.png'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\420eb336-51ba-4009-9447-0ac1dddd70f7.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>EduMobile.Server</SourceId>
@@ -467,6 +467,42 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\420eb336-51ba-4009-9447-0ac1dddd70f7.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\455e6bed-6f42-4720-a5fb-d94037d77890.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/455e6bed-6f42-4720-a5fb-d94037d77890.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>0sbx9kwkug</Fingerprint>
+      <Integrity>4DKQ0scwmvR99fQ19mZK9VTAKnORu+lV5RcQ+Qm+hgw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\455e6bed-6f42-4720-a5fb-d94037d77890.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\58003221-dd75-4666-ad3c-3ce64bc54807.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/58003221-dd75-4666-ad3c-3ce64bc54807.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>v94mtijfms</Fingerprint>
+      <Integrity>3YvPuPgZblW87VzEqW01xOLqy0vopdAKzfkpTpbXAFw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\58003221-dd75-4666-ad3c-3ce64bc54807.png'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5ba6dda8-cc5f-4b8d-82ca-88dafac458ee.jpeg'))">
       <SourceType>Package</SourceType>
@@ -522,6 +558,42 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5d05d987-3530-419e-af74-33c667ecb66e.png'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\62bd0561-966b-4882-85e8-636d43daa29d.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/62bd0561-966b-4882-85e8-636d43daa29d.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>juf4je5odq</Fingerprint>
+      <Integrity>xZsK3dz1Y5zpJ8LwXk7oDpNw6hp9afavHyrFjzvRtzQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\62bd0561-966b-4882-85e8-636d43daa29d.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\64b6e514-f5f2-47bf-a139-034ca23e4932.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/64b6e514-f5f2-47bf-a139-034ca23e4932.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4fcvqx3bf1</Fingerprint>
+      <Integrity>YEEjXNYeBlOEG9x//EjQFX34I1PTd1nSG9uicOoCZLI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\64b6e514-f5f2-47bf-a139-034ca23e4932.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\66c619a2-7188-43b2-914d-b51b518ce0ee.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>EduMobile.Server</SourceId>
@@ -539,6 +611,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\66c619a2-7188-43b2-914d-b51b518ce0ee.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6769d0de-e47f-43a6-8af1-0f3b363d3bac.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/6769d0de-e47f-43a6-8af1-0f3b363d3bac.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>v94mtijfms</Fingerprint>
+      <Integrity>3YvPuPgZblW87VzEqW01xOLqy0vopdAKzfkpTpbXAFw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\6769d0de-e47f-43a6-8af1-0f3b363d3bac.png'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\754da223-da72-4b0a-a664-e94cc88afcc4.jpeg'))">
       <SourceType>Package</SourceType>
@@ -576,6 +666,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7f6513ba-5274-4478-a876-f89b3e6cca80.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\96c4ad1a-7eb9-4d5e-a4c3-b116e07031fc.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/96c4ad1a-7eb9-4d5e-a4c3-b116e07031fc.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>juf4je5odq</Fingerprint>
+      <Integrity>xZsK3dz1Y5zpJ8LwXk7oDpNw6hp9afavHyrFjzvRtzQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\96c4ad1a-7eb9-4d5e-a4c3-b116e07031fc.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\a9aba589-2a27-476b-ac02-4499af9693a9.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>EduMobile.Server</SourceId>
@@ -611,6 +719,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\af94b86b-0ac6-4aa0-abaf-145b4a42418a.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e0dd2652-7c96-46ba-b3df-717517e21154.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/e0dd2652-7c96-46ba-b3df-717517e21154.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4fcvqx3bf1</Fingerprint>
+      <Integrity>YEEjXNYeBlOEG9x//EjQFX34I1PTd1nSG9uicOoCZLI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e0dd2652-7c96-46ba-b3df-717517e21154.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\efca266a-097e-4d98-bec3-62dfb50ac422.jpeg'))">
       <SourceType>Package</SourceType>
