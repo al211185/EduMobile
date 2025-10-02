@@ -175,7 +175,7 @@ namespace EduMobile.Server.Controllers
                     _ => "application/octet-stream",
                 };
 
-                return File(fileBytes, mimeType, Path.GetFileName(fullPath));
+                return File(fileBytes, mimeType);
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import ImageDropZone from "./ImageDropZone";
 import useAutoSave from "../hooks/useAutoSave";
+import usePropagateDataChange from "../hooks/usePropagateDataChange";
 import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
@@ -42,11 +43,7 @@ const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onD
         }));
     };
 
-    useEffect(() => {
-        if (onDataChange) {
-            onDataChange(formData);
-        }
-    }, [formData, onDataChange]);
+    usePropagateDataChange(formData, onDataChange, initialSnapshot);
 
     const autoSaveEnabled = !readOnly && typeof onAutoSave === "function";
 

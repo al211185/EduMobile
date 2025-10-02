@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import ImageDropZone from "./ImageDropZone";
 import useAutoSave from "../hooks/useAutoSave";
+import usePropagateDataChange from "../hooks/usePropagateDataChange";
 import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
@@ -32,12 +33,7 @@ const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onData
     const [formData, setFormData] = useState(initialState);
 
     // Carga inicial si vienen datos preexistentes
-    useEffect(() => {
-        setFormData((prev) => {
-            const prevSnapshot = JSON.stringify(prev);
-            return prevSnapshot === initialSnapshot ? prev : initialState;
-        });
-    }, [initialState, initialSnapshot]);
+    usePropagateDataChange(formData, onDataChange, initialSnapshot);
 
     const handleInputChange = (e) => {
         const { name, type, checked } = e.target;
