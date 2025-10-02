@@ -14,9 +14,49 @@ export const extractFilePath = (result) => {
     );
 };
 
+const sanitizeBaseUrl = (value) => {
+    if (typeof value !== "string") {
+        return "";
+    }
+
+    const trimmed = value.trim();
+    if (!trimmed || trimmed === "/") {
+        return "";
+    }
+
+    return trimmed.replace(/\/$/, "");
+};
+
+const sanitizeEndpoint = (endpoint) => {
+    if (typeof endpoint !== "string") {
+        return "";
+    }
+
+    const trimmed = endpoint.trim();
+    if (!trimmed) {
+        return "";
+    }
+
+    if (/^https?:\/\//i.test(trimmed)) {
+        return trimmed.replace(/\/$/, "");
+    }
+
+    const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+    return withLeadingSlash.replace(/\/$/, "");
+};
+
+export const getApiBaseUrl = () => {
+    const { VITE_API_BASE_URL } = import.meta.env ?? {};
+    return sanitizeBaseUrl(VITE_API_BASE_URL);
+};
+
 export const buildPreviewUrl = (baseEndpoint, filePath) => {
     if (!filePath) {
         return "";
+    }
+
+    if (/^https?:\/\//i.test(filePath)) {
+        return filePath;
     }
 
     const segments = `${filePath}`.split(/[\\/]+/).filter(Boolean);
@@ -25,7 +65,19 @@ export const buildPreviewUrl = (baseEndpoint, filePath) => {
         return "";
     }
 
-    return `${baseEndpoint}/${encodeURIComponent(fileName)}`;
+    const endpoint = sanitizeEndpoint(baseEndpoint);
+    if (!endpoint) {
+        return "";
+    }
+
+    const path = `${endpoint}/${encodeURIComponent(fileName)}`;
+
+    const baseUrl = getApiBaseUrl();
+    if (!baseUrl || /^https?:\/\//i.test(endpoint)) {
+        return path;
+    }
+
+    return `${baseUrl}${path}`;
 };
 
 export const normalizeKeysToCamelCase = (data) => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 // Opciones para los checkbox de características útiles
 const usefulFeaturesOptions = [
@@ -52,14 +53,7 @@ function parsePhase2Data(data) {
         };
     }
 
-    // Para construir la URL usamos el endpoint centralizado del FilesController.
-    // Ajusta baseURL si es necesario (por ejemplo, "https://localhost:5001")
-    const baseURL = "";
-    function buildImageUrl(path) {
-        if (!path) return "";
-        const fileName = path.split("/").pop();
-        return `${baseURL}/api/Files/image/${fileName}`;
-    }
+
 
     return {
         introduction: {
@@ -70,7 +64,7 @@ function parsePhase2Data(data) {
             {
                 companyName: data.competitor1Name || "",
                 screenshot: data.competitor1ScreenshotPath
-                    ? buildImageUrl(data.competitor1ScreenshotPath)
+                    ? buildPreviewUrl("/api/Files/image", data.competitor1ScreenshotPath)
                     : "",
                 url: data.competitor1Url || "",
                 positives: data.competitor1Positives || "",
@@ -79,7 +73,7 @@ function parsePhase2Data(data) {
             {
                 companyName: data.competitor2Name || "",
                 screenshot: data.competitor2ScreenshotPath
-                    ? buildImageUrl(data.competitor2ScreenshotPath)
+                    ? buildPreviewUrl("/api/Files/image", data.competitor2ScreenshotPath)
                     : "",
                 url: data.competitor2Url || "",
                 positives: data.competitor2Positives || "",
@@ -159,9 +153,9 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                     ? `/uploads/${formData.competitors[0].screenshot.split("/").pop()}`
                     : "";
             const result = await uploadImage(file, oldFilePath);
-            if (result.filePath) {
-                const fileName = result.FileName || result.fileName;
-                const imageUrl = `/api/Files/image/${fileName}`;
+            const serverPath = extractFilePath(result);
+            if (serverPath) {
+                const imageUrl = buildPreviewUrl("/api/Files/image", serverPath);
                 setFormData((prev) => {
                     const comps = [...prev.competitors];
                     comps[0].screenshot = imageUrl;
@@ -192,9 +186,9 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                     ? `/uploads/${formData.competitors[1].screenshot.split("/").pop()}`
                     : "";
             const result = await uploadImage(file, oldFilePath);
-            if (result.filePath) {
-                const fileName = result.FileName || result.fileName;
-                const imageUrl = `/api/Files/image/${fileName}`;
+            const serverPath = extractFilePath(result);
+            if (serverPath) {
+                const imageUrl = buildPreviewUrl("/api/Files/image", serverPath);
                 setFormData((prev) => {
                     const comps = [...prev.competitors];
                     comps[1].screenshot = imageUrl;

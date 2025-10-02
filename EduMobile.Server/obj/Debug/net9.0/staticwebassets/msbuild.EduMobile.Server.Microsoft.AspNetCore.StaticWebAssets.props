@@ -648,6 +648,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\754da223-da72-4b0a-a664-e94cc88afcc4.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7e973017-5d2a-467e-b21e-0a4c868d1d53.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>EduMobile.Server</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EduMobile.Server</BasePath>
+      <RelativePath>uploads/7e973017-5d2a-467e-b21e-0a4c868d1d53.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>juf4je5odq</Fingerprint>
+      <Integrity>xZsK3dz1Y5zpJ8LwXk7oDpNw6hp9afavHyrFjzvRtzQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7e973017-5d2a-467e-b21e-0a4c868d1d53.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\7f6513ba-5274-4478-a876-f89b3e6cca80.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>EduMobile.Server</SourceId>
