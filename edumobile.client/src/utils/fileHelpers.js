@@ -59,18 +59,37 @@ export const buildPreviewUrl = (baseEndpoint, filePath) => {
         return filePath;
     }
 
-    const segments = `${filePath}`.split(/[\\/]+/).filter(Boolean);
-    const fileName = segments.length ? segments[segments.length - 1] : "";
-    if (!fileName) {
-        return "";
-    }
-
     const endpoint = sanitizeEndpoint(baseEndpoint);
     if (!endpoint) {
         return "";
     }
 
-    const path = `${endpoint}/${encodeURIComponent(fileName)}`;
+    let workingPath = `${filePath}`.trim();
+    if (!workingPath) {
+        return "";
+    }
+
+    if (workingPath.startsWith(endpoint)) {
+        workingPath = workingPath.slice(endpoint.length);
+    }
+
+    workingPath = workingPath.replace(/^\/+/, "");
+
+    const segments = workingPath.split(/[\\/]+/).filter(Boolean);
+    if (!segments.length) {
+        return endpoint;
+    }
+
+    if (segments[0].toLowerCase() === "uploads") {
+        segments.shift();
+    }
+
+    if (!segments.length) {
+        return endpoint;
+    }
+
+    const encodedPath = segments.map((segment) => encodeURIComponent(segment)).join("/");
+    const path = `${endpoint}/${encodedPath}`;
 
     const baseUrl = getApiBaseUrl();
     if (!baseUrl || /^https?:\/\//i.test(endpoint)) {
@@ -79,6 +98,50 @@ export const buildPreviewUrl = (baseEndpoint, filePath) => {
 
     return `${baseUrl}${path}`;
 };
+
+const normalizeUploadPath = (value, endpoint) => {
+    if (typeof value !== "string" || !value.trim()) {
+        return "";
+    }
+
+    let working = value.trim();
+
+    if (/^https?:\/\//i.test(working)) {
+        try {
+            const url = new URL(working);
+            working = url.pathname;
+        } catch {
+            return "";
+        }
+    }
+
+    if (endpoint && working.startsWith(endpoint)) {
+        working = working.slice(endpoint.length);
+    }
+
+    working = working.replace(/^\/+/, "");
+
+    const segments = working.split(/[\\/]+/).filter(Boolean);
+    if (!segments.length) {
+        return "";
+    }
+
+    if (segments[0].toLowerCase() === "uploads") {
+        segments.shift();
+    }
+
+    if (!segments.length) {
+        return "";
+    }
+
+    return `/uploads/${segments.join("/")}`;
+};
+
+export const extractUploadPathFromPreview = (previewUrl, baseEndpoint) => {
+    const endpoint = sanitizeEndpoint(baseEndpoint);
+    return normalizeUploadPath(previewUrl, endpoint);
+};
+
 
 export const normalizeKeysToCamelCase = (data) => {
     if (Array.isArray(data)) {

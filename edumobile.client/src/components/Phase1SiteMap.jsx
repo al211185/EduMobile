@@ -18,7 +18,7 @@ const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChang
             siteMapFilePath: data?.siteMapFilePath || "",
             siteMapPreviewUrl: data?.siteMapFilePath
                 ? getPreviewUrl(data.siteMapFilePath)
-                : "",
+                : data?.siteMapPreviewUrl || "",
             isHierarchyClear: data?.isHierarchyClear || false,
             areSectionsIdentified: data?.areSectionsIdentified || false,
             areLinksClear: data?.areLinksClear || false,

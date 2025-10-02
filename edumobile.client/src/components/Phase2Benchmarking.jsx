@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
+import { buildPreviewUrl, extractFilePath, extractUploadPathFromPreview } from "../utils/fileHelpers";
+
+const FILE_IMAGE_ENDPOINT = "/api/Files/image";
 
 // Opciones para los checkbox de características útiles
 const usefulFeaturesOptions = [
@@ -64,7 +66,7 @@ function parsePhase2Data(data) {
             {
                 companyName: data.competitor1Name || "",
                 screenshot: data.competitor1ScreenshotPath
-                    ? buildPreviewUrl("/api/Files/image", data.competitor1ScreenshotPath)
+                    ? buildPreviewUrl(FILE_IMAGE_ENDPOINT, data.competitor1ScreenshotPath)
                     : "",
                 url: data.competitor1Url || "",
                 positives: data.competitor1Positives || "",
@@ -73,7 +75,7 @@ function parsePhase2Data(data) {
             {
                 companyName: data.competitor2Name || "",
                 screenshot: data.competitor2ScreenshotPath
-                    ? buildPreviewUrl("/api/Files/image", data.competitor2ScreenshotPath)
+                    ? buildPreviewUrl(FILE_IMAGE_ENDPOINT, data.competitor1ScreenshotPath)
                     : "",
                 url: data.competitor2Url || "",
                 positives: data.competitor2Positives || "",
@@ -147,15 +149,14 @@ const Phase2Benchmarking = ({ data, onSave }) => {
         }
         try {
             // Si ya existe una imagen, extrae la ruta relativa para enviarla como oldFilePath
-            const oldFilePath =
-                formData.competitors[0].screenshot &&
-                    formData.competitors[0].screenshot.split("/").pop()
-                    ? `/uploads/${formData.competitors[0].screenshot.split("/").pop()}`
-                    : "";
+            const oldFilePath = extractUploadPathFromPreview(
+                formData.competitors[0].screenshot,
+                FILE_IMAGE_ENDPOINT
+            );
             const result = await uploadImage(file, oldFilePath);
             const serverPath = extractFilePath(result);
             if (serverPath) {
-                const imageUrl = buildPreviewUrl("/api/Files/image", serverPath);
+                const imageUrl = buildPreviewUrl(FILE_IMAGE_ENDPOINT, serverPath);
                 setFormData((prev) => {
                     const comps = [...prev.competitors];
                     comps[0].screenshot = imageUrl;
@@ -180,15 +181,14 @@ const Phase2Benchmarking = ({ data, onSave }) => {
             return;
         }
         try {
-            const oldFilePath =
-                formData.competitors[1].screenshot &&
-                    formData.competitors[1].screenshot.split("/").pop()
-                    ? `/uploads/${formData.competitors[1].screenshot.split("/").pop()}`
-                    : "";
+            const oldFilePath = extractUploadPathFromPreview(
+                formData.competitors[1].screenshot,
+                FILE_IMAGE_ENDPOINT
+            );
             const result = await uploadImage(file, oldFilePath);
             const serverPath = extractFilePath(result);
             if (serverPath) {
-                const imageUrl = buildPreviewUrl("/api/Files/image", serverPath);
+                const imageUrl = buildPreviewUrl(FILE_IMAGE_ENDPOINT, serverPath);
                 setFormData((prev) => {
                     const comps = [...prev.competitors];
                     comps[1].screenshot = imageUrl;
@@ -270,11 +270,8 @@ const Phase2Benchmarking = ({ data, onSave }) => {
         }
 
         // Función para revertir la URL de vista previa a la ruta relativa para guardar en la BD
-        const revertImageUrl = (imageUrl) => {
-            if (!imageUrl) return "";
-            const fileName = imageUrl.split("/").pop();
-            return `/uploads/${fileName}`;
-        };
+        const revertImageUrl = (imageUrl) =>
+            extractUploadPathFromPreview(imageUrl, FILE_IMAGE_ENDPOINT);
 
         const updatedData = {
             BenchmarkObjective: formData.introduction.analysisObjective,

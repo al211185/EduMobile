@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -99,21 +100,70 @@ namespace EduMobile.Server.Controllers
         }
 
 
-        // GET: api/Files/image/{fileName}
-        [HttpGet("image/{fileName}")]
-        public IActionResult GetImage(string fileName)
+        // GET: api/Files/image/{*filePath}
+        [HttpGet("image/{*filePath}")]
+        public IActionResult GetImage(string filePath)
         {
             try
             {
-                string filePath = Path.Combine(_uploadPath, fileName);
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    return BadRequest(new { Message = "La ruta del archivo es inválida." });
+                }
 
-                if (!System.IO.File.Exists(filePath))
+                var rawSegments = filePath.Split(new[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
+
+
+                var safeSegments = new List<string>();
+
+                foreach (var segment in rawSegments)
+                {
+                    if (string.IsNullOrWhiteSpace(segment))
+                    {
+                        continue;
+                    }
+
+                    var trimmed = segment.Trim();
+                    if (trimmed == "." || trimmed == "..")
+                    {
+                        continue;
+                    }
+
+                    safeSegments.Add(Path.GetFileName(trimmed));
+                }
+
+                if (safeSegments.Count == 0)
                 {
                     return NotFound(new { Message = "El archivo no existe." });
                 }
 
-                var fileBytes = System.IO.File.ReadAllBytes(filePath);
-                var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
+                if (safeSegments[0].Equals("uploads", StringComparison.OrdinalIgnoreCase))
+                {
+                    safeSegments.RemoveAt(0);
+                }
+
+                if (safeSegments.Count == 0)
+                {
+                    return NotFound(new { Message = "El archivo no existe." });
+                }
+
+                var relativePath = Path.Combine(safeSegments.ToArray());
+                var combinedPath = Path.Combine(_uploadPath, relativePath);
+                var uploadsRoot = Path.GetFullPath(_uploadPath);
+                var fullPath = Path.GetFullPath(combinedPath);
+
+                if (!fullPath.StartsWith(uploadsRoot, StringComparison.OrdinalIgnoreCase))
+                {
+                    return BadRequest(new { Message = "La ruta del archivo es inválida." });
+                }
+
+                if (!System.IO.File.Exists(fullPath))
+                {
+                    return NotFound(new { Message = "El archivo no existe." });
+                }
+
+                var fileBytes = System.IO.File.ReadAllBytes(fullPath);
+                var fileExtension = Path.GetExtension(fullPath).ToLowerInvariant();
 
                 string mimeType = fileExtension switch
                 {
@@ -125,11 +175,11 @@ namespace EduMobile.Server.Controllers
                     _ => "application/octet-stream",
                 };
 
-                return File(fileBytes, mimeType, fileName);
+                return File(fileBytes, mimeType, Path.GetFileName(fullPath));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener el archivo {FileName}", fileName);
+                _logger.LogError(ex, "Error al obtener el archivo {FilePath}", filePath);
                 return StatusCode(500, new { Message = "Error interno del servidor.", Error = ex.Message });
             }
         }
