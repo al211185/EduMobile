@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ImageDropZone from "./ImageDropZone";
 import { buildPreviewUrl, extractFilePath, extractUploadPathFromPreview } from "../utils/fileHelpers";
 
 const FILE_IMAGE_ENDPOINT = "/api/Files/image";
@@ -75,7 +76,7 @@ function parsePhase2Data(data) {
             {
                 companyName: data.competitor2Name || "",
                 screenshot: data.competitor2ScreenshotPath
-                    ? buildPreviewUrl(FILE_IMAGE_ENDPOINT, data.competitor1ScreenshotPath)
+                    ? buildPreviewUrl(FILE_IMAGE_ENDPOINT, data.competitor2ScreenshotPath)
                     : "",
                 url: data.competitor2Url || "",
                 positives: data.competitor2Positives || "",
@@ -136,68 +137,63 @@ const Phase2Benchmarking = ({ data, onSave }) => {
         return result; // Se espera { filePath, FileName, ... }
     };
 
-    // Manejador para subir imagen de Competidor 1
-    const handleFileChangeCompetitor1 = async (e) => {
-        const file = e.target.files[0];
-        if (!file) {
-            setFormData((prev) => {
-                const comps = [...prev.competitors];
-                comps[0].screenshot = "";
-                return { ...prev, competitors: comps };
-            });
-            return;
-        }
-        try {
-            // Si ya existe una imagen, extrae la ruta relativa para enviarla como oldFilePath
-            const oldFilePath = extractUploadPathFromPreview(
-                formData.competitors[0].screenshot,
-                FILE_IMAGE_ENDPOINT
-            );
-            const result = await uploadImage(file, oldFilePath);
-            const serverPath = extractFilePath(result);
-            if (serverPath) {
-                const imageUrl = buildPreviewUrl(FILE_IMAGE_ENDPOINT, serverPath);
-                setFormData((prev) => {
-                    const comps = [...prev.competitors];
-                    comps[0].screenshot = imageUrl;
-                    return { ...prev, competitors: comps };
-                });
-            }
-        } catch (error) {
-            console.error("Error al subir archivo para Competidor 1:", error);
-            alert("Error al subir archivo para Competidor 1");
-        }
-    };
 
-    // Manejador para subir imagen de Competidor 2
-    const handleFileChangeCompetitor2 = async (e) => {
-        const file = e.target.files[0];
+    // Manejador para subir la imagen de un competidor
+    const handleFileChangeForCompetitor = async (index, file) => {
         if (!file) {
             setFormData((prev) => {
-                const comps = [...prev.competitors];
-                comps[1].screenshot = "";
-                return { ...prev, competitors: comps };
+                const competitors = [...prev.competitors];
+                competitors[index] = { ...competitors[index], screenshot: "" };
+                return { ...prev, competitors };
             });
             return;
         }
+
+
+        const previousPreview = formData.competitors[index].screenshot;
+        const oldFilePath = extractUploadPathFromPreview(previousPreview, FILE_IMAGE_ENDPOINT);
+        let localUrl = "";
+
         try {
-            const oldFilePath = extractUploadPathFromPreview(
-                formData.competitors[1].screenshot,
-                FILE_IMAGE_ENDPOINT
-            );
+            localUrl = URL.createObjectURL(file);
+        } catch (error) {
+            console.error("No se pudo generar la vista previa local del archivo:", error);
+        }
+
+        if (localUrl) {
+            setFormData((prev) => {
+                const competitors = [...prev.competitors];
+                competitors[index] = { ...competitors[index], screenshot: localUrl };
+                return { ...prev, competitors };
+            });
+        }
+
+        try {
             const result = await uploadImage(file, oldFilePath);
             const serverPath = extractFilePath(result);
-            if (serverPath) {
-                const imageUrl = buildPreviewUrl(FILE_IMAGE_ENDPOINT, serverPath);
-                setFormData((prev) => {
-                    const comps = [...prev.competitors];
-                    comps[1].screenshot = imageUrl;
-                    return { ...prev, competitors: comps };
-                });
+            if (!serverPath) {
+                throw new Error("No se pudo obtener la ruta del archivo subido.");
             }
+
+            const imageUrl = buildPreviewUrl(FILE_IMAGE_ENDPOINT, serverPath);
+            setFormData((prev) => {
+                const competitors = [...prev.competitors];
+                competitors[index] = { ...competitors[index], screenshot: imageUrl };
+                return { ...prev, competitors };
+            });
+
         } catch (error) {
-            console.error("Error al subir archivo para Competidor 2:", error);
-            alert("Error al subir archivo para Competidor 2");
+            console.error(`Error al subir archivo para Competidor ${index + 1}:`, error);
+            alert(error.message || `Error al subir archivo para Competidor ${index + 1}`);
+            setFormData((prev) => {
+                const competitors = [...prev.competitors];
+                competitors[index] = { ...competitors[index], screenshot: previousPreview };
+                return { ...prev, competitors };
+            });
+        } finally {
+            if (localUrl) {
+                URL.revokeObjectURL(localUrl);
+            }
         }
     };
 
@@ -360,26 +356,14 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                     className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
-                        <div className="mb-2">
-                            <label className="flex items-center space-x-2 text-[#64748B]">
-                                Subir imagen (Captura):
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChangeCompetitor1}
-                                    className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                            <ImageDropZone
+                                id="competitor-1-screenshot"
+                                label="Subir imagen (Captura)"
+                                previewUrl={formData.competitors[0].screenshot}
+                                onFileSelected={(file) => void handleFileChangeForCompetitor(0, file)}
+                                className="mb-2"
+                                emptyMessage="No se ha seleccionado ninguna captura."
                             />
-                            {formData.competitors[0].screenshot && (
-                                <div className="mt-2">
-                                    <img
-                                        src={formData.competitors[0].screenshot}
-                                        alt="Screenshot Competidor 1"
-                                        className="max-w-xs"
-                                    />
-                                </div>
-                            )}
-                        </div>
                         <div className="mb-2">
                             <label className="flex items-center space-x-2 text-[#64748B]">
                                 URL:
@@ -435,26 +419,14 @@ const Phase2Benchmarking = ({ data, onSave }) => {
                                     className="w-full bg-[#E5E5E5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#64748B]"
                             />
                         </div>
-                        <div className="mb-2">
-                                <label className="flex items-center space-x-2 text-[#64748B]">
-                                Subir imagen (Captura):
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChangeCompetitor2}
-                                    className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                            <ImageDropZone
+                                id="competitor-2-screenshot"
+                                label="Subir imagen (Captura)"
+                                previewUrl={formData.competitors[1].screenshot}
+                                onFileSelected={(file) => void handleFileChangeForCompetitor(1, file)}
+                                className="mb-2"
+                                emptyMessage="No se ha seleccionado ninguna captura."
                             />
-                            {formData.competitors[1].screenshot && (
-                                <div className="mt-2">
-                                    <img
-                                        src={formData.competitors[1].screenshot}
-                                        alt="Screenshot Competidor 2"
-                                        className="max-w-xs"
-                                    />
-                                </div>
-                            )}
-                        </div>
                         <div className="mb-2">
                                 <label className="flex items-center space-x-2 text-[#64748B]">
                                 URL:
