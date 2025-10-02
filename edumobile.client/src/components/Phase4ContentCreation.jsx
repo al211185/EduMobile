@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import ImageDropZone from "./ImageDropZone";
 import useAutoSave from "../hooks/useAutoSave";
+import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const fileUploadEndpoint = "/api/Files/upload";
     const fileImageEndpoint = "/api/Files/image";
 
     const getPreviewUrl = useCallback(
-        (filePath) =>
-            filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "",
+        (filePath) => buildPreviewUrl(fileImageEndpoint, filePath),
         [fileImageEndpoint]
     );
 
@@ -60,8 +61,10 @@ const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onD
         initialSnapshot,
     });
 
-    const handleFileChange = async (e) => {
-        const file = e.target.files[0];
+    const handleFileChange = async (file) => {
+        if (readOnly) {
+            return;
+        }
         if (!file) {
             setFormData((prev) => ({
                 ...prev,
@@ -72,6 +75,8 @@ const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onD
         }
 
         // preview local
+        const previousPath = formData.contentFilePath;
+        const previousPreview = formData.contentPreviewUrl;
         const localUrl = URL.createObjectURL(file);
         setFormData((prev) => ({
             ...prev,
@@ -81,22 +86,43 @@ const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onD
         // subir al servidor
         const payload = new FormData();
         payload.append("file", file);
+        const query = previousPath ? `?oldFilePath=${encodeURIComponent(previousPath)}` : "";
+
         try {
-            const res = await fetch(fileUploadEndpoint, {
+            const res = await fetch(`${fileUploadEndpoint}${query}`, {
                 method: "POST",
                 body: payload,
+                credentials: "include",
             });
-            if (!res.ok) throw new Error("Error al subir el archivo. Inténtalo nuevamente.");
+            if (!res.ok) {
+                const errorMessage = await res
+                    .json()
+                    .then((error) => error.message || "Error al subir el archivo. Inténtalo nuevamente.")
+                    .catch(() => "Error al subir el archivo. Inténtalo nuevamente.");
+                throw new Error(errorMessage);
+            }
             const result = await res.json();
-            if (!result.filePath) throw new Error("No se pudo obtener la ruta del archivo.");
+            const serverPath = extractFilePath(result);
+            if (!serverPath) {
+                throw new Error("No se pudo obtener la ruta del archivo.");
+            }
             setFormData((prev) => ({
                 ...prev,
-                contentFilePath: result.filePath,
-                contentPreviewUrl: getPreviewUrl(result.filePath),
+                contentFilePath: serverPath,
+                contentPreviewUrl: getPreviewUrl(serverPath),
             }));
         } catch (err) {
             console.error(err);
             alert(err.message);
+            setFormData((prev) => ({
+                ...prev,
+                contentFilePath: previousPath,
+                contentPreviewUrl: previousPreview,
+            }));
+        } finally {
+            if (localUrl) {
+                URL.revokeObjectURL(localUrl);
+            }
         }
     };
 
@@ -131,30 +157,19 @@ const Phase4ContentCreation = ({ data, onNext, readOnly = false, onAutoSave, onD
                     </fieldset>
 
                     {/* Upload */}
-                    <div className="space-y-4">
-                        <label className="block text-gray-700 font-medium">
-                            Sube el contenido visual:
-                        </label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                        />
-                        {formData.contentPreviewUrl ? (
-                            <div className="mt-4 text-center">
-                                <img
-                                    src={formData.contentPreviewUrl}
-                                    alt="Contenido Visual"
-                                    className="max-w-full max-h-60 object-contain rounded mx-auto"
-                                />
-                            </div>
-                        ) : (
-                            <p className="mt-4 text-gray-500 text-sm">
-                                No se ha seleccionado ninguna imagen.
-                            </p>
-                        )}
-                    </div>
+                    <ImageDropZone
+                        id="content-creation-upload"
+                        label="Sube el contenido visual:"
+                        previewUrl={formData.contentPreviewUrl}
+                        onFileSelected={handleFileChange}
+                        disabled={readOnly}
+                        emptyMessage={
+                            readOnly
+                                ? "No se ha cargado ninguna imagen."
+                                : "No se ha seleccionado ninguna imagen."
+                        }
+                        imageClassName="max-h-60 object-contain rounded-lg"
+                    />
 
                     {/* Checklist */}
                     <fieldset className="rounded-2xl p-4 space-y-3">

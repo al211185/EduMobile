@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import ImageDropZone from "./ImageDropZone";
 import useAutoSave from "../hooks/useAutoSave";
+import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const fileUploadEndpoint = "/api/Files/upload";
@@ -7,8 +9,7 @@ const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChang
 
 
     const getPreviewUrl = useCallback(
-        (filePath) =>
-            filePath ? `${fileImageEndpoint}/${filePath.split("/").pop()}` : "",
+        (filePath) => buildPreviewUrl(fileImageEndpoint, filePath),
         [fileImageEndpoint]
     );
 
@@ -68,8 +69,10 @@ const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChang
     });
 
 
-    const handleFileChange = async (e) => {
-        const file = e.target.files[0];
+    const handleFileChange = async (file) => {
+        if (readOnly) {
+            return;
+        }
         if (!file) {
             // Si no hay archivo, reiniciamos la ruta y la vista previa
             setFormData((prev) => ({
@@ -80,34 +83,60 @@ const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChang
             return;
         }
 
+        const previousPath = formData.siteMapFilePath;
+        const previousPreview = formData.siteMapPreviewUrl;
+        const localUrl = URL.createObjectURL(file);
+
+        setFormData((prev) => ({
+            ...prev,
+            siteMapPreviewUrl: localUrl,
+        }));
+
         const fileData = new FormData();
         fileData.append("file", file);
 
+        const query = previousPath ? `?oldFilePath=${encodeURIComponent(previousPath)}` : "";
+
         try {
-            const response = await fetch(fileUploadEndpoint, {
+            const response = await fetch(`${fileUploadEndpoint}${query}`, {
                 method: "POST",
                 body: fileData,
+                credentials: "include",
             });
 
             if (!response.ok) {
-                alert("Error al subir el archivo. Inténtalo nuevamente.");
-                return;
+                const errorMessage = await response
+                    .json()
+                    .then((res) => res.message || "Error al subir el archivo. Inténtalo nuevamente.")
+                    .catch(() => "Error al subir el archivo. Inténtalo nuevamente.");
+                throw new Error(errorMessage);
             }
 
             const result = await response.json();
-            if (result.filePath) {
-                setFormData((prev) => ({
-                    ...prev,
-                    siteMapFilePath: result.filePath,
-                    siteMapPreviewUrl: getPreviewUrl(result.filePath),
-                }));
-            } else {
-                console.error("El servidor no devolvió una ruta válida para el archivo:", result);
-                alert("Error: No se pudo obtener la ruta del archivo.");
+            const serverPath = extractFilePath(result);
+
+            if (!serverPath) {
+                throw new Error("No se pudo obtener la ruta del archivo.");
             }
+
+            setFormData((prev) => ({
+                ...prev,
+                siteMapFilePath: serverPath,
+                siteMapPreviewUrl: getPreviewUrl(serverPath),
+            }));
         } catch (error) {
             console.error("Error al subir el archivo:", error);
-            alert("Error al subir el archivo.");
+
+            alert(error.message || "Error al subir el archivo.");
+            setFormData((prev) => ({
+                ...prev,
+                siteMapFilePath: previousPath,
+                siteMapPreviewUrl: previousPreview,
+            }));
+        } finally {
+            if (localUrl) {
+                URL.revokeObjectURL(localUrl);
+            }
         }
     };
 
@@ -147,29 +176,18 @@ const Phase1SiteMap = ({ data, onNext, readOnly = false, onAutoSave, onDataChang
                     </fieldset>
 
                     {/* Carga de imagen */}
-                    <div className="space-y-4">
-                        <input
-                            type="file"
-                            accept="image/*"
-                            name="siteMapFilePath"
-                            onChange={handleFileChange}
-                            className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                        />
-
-                        {formData.siteMapPreviewUrl ? (
-                            <div className="mt-4 image-preview text-center">
-                                <img
-                                    src={formData.siteMapPreviewUrl}
-                                    alt="Mapa del sitio"
-                                    className="max-w-full max-h-64 object-contain rounded mx-auto"
-                                />
-                            </div>
-                        ) : (
-                            <p className="mt-4 text-gray-500">
-                                No se ha seleccionado ninguna imagen para la vista previa.
-                            </p>
-                        )}
-                    </div>
+                    <ImageDropZone
+                        id="phase1-site-map"
+                        label="Sube el mapa del sitio"
+                        previewUrl={formData.siteMapPreviewUrl}
+                        onFileSelected={handleFileChange}
+                        disabled={readOnly}
+                        emptyMessage={
+                            readOnly
+                                ? "No se ha cargado ninguna imagen."
+                                : "No se ha seleccionado ninguna imagen para la vista previa."
+                        }
+                    />
 
                     {/* Checklist */}
                     <fieldset className="rounded-2xl ">

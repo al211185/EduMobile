@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import ImageDropZone from "./ImageDropZone";
 import useAutoSave from "../hooks/useAutoSave";
+import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const FILE_UPLOAD_ENDPOINT = "/api/Files/upload";
@@ -7,8 +9,7 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
 
 
     const getPreviewUrl = useCallback(
-        (filePath) =>
-            filePath ? `${FILE_IMAGE_ENDPOINT}/${filePath.split("/").pop()}` : "",
+        (filePath) => buildPreviewUrl(FILE_IMAGE_ENDPOINT, filePath),
         [FILE_IMAGE_ENDPOINT]
     );
 
@@ -72,18 +73,38 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
         initialSnapshot,
     });
 
-    const uploadFile = async (file) => {
+    const uploadFile = async (file, previousPath = "") => {
         const payload = new FormData();
         payload.append("file", file);
-        const res = await fetch(FILE_UPLOAD_ENDPOINT, { method: "POST", body: payload });
-        if (!res.ok) throw new Error("Error al subir el archivo. Inténtalo nuevamente.");
-        const result = await res.json();
-        if (!result.filePath) throw new Error("No se pudo obtener la ruta del archivo.");
-        return result.filePath;
+        const query = previousPath ? `?oldFilePath=${encodeURIComponent(previousPath)}` : "";
+
+        const res = await fetch(`${FILE_UPLOAD_ENDPOINT}${query}`, {
+            method: "POST",
+            body: payload,
+            credentials: "include",
+        });
+
+        if (!res.ok) {
+            const errorMessage = await res
+                .json()
+                .then((error) => error.message || "Error al subir el archivo. Inténtalo nuevamente.")
+                .catch(() => "Error al subir el archivo. Inténtalo nuevamente.");
+            throw new Error(errorMessage);
+
+            const result = await res.json();
+
+            const filePath = extractFilePath(result);
+            if (!filePath) {
+                throw new Error("No se pudo obtener la ruta del archivo.");
+            }
+            return filePath;
+        }
     };
 
-    const handleFileChange = async (e, key) => {
-        const file = e.target.files[0];
+    const handleFileChange = async (file, key) => {
+        if (readOnly) {
+            return;
+        }
         // calculamos el campo preview correcto
         const previewKey = key.replace("Path", "PreviewUrl");
 
@@ -97,14 +118,15 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
         }
 
         // vista previa local inmediata
-        const localUrl = URL.createObjectURL(file);
+        const previousPath = formData[key];
+        const previousPreview = formData[previewKey];
         setFormData((prev) => ({
             ...prev,
             [previewKey]: localUrl,
         }));
 
         try {
-            const filePath = await uploadFile(file);
+            const filePath = await uploadFile(file, previousPath);
             setFormData((prev) => ({
                 ...prev,
                 [key]: filePath,
@@ -113,6 +135,15 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
         } catch (err) {
             console.error(err);
             alert(err.message);
+            setFormData((prev) => ({
+                ...prev,
+                [key]: previousPath,
+                [previewKey]: previousPreview,
+            }));
+        } finally {
+            if (localUrl) {
+                URL.revokeObjectURL(localUrl);
+            }
         }
     };
 
@@ -171,28 +202,20 @@ const Phase2Wireframes = ({ data, onNext, readOnly = false, onAutoSave, onDataCh
                             { label: "768px", key: "wireframe768pxPath", preview: "wireframe768pxPreviewUrl" },
                             { label: "1024px", key: "wireframe1024pxPath", preview: "wireframe1024pxPreviewUrl" },
                         ].map(({ label, key, preview }) => (
-                            <div key={key}>
-                                <label className="block text-gray-700 font-medium mb-1">
-                                    Wireframe {label}
-                                </label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => handleFileChange(e, key)}
-                                    className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                                />
-                                {formData[preview] ? (
-                                    <div className="mt-2 text-center">
-                                        <img
-                                            src={formData[preview]}
-                                            alt={`Wireframe ${label}`}
-                                            className="max-w-full max-h-40 object-contain rounded mx-auto"
-                                        />
-                                    </div>
-                                ) : (
-                                    <p className="mt-2 text-gray-500 text-sm">No se ha seleccionado imagen.</p>
-                                )}
-                            </div>
+                            <ImageDropZone
+                                key={key}
+                                id={`wireframe-${label}`}
+                                label={`Wireframe ${label}`}
+                                previewUrl={formData[preview]}
+                                onFileSelected={(file) => void handleFileChange(file, key)}
+                                disabled={readOnly}
+                                emptyMessage={
+                                    readOnly
+                                        ? "No se ha cargado ninguna imagen."
+                                        : "No se ha seleccionado imagen."
+                                }
+                                imageClassName="max-h-40 object-contain rounded-lg"
+                            />
                         ))}
                     </div>
 

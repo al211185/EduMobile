@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import Phase1SiteMap from "./Phase1SiteMap";
 import Phase2Wireframes from "./Phase2Wireframes";
 import Phase3VisualDesign from "./Phase3VisualDesign";
 import Phase4ContentCreation from "./Phase4ContentCreation";
 import StepNavigation from "./StepNavigation";
+import { normalizeKeysToCamelCase } from "../utils/fileHelpers";
 
 const DesignPhase = ({ readOnly = false }) => {
     const { projectId } = useParams();
-    const navigate = useNavigate();
     const [currentPhase, setCurrentPhase] = useState(1);
     const steps = [
         "Mapa del Sitio",
@@ -16,9 +16,8 @@ const DesignPhase = ({ readOnly = false }) => {
         "Diseño Visual",
         "Contenido"
     ];
-    const [phaseData, setPhaseData] = useState(null);
+    const [phaseData, setPhaseData] = useState({});
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [phaseDrafts, setPhaseDrafts] = useState({});
 
 
@@ -30,6 +29,7 @@ const DesignPhase = ({ readOnly = false }) => {
         const fetchDesignPhaseData = async () => {
             if (!projectId) {
                 console.error("El projectId es indefinido");
+                setLoading(false);
                 return;
             }
             try {
@@ -38,9 +38,15 @@ const DesignPhase = ({ readOnly = false }) => {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    setPhaseData(data);
+                    const normalized = normalizeKeysToCamelCase(data) || {};
+                    setPhaseData(normalized);
+                } else if (response.status === 404) {
+                    setPhaseData({});
                 } else {
-                    console.error("Error al cargar los datos de la fase", await response.json());
+                    const errorBody = await response
+                        .json()
+                        .catch(() => ({ message: "Respuesta no válida del servidor." }));
+                    console.error("Error al cargar los datos de la fase", errorBody);
                 }
             } catch (error) {
                 console.error("Error al cargar los datos de la fase", error);
@@ -51,6 +57,10 @@ const DesignPhase = ({ readOnly = false }) => {
 
         fetchDesignPhaseData();
     }, [projectId, currentPhase]);
+
+    useEffect(() => {
+        setPhaseDrafts({});
+    }, [projectId]);
 
     // Cargar la retroalimentación guardada para la fase de diseño (fase 2)
     useEffect(() => {
@@ -112,6 +122,7 @@ const DesignPhase = ({ readOnly = false }) => {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(updatedData),
+                    credentials: "include",
                 });
 
                 if (!response.ok) {
@@ -140,9 +151,10 @@ const DesignPhase = ({ readOnly = false }) => {
                 }
 
                 if (serverData && typeof serverData === "object") {
-                    setPhaseData((prev) => (prev ? { ...prev, ...serverData } : serverData));
+                    const normalized = normalizeKeysToCamelCase(serverData);
+                    setPhaseData((prev) => ({ ...(prev || {}), ...normalized }));
                 } else {
-                    setPhaseData((prev) => (prev ? { ...prev, ...updatedData } : updatedData));
+                    setPhaseData((prev) => ({ ...(prev || {}), ...updatedData }));
                 }
 
                 setPhaseDrafts((prev) => ({ ...prev, [phaseNumber]: updatedData }));
@@ -270,6 +282,14 @@ const DesignPhase = ({ readOnly = false }) => {
 
     if (!projectId) {
         return <div>Error: El ID del proyecto es indefinido</div>;
+    }
+
+    if (loading) {
+        return (
+            <div className="w-full bg-white rounded-2xl shadow-lg flex-1 flex items-center justify-center p-8">
+                <p className="text-gray-600">Cargando fase de diseño...</p>
+            </div>
+        );
     }
 
     return (

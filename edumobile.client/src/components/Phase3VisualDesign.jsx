@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import ImageDropZone from "./ImageDropZone";
 import useAutoSave from "../hooks/useAutoSave";
+import { buildPreviewUrl, extractFilePath } from "../utils/fileHelpers";
 
 const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onDataChange }) => {
     const FILE_UPLOAD_ENDPOINT = "/api/Files/upload";
     const FILE_IMAGE_ENDPOINT = "/api/Files/image";
 
     const getPreviewUrl = useCallback(
-        (filePath) =>
-            filePath ? `${FILE_IMAGE_ENDPOINT}/${filePath.split("/").pop()}` : "",
+        (filePath) => buildPreviewUrl(FILE_IMAGE_ENDPOINT, filePath),
         [FILE_IMAGE_ENDPOINT]
     );
 
@@ -65,8 +66,10 @@ const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onData
         initialSnapshot,
     });
 
-    const handleFileChange = async (e) => {
-        const file = e.target.files[0];
+    const handleFileChange = async (file) => {
+        if (readOnly) {
+            return;
+        }
         if (!file) {
             // Reset
             setFormData((prev) => ({
@@ -78,6 +81,8 @@ const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onData
         }
 
         // Vista previa local inmediata
+        const previousPath = formData.visualDesignFilePath;
+        const previousPreview = formData.visualDesignPreviewUrl;
         const localUrl = URL.createObjectURL(file);
         setFormData((prev) => ({
             ...prev,
@@ -87,22 +92,43 @@ const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onData
         // Subida al servidor
         const payload = new FormData();
         payload.append("file", file);
+        const query = previousPath ? `?oldFilePath=${encodeURIComponent(previousPath)}` : "";
+
         try {
-            const res = await fetch(FILE_UPLOAD_ENDPOINT, {
+            const res = await fetch(`${FILE_UPLOAD_ENDPOINT}${query}`, {
                 method: "POST",
                 body: payload,
+                credentials: "include",
             });
-            if (!res.ok) throw new Error("Error al subir el archivo. Inténtalo nuevamente.");
+            if (!res.ok) {
+                const errorMessage = await res
+                    .json()
+                    .then((error) => error.message || "Error al subir el archivo. Inténtalo nuevamente.")
+                    .catch(() => "Error al subir el archivo. Inténtalo nuevamente.");
+                throw new Error(errorMessage);
+            }
             const result = await res.json();
-            if (!result.filePath) throw new Error("No se pudo obtener la ruta del archivo.");
+            const serverPath = extractFilePath(result);
+            if (!serverPath) {
+                throw new Error("No se pudo obtener la ruta del archivo.");
+            }
             setFormData((prev) => ({
                 ...prev,
-                visualDesignFilePath: result.filePath,
-                visualDesignPreviewUrl: getPreviewUrl(result.filePath),
+                visualDesignFilePath: serverPath,
+                visualDesignPreviewUrl: getPreviewUrl(serverPath),
             }));
         } catch (err) {
             console.error(err);
             alert(err.message);
+            setFormData((prev) => ({
+                ...prev,
+                visualDesignFilePath: previousPath,
+                visualDesignPreviewUrl: previousPreview,
+            }));
+        } finally {
+            if (localUrl) {
+                URL.revokeObjectURL(localUrl);
+            }
         }
     };
 
@@ -141,30 +167,18 @@ const Phase3VisualDesign = ({ data, onNext, readOnly = false, onAutoSave, onData
                     </fieldset>
 
                     {/* Upload de imagen */}
-                    <div className="space-y-4">
-                        <label className="block text-gray-700 font-medium">
-                            Sube el diseño visual:
-                        </label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                        />
-                        {formData.visualDesignPreviewUrl ? (
-                            <div className="mt-4 text-center">
-                                <img
-                                    src={formData.visualDesignPreviewUrl}
-                                    alt="Diseño Visual"
-                                    className="max-w-full max-h-64 object-contain rounded mx-auto"
-                                />
-                            </div>
-                        ) : (
-                            <p className="mt-4 text-gray-500 text-sm">
-                                No se ha seleccionado ninguna imagen.
-                            </p>
-                        )}
-                    </div>
+                    <ImageDropZone
+                        id="visual-design-upload"
+                        label="Sube el diseño visual:"
+                        previewUrl={formData.visualDesignPreviewUrl}
+                        onFileSelected={handleFileChange}
+                        disabled={readOnly}
+                        emptyMessage={
+                            readOnly
+                                ? "No se ha cargado ninguna imagen."
+                                : "No se ha seleccionado ninguna imagen."
+                        }
+                    />
 
                     {/* Checklist */}
                     <fieldset className="rounded-2xl">

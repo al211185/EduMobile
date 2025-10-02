@@ -105,6 +105,10 @@
       "PackagePath": "staticwebassets\\uploads\\420eb336-51ba-4009-9447-0ac1dddd70f7.jpeg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\5ba6dda8-cc5f-4b8d-82ca-88dafac458ee.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\5ba6dda8-cc5f-4b8d-82ca-88dafac458ee.jpeg"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\5c88e59c-8980-407d-923c-2505bfc43dde.jpg",
       "PackagePath": "staticwebassets\\uploads\\5c88e59c-8980-407d-923c-2505bfc43dde.jpg"
     },
@@ -117,6 +121,10 @@
       "PackagePath": "staticwebassets\\uploads\\66c619a2-7188-43b2-914d-b51b518ce0ee.jpeg"
     },
     {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\754da223-da72-4b0a-a664-e94cc88afcc4.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\754da223-da72-4b0a-a664-e94cc88afcc4.jpeg"
+    },
+    {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\7f6513ba-5274-4478-a876-f89b3e6cca80.jpeg",
       "PackagePath": "staticwebassets\\uploads\\7f6513ba-5274-4478-a876-f89b3e6cca80.jpeg"
     },
@@ -127,6 +135,14 @@
     {
       "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\af94b86b-0ac6-4aa0-abaf-145b4a42418a.jpeg",
       "PackagePath": "staticwebassets\\uploads\\af94b86b-0ac6-4aa0-abaf-145b4a42418a.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\efca266a-097e-4d98-bec3-62dfb50ac422.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\efca266a-097e-4d98-bec3-62dfb50ac422.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\Desktop\\EduMobile\\EduMobile.Server\\wwwroot\\uploads\\f85910d3-8899-4a4c-ab14-8205cc306740.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\f85910d3-8899-4a4c-ab14-8205cc306740.jpeg"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.EduMobile.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
