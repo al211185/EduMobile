@@ -4,6 +4,7 @@ import Phase1Brief from "./Phase1Brief";
 import Phase2Benchmarking from "./Phase2Benchmarking";
 import Phase3Audience from "./Phase3Audience";
 import StepNavigation from "./StepNavigation";
+import { normalizeKeysToCamelCase } from "../utils/fileHelpers";
 
 const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () => { } }) => {
     const { projectId } = useParams();
@@ -24,7 +25,8 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                 const response = await fetch(`/api/planningphases/${projectId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    setPhaseData(data);
+                    const normalized = normalizeKeysToCamelCase(data) || {};
+                    setPhaseData({ ...data, ...normalized });
                 } else {
                     console.warn("No se encontró fase de planeación; se creará al guardar.");
                     setPhaseData({});
@@ -82,9 +84,15 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                     return false;
                 }
                 const data = await response.json();
-                const newId = data.PlanningPhaseId;
-                const merged = { ...updatedData, id: newId };
-                setPhaseData(merged);
+                const newId = data.PlanningPhaseId ?? data.id;
+                const serverNormalized = normalizeKeysToCamelCase(data) || {};
+                const merged = {
+                    ...updatedData,
+                    ...data,
+                    id: newId ?? updatedData?.id,
+                };
+                const normalized = normalizeKeysToCamelCase(merged) || {};
+                setPhaseData({ ...merged, ...normalized, ...serverNormalized });
                 return true;
             } else {
                 // Actualizar (PUT)
@@ -107,12 +115,15 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
                     return false;
                 }
                 const data = await response.json();
+                const serverNormalized = normalizeKeysToCamelCase(data) || {};
                 const partial = {
                     ...updatedData,
-                    id: data.id,
-                    updatedAt: data.updatedAt,
+                    ...data,
+                    id: data.id ?? updatedData?.id,
+                    updatedAt: data.updatedAt ?? updatedData?.updatedAt,
                 };
-                setPhaseData((prev) => ({ ...prev, ...partial }));
+                const normalized = normalizeKeysToCamelCase(partial) || {};
+                setPhaseData((prev) => ({ ...prev, ...partial, ...normalized, ...serverNormalized }));
                 return true;
             }
         } catch (err) {
@@ -130,7 +141,6 @@ const PlanningPhase = ({ readOnly = false, feedback = "", onFeedbackChange = () 
         const saved = await savePhaseData(newData);
         if (saved) {
             alert("Datos guardados exitosamente.");
-            setPhaseData(newData);
         } else {
             alert("Error al guardar datos, intenta nuevamente.");
         }
